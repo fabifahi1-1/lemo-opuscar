@@ -119,7 +119,7 @@ function drawFx(c, f, t, s, cam, states) {
   c.save();
   if (f.sw) {   // big comic sound word
     let [x, y, zk] = fxPos(f, cam, s, states);
-    if (f.carried) { const hw = f.sw.length * (f.size || 120) * .32; x = clamp(x, hw + 30, W - hw - 30); y = clamp(y, (f.size || 120) * .7 + 20, H - (f.size || 120) * .7 - 20); }
+    { const hw = f.sw.length * (f.size || 120) * .32; x = clamp(x, hw + 30, W - hw - 30); y = clamp(y, (f.size || 120) * .7 + 20, H - (f.size || 120) * .7 - 20); }
     const pop = u < .25 ? EASE.back(u / .25) : 1, wob = Math.sin(u * 14) * .03 * (1 - seg(u, 0, .8));
     c.globalAlpha = out; paintedText(c, f.sw, x, y, (f.size || 120), f.col || '#e8553a', { rot: (f.rot || -.08) + wob, sc: pop });
   } else if (f.bub) {   // speech bubble for shouted words
@@ -219,7 +219,7 @@ function textsAt(t) {
   for (const f of s.fx || []) {
     if (!fxAlive(f, t)) continue;
     const id = (f.sw || f.bub || f.label || f.typed || f.text || '') + '@' + f.t.toFixed(2);
-    if (f.sw) { const [x, y] = f.world ? [f.x, f.y] : w2s(cam, f.layer ?? 1, f.x, f.y); const w = f.sw.length * (f.size || 120) * .3; out.push({ id, text: f.sw, x0: x - w, y0: y - 60, x1: x + w, y1: y + 60 }); }
+    if (f.sw) { let [x, y] = f.world ? [f.x, f.y] : w2s(cam, f.layer ?? 1, f.x, f.y); const w = f.sw.length * (f.size || 120) * .3; x = clamp(x, w + 30, W - w - 30); y = clamp(y, (f.size || 120) * .7 + 20, H - (f.size || 120) * .7 - 20); out.push({ id, text: f.sw, x0: x - w, y0: y - 60, x1: x + w, y1: y + 60 }); }
     else if (f.label) { const st = s.cast && f.on ? null : null; const [x, y] = f.on ? labelAnchor(f, s, t, cam) : w2s(cam, f.layer ?? 1, f.x, f.y); const lx = x + (f.lx ?? -220), ly = y + (f.ly ?? -160); const w = f.label.length * 17; out.push({ id, text: f.label, x0: lx - w, y0: ly - 40, x1: lx + w, y1: ly + 40 }); }
     else if (f.bub) out.push({ id, text: f.bub, x0: 200, y0: 200, x1: 600, y1: 300 });
     else if (f.title) { const [x, y] = w2s(cam, .2, f.x || 0, f.y || -380); out.push({ id, text: f.text, x0: x - 500, y0: y - 80, x1: x + 500, y1: y + 80 }); }
