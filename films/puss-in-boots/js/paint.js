@@ -2,6 +2,7 @@
 // Every function here consumes the global RNG: call them inside withSeed() (build time) only.
 
 const TAU = Math.PI * 2;
+let PAINTMIX = 0;   // while painting places: colours lean toward the paper (the style's light, transparent washes)
 const mkCanvas = (w, h) => { const c = document.createElement('canvas'); c.width = Math.max(1, Math.ceil(w)); c.height = Math.max(1, Math.ceil(h)); return c; };
 
 // ---------- textures (built once) ----------
@@ -69,56 +70,67 @@ const shade = (col, k) => k >= 0 ? mixc(col, '#2a2028', k) : mixc(col, '#fff6e6'
 //   bloom: inner light/dark bloom (0..1)   light: [lx,ly] light direction   gran: granulation (0..1)
 //   grad: [top, bottom] colours instead of col   shadowSide: amount of shadow wash on the far side
 function paint(c, pts, col, o = {}) {
-  const wob = o.wob ?? 3, a = o.a ?? .82;
+  // Watercolor Brush (styles/watercolor/STYLE.md): a thin wash + overlapping translucent brush strokes with dry-brush bristles,
+  // paper is the white, darker = more passes; the only "line" is a darker broken edge stroke on the shadow side.
+  const wob = o.wob ?? 3, a = (o.a ?? .82) * .8 * (PAINTMIX ? 1 - PAINTMIX * .5 : 1);
+  if (PAINTMIX) { col = mixc(col, PAPER, PAINTMIX); if (o.grad) o = Object.assign({}, o, { grad: o.grad.map(g => mixc(g, PAPER, PAINTMIX)) }); }
   const P = wob > 0 ? wobble(pts, wob, o.freq ?? .08) : pts;
   const [x0, y0, x1, y1] = boundsOf(P), w = x1 - x0, h = y1 - y0, cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  const cTop = o.grad ? o.grad[0] : col, cBot = o.grad ? o.grad[o.grad.length - 1] : col;
   c.save();
-  if (o.under) { pathOf(c, P); c.fillStyle = o.under === true ? PAPER : o.under; c.globalAlpha = 1; c.fill(); }
-  const fillOf = () => {
-    if (!o.grad) return col;
-    const g = c.createLinearGradient(0, y0, 0, y1); o.grad.forEach((cc, i) => g.addColorStop(i / (o.grad.length - 1), cc)); return g;
-  };
-  // three jittered passes at a third of the opacity: edges pool where passes disagree
-  const passes = o.passes ?? 3, jit = o.jit ?? Math.max(.6, Math.min(w, h) * .012);
-  for (let p = 0; p < passes; p++) {
-    pathOf(c, p ? jitterPts(P, jit) : P);
-    c.globalAlpha = 1 - Math.pow(1 - a, 1 / passes); c.fillStyle = fillOf(); c.fill();
-  }
+  if (o.under) { pathOf(c, P); c.fillStyle = o.under === true ? PAPER : o.under; c.globalAlpha = .62; c.fill(); }
+  const fillOf = () => { if (!o.grad) return col; const g = c.createLinearGradient(0, y0, 0, y1); o.grad.forEach((cc, i) => g.addColorStop(i / (o.grad.length - 1), cc)); return g; };
+  // 1. a light wash in two jittered passes (pooled edge where they disagree)
+  const jit = o.jit ?? Math.max(.6, Math.min(w, h) * .012);
+  for (let p = 0; p < 2; p++) { pathOf(c, p ? jitterPts(P, jit) : P); c.globalAlpha = a * .32; c.fillStyle = fillOf(); c.fill(); }
   c.globalAlpha = 1;
-  // inside effects, clipped to the shape
   pathOf(c, P); c.clip();
-  const L = o.light || [-.5, -.7];
-  const ssd = (o.shadowSide ?? .35) * Math.min(1, 700 / Math.max(w, h, 1));
-  if (ssd > 0) {   // shadow wash on the side away from the light
-    const g = c.createLinearGradient(cx + L[0] * w * .5, cy + L[1] * h * .5, cx - L[0] * w * .55, cy - L[1] * h * .55);
-    g.addColorStop(0, rgba(shade(o.grad ? o.grad[0] : col, .2), 0)); g.addColorStop(.55, rgba(shade(o.grad ? o.grad[o.grad.length - 1] : col, .25), 0));
-    g.addColorStop(1, rgba(shade(o.grad ? o.grad[o.grad.length - 1] : col, .32), ssd));
-    c.fillStyle = g; c.fillRect(x0 - 2, y0 - 2, w + 4, h + 4);
+  // 2. the body: broad translucent strokes laid across the shape, each with bristle tracks (flying white)
+  const horiz = o.dir !== undefined ? Math.abs(Math.cos(o.dir)) > .5 : w >= h * .8;
+  const minor = horiz ? h : w, major = horiz ? w : h;
+  const sw = clamp(minor * .34, 3, 70), nS = Math.min(40, Math.ceil(minor / (sw * .62)) + 1);
+  const tilt = o.dir ?? (horiz ? rnd(-.06, .06) : Math.PI / 2 + rnd(-.08, .08));
+  for (let k = 0; k < nS; k++) {
+    const u = (k + .5) / nS, off = (u - .5) * minor * 1.08 + rnd(-sw * .15, sw * .15);
+    const ox = horiz ? cx : cx + off, oy = horiz ? cy + off : cy;
+    const L = major * rnd(1.0, 1.15), dx = Math.cos(tilt) * L / 2, dy = Math.sin(tilt) * L / 2;
+    const yy = horiz ? oy : cy, tcol = o.grad ? (((yy - y0) / (h || 1)) < .5 ? cTop : cBot) : col;
+    const sc = rnd(0, 1) < .3 ? shade(tcol, rnd(-.12, .12)) : tcol;
+    drawS(c, mk(qcurve(ox - dx, oy - dy, ox + dx, oy + dy, rnd(-sw * .3, sw * .3), clamp(Math.round(L / 30), 6, 60)), sw * rnd(.9, 1.25), sc,
+      { prof: 'even', nb: Math.round(clamp(sw / 4, 3, 9)), a: a * rnd(.42, .62), rough: .28, rib: .55 }));
   }
+  // 3. shadow: a few darker strokes on the side away from the light (more passes = darker, never a darker pigment on top)
+  const L = o.light || [-.5, -.7], ssd = (o.shadowSide ?? .35);
+  if (ssd > 0) for (let k = 0; k < 2; k++) {
+    const sx = cx - L[0] * w * rnd(.25, .42), sy = cy - L[1] * h * rnd(.25, .42), len = major * rnd(.5, .8);
+    drawS(c, mk(qcurve(sx - Math.cos(tilt) * len / 2, sy - Math.sin(tilt) * len / 2, sx + Math.cos(tilt) * len / 2, sy + Math.sin(tilt) * len / 2, rnd(-6, 6), 10),
+      sw * rnd(.7, 1.1), shade(cBot, .1), { prof: 'brush', nb: 4, a: ssd * .55, rough: .35 }));
+  }
+  // 4. a lighter bloom toward the light (unpainted-looking paper)
   const bl = (o.bloom ?? .5) * Math.min(1, 520 / Math.max(w, h, 1));
-  if (bl > 0) {   // a lighter bloom toward the light + one darker cauliflower blotch
-    const bx = cx + L[0] * w * .22, by = cy + L[1] * h * .22, r = Math.max(w, h) * rnd(.28, .42);
-    const g = c.createRadialGradient(bx, by, 0, bx, by, r); g.addColorStop(0, `rgba(255,248,235,${.42 * bl})`); g.addColorStop(1, 'rgba(255,248,235,0)');
-    c.fillStyle = g; c.fillRect(x0, y0, w, h);
-    const dx = cx + rnd(-.3, .3) * w, dy = cy + rnd(0, .35) * h, dr = Math.max(w, h) * rnd(.14, .26);
-    const g2 = c.createRadialGradient(dx, dy, dr * .55, dx, dy, dr);
-    g2.addColorStop(0, rgba(shade(o.grad ? o.grad[0] : col, .12), .0)); g2.addColorStop(.86, rgba(shade(o.grad ? o.grad[0] : col, .18), .22 * bl)); g2.addColorStop(1, rgba(shade(o.grad ? o.grad[0] : col, .18), 0));
-    c.fillStyle = g2; c.fillRect(x0, y0, w, h);
-  }
-  const gr = o.gran ?? .55;
+  if (bl > 0) { const bx = cx + L[0] * w * .25, by = cy + L[1] * h * .25, r = Math.max(w, h) * rnd(.22, .34);
+    const g = c.createRadialGradient(bx, by, 0, bx, by, r); g.addColorStop(0, `rgba(250,244,230,${.32 * bl})`); g.addColorStop(1, 'rgba(250,244,230,0)'); c.fillStyle = g; c.fillRect(x0, y0, w, h); }
+  const gr = (o.gran ?? .55) * .6;
   if (gr > 0 && GRAN) { c.globalCompositeOperation = 'multiply'; c.globalAlpha = gr; c.fillStyle = granPattern(c);
     c.save(); c.translate(rnd(0, 512), rnd(0, 512)); c.fillRect(x0 - 600, y0 - 600, w + 1200, h + 1200); c.restore();
     c.globalCompositeOperation = 'source-over'; c.globalAlpha = 1; }
   c.restore();
-  // pooled edge + optional ink edge
-  const ed = o.edge ?? .55;
-  if (ed > 0) { c.save(); pathOf(c, P); c.lineJoin = 'round'; c.strokeStyle = rgba(shade(o.grad ? o.grad[o.grad.length - 1] : col, .25), .5 * ed);
-    c.lineWidth = Math.max(1, Math.min(w, h) * .018 + 1); c.stroke(); c.restore(); }
-  if (o.line) edgeLine(c, P, o.line, o.lineCol || shade(o.grad ? o.grad[o.grad.length - 1] : col, .55), o.lineA ?? .75);
+  // 5. pooled pigment at the edge (soft), and a darker broken edge stroke on the shadow side only
+  const ed = (o.edge ?? .55) * .7;
+  if (ed > 0) { c.save(); pathOf(c, P); c.lineJoin = 'round'; c.strokeStyle = rgba(shade(cBot, .2), .35 * ed); c.lineWidth = Math.max(1, Math.min(w, h) * .015 + .8); c.stroke(); c.restore(); }
+  if (o.line) edgeLine(c, P, o.line * .9, o.lineCol || shade(cBot, .4), (o.lineA ?? .75) * .7, L);
   return P;
 }
 // a broken, varying ink/edge line around a closed polygon (the only "line" in watercolour)
-function edgeLine(c, P, w, col, a = .75) {
+function edgeLine(c, P, w, col, a = .75, Lt = null) {
+  if (Lt) {   // only where the outward normal faces away from the light: a darker edge stroke, never a full outline
+    const n = P.length; let run = [];
+    const flush = () => { if (run.length > 3) drawS(c, mk(run, w * rnd(.7, 1.2), col, { prof: 'brush', nb: 0, a: a * rnd(.7, 1), rough: .45 })); run = []; };
+    const [bx0, by0, bx1, by1] = boundsOf(P), mx = (bx0 + bx1) / 2, my = (by0 + by1) / 2;
+    for (let i = 0; i <= n; i++) { const p = P[i % n], nx = p[0] - mx, ny = p[1] - my, d = (nx * -Lt[0] + ny * -Lt[1]) / (Math.hypot(nx, ny) || 1);
+      if (d > .15) run.push(p); else flush(); }
+    flush(); return;
+  }
   const n = P.length, k = Math.max(3, Math.round(n / 16));
   let i = Math.floor(rnd(0, n));
   let done = 0;

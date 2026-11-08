@@ -207,7 +207,7 @@ function drawLocation(c, s, t) {
     for (const f of s.fx || []) if ((f.layer ?? 1) === L.k && f.world) drawFx(c, f, t, s, cam, states);
   }
   c.setTransform(1, 0, 0, 1, 0, 0);
-  if (loc.grade) loc.grade(c, t, P);
+  if (loc.grade) { c.save(); c.globalAlpha = .5; loc.grade(c, t, P); c.restore(); }
   for (const f of s.fx || []) if (!f.world) drawFx(c, f, t, s, cam, states);
 }
 function drawRipples(c, x, y, t, w) {

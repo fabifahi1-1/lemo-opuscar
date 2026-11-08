@@ -9,17 +9,20 @@ function buildLoc(id) {
   const def = LOCDEF[id]; if (!def) throw new Error('no location ' + id);
   const loc = { id, layers: [], marks: def.marks || {}, grade: def.grade, def };
   withSeed(hashStr('loc' + id), () => {
+    PAINTMIX = def.mix ?? .3;
     for (const ld of def.layers) {
       const L = { k: ld.k, name: ld.name, items: [], front: !!ld.front, live: ld.live, alpha: ld.alpha, b: ld.b, res: ld.res || (ld.k >= 1 ? 1 : ld.k > .5 ? .8 : .6) };
       if (ld.paint) {
         const [x0, y0, x1, y1] = ld.b;
         L.spr = canvasSprite(x0, y0, x1, y1, L.res, c => ld.paint(c, L));
-        if (ld.haze) haze(L.spr.cv, ld.haze[0], ld.haze[1]);
+        if (ld.haze) haze(L.spr.cv, '#f1e9da', Math.min(.72, ld.haze[1] * 1.45));
+        if (ld.k < 1 && ld.k > .25 && !ld.noMist) mistBand(L);
       }
       if (ld.items) ld.items(L);
       loc.layers.push(L);
     }
   });
+  PAINTMIX = 0;
   LOC[id] = loc;
   return loc;
 }
@@ -42,13 +45,30 @@ function drawItems(c, L, t, front = false) {
     c.restore();
   }
 }
+// a paper-coloured mist band at the foot of a far layer (depth between layers, STYLE.md §2)
+function mistBand(L) {
+  const c = L.spr.cv.getContext('2d'), r = L.spr.r, H0 = L.spr.cv.height;
+  const yb = (Math.min(L.b[3], 420) - L.b[1]) * r;
+  const g = c.createLinearGradient(0, yb - 260 * r, 0, yb); g.addColorStop(0, 'rgba(243,234,216,0)'); g.addColorStop(1, 'rgba(243,234,216,.75)');
+  c.save(); c.globalCompositeOperation = 'source-atop'; c.fillStyle = g; c.fillRect(0, yb - 260 * r, L.spr.cv.width, H0); c.restore();
+}
+// a stroked cloud: long horizontal brush strokes (the library style's clouds)
+function strokeCloud(c, x, y, w, col) {
+  for (let k = 0; k < 6; k++) { const yy = y + (k - 2.5) * w * .028 + rnd(-3, 3), ww = w * (1 - Math.abs(k - 2.5) * .14) * rnd(.85, 1.05), xx = x + rnd(-.06, .06) * w;
+    drawS(c, mk(qcurve(xx - ww / 2, yy, xx + ww / 2, yy + rnd(-4, 4), rnd(-6, 6), 30), rnd(10, 18), col, { prof: 'even', nb: 5, a: rnd(.18, .32), rough: .3, rib: .5 })); }
+}
+function stripedSun(c, x, y, r, col) {
+  c.save(); c.beginPath(); c.arc(x, y, r, 0, TAU); c.clip();
+  for (let k = 0; k < 11; k++) { const yy = y - r + (k + .5) * 2 * r / 11; drawS(c, mk(qcurve(x - r * 1.1, yy, x + r * 1.1, yy + rnd(-2, 2), 0, 14), 2 * r / 11 * 1.3, mixc(col, '#c8442a', rnd(0, .25)), { prof: 'even', nb: 4, a: .72, rough: .25 })); }
+  c.restore();
+}
 // sky gradient + painted clouds
-function skyPaint(c, L, top, bot, o = {}) {
+function skyPaint(c, L, top, bot, o = {}) {   // mostly paper: a light wash toward the horizon, stroked clouds
   const [x0, y0, x1, y1] = L.b;
-  const g = c.createLinearGradient(0, y0, 0, o.horizon ?? y1); g.addColorStop(0, top); g.addColorStop(1, bot); c.fillStyle = g; c.fillRect(x0, y0, x1 - x0, y1 - y0);
-  for (let k = 0; k < 40; k++) softBlob(c, rnd(x0, x1), rnd(y0, y1), rnd(80, 300), rnd(40, 160), pick([top, bot, o.tint || bot]), rnd(.08, .2), .3);
-  if (o.sun) { softBlob(c, o.sun[0], o.sun[1], 420, 420, '#fff2c8', .55, .2); softBlob(c, o.sun[0], o.sun[1], 110, 110, '#fffaf0', .8, .5); }
-  for (let k = 0; k < (o.clouds ?? 7); k++) cloud(c, rnd(x0 + 100, x1 - 100), rnd(y0 + 60, (o.cloudLow ?? (y0 + y1) / 2)), rnd(220, 480), o.cloudCol || '#fff6e8', o.cloudShadow || '#e8c8b0');
+  const g = c.createLinearGradient(0, y0, 0, o.horizon ?? y1); g.addColorStop(0, rgba(top, .34)); g.addColorStop(1, rgba(bot, .22)); c.fillStyle = g; c.fillRect(x0, y0, x1 - x0, y1 - y0);
+  for (let k = 0; k < 16; k++) softBlob(c, rnd(x0, x1), rnd(y0, y1), rnd(120, 320), rnd(40, 120), pick([top, bot]), rnd(.04, .1), .3);
+  if (o.sun) { softBlob(c, o.sun[0], o.sun[1], 260, 260, '#fff2c8', .35, .2); stripedSun(c, o.sun[0], o.sun[1], o.sunR || 70, o.sunCol || '#e8873a'); }
+  for (let k = 0; k < (o.clouds ?? 7); k++) strokeCloud(c, rnd(x0 + 150, x1 - 150), rnd(y0 + 80, (o.cloudLow ?? (y0 + y1) / 2)), rnd(300, 600), o.cloudShadow ? mixc(o.cloudShadow, '#8aa0b8', .5) : '#9aaabb');
 }
 function cloudBank(c, x, y, w) {
   for (let k = 0; k < 14; k++) { const u = k / 13; softBlob(c, x + (u - .5) * w + rnd(-20, 20), y - Math.sin(u * Math.PI) * w * .16 + rnd(-14, 14), w * rnd(.12, .2), w * rnd(.09, .13), '#fffaf2', .85, .55); }
