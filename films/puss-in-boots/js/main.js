@@ -274,7 +274,7 @@ window.TEXTS = t => textsAt(t + T_OFF);
   VT = await (await fetch('script/vtime.json')).json();
   FILM_END = VT.last_line_end + END_TAIL;
   TL = resolveTimeline();
-  window.EV = TL.ev; window.SCENES = TL.scenes.map(z => ({ sc: z.sc, t0: z.t0, t1: z.t1, f0: z.f0, f1: z.f1, name: z.name })); window.SHOTLIST = TL.shots.map(s => ({ t0: s.t0, t1: s.t1, sc: s.sc, loc: s.loc, kind: s.kind, name: s.name, note: s.note, tr: s.tr, cam: s.cam, cast: (s.cast || []).map(c => c.id), fx: (s.fx || []).map(f => f.sw || f.bub || f.label || f.sfx || f.type || f.think || '').filter(Boolean) }));
+  window.EV = TL.ev; window.SCENES = TL.scenes.map(z => ({ sc: z.sc, t0: z.t0, t1: z.t1, f0: z.f0, f1: z.f1, name: z.name })); window.SHOTLIST = TL.shots.map(s => ({ t0: s.t0, t1: s.t1, sc: s.sc, loc: s.loc, kind: s.kind, name: s.name, note: s.note, tr: s.tr, cam: s.cam, cast: (s.cast || []).map(c => c.id), fx: (s.fx || []).map(f => f.title ? 'title: ' + f.text : f.typed ? 'typed: ' + f.typed : f.sw ? 'sound word: ' + f.sw : f.bub ? 'speech bubble: ' + f.bub : f.label ? 'label: ' + f.label + ' →' : f.think ? 'thought bubble: ' + f.think : f.pop ? 'pop-in: ' + f.pop : f.poof ? 'POOF pigment cloud' : f.notes ? 'music notes' : f.hearts ? 'hearts' : f.sparkle ? 'sparkle' : f.crumbs ? 'crumbs' : f.drops ? 'water drops' : f.speed ? 'speed lines' : f.prop ? 'prop: ' + f.prop : f.door ? 'door swings open' : f.zz ? 'zzz' : '').filter(Boolean) }));
   window.CARDS = TL.cards.map(c => ({ t0: c.t0, t1: c.t1, text: c.text }));
   let t0 = 0, t1 = FILM_END;
   if (QS.get('loc')) {   // debug: one location, one camera
