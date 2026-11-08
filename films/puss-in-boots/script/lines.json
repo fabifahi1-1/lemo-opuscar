@@ -1,0 +1,1428 @@
+[
+ {
+  "id": "L001",
+  "text": "PUSS IN BOOTS",
+  "tts": "Puss In Boots",
+  "who": null,
+  "tone": "title",
+  "gap": 0
+ },
+ {
+  "id": "L002",
+  "text": "This is a story about a young man named Tom, and his clever cat.",
+  "tts": "This is a story about a young man named Tom, and his clever cat.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L003",
+  "text": "Tom's father was a miller.",
+  "tts": "Tom's father was a miller.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L004",
+  "text": "He ground wheat into flour at the old mill by the river.",
+  "tts": "He ground wheat into flour at the old mill by the river.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L005",
+  "text": "But one day, he died.",
+  "tts": "But one day, he died.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.7
+ },
+ {
+  "id": "L006",
+  "text": "Tom's oldest brother got the mill.",
+  "tts": "Tom's oldest brother got the mill.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.8
+ },
+ {
+  "id": "L007",
+  "text": "His middle brother got the donkey.",
+  "tts": "His middle brother got the donkey.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L008",
+  "text": "And Tom got the cat.",
+  "tts": "And Tom got the cat.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.55
+ },
+ {
+  "id": "L009",
+  "text": "\"A cat?\" said Tom.",
+  "tts": "A cat? said Tom.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L010",
+  "text": "\"I can't buy dinner with a cat!\"",
+  "tts": "I can't buy dinner with a cat!",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L011",
+  "text": "His tummy rumbled.",
+  "tts": "His tummy rumbled.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L012",
+  "text": "He had one small piece of bread left, so he broke it in half and gave one half to the cat.",
+  "tts": "He had one small piece of bread left, so he broke it in half and gave one half to the cat.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L013",
+  "text": "The cat was sleek and orange, with white paws and bright green eyes.",
+  "tts": "The cat was sleek and orange, with white paws and bright green eyes.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L014",
+  "text": "He ate slowly.",
+  "tts": "He ate slowly.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L015",
+  "text": "Then he said, \"Thank you, Master.\"",
+  "tts": "Then he said, Thank you, Master.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L016",
+  "text": "Tom jumped.",
+  "tts": "Tom jumped.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L017",
+  "text": "\"You can talk?\"",
+  "tts": "You can talk?",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.25
+ },
+ {
+  "id": "L018",
+  "text": "\"Of course.",
+  "tts": "Of course.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L019",
+  "text": "Give me a bag and a pair of boots, and I will make you rich.\"",
+  "tts": "Give me a bag and a pair of boots, and I will make you rich.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L020",
+  "text": "\"Why boots?\" said Tom.",
+  "tts": "Why boots? said Tom.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L021",
+  "text": "\"A cat in boots looks important,\" said the cat.",
+  "tts": "A cat in boots looks important, said the cat.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L022",
+  "text": "\"And important cats get invited places.\"",
+  "tts": "And important cats get invited places.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L023",
+  "text": "Tom did not know what to think.",
+  "tts": "Tom did not know what to think.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L024",
+  "text": "But he had nothing else, so he found an old bag and a tiny pair of boots.",
+  "tts": "But he had nothing else, so he found an old bag and a tiny pair of boots.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L025",
+  "text": "The cat put them on.",
+  "tts": "The cat put them on.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L026",
+  "text": "Clip-clop! Clip-clop!",
+  "tts": "Clip-clop! Clip-clop!",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.45
+ },
+ {
+  "id": "L027",
+  "text": "He walked down the road like he owned it.",
+  "tts": "He walked down the road like he owned it.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.45
+ },
+ {
+  "id": "L028",
+  "text": "(Tom tried hard not to laugh.)",
+  "tts": "Tom tried hard not to laugh.",
+  "who": null,
+  "tone": "aside",
+  "gap": 0.5,
+  "voice": "aside"
+ },
+ {
+  "id": "L029",
+  "text": "\"From now on, call me Puss,\" said the cat.",
+  "tts": "From now on, call me Puss, said the cat.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L030",
+  "text": "The next morning, Puss had a plan.",
+  "tts": "The next morning, Puss had a plan.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L031",
+  "text": "He took his bag to the edge of the forest and filled it with fresh red berries.",
+  "tts": "He took his bag to the edge of the forest and filled it with fresh red berries.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L032",
+  "text": "Pick, pick, pick!",
+  "tts": "Pick, pick, pick!",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.4
+ },
+ {
+  "id": "L033",
+  "text": "Then he marched up the hill to the castle.",
+  "tts": "Then he marched up the hill to the castle.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L034",
+  "text": "A guard let him in.",
+  "tts": "A guard let him in.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L035",
+  "text": "The king sat on his throne.",
+  "tts": "The king sat on his throne.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L036",
+  "text": "He had a long white beard and a tiny gold crown.",
+  "tts": "He had a long white beard and a tiny gold crown.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L037",
+  "text": "\"Your Majesty,\" said Puss, bowing low.",
+  "tts": "Your Majesty, said Puss, bowing low.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L038",
+  "text": "\"The Marquis of Carabas sends you a gift.\"",
+  "tts": "The Marquis of Carabas sends you a gift.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L039",
+  "text": "\"The Marquis of Carabas?\" said the king.",
+  "tts": "The Marquis of Carabas? said the king.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L040",
+  "text": "\"Never heard of him.",
+  "tts": "Never heard of him.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L041",
+  "text": "But these berries are delicious!\"",
+  "tts": "But these berries are delicious!",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L042",
+  "text": "There was no Marquis.",
+  "tts": "There was no Marquis.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L043",
+  "text": "Puss made up the name.",
+  "tts": "Puss made up the name.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L044",
+  "text": "(A Marquis is an important lord, and Puss thought it sounded fancy.)",
+  "tts": "A Marquis is an important lord, and Puss thought it sounded fancy.",
+  "who": null,
+  "tone": "aside",
+  "gap": 0.5,
+  "voice": "aside"
+ },
+ {
+  "id": "L045",
+  "text": "He wanted the king to remember it.",
+  "tts": "He wanted the king to remember it.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L046",
+  "text": "Every week, Puss brought a new gift: sweet peaches, warm bread, golden honey.",
+  "tts": "Every week, Puss brought a new gift: sweet peaches, warm bread, golden honey.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L047",
+  "text": "Every time, the king said, \"Never heard of him. But this is delicious!\"",
+  "tts": "Every time, the king said, Never heard of him. But this is delicious!",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L048",
+  "text": "Then, one morning, Puss was walking through the village when the town crier rang his bell.",
+  "tts": "Then, one morning, Puss was walking through the village when the town crier rang his bell.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L049",
+  "text": "Ding-ding-ding!",
+  "tts": "Ding-ding-ding!",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.4
+ },
+ {
+  "id": "L050",
+  "text": "\"The king and the princess will ride past the river today!\"",
+  "tts": "The king and the princess will ride past the river today!",
+  "who": "crier",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L051",
+  "text": "Puss's green eyes lit up.",
+  "tts": "Puss's green eyes lit up.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L052",
+  "text": "This was the chance he was waiting for.",
+  "tts": "This was the chance he was waiting for.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L053",
+  "text": "He ran home as fast as his boots could go.",
+  "tts": "He ran home as fast as his boots could go.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L054",
+  "text": "\"Master, jump in the river!\"",
+  "tts": "Master, jump in the river!",
+  "who": "puss",
+  "tone": "shout",
+  "gap": 1.6
+ },
+ {
+  "id": "L055",
+  "text": "Tom looked up.",
+  "tts": "Tom looked up.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L056",
+  "text": "\"Why?\"",
+  "tts": "Why?",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.25
+ },
+ {
+  "id": "L057",
+  "text": "\"Trust me,\" Puss cried.",
+  "tts": "Trust me, Puss cried.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L058",
+  "text": "\"Is the water cold?\" said Tom.",
+  "tts": "Is the water cold? said Tom.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L059",
+  "text": "\"TRUST ME!\"",
+  "tts": "Trust Me!",
+  "who": "puss",
+  "tone": "shout",
+  "gap": 0.45
+ },
+ {
+  "id": "L060",
+  "text": "SPLASH!",
+  "tts": "Splash!",
+  "who": null,
+  "tone": "shout",
+  "gap": 0.7
+ },
+ {
+  "id": "L061",
+  "text": "Tom sat in the cold river, shivering.",
+  "tts": "Tom sat in the cold river, shivering.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L062",
+  "text": "Puss hid Tom's old clothes under a rock.",
+  "tts": "Puss hid Tom's old clothes under a rock.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L063",
+  "text": "Then he ran to the road and waved his paws.",
+  "tts": "Then he ran to the road and waved his paws.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L064",
+  "text": "The royal carriage was coming.",
+  "tts": "The royal carriage was coming.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L065",
+  "text": "\"HELP!\" cried Puss.",
+  "tts": "Help! cried Puss.",
+  "who": "puss",
+  "tone": "shout",
+  "gap": 0.45
+ },
+ {
+  "id": "L066",
+  "text": "\"Robbers took the Marquis's clothes!\"",
+  "tts": "Robbers took the Marquis's clothes!",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L067",
+  "text": "\"The Marquis of Carabas?\" said the king.",
+  "tts": "The Marquis of Carabas? said the king.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L068",
+  "text": "\"The one who sends me gifts?",
+  "tts": "The one who sends me gifts?",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L069",
+  "text": "Stop the carriage!",
+  "tts": "Stop the carriage!",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L070",
+  "text": "Bring him my best clothes!\"",
+  "tts": "Bring him my best clothes!",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L071",
+  "text": "A servant ran to the river with the clothes.",
+  "tts": "A servant ran to the river with the clothes.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L072",
+  "text": "Tom hid behind a bush and put on a blue jacket, new pants, and shiny shoes.",
+  "tts": "Tom hid behind a bush and put on a blue jacket, new pants, and shiny shoes.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L073",
+  "text": "When he came out, the princess smiled.",
+  "tts": "When he came out, the princess smiled.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L074",
+  "text": "Tom's cheeks turned pink.",
+  "tts": "Tom's cheeks turned pink.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L075",
+  "text": "\"Please, ride with us,\" said the king.",
+  "tts": "Please, ride with us, said the king.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L076",
+  "text": "Tom climbed into the carriage.",
+  "tts": "Tom climbed into the carriage.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L077",
+  "text": "Puss waited until nobody was looking, then slipped away through the trees.",
+  "tts": "Puss waited until nobody was looking, then slipped away through the trees.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L078",
+  "text": "Now Tom looked like a Marquis.",
+  "tts": "Now Tom looked like a Marquis.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L079",
+  "text": "But a Marquis needs land and a castle.",
+  "tts": "But a Marquis needs land and a castle.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L080",
+  "text": "And Puss knew just the place.",
+  "tts": "And Puss knew just the place.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L081",
+  "text": "Swish, swish, swish!",
+  "tts": "Swish, swish, swish!",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L082",
+  "text": "Puss ran ahead of the carriage.",
+  "tts": "Puss ran ahead of the carriage.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.4
+ },
+ {
+  "id": "L083",
+  "text": "The fields, sheep, and apple trees along this road belonged to a mean ogre, and everybody was tired of him.",
+  "tts": "The fields, sheep, and apple trees along this road belonged to a mean ogre, and everybody was tired of him.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L084",
+  "text": "Puss still had a basket of peaches.",
+  "tts": "Puss still had a basket of peaches.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L085",
+  "text": "He traded it for warm cookies at the village bakery.",
+  "tts": "He traded it for warm cookies at the village bakery.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L086",
+  "text": "Then he gave one cookie each to the farmers, the shepherd, and the apple picker.",
+  "tts": "Then he gave one cookie each to the farmers, the shepherd, and the apple picker.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L087",
+  "text": "\"Say these belong to the Marquis of Carabas,\" he whispered.",
+  "tts": "Say these belong to the Marquis of Carabas, he whispered.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L088",
+  "text": "\"Help me, and I will do my best to chase the ogre away.\"",
+  "tts": "Help me, and I will do my best to chase the ogre away.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L089",
+  "text": "\"Deal!\" they said.",
+  "tts": "Deal! they said.",
+  "who": "farmers",
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L090",
+  "text": "Soon, the carriage rolled by.",
+  "tts": "Soon, the carriage rolled by.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L091",
+  "text": "\"Whose fields are these?\" asked the king.",
+  "tts": "Whose fields are these? asked the king.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.4
+ },
+ {
+  "id": "L092",
+  "text": "\"These fields belong to the Marquis of Carabas!\" said the farmers.",
+  "tts": "These fields belong to the Marquis of Carabas! said the farmers.",
+  "who": "farmers",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L093",
+  "text": "Cookie crumbs flew everywhere.",
+  "tts": "Cookie crumbs flew everywhere.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L094",
+  "text": "\"Whose sheep are these?\"",
+  "tts": "Whose sheep are these?",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L095",
+  "text": "\"These sheep belong to the Marquis of Carabas!\" said the shepherd.",
+  "tts": "These sheep belong to the Marquis of Carabas! said the shepherd.",
+  "who": "shepherd",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L096",
+  "text": "\"Baaa!\" said a sheep.",
+  "tts": "Baa! said a sheep.",
+  "who": "sheep",
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L097",
+  "text": "\"Even the sheep agree,\" said the king.",
+  "tts": "Even the sheep agree, said the king.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L098",
+  "text": "\"Whose apples are these?\"",
+  "tts": "Whose apples are these?",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L099",
+  "text": "\"These apples belong to the... um...\" said the apple picker.",
+  "tts": "These apples belong to the... um... said the apple picker.",
+  "who": "picker",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L100",
+  "text": "A boot poked out from behind a tree.",
+  "tts": "A boot poked out from behind a tree.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L101",
+  "text": "Tap, tap.",
+  "tts": "Tap, tap.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.35
+ },
+ {
+  "id": "L102",
+  "text": "\"Marquis,\" whispered a voice.",
+  "tts": "Marquis, whispered a voice.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L103",
+  "text": "\"...to the Marquis of Carabas!\"",
+  "tts": "...to the Marquis of Carabas!",
+  "who": "picker",
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L104",
+  "text": "\"Marquis, you are so rich!\" said the king.",
+  "tts": "Marquis, you are so rich! said the king.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L105",
+  "text": "\"Um... thank you?\" said Tom.",
+  "tts": "Um... thank you? said Tom.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L106",
+  "text": "The carriage rolled on slowly.",
+  "tts": "The carriage rolled on slowly.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L107",
+  "text": "Puss ran ahead again, all the way to the end of the road.",
+  "tts": "Puss ran ahead again, all the way to the end of the road.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L108",
+  "text": "There stood a huge castle with tall stone towers and colorful flags.",
+  "tts": "There stood a huge castle with tall stone towers and colorful flags.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L109",
+  "text": "A big doormat said BEWARE OF OGRE.",
+  "tts": "A big doormat said Beware Of Ogre.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L110",
+  "text": "The ogre who lived there was twice as tall as the door, with a voice like thunder and fluffy pink slippers.",
+  "tts": "The ogre who lived there was twice as tall as the door, with a voice like thunder and fluffy pink slippers.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L111",
+  "text": "(Nobody had the courage to tell him they were pink.)",
+  "tts": "Nobody had the courage to tell him they were pink.",
+  "who": null,
+  "tone": "aside",
+  "gap": 0.55,
+  "voice": "aside"
+ },
+ {
+  "id": "L112",
+  "text": "Puss walked up to the door.",
+  "tts": "Puss walked up to the door.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L113",
+  "text": "Knock.",
+  "tts": "Knock.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.5,
+  "after": 0,
+  "ellipsis": true
+ },
+ {
+  "id": "L114",
+  "text": "Knock, knock.",
+  "tts": "Knock, knock.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.0,
+  "after": 0,
+  "ellipsis": true
+ },
+ {
+  "id": "L115",
+  "text": "KNOCK! KNOCK! KNOCK!",
+  "tts": "Knock! Knock! Knock!",
+  "who": null,
+  "tone": "shout",
+  "gap": 1.0
+ },
+ {
+  "id": "L116",
+  "text": "Nobody answered.",
+  "tts": "Nobody answered.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.9
+ },
+ {
+  "id": "L117",
+  "text": "So Puss pressed the doorbell.",
+  "tts": "So Puss pressed the doorbell.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L118",
+  "text": "It played a happy little tune: Ding-a-ling-a-ling!",
+  "tts": "It played a happy little tune: Ding-a-ling-a-ling!",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L119",
+  "text": "(A silly tune for an ogre.)",
+  "tts": "A silly tune for an ogre.",
+  "who": null,
+  "tone": "aside",
+  "gap": 1.3,
+  "voice": "aside"
+ },
+ {
+  "id": "L120",
+  "text": "The door creaked open.",
+  "tts": "The door creaked open.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.9
+ },
+ {
+  "id": "L121",
+  "text": "\"Sir Ogre,\" said Puss.",
+  "tts": "Sir Ogre, said Puss.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 1.5
+ },
+ {
+  "id": "L122",
+  "text": "\"I hear you can turn into any animal.",
+  "tts": "I hear you can turn into any animal.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L123",
+  "text": "Is it true?\"",
+  "tts": "Is it true?",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L124",
+  "text": "\"Of course!\"",
+  "tts": "Of course!",
+  "who": "ogre",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L125",
+  "text": "ROAR!",
+  "tts": "Roar!",
+  "who": null,
+  "tone": "shout",
+  "gap": 0.3
+ },
+ {
+  "id": "L126",
+  "text": "The ogre turned into a lion.",
+  "tts": "The ogre turned into a lion.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.8
+ },
+ {
+  "id": "L127",
+  "text": "\"EEEK!\"",
+  "tts": "Eek!",
+  "who": "puss",
+  "tone": "shout",
+  "gap": 0.5
+ },
+ {
+  "id": "L128",
+  "text": "Puss jumped onto the roof.",
+  "tts": "Puss jumped onto the roof.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L129",
+  "text": "His boots slipped.",
+  "tts": "His boots slipped.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L130",
+  "text": "Slide, slide, slide!",
+  "tts": "Slide, slide, slide!",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L131",
+  "text": "(Puss pretended he meant to do that.)",
+  "tts": "Puss pretended he meant to do that.",
+  "who": null,
+  "tone": "aside",
+  "gap": 0.7,
+  "voice": "aside"
+ },
+ {
+  "id": "L132",
+  "text": "The ogre turned back into himself, and Puss climbed down.",
+  "tts": "The ogre turned back into himself, and Puss climbed down.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L133",
+  "text": "\"Very impressive!\" said Puss.",
+  "tts": "Very impressive! said Puss.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L134",
+  "text": "\"But anyone can be big.",
+  "tts": "But anyone can be big.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L135",
+  "text": "Can you be tiny?",
+  "tts": "Can you be tiny?",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L136",
+  "text": "Like a mouse?",
+  "tts": "Like a mouse?",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L137",
+  "text": "That is probably too hard.\"",
+  "tts": "That is probably too hard.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.35
+ },
+ {
+  "id": "L138",
+  "text": "\"Too hard?",
+  "tts": "Too hard?",
+  "who": "ogre",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L139",
+  "text": "Watch this!\"",
+  "tts": "Watch this!",
+  "who": "ogre",
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L140",
+  "text": "POOF!",
+  "tts": "Poof!",
+  "who": null,
+  "tone": "shout",
+  "gap": 0.45
+ },
+ {
+  "id": "L141",
+  "text": "The ogre was a tiny mouse.",
+  "tts": "The ogre was a tiny mouse.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.45
+ },
+ {
+  "id": "L142",
+  "text": "\"BOO!\" said Puss.",
+  "tts": "Boo! said Puss.",
+  "who": "puss",
+  "tone": "shout",
+  "gap": 1.0
+ },
+ {
+  "id": "L143",
+  "text": "\"SQUEAK!\"",
+  "tts": "Squeak!",
+  "who": "mouse",
+  "tone": "shout",
+  "gap": 0.45
+ },
+ {
+  "id": "L144",
+  "text": "The mouse zoomed out the door and down the hill, leaving one fluffy slipper behind.",
+  "tts": "The mouse zoomed out the door and down the hill, leaving one fluffy slipper behind.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.3
+ },
+ {
+  "id": "L145",
+  "text": "He never came back.",
+  "tts": "He never came back.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L146",
+  "text": "Puss peeked inside.",
+  "tts": "Puss peeked inside.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L147",
+  "text": "The castle was empty.",
+  "tts": "The castle was empty.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L148",
+  "text": "Now it needed a new owner.",
+  "tts": "Now it needed a new owner.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L149",
+  "text": "He hurried to the gate just as the royal carriage rolled up.",
+  "tts": "He hurried to the gate just as the royal carriage rolled up.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L150",
+  "text": "\"Welcome to the castle of the Marquis of Carabas!\" said Puss.",
+  "tts": "Welcome to the castle of the Marquis of Carabas! said Puss.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L151",
+  "text": "Tom stepped out of the carriage and looked at the huge castle.",
+  "tts": "Tom stepped out of the carriage and looked at the huge castle.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L152",
+  "text": "Then he felt bad.",
+  "tts": "Then he felt bad.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L153",
+  "text": "The king trusted him, and it was all lies.",
+  "tts": "The king trusted him, and it was all lies.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L154",
+  "text": "He took a deep breath.",
+  "tts": "He took a deep breath.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L155",
+  "text": "\"Your Majesty,\" said Tom, \"I must tell you the truth.",
+  "tts": "Your Majesty, said Tom, I must tell you the truth.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 1.1
+ },
+ {
+  "id": "L156",
+  "text": "I am not a Marquis.",
+  "tts": "I am not a Marquis.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.4
+ },
+ {
+  "id": "L157",
+  "text": "I am just Tom.",
+  "tts": "I am just Tom.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.45
+ },
+ {
+  "id": "L158",
+  "text": "My cat made up everything.\"",
+  "tts": "My cat made up everything.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.45
+ },
+ {
+  "id": "L159",
+  "text": "Puss covered his eyes with his paws.",
+  "tts": "Puss covered his eyes with his paws.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.9
+ },
+ {
+  "id": "L160",
+  "text": "The king laughed.",
+  "tts": "The king laughed.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.3
+ },
+ {
+  "id": "L161",
+  "text": "\"A real Marquis does not say 'um,'\" he said.",
+  "tts": "A real Marquis does not say um, he said.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.35
+ },
+ {
+  "id": "L162",
+  "text": "\"And I still have never heard of the Marquis of Carabas.",
+  "tts": "And I still have never heard of the Marquis of Carabas.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.4
+ },
+ {
+  "id": "L163",
+  "text": "But I like you, Tom.",
+  "tts": "But I like you, Tom.",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.4
+ },
+ {
+  "id": "L164",
+  "text": "Would you like to marry my daughter?\"",
+  "tts": "Would you like to marry my daughter?",
+  "who": "king",
+  "tone": "narr",
+  "gap": 0.45
+ },
+ {
+  "id": "L165",
+  "text": "Tom looked at the princess.",
+  "tts": "Tom looked at the princess.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.95
+ },
+ {
+  "id": "L166",
+  "text": "She nodded.",
+  "tts": "She nodded.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L167",
+  "text": "\"Yes, please!\" said Tom.",
+  "tts": "Yes, please! said Tom.",
+  "who": "tom",
+  "tone": "narr",
+  "gap": 0.6
+ },
+ {
+  "id": "L168",
+  "text": "That night, after all the happy news, Tom and Puss ate supper in the castle kitchen.",
+  "tts": "That night, after all the happy news, Tom and Puss ate supper in the castle kitchen.",
+  "who": null,
+  "tone": "narr",
+  "gap": 2.0
+ },
+ {
+  "id": "L169",
+  "text": "There was one warm loaf of bread.",
+  "tts": "There was one warm loaf of bread.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L170",
+  "text": "Tom broke it in half and gave one half to Puss.",
+  "tts": "Tom broke it in half and gave one half to Puss.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.5
+ },
+ {
+  "id": "L171",
+  "text": "\"Thank you, Master,\" said Puss.",
+  "tts": "Thank you, Master, said Puss.",
+  "who": "puss",
+  "tone": "narr",
+  "gap": 0.9
+ },
+ {
+  "id": "L172",
+  "text": "So Tom lived in the castle with the princess.",
+  "tts": "So Tom lived in the castle with the princess.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L173",
+  "text": "And Puss?",
+  "tts": "And Puss?",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.42
+ },
+ {
+  "id": "L174",
+  "text": "He had the softest bed in the castle and wore his favorite boots everywhere.",
+  "tts": "He had the softest bed in the castle and wore his favorite boots everywhere.",
+  "who": null,
+  "tone": "narr",
+  "gap": 0.45
+ },
+ {
+  "id": "L175",
+  "text": "Even to bed.",
+  "tts": "Even to bed.",
+  "who": null,
+  "tone": "aside",
+  "gap": 0.5,
+  "voice": "aside"
+ },
+ {
+  "id": "L176",
+  "text": "And Tom never forgot that one small piece of bread, shared with a hungry cat, had changed his whole life.",
+  "tts": "And Tom never forgot that one small piece of bread, shared with a hungry cat, had changed his whole life.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.6
+ },
+ {
+  "id": "L177",
+  "text": "Moral:  a little kindness can come back to you in a big way.",
+  "tts": "Moral: a little kindness can come back to you in a big way.",
+  "who": null,
+  "tone": "narr",
+  "gap": 1.2
+ }
+]
