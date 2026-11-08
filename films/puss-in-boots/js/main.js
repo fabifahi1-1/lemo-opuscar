@@ -257,6 +257,8 @@ function renderGlobal(t) {
   else {
     const i = shotAt(t), s = TL.shots[i], u = transition(s, t);
     if (u < 1 && i > 0) composeTransition(ctx, TL.shots[i - 1], s, t, u); else drawShot(ctx, s, t);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    for (const [ps, f] of carriedFx(i, t)) drawFx(ctx, Object.assign({}, f, { carried: 1 }), t, ps, frozenCam(ps), frozenStates(ps));
   }
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
   // paper grain over everything
@@ -296,3 +298,13 @@ window.TEXTS = t => textsAt(t + T_OFF);
   BUF = document.createElement('canvas'); BUF.width = W; BUF.height = H; BCTX = BUF.getContext('2d');
   window.READY = true;
 })().catch(e => { console.error(e); throw e; });
+
+// sound words and shout bubbles keep their full reading time across a cut: frozen where they appeared
+function carriedFx(i, t) {
+  const out = [];
+  for (let j = Math.max(0, i - 3); j < i; j++) { const ps = TL.shots[j];
+    for (const f of ps.fx || []) if ((f.sw || f.bub) && t >= ps.t1 && fxAlive(f, t)) out.push([ps, f]); }
+  return out;
+}
+function frozenCam(ps) { return camAt(ps, ps.t1 - 1 / FPS); }
+function frozenStates(ps) { return (ps.cast || []).map(cs => ({ cs, st: castState(cs, ps.t1 - 1 / FPS, ps) })); }

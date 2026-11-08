@@ -303,7 +303,7 @@ const SHOTS = [
   { at: 'L116', name: 'Nobody answered. Puss taps his foot.', loc: 'ogre', cam: OUT([80, 230, 2.8], 1.04),
     cast: [C('puss', 90, OY, { face: 1, expr: 'neutral', pose: 'hips', turn: .3 }, [[.4, { legF: .2 }], [.6, { legF: 0 }], [.8, { legF: .2 }], [1.0, { legF: 0 }]])], sfx: [[0, 'crickets']] },
   { at: 'L117', name: 'So Puss presses the doorbell (card: the doorbell)', loc: 'ogre', cam: IN([170, 150, 3.2], 1.05),
-    cast: [C('puss', 230, OY, { face: -1, expr: 'cheeky', pose: 'reach' })], fx: [{ label: 'the doorbell', x: 190, y: 125, lx: -250, ly: -120, at: .1, dur: 1.4 }] },
+    cast: [C('puss', 230, OY, { face: -1, expr: 'cheeky', pose: 'reach' })], fx: [] },
   { at: 'L118', name: 'A happy little tune: Ding-a-ling-a-ling!', loc: 'ogre', cam: IN([170, 150, 2.4], 1.05),
     cast: [C('puss', 230, OY, { face: -1, expr: 'happy', pose: 'down' }, [['L118:Ding', { tilt: .15 }], ['L118:Ding+.5', { tilt: -.15 }], ['L118:Ding+1', { tilt: .15 }], ['L118:Ding+1.5', { tilt: 0 }]])],
     fx: [{ notes: 1, x: 190, y: 80, at: 'L118:Ding', dur: 2.6, sfx: 'doorbell' }] },
@@ -355,7 +355,7 @@ const SHOTS = [
     cast: [C('mouse', -280, OY + 6, { face: -1, expr: 'scared', s: 1.4 }, [[.05, { y: OY + 6, hop: 30, dur: .25, walk: false }]])], fx: [{ bub: 'SQUEAK!', on: 'mouse', part: 'head', bx: 120, by: -70, tx: 0, ty: -6, at: 0, dur: 2.0, size: 40, sfx: 'squeak' }] },
   { at: 'L144', name: 'The mouse zooms off, leaving one fluffy slipper', loc: 'ogre', cam: [-200, 160, 1.4, -700, 180, 1.3],
     cast: [C('mouse', -280, OY + 6, { face: -1, expr: 'scared', s: 1.4 }, [[1.6, { x: -1500, run: true }]]), C('puss', 60, OY, { face: -1, expr: 'laugh', pose: 'hips' })],
-    fx: [{ prop: 'slipper', x: -60, y: OY - 4, s: 1.1, at: 0, dur: 99 }, { speed: 1, who: 'mouse', at: 0, dur: 1.6 }, { label: 'one slipper', x: -60, y: OY - 30, lx: 220, ly: -200, at: 'L144:leaving', dur: 2.6 }, { door: 1, pre: 1, at: -10, dur: 99, open: .01 }], sfx: [[0, 'zoom']] },
+    fx: [{ prop: 'slipper', x: -60, y: OY - 4, s: 1.1, at: 0, dur: 99 }, { speed: 1, who: 'mouse', at: 0, dur: 1.6 }, { label: 'one slipper', x: -60, y: OY - 30, lx: 220, ly: -200, at: 1.4, dur: 2.6 }, { door: 1, pre: 1, at: -10, dur: 99, open: .01 }], sfx: [[0, 'zoom']] },
   { at: 'L145', name: 'He never came back — the storm clears to gold', loc: 'ogre', cam: [0, -80, 1.0, 0, -200, .84], lp: { clear: [0, 1] }, lpDelay: .2,
     cast: [C('puss', 60, OY, { face: 1, expr: 'happy', pose: 'cheer' })], fx: [{ prop: 'slipper', x: -60, y: OY - 4, s: 1.1, at: 0, dur: 99 }, { door: 1, pre: 1, at: -10, dur: 99, open: .01 }], sfx: [[0, 'clear']] },
 
@@ -399,7 +399,7 @@ const SHOTS = [
   // ===================================================================== THE KITCHEN AT NIGHT
   SC('That night: the castle kitchen'),
   { at: 'L168', name: 'Night: Tom and Puss at supper in the castle kitchen', loc: 'kitchen', tr: 'mist', cam: [-150, 60, 1.05, 0, 80, 1.15],
-    cast: [C('tomFine', -220, 300, { face: 1, expr: 'smile' }), C('puss', 230, 228, { face: -1, expr: 'happy' })], fx: [{ label: 'the kitchen', x: -840, y: 150, layer: .75, lx: 280, ly: -260, at: 'L168:kitchen', dur: 2.6 }], sfx: [[0, 'fire'], [0, 'night']] },
+    cast: [C('tomFine', -220, 300, { face: 1, expr: 'smile' }), C('puss', 230, 228, { face: -1, expr: 'happy' })], fx: [{ label: 'the kitchen', x: -840, y: 150, layer: .75, lx: 280, ly: -260, at: 'L168:supper', dur: 2.6 }], sfx: [[0, 'fire'], [0, 'night']] },
   { at: 'L169', name: 'One warm loaf of bread (card: the loaf)', loc: 'kitchen', cam: IN([0, 120, 2.8], 1.04),
     cast: [C('tomFine', -220, 300, { face: 1, expr: 'smile', look: [.3, .5] }), C('puss', 230, 228, { face: -1, expr: 'happy', look: [0, .5] })], fx: [{ prop: 'bread', x: 0, y: 150, s: 1.1, at: 0, dur: 9 }] },
   { at: 'L170', name: 'Tom breaks it in half and gives one half to Puss', loc: 'kitchen', cam: IN([0, 110, 2.1], 1.05),
@@ -412,7 +412,7 @@ const SHOTS = [
   { at: 'L172', name: 'Tom and the princess at their castle, flags flying', loc: 'ogre', tr: 'page', lp: { clear: 1 }, cam: [0, -60, .95, 0, 0, 1.02],
     cast: [C('tomFine', -110, OY, { face: 1, expr: 'happy', pose: 'wave', wave: true }), C('princess', 110, OY + 4, { face: -1, expr: 'happy', pose: 'wave', wave: true }), C('king', 340, OY + 10, { face: -1, expr: 'laugh' })], fx: [{ hearts: 1, x: 0, y: -60, at: 1.0, dur: 2.2 }], sfx: [[0, 'birds']] },
   { at: 'L173', name: 'And Puss? The softest bed in the castle — and his favorite boots', loc: 'kitchen', tr: 'wipe', cam: [700, 190, 2.0, 820, 190, 2.35],
-    cast: [C('puss', 560, 330, { face: 1, expr: 'cheeky', turn: .5 }, [['L174', { x: 820, y: 300 }], ['L174+.3', { face: -1, pose: 'cheer', expr: 'happy' }], ['L174:castle', { pose: 'down', expr: 'smile' }]])], fx: [{ label: 'the softest bed', x: 940, y: 300, lx: 230, ly: -260, at: 'L174:softest', dur: 2.6 }, { label: 'his boots', on: 'puss', part: 'boot', lx: -280, ly: 40, at: 'L174:boots', dur: 2.4 }] },
+    cast: [C('puss', 560, 330, { face: 1, expr: 'cheeky', turn: .5 }, [['L174', { x: 820, y: 300 }], ['L174+.3', { face: -1, pose: 'cheer', expr: 'happy' }], ['L174:castle', { pose: 'down', expr: 'smile' }]])], fx: [{ label: 'the softest bed', x: 940, y: 300, lx: 230, ly: -260, at: 'L174:softest', dur: 2.6 }, { label: 'his boots', on: 'puss', part: 'boot', lx: -280, ly: 40, at: 'L174:favorite', dur: 2.4 }] },
   { at: 'L175', name: 'Even to bed', loc: 'kitchen', cam: IN([820, 230, 3.2], 1.06),
     cast: [C('puss', 820, 300, { face: -1, expr: 'sleep', pose: 'hug', tilt: .25, eyesClosed: true })], fx: [{ zz: 1, on: 'puss', part: 'head', dx: 20, at: .2, dur: 3.0 }], sfx: [[0, 'purr']] },
 

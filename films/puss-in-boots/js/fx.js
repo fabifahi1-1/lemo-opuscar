@@ -118,7 +118,8 @@ function drawFx(c, f, t, s, cam, states) {
   const u = t - f.t, d = f.dur ?? 2.1, out = 1 - seg(u, d - .3, d);
   c.save();
   if (f.sw) {   // big comic sound word
-    const [x, y, zk] = fxPos(f, cam, s, states);
+    let [x, y, zk] = fxPos(f, cam, s, states);
+    if (f.carried) { const hw = f.sw.length * (f.size || 120) * .32; x = clamp(x, hw + 30, W - hw - 30); y = clamp(y, (f.size || 120) * .7 + 20, H - (f.size || 120) * .7 - 20); }
     const pop = u < .25 ? EASE.back(u / .25) : 1, wob = Math.sin(u * 14) * .03 * (1 - seg(u, 0, .8));
     c.globalAlpha = out; paintedText(c, f.sw, x, y, (f.size || 120), f.col || '#e8553a', { rot: (f.rot || -.08) + wob, sc: pop });
   } else if (f.bub) {   // speech bubble for shouted words
@@ -126,7 +127,7 @@ function drawFx(c, f, t, s, cam, states) {
     const bx = hx + (f.bx ?? 180), by = hy + (f.by ?? -170), pop = u < .2 ? EASE.back(u / .2) : 1;
     c.globalAlpha = out; c.translate(bx, by); c.scale(pop, pop); c.translate(-bx, -by);
     c.font = `700 ${f.size || 64}px Fredoka`; const w = c.measureText(f.bub).width + 90, h = (f.size || 64) * 1.9;
-    bubbleShape(c, bx, by, w, h, hx + (f.tx ?? 40), hy + (f.ty ?? -10));
+    bubbleShape(c, bx, by, w, h, f.carried ? bx : hx + (f.tx ?? 40), f.carried ? by : hy + (f.ty ?? -10));
     c.fillStyle = f.col || '#c8343a'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(f.bub, bx, by + 2);
   } else if (f.think) {   // thought bubble with a little picture
     const [hx, hy] = fxPos(f, cam, s, states); const bx = hx + (f.bx ?? 200), by = hy + (f.by ?? -200), pop = u < .3 ? EASE.back(u / .3) : 1;
@@ -208,7 +209,10 @@ function drawFx(c, f, t, s, cam, states) {
 function textsAt(t) {
   const out = [];
   const card = cardAt(t); if (card) return cardTexts(card, t);
-  const s = TL.shots[shotAt(t)]; if (!s) return out;
+  const si = shotAt(t), s = TL.shots[si]; if (!s) return out;
+  for (const [ps, f] of carriedFx(si, t)) { const cam = frozenCam(ps); const id = (f.sw || f.bub) + '@' + f.t.toFixed(2);
+    if (f.sw) { let [x, y] = w2s(cam, f.layer ?? 1, f.x, f.y); const w = f.sw.length * (f.size || 120) * .3; x = clamp(x, w + 30, W - w - 30); y = clamp(y, (f.size || 120) * .7 + 20, H - (f.size || 120) * .7 - 20); out.push({ id, text: f.sw, x0: Math.max(0, x - w), y0: Math.max(0, y - 60), x1: Math.min(W, x + w), y1: Math.min(H, y + 60) }); }
+    else out.push({ id, text: f.bub, x0: 200, y0: 200, x1: 600, y1: 300 }); }
   if (s.kind === 'moral') return moralTexts(s, t);
   if (s.kind === 'end') return endTexts(s, t);
   const cam = camAt(s, t);

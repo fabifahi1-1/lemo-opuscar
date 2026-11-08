@@ -13,6 +13,7 @@ T_TITLE = 7.25        # "Puss in Boots" is said as the title paints on the cloud
 OPEN_END = 14.6       # the first story line starts as the camera settles on the mill
 CARD_EXTRA = .55      # a little more air after a line that shows a word card
 card_lines = {c['line'] for c in cards}
+BEAT_AFTER = {'L031', 'L048', 'L126', 'L141'}   # card lines followed by Pick! / Ding! / EEEK! / BOO!
 norm = lambda w: re.sub(r"[^a-z0-9']", '', w.lower().replace('’', "'"))
 
 def align(text, words):
@@ -77,6 +78,9 @@ for i, L in enumerate(lines):
         rec['env'] = envelope(lid + '.wav', 0, d)
     out.append(rec)
     t = t0 + d; prev_card = lid in card_lines
+    if lid in BEAT_AFTER:   # the next line is an action beat with its own sound word: start it after the card is gone
+        c = next(c for c in cards if c['line'] == lid); tw = next(w[1] for w in wl if norm(w[0]).startswith(c['word']))
+        t = max(t, tw + 3.05 - L['gap'] * 0 - (lines[i + 1]['gap'] + CARD_EXTRA))
 END = t
 json.dump(dict(fps=FPS, open_end=OPEN_END, t_title=T_TITLE, last_line_end=round(END, 3), lines=out, cards=cards),
           open(os.path.join(ROOT, 'script/vtime.json'), 'w'), ensure_ascii=False)
