@@ -34,7 +34,7 @@ print(f'{final}: {size:.1f} MB, loudness {I} LUFS, true peak {TPk} dBTP')
 for f in glob.glob(os.path.join(ROOT, 'puss-in-boots-*.mp4')): os.remove(f)
 if size > 95:
     n = int(np.ceil(size / 86))
-    kf = [float(x) for x in run('ffprobe', '-v', 'error', '-select_streams', 'v', '-skip_frame', 'nokey', '-show_entries', 'frame=pts_time', '-of', 'csv=p=0', video).stdout.split()]
+    kf = [float(x.strip(',')) for x in run('ffprobe', '-v', 'error', '-select_streams', 'v', '-skip_frame', 'nokey', '-show_entries', 'frame=pts_time', '-of', 'csv=p=0', video).stdout.split()]
     # quiet = no voice line, music bus silent, no sound effect within ±0.45 s
     VT = json.load(open(os.path.join(ROOT, 'script/vtime.json')))
     mus, sr = sf.read(os.path.join(OUT, 'music.wav')); mus = np.abs(mus).max(1) if mus.ndim > 1 else np.abs(mus)
@@ -43,11 +43,16 @@ if size > 95:
         if any(a <= t <= b for a, b in busy): return False
         s0, s1 = int((t - .45) * sr), int((t + .45) * sr)
         return mus[max(0, s0):s1].max(initial=0) < 10 ** (-60 / 20)
-    cuts = []
-    for k in range(1, n):
-        target = DUR * k / n; cands = [t for t in kf if quiet(t) and abs(t - target) < DUR / n * .45]
-        cuts.append(min(cands, key=lambda t: abs(t - target)) if cands else None)
-    assert all(c is not None for c in cuts), f'no quiet keyframe for every cut: {cuts}'
+    # cumulative bytes over time (video + audio packets) → greedy: the latest quiet keyframe that keeps each piece under 88 MB
+    pk = run('ffprobe', '-v', 'error', '-show_entries', 'packet=pts_time,size', '-of', 'csv=p=0', final).stdout.split()
+    pts = np.array([[float(a), float(b)] for a, b in (r.strip(',').split(',')[:2] for r in pk) if a not in ('', 'N/A')]); pts = pts[np.argsort(pts[:, 0])]
+    cum = np.cumsum(pts[:, 1]); bytes_at = lambda t: float(np.interp(t, pts[:, 0], cum))
+    q = [t for t in kf if quiet(t)]; cuts = []; start = 0.0
+    while bytes_at(DUR) - bytes_at(start) > 88e6:
+        ok = [t for t in q if t > start + 5 and bytes_at(t) - bytes_at(start) < 86e6]
+        assert ok, f'no quiet keyframe after {start}'
+        cuts.append(max(ok)); start = cuts[-1]
+    n = len(cuts) + 1
     edges = [0] + cuts + [None]
     for i in range(n):
         piece = os.path.join(ROOT, f'puss-in-boots-{i + 1}.mp4')

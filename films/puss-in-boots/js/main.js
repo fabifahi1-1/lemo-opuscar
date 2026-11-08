@@ -237,11 +237,11 @@ function composeTransition(c, prevS, s, t, u) {
     c.lineTo(W, H); c.closePath(); c.clip(); c.drawImage(BUF, 0, 0); c.restore();
     c.save(); c.globalAlpha = .5; for (let y = 0; y <= H; y += 26) softBlob(c, x + Math.sin(y * .021 + 1) * 40, y, 26, 18, '#e8dcc4', .6, .5); c.restore();
   } else if (s.tr === 'mist') {   // paper mist rises over the old picture and clears off the new one
-    if (u < .5) { c.drawImage(BUF, 0, 0); mistLayer(c, u * 2, t); } else mistLayer(c, (1 - u) * 2, t);
+    const fo = 1 - seg(u, .35, .65); if (fo > 0) { c.save(); c.globalAlpha = fo; c.drawImage(BUF, 0, 0); c.restore(); } mistLayer(c, 1 - Math.abs(u - .5) * 2, t);
   } else if (s.tr === 'flash') { c.save(); c.globalAlpha = 1 - u; c.fillStyle = '#fff8ea'; c.fillRect(0, 0, W, H); c.restore(); }
 }
 function mistLayer(c, a, t) {
-  const top = lerp(H + 100, -200, ss(a));
+  const top = lerp(H + 100, H * .4, ss(a));
   c.save(); c.fillStyle = rgba('#f3ead8', 1); c.beginPath(); c.moveTo(0, H); for (let x = 0; x <= W; x += 40) c.lineTo(x, top + Math.sin(x * .006 + t) * 50 + Math.sin(x * .017) * 20); c.lineTo(W, H); c.closePath(); c.fill();
   for (let x = 0; x <= W; x += 60) softBlob(c, x, top + Math.sin(x * .006 + t) * 50, 90, 60, '#f3ead8', .9, .4);
   c.restore();

@@ -228,6 +228,7 @@ function textsAt(t) {
 const MORAL = 'A little kindness can come back to you in a big way.';
 function drawMoral(c, s, t) {
   const u = t - s.t0;
+  const zm = 1 + .07 * ss(seg(t, s.t0, s.t1)); c.translate(W / 2, H / 2); c.scale(zm, zm); c.translate(-W / 2, -H / 2);
   cardPaper(c, '#e8cfa4');
   // warm glow and the two halves of the loaf, painted in
   c.save(); c.globalCompositeOperation = 'source-over'; softBlob(c, W / 2, 400, 520, 260, '#ffd98a', .35, .3); c.restore();
