@@ -442,7 +442,10 @@ LOCDEF.ogre = {
       paint(c, [[-1700, 230], [1700, 230], [1700, 900], [-1700, 900]], '#8a8a80', { wob: 0, a: .9, line: 0, under: true, grad: ['#9a988c', '#6a6a60'], bloom: .5 });
       for (let k = 0; k < 160; k++) { const x = rnd(-1700, 1700), y = rnd(240, 880); paint(c, ellipsePts(x, y, rnd(20, 34) * y / 600, rnd(10, 16) * y / 600, 0, 10), pick(['#9a988c', '#7a7a70', '#a8a69a']), { under: false, wob: .8, a: .5, line: 0, edge: .8, bloom: .3, gran: .5 }); if (rnd() < .3) softBlob(c, x, y, 16, 6, '#6f8a4a', .5, .5); }
       // the keep front: wall, the great door, the porch roof
-      stoneWall(c, [[-560, 300], [-560, -520], [560, -520], [560, 300]], '#9a96a0', { moss: 22, bh: 46 });
+      stoneWall(c, [[-560, 300], [-560, -380], [560, -380], [560, 300]], '#a09aa2', { moss: 22, bh: 46 }); crenels(c, -566, 560, -380, '#a09aa2', 40, 50);
+      for (let k = 0; k < 40; k++) { const sx = rnd(-1, 1) > 0 ? rnd(-560, -200) : rnd(200, 560), sy = rnd(-370, 280); brush(c, qcurve(sx, sy, sx + rnd(-30, 30), sy + rnd(30, 90), rnd(-10, 10), 5), rnd(4, 7), pick(['#5f8a42', '#6f9a3a', '#4e7a44']), { prof: 'leaf', nb: 2, a: .8 }); }
+      for (const x of [-380, 380]) { paint(c, [[x - 34, -140], [x - 34, -250], [x, -282], [x + 34, -250], [x + 34, -140]], '#f2c96a', { under: true, wob: .6, line: 2, lineCol: '#4a3a30', bloom: 1 }); softBlob(c, x, -210, 50, 60, '#ffe0a0', .4, .5); }
+      for (const x of [-250, 250]) { brush(c, qcurve(x, -20, x, 30, 0, 4), 8, '#4a3a30', { prof: 'even', nb: 0 }); paint(c, catmull([[x - 16, -20], [x + 16, -20], [x + 12, -50], [x - 12, -50]], true, 4), '#e2b54a', { under: true, wob: .4, line: 1.2, bloom: .9 }); }
       paint(c, [[-150, 300], [-150, 40], [-90, -40], [0, -70], [90, -40], [150, 40], [150, 300]], '#6a4a30', { under: true, wob: 1, line: 2.2, bloom: .7, gran: .6 });
       for (let k = 1; k < 5; k++) brush(c, qcurve(-150 + k * 60, 300, -150 + k * 60, -50 + Math.abs(k - 2.5) * 20, 0, 6), 3, '#4a3020', { prof: 'even', nb: 0, a: .6 });
       for (const y of [60, 200]) brush(c, qcurve(-150, y, 150, y, 0, 8), 10, '#4a4450', { prof: 'even', nb: 3, a: .9 });
@@ -458,6 +461,11 @@ LOCDEF.ogre = {
       // the doormat: BEWARE OF OGRE
       paint(c, [[-200, 330], [200, 330], [220, 392], [-220, 392]], '#c8743a', { under: true, wob: 1, line: 1.6, bloom: .7, gran: .8 });
       c.save(); c.font = '700 26px Fredoka'; c.textAlign = 'center'; c.fillStyle = rgba('#5a2a1a', .85); c.setTransform(c.getTransform().multiply(new DOMMatrix([1, 0, 0, .55, 0, 0]))); c.fillText('BEWARE OF OGRE', 0, 368 / .55); c.restore();
+      // gardens either side of the keep: hedges, roses, a stone bench, lamp posts, pots
+      for (const x of [-1600, -1350, -1100, 800, 1060, 1320, 1580]) bush(c, x, 300, rnd(1.2, 1.5), { greens: ['#4e7a44', '#5f8a42', '#6f9a3a', '#3e6a3a'], flowers: ['#e8607a', '#f4a6c6', '#f4f0f8', '#d8323a'], under: true });
+      paint(c, [[880, 300], [1080, 300], [1080, 280], [880, 280]], '#b8b4bc', { under: true, wob: 1, line: 1.4 }); for (const x of [900, 1060]) paint(c, [[x - 10, 330], [x - 10, 300], [x + 10, 300], [x + 10, 330]], '#a8a4ac', { under: true, wob: .6, line: 1.2 });
+      for (const x of [-900, 700]) { brush(c, qcurve(x, 320, x, -60, 0, 6), 9, '#3a3440', { prof: 'even', nb: 2 }); paint(c, [[x - 22, -60], [x + 22, -60], [x + 18, -110], [x - 18, -110]], '#f6dca0', { under: true, wob: .5, line: 1.4, lineCol: '#3a3440', bloom: 1 }); }
+      pot(c, -230, 320, 1.2, ['#e8607a', '#f4f0f8', '#f2c94a']); pot(c, 220, 320, 1.1, ['#9b84c4', '#f4a6c6', '#f4f0f8']);
       // a funny little dead tree, thistles, a puddle, rocks
       const tr = mk(qcurve(-760, 300, -700, -200, 40, 8), 40, '#5a4a40', { prof: 'trunk', nb: 5 }); drawS(c, tr);
       for (const [a, l] of [[-2.3, 160], [-1.0, 140], [-1.8, 120], [-.6, 90]]) drawS(c, mk(polar(-712, -120 + l * .3, a, l, 30, 8), 12, '#5a4a40', { prof: 'tip', nb: 3 }));
@@ -488,14 +496,16 @@ LOCDEF.hall = {
       for (let k = 0; k < 3; k++) brush(c, qcurve(-360 + k * 60, 290, -300 + k * 60, 260, 0, 4), 18, '#5a3a2a', { prof: 'even', nb: 3 });
       paint(c, [[-600, -400], [200, -400], [200, -450], [-600, -450]], '#6a4a30', { under: true, wob: 1, line: 1.5 });
       drawSprite(c, PROPS.slipper, -400, -470, .8); drawSprite(c, PROPS.slipper, -200, -470, .8); } ,
-      live: (c, t) => { for (let k = 0; k < 7; k++) { const x = -200 + (k - 3) * 30, f = 1 + .2 * Math.sin(t * 9 + k * 2); c.beginPath(); c.moveTo(x - 20, 250); c.quadraticCurveTo(x - 10, 250 - 90 * f, x + Math.sin(t * 5 + k) * 8, 250 - 140 * f); c.quadraticCurveTo(x + 14, 250 - 70 * f, x + 20, 250); c.closePath(); c.fillStyle = k % 2 ? 'rgba(255,170,60,.85)' : 'rgba(255,214,110,.85)'; c.fill(); }
-        c.save(); c.globalCompositeOperation = 'lighter'; softBlob(c, -200, 160, 380, 260, '#ff9a3a', .22, .2); c.restore(); } },
+      live: (c, t) => fireLive(c, -200, 270, 220, 170, t) },
     { k: 1, name: 'floor', b: [-1600, -700, 1600, 900], paint: c => {
       paint(c, [[-1600, 300], [1600, 300], [1600, 900], [-1600, 900]], '#6a6a64', { wob: 0, a: .95, line: 0, under: true, grad: ['#7a7a70', '#4a4a44'] });
       paint(c, ellipsePts(0, 420, 700, 90, 0, 40), '#8a3a3a', { under: true, wob: 3, line: 1.6, bloom: .6 });
       // the giant chair and a giant mug on a table
       paint(c, [[260, 330], [260, -400], [340, -460], [620, -460], [700, -400], [700, 330]], '#7a5a3a', { under: true, wob: 1.5, line: 2, bloom: .7, gran: .6 });
       paint(c, [[240, 100], [720, 100], [720, 160], [240, 160]], '#8a6a4a', { under: true, wob: 1, line: 1.6 }); paint(c, [[300, -380], [660, -380], [660, 90], [300, 90]], '#9a4a5a', { under: true, wob: 1, line: 1.4, bloom: .8 });
+      paint(c, [[-1130, 330], [-1130, 70], [-1000, 20], [-870, 70], [-870, 330]], '#5a3a26', { under: true, wob: 1, line: 2, bloom: .6 });
+      paint(c, [[-1110, 330], [-1110, 80], [-1000, 38], [-890, 80], [-890, 330]], '#7a5232', { under: true, wob: 1, line: 1.4, bloom: .7 });
+      for (let k = 1; k < 4; k++) brush(c, qcurve(-1110 + k * 55, 330, -1110 + k * 55, 60, 0, 5), 3, '#4a3020', { prof: 'even', nb: 0, a: .6 }); softBlob(c, -920, 200, 8, 8, '#e2b54a', .95, .7);
       paint(c, [[900, 330], [900, 0], [1300, 0], [1300, 330]], '#7a5a3a', { under: true, wob: 1, line: 1.6 }); paint(c, [[860, 0], [1340, 0], [1340, -30], [860, -30]], '#8a6a4a', { under: true, wob: 1, line: 1.6 });
       paint(c, catmull([[1000, -30], [1000, -180], [1140, -180], [1140, -30]], true, 3), '#a8784a', { under: true, wob: 1, line: 1.6, bloom: .8 }); brush(c, qcurve(1140, -150, 1140, -70, -40, 8), 14, '#a8784a', { prof: 'even', nb: 3 }); } },
     { k: 1.3, name: 'fg', b: [-2200, -1100, 2200, 1000], paint: c => { for (const sd of [-1, 1]) stoneWall(c, [[sd * 1700 - 260, 1000], [sd * 1700 - 260, -1100], [sd * 1700 + 260, -1100], [sd * 1700 + 260, 1000]], '#6a6670', { moss: 8, bh: 70 }); for (let k = 0; k < 12; k++) softBlob(c, rnd(-2200, 2200), -1050, 60, 40, '#3a3440', .5, .4); } },
@@ -526,7 +536,7 @@ LOCDEF.kitchen = {
       paint(c, [[-1150, 320], [-1150, -40], [-840, -150], [-520, -40], [-520, 320]], '#1e1418', { under: true, wob: 1, line: 1.6 });
       for (let k = 0; k < 3; k++) brush(c, qcurve(-980 + k * 70, 300, -920 + k * 70, 270, 0, 4), 22, '#4a2a1a', { prof: 'even', nb: 3 });
       paint(c, catmull([[-930, 120], [-750, 120], [-740, 250], [-940, 250]], true, 4), '#2a2a2a', { under: true, wob: 1, line: 1.5, bloom: .5 }); brush(c, qcurve(-1000, 110, -680, 110, -20, 8), 4, '#2a2a2a', { prof: 'even', nb: 0 }); },
-      live: (c, t) => { for (let k = 0; k < 8; k++) { const x = -840 + (k - 3.5) * 34, f = 1 + .2 * Math.sin(t * 9 + k * 2); c.beginPath(); c.moveTo(x - 22, 300); c.quadraticCurveTo(x - 10, 300 - 100 * f, x + Math.sin(t * 5 + k) * 8, 300 - 150 * f); c.quadraticCurveTo(x + 14, 300 - 80 * f, x + 22, 300); c.closePath(); c.fillStyle = k % 2 ? 'rgba(255,160,50,.85)' : 'rgba(255,214,110,.85)'; c.fill(); }
+      live: (c, t) => { fireLive(c, -840, 300, 260, 180, t);
         smokeLive(c, -840, 130, t, { n: 5, h: 200, col: '#e8e0d8', speed: .3, drift: 10 });
         c.save(); c.globalCompositeOperation = 'lighter'; softBlob(c, -840, 200, 520, 380, '#ff9a3a', .25, .2); c.restore(); } },
     { k: 1, name: 'floor', b: [-1700, -700, 1700, 900], paint: c => {

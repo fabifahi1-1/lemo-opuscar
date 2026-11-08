@@ -29,7 +29,7 @@ const tomHair = (hx, hy, hd) => [[messyHair(hx, hy, hd, '#8a4b2a'), '#8a4b2a', {
 const tomHairBack = (hx, hy, hd) => [[ellipsePts(hx - 4, hy - 6, hd.rx * 1.06, hd.ry * 1.02, 0, 30), '#7a4024', { line: 1.2 }]];
 
 const SPECS = {
-  tom: { id: 'tom', R: 2.6, skin: SKIN.light, geo: TOMGEO, face: TOMFACE, freckles: true,
+  tom: { id: 'tom', R: 3.4, skin: SKIN.light, geo: TOMGEO, face: TOMFACE, freckles: true,
     legs: { col: '#7d6a55', patch: '#a3794e' }, shoes: { col: '#6b4a33' },
     top: { col: '#b89a72', sleeve: '#b0916a', cuff: '#a0835e' },
     torso: g => [[tunicPts(g, 24), '#b89a72', { line: 1.7 }], vneck(g, SKIN.light),
@@ -37,7 +37,7 @@ const SPECS = {
       F(c => { for (const [x, y, r] of [[-14, -50, 13], [16, -20, 10]]) for (let k = 0; k < 8; k++) { const a = k / 8 * TAU; brush(c, qcurve(x + Math.cos(a) * r * .9, y + Math.sin(a) * r * .8, x + Math.cos(a) * r * 1.15, y + Math.sin(a) * r * 1.05, 0, 3), 1.6, '#5a4430', { prof: 'even', nb: 0, a: .7 }); } }, [-40, -70, 40, 0]),
       belt(g, -6, '#a08350', 8)],
     hairFront: tomHair, hairBack: tomHairBack },
-  tomFine: { id: 'tomFine', R: 2.6, skin: SKIN.light, geo: TOMGEO, face: TOMFACE, freckles: true,
+  tomFine: { id: 'tomFine', R: 3.4, skin: SKIN.light, geo: TOMGEO, face: TOMFACE, freckles: true,
     legs: { col: '#c2a77e' }, shoes: { col: '#2a2a33', shine: true },
     top: { col: '#3f6fb0', sleeve: '#3a68a8', cuff: '#f4ead2' },
     torso: g => [[tunicPts(g, 26, 1.1), '#3f6fb0', { line: 1.7, bloom: .6 }],
@@ -53,7 +53,7 @@ const SPECS = {
 function pussSpec(id, boots, bag) {
   const fur = '#e8873a', stripe = '#c4621f', white = '#fbf3e4';
   const g = { leg: 34, legW: 15, torso: 46, shoulder: 30, hipW: 32, armW: 11, upper: 20, fore: 18, hand: 7.5, neck: 2, head: { rx: 38, ry: 31, chin: .9 }, legSpread: 9 };
-  return { id, R: 4.2, skin: fur, geo: g, ears: false, gloves: white,
+  return { id, R: 5.2, skin: fur, geo: g, ears: false, gloves: white,
     face: { style: 'iris', iris: '#3fbf5a', lidCol: fur, eyeR: .2, eyeX: .42, eyeY: -.05, mouthY: .5, mouthW: .3, nose: 'cat', noseY: .3, cat: true, whiskers: true, browW: .8, browT: .22, browCol: '#9a4a1a', browUp: .1, blushCol: '#f08a8a' },
     legs: {}, shoes: {}, top: { col: fur, sleeve: fur },
     legItems: (front) => {
@@ -109,7 +109,7 @@ SPECS.puss0 = pussSpec('puss0', false, false);
 SPECS.puss = pussSpec('puss', true, true);
 
 // ---- the king ----
-SPECS.king = { id: 'king', R: 2.4, skin: SKIN.rosy, beardOver: true,
+SPECS.king = { id: 'king', R: 3, skin: SKIN.rosy, beardOver: true,
   geo: { leg: 74, legW: 26, torso: 118, shoulder: 74, hipW: 92, armW: 24, upper: 48, fore: 44, hand: 13, neck: 4, head: { rx: 46, ry: 45 }, belly: 30, legSpread: 18 },
   face: { style: 'dot', eyeR: .13, eyeX: .38, eyeY: -.08, mouthY: .44, mouthW: .3, noseY: .16, rosyNose: true, browW: 1.1, browCol: '#b8b8c0', browT: .4, teeth: true },
   legs: { col: '#6a2a3a' }, shoes: { col: '#7a2a4a' },
@@ -136,7 +136,7 @@ SPECS.king = { id: 'king', R: 2.4, skin: SKIN.rosy, beardOver: true,
   } };
 
 // ---- the princess ----
-SPECS.princess = { id: 'princess', R: 2.5, skin: SKIN.brown,
+SPECS.princess = { id: 'princess', R: 3, skin: SKIN.brown,
   geo: { leg: 92, legW: 20, torso: 86, shoulder: 52, armW: 16, upper: 44, fore: 40, hand: 11, neck: 9, head: { rx: 42, ry: 44 }, legSpread: 10 },
   face: { style: 'dot', eyeR: .155, eyeX: .4, eyeY: .02, mouthY: .52, mouthW: .3, noseY: .28, browW: .95, blushCol: '#d8606e', lipCol: '#a8384a' },
   legs: { col: '#a8714f' }, shoes: { col: '#9b84c4' },
@@ -152,7 +152,7 @@ SPECS.princess = { id: 'princess', R: 2.5, skin: SKIN.brown,
   hat: (hx, hy, hd) => { const y = hy - hd.ry * .92; return [[catmull([[hx - 18, y + 4], [hx - 12, y - 8], [hx - 5, y - 2], [hx, y - 14], [hx + 5, y - 2], [hx + 12, y - 8], [hx + 18, y + 4], [hx, y + 7]], true, 3), '#e8c95a', { line: 1.2, bloom: .9, wob: .3 }], [ellipsePts(hx, y - 4, 2.6, 2.6, 0, 10), '#7ab8e0', { line: .8 }]]; } };
 
 // ---- the ogre (twice the door, pink fluffy slippers) ----
-SPECS.ogre = { id: 'ogre', R: 1.35, skin: '#8aa35a',
+SPECS.ogre = { id: 'ogre', R: 1.7, skin: '#8aa35a',
   geo: { leg: 190, legW: 84, torso: 225, shoulder: 150, hipW: 170, armW: 58, upper: 115, fore: 108, hand: 34, neck: 8, head: { rx: 96, ry: 86, chin: 1.05 }, belly: 60, legSpread: 40, shoeL: 150, shoeH: 56 },
   face: { style: 'iris', iris: '#d8a83a', lidCol: '#6f8a40', eyeR: .16, eyeX: .36, eyeY: -.12, mouthY: .5, mouthW: .46, nose: 'big', noseY: .16, tusks: true, browW: 1.6, browT: .5, browCol: '#4a3a2a', browUp: .15, teeth: false, mouthCol: '#4a1e22' },
   legs: { col: '#6d6480' }, shoes: { col: '#f4a6c6', fluffy: true },

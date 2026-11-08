@@ -272,6 +272,30 @@ function buildProps() {
     PROPS.appleBasket = S(-50, -60, 50, 10, 3, c => { basket(c, 0, 0, 1.4, '#d8323a', 7); });
     PROPS.bag = S(-34, -40, 34, 40, 3, c => { paint(c, catmull([[-24, -16], [24, -16], [30, 14], [18, 32], [-18, 32], [-30, 14]], true, 5), '#c8a874', { under: true, wob: 1, line: 1.5, bloom: .7 }); brush(c, qcurve(-20, -14, 20, -14, -3, 6), 3, '#8a6a40', { prof: 'even', nb: 0 }); brush(c, qcurve(-14, -16, -6, -36, 8, 6), 2.4, '#8a6a40', { prof: 'even', nb: 0 }); brush(c, qcurve(14, -16, 6, -36, -8, 6), 2.4, '#8a6a40', { prof: 'even', nb: 0 }); });
     PROPS.slipper = S(-90, -50, 90, 20, 2, c => { paint(c, catmull([[-80, 10], [-70, -24], [20, -30], [70, -16], [84, 6], [60, 16], [-60, 16]], true, 6), '#f4a6c6', { under: true, wob: 1.5, line: 1.6, bloom: .9 }); for (let k = 0; k < 16; k++) softBlob(c, -60 + k * 6, -26 + Math.sin(k * .5) * 3, 10, 9, pick(['#fbd6e6', '#ffe4ee']), .85, .6); for (let k = 0; k < 8; k++) { const a = k / 8 * TAU; softBlob(c, 40 + Math.cos(a) * 9, -28 + Math.sin(a) * 8, 9, 9, pick(['#fbd6e6', '#ffffff']), .9, .6); } });
+    PROPS.boots = S(-60, -70, 70, 40, 3, c => { for (const dx of [-26, 22]) { const bt = catmull([[dx - 14, -56], [dx + 14, -56], [dx + 14, 8], [dx + 36, 14], [dx + 38, 32], [dx + 32, 36], [dx - 15, 36], [dx - 16, 8]], true, 5); paint(c, bt, '#7a4a2a', { under: true, wob: .8, line: 1.6, bloom: .9 }); paint(c, catmull([[dx - 18, -64], [dx + 18, -64], [dx + 20, -44], [dx - 20, -44]], true, 4), '#a8714a', { under: true, wob: .6, line: 1.3 }); paint(c, ellipsePts(dx + 1, -20, 4, 3.5, 0, 10), '#e2b54a', { under: true, wob: .3, line: .8 }); } });
+    PROPS.miniCastle = S(-90, -110, 90, 60, 2, c => { stoneWall(c, [[-70, 50], [-70, -10], [70, -10], [70, 50]], '#d8cbb8', { bh: 12 }); for (const [dx, w, h] of [[-60, 26, 100], [60, 26, 100], [0, 34, 140]]) tower(c, dx, 50, w, h, '#ddd0be', '#5b3a7a', { win: 1, rk: 1.3, bh: 14 }); });
+    PROPS.miniCarriage = S(-110, -110, 110, 40, 2, c => { carriageBody(c, 0, 20, .45); drawSprite(c, wheelSprite(18), -40, 22); drawSprite(c, wheelSprite(18), 40, 22); });
+    PROPS.trunk = S(-120, -700, 120, 40, 1.5, c => { const tr = mk(qcurve(0, 30, 6, -700, -14, 10), 150, '#6a5040', { prof: 'trunk', nb: 9 }); drawS(c, tr); drawS(c, edgeOf(tr, 1, 6, '#3a2a20', .7)); drawS(c, edgeOf(tr, -1, 4, '#8a7060', .5)); for (let k = 0; k < 6; k++) softBlob(c, rnd(-40, 40), rnd(-500, 0), 20, 12, '#6f8a4a', .5, .5); });
+    PROPS.crown = S(-22, -24, 22, 6, 4, c => { paint(c, catmull([[-16, 4], [-19, -16], [-9, -6], [0, -20], [9, -6], [19, -16], [16, 4]], true, 3), '#e8b93c', { under: true, wob: .3, line: 1.2, bloom: 1 }); });
     PROPS.lantern = S(-30, -80, 30, 10, 3, c => { brush(c, qcurve(-10, -70, 10, -70, -12, 8), 3, '#6a4a2a', { prof: 'even', nb: 0 }); paint(c, [[-20, -58], [20, -58], [24, -6], [-24, -6]], '#f6dca0', { under: true, wob: .5, line: 1.4, lineCol: '#6a4a2a', bloom: 1 }); paint(c, [[-24, -66], [24, -66], [18, -56], [-18, -56]], '#b8843a', { under: true, wob: .4, line: 1.2 }); paint(c, [[-26, -6], [26, -6], [22, 4], [-22, 4]], '#b8843a', { under: true, wob: .4, line: 1.2 }); });
   });
+}
+
+// a hearth fire: layered rounded tongues of flame with a warm glow (live)
+function fireLive(c, x, y, w, h, t) {
+  c.save(); c.globalCompositeOperation = 'lighter'; softBlob(c, x, y - h * .3, w * 1.6, h * 1.3, '#ff8a2a', .28, .2); c.restore();
+  const N = 7;
+  for (const [col, kh, kw] of [['rgba(232,96,40,.9)', 1, 1], ['rgba(255,160,50,.92)', .78, .78], ['rgba(255,226,120,.95)', .5, .5]]) {
+    for (let k = 0; k < N; k++) {
+      const u = (k + .5) / N - .5, fx = x + u * w * kw, ph = t * (5 + k * .7) + k * 2.3;
+      const fh = h * kh * (.55 + .45 * Math.cos(u * Math.PI)) * (1 + .18 * Math.sin(ph) + .1 * Math.sin(ph * 2.3));
+      const fw = w / N * 1.5 * kw, sway = Math.sin(t * 3 + k) * fw * .3;
+      c.beginPath(); c.moveTo(fx - fw * .55, y);
+      c.bezierCurveTo(fx - fw * .7, y - fh * .45, fx - fw * .15 + sway, y - fh * .7, fx + sway * 1.4, y - fh);
+      c.bezierCurveTo(fx + fw * .2 + sway, y - fh * .65, fx + fw * .7, y - fh * .4, fx + fw * .55, y); c.closePath();
+      c.fillStyle = col; c.fill();
+    }
+  }
+  for (let k = 0; k < 6; k++) { const ph = (t * .7 + k / 6) % 1; softBlob(c, x + Math.sin(k * 7 + t) * w * .3, y - h * (.6 + ph * 1.2), 3, 3, '#ffd080', .9 * (1 - ph), .6); }
+  for (let k = 0; k < 4; k++) softBlob(c, x + (k - 1.5) * w * .22, y + 4, w * .14, 8, '#ffcf70', .8, .5);
 }

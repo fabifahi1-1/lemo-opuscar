@@ -41,7 +41,7 @@ function buildCards(objs) {
       const [x0, y0, x1, y1] = [spr.x0, spr.y0, spr.x1, spr.y1];
       const bl = []; for (let k = 0; k < 34; k++) bl.push([rnd(x0, x1), rnd(y0, y1), rnd(.0, .7)]);
       bl.sort((a, b) => a[2] - b[2]);
-      CARDOBJ[o] = { spr, bl, r: Math.max(x1 - x0, y1 - y0) };
+      const cb = contentBox(spr); CARDOBJ[o] = { spr, bl, r: Math.max(x1 - x0, y1 - y0), cb };
     }
   });
 }
@@ -67,7 +67,7 @@ function drawCard(c, card, t) {
   const i = TL.cards.indexOf(card), u = t - card.t0;
   cardPaper(c, CARD_TINT[i % CARD_TINT.length]);
   const O = CARDOBJ[card.obj];
-  if (O) { const sc = 520 / O.r * 1.25; const bob = Math.sin(u * 2) * 4; revealSprite(c, O, 640, 560 + bob, Math.min(sc, 1.6), seg(u, .05, .9)); }
+  if (O) { const [cx0, cy0, cx1, cy1] = O.cb, sc = Math.min(600 / (cx1 - cx0), 560 / (cy1 - cy0), 2.6); const bob = Math.sin(u * 2) * 4; revealSprite(c, O, 640 - (cx0 + cx1) / 2 * sc, 540 - (cy0 + cy1) / 2 * sc + bob, sc, seg(u, .05, .9)); }
   // the word, typed in sync with the narrator
   const txt = card.text, n = Math.floor(clamp((t - card.tw) / .5) * txt.length + .001);
   c.save(); c.font = '700 132px Andika'; c.textBaseline = 'alphabetic'; c.fillStyle = INKC;
@@ -83,12 +83,14 @@ function cardTexts(card, t) { return [{ id: 'card' + card.t0.toFixed(2), text: c
 
 // ---------------- effects ----------------
 function fxAlive(f, t) { const d = f.dur ?? 2.1; return t >= f.t && t < (f.t2 ?? f.t + d); }
+function fxSkip(f) { return f.pre; }
 function fxPos(f, cam, s, states) {
   // returns screen position for a world-anchored or character-anchored effect
   if (f.who !== undefined) { const st = states.find(x => x.cs.id === f.who); if (!st) return [W / 2, H / 3]; const ch = CH[f.who];
     const hy = ch.kind === 'human' ? -(ch.g.leg + ch.g.torso + ch.g.neck + ch.g.head.ry * 2) : -(ch.g.legL + ch.g.bodyH + 40);
     const [x, y, zk] = w2s(cam, st.cs.ly ?? 1, st.st.x + (f.dx || 0) * (st.st.face || 1), st.st.y + hy * (st.st.s || 1) + (f.dy || 0));
     return [x, y, zk]; }
+  if (f.on) { const st = states.find(x => x.cs.id === f.on); if (st) { const [wx, wy] = partPos(f.on, st.st, f.part || 'head'); return w2s(cam, st.cs.ly ?? 1, wx + (f.dx || 0), wy + (f.dy || 0)); } }
   if (f.world) return [f.x, f.y, 1];
   const [x, y, zk] = w2s(cam, f.layer ?? 1, f.x, f.y); return [x, y, zk];
 }
@@ -112,7 +114,7 @@ function bubbleShape(c, x, y, w, h, tx, ty, think) {
   });
 }
 function drawFx(c, f, t, s, cam, states) {
-  if (!fxAlive(f, t)) return;
+  if (!fxAlive(f, t) || f.pre) return;
   const u = t - f.t, d = f.dur ?? 2.1, out = 1 - seg(u, d - .3, d);
   c.save();
   if (f.sw) {   // big comic sound word
@@ -138,16 +140,17 @@ function drawFx(c, f, t, s, cam, states) {
     const lx = x + (f.lx ?? -220), ly = y + (f.ly ?? -160);
     const p = seg(u, 0, .6), ap = seg(u, .3, 1.0);
     c.globalAlpha = out;
-    c.font = `700 ${f.size || 58}px Caveat`; c.textBaseline = 'middle'; c.textAlign = 'center';
+    c.font = `700 ${f.size || 80}px Caveat`; c.textBaseline = 'middle'; c.textAlign = 'center';
     const tw = c.measureText(f.label).width;
-    c.save(); c.beginPath(); c.rect(lx - tw / 2 - 10, ly - 60, (tw + 20) * p, 120); c.clip();
-    c.lineWidth = 12; c.strokeStyle = 'rgba(251,244,228,.85)'; c.lineJoin = 'round'; c.strokeText(f.label, lx, ly); c.fillStyle = INKC; c.fillText(f.label, lx, ly); c.restore();
+    c.save(); c.beginPath(); c.rect(lx - tw / 2 - 10, ly - 70, (tw + 20) * p, 140); c.clip();
+    c.lineWidth = 16; c.strokeStyle = 'rgba(251,244,228,.85)'; c.lineJoin = 'round'; c.strokeText(f.label, lx, ly); c.fillStyle = INKC; c.fillText(f.label, lx, ly); c.restore();
     // arrow from the label edge to the target point (x, y)
-    const sx = lx + Math.sign(x - lx) * Math.min(tw / 2 + 12, Math.abs(x - lx)) * (Math.abs(x - lx) > tw / 2 ? 1 : 0), sy = ly + (Math.abs(x - lx) > tw / 2 ? 0 : Math.sign(y - ly) * 34);
+    const sx = lx + Math.sign(x - lx) * Math.min(tw / 2 + 14, Math.abs(x - lx)) * (Math.abs(x - lx) > tw / 2 ? 1 : 0), sy = ly + (Math.abs(x - lx) > tw / 2 ? 0 : Math.sign(y - ly) * 44);
     const mx = (sx + x) / 2 + (y - sy) * .18, my = (sy + y) / 2 - (x - sx) * .18;
     const N = 20, pts = []; for (let k = 0; k <= N; k++) { const q = k / N * ap, a = 1 - q; pts.push([a * a * sx + 2 * a * q * mx + q * q * x, a * a * sy + 2 * a * q * my + q * q * y]); }
-    c.strokeStyle = INKC; c.lineWidth = 4; c.lineCap = 'round'; c.beginPath(); pts.forEach(([px, py], k) => k ? c.lineTo(px, py) : c.moveTo(px, py)); c.stroke();
-    if (ap >= 1) { const ang = Math.atan2(y - my, x - mx); c.beginPath(); c.moveTo(x, y); c.lineTo(x - Math.cos(ang - .45) * 22, y - Math.sin(ang - .45) * 22); c.moveTo(x, y); c.lineTo(x - Math.cos(ang + .45) * 22, y - Math.sin(ang + .45) * 22); c.stroke(); }
+    c.strokeStyle = 'rgba(251,244,228,.8)'; c.lineWidth = 11; c.lineCap = 'round'; c.beginPath(); pts.forEach(([px, py], k) => k ? c.lineTo(px, py) : c.moveTo(px, py)); c.stroke();
+    c.strokeStyle = INKC; c.lineWidth = 5; c.lineCap = 'round'; c.beginPath(); pts.forEach(([px, py], k) => k ? c.lineTo(px, py) : c.moveTo(px, py)); c.stroke();
+    if (ap >= 1) { const ang = Math.atan2(y - my, x - mx); c.beginPath(); c.moveTo(x, y); c.lineTo(x - Math.cos(ang - .45) * 26, y - Math.sin(ang - .45) * 26); c.moveTo(x, y); c.lineTo(x - Math.cos(ang + .45) * 26, y - Math.sin(ang + .45) * 26); c.stroke(); }
   } else if (f.notes) {   // music notes floating up
     const [x, y] = fxPos(f, cam, s, states);
     for (let k = 0; k < 5; k++) { const q = u - k * .28; if (q < 0) continue; const a = clamp(1 - q / 1.6); if (a <= 0) continue;
@@ -179,8 +182,8 @@ function drawFx(c, f, t, s, cam, states) {
   } else if (f.speed) {   // speed lines behind a runner
     const st = states.find(x => x.cs.id === f.who); if (st) { const [x, y, zk] = w2s(cam, 1, st.st.x, st.st.y - 80 * (st.st.s || 1)); c.globalAlpha = .6 * out; c.strokeStyle = '#f4ead2'; c.lineWidth = 4; c.lineCap = 'round';
       for (let k = 0; k < 5; k++) { const yy = y + (k - 2) * 26 * zk, L = (90 + hash(k + Math.floor(t * 12)) * 80) * zk, dir = -(st.st.face || 1); c.beginPath(); c.moveTo(x + dir * 70 * zk, yy); c.lineTo(x + dir * (70 * zk + L), yy); c.stroke(); } }
-  } else if (f.prop) {   // a prop placed in the world
-    const [x, y, zk] = w2s(cam, f.layer ?? 1, f.x, f.y); c.globalAlpha = f.fade ? out : 1; drawSprite(c, PROPS[f.prop], x, y, (f.s || 1) * zk);
+  } else if (f.prop) {   // a prop placed in the world (drawn in front of the characters)
+    const [x, y, zk] = w2s(cam, f.layer ?? 1, f.x, f.y); const ap = f.popin ? (u < .25 ? EASE.back(u / .25) : 1) : 1; c.globalAlpha = f.fade ? out : 1; if (f.flip) { c.translate(x, y); c.scale(-1, 1); c.translate(-x, -y); } drawSprite(c, PROPS[f.prop], x, y, (f.s || 1) * zk * ap);
   } else if (f.zz) {
     const [x, y] = fxPos(f, cam, s, states); for (let k = 0; k < 3; k++) { const q = (u * .6 + k / 3) % 1; c.globalAlpha = Math.sin(q * Math.PI) * out; c.font = `700 ${40 + k * 10}px Fredoka`; c.fillStyle = '#5b7ea8'; c.fillText('z', x + q * 60 + k * 20, y - q * 110); }
   } else if (f.title) {   // the story title painted on the clouds (sky layer)
@@ -213,7 +216,7 @@ function textsAt(t) {
     if (!fxAlive(f, t)) continue;
     const id = (f.sw || f.bub || f.label || f.typed || f.text || '') + '@' + f.t.toFixed(2);
     if (f.sw) { const [x, y] = f.world ? [f.x, f.y] : w2s(cam, f.layer ?? 1, f.x, f.y); const w = f.sw.length * (f.size || 120) * .3; out.push({ id, text: f.sw, x0: x - w, y0: y - 60, x1: x + w, y1: y + 60 }); }
-    else if (f.label) { const [x, y] = w2s(cam, f.layer ?? 1, f.x, f.y); const lx = x + (f.lx ?? -220), ly = y + (f.ly ?? -160); const w = f.label.length * 13; out.push({ id, text: f.label, x0: lx - w, y0: ly - 30, x1: lx + w, y1: ly + 30 }); }
+    else if (f.label) { const st = s.cast && f.on ? null : null; const [x, y] = f.on ? labelAnchor(f, s, t, cam) : w2s(cam, f.layer ?? 1, f.x, f.y); const lx = x + (f.lx ?? -220), ly = y + (f.ly ?? -160); const w = f.label.length * 17; out.push({ id, text: f.label, x0: lx - w, y0: ly - 40, x1: lx + w, y1: ly + 40 }); }
     else if (f.bub) out.push({ id, text: f.bub, x0: 200, y0: 200, x1: 600, y1: 300 });
     else if (f.title) { const [x, y] = w2s(cam, .2, f.x || 0, f.y || -380); out.push({ id, text: f.text, x0: x - 500, y0: y - 80, x1: x + 500, y1: y + 80 }); }
     else if (f.typed) { const [x, y] = f.sky ? w2s(cam, .2, f.x || 0, f.y || -250) : [f.x, f.y]; out.push({ id, text: f.typed, x0: x - 300, y0: y - 40, x1: x + 300, y1: y + 40 }); }
@@ -230,20 +233,20 @@ function drawMoral(c, s, t) {
   c.save(); c.globalCompositeOperation = 'source-over'; softBlob(c, W / 2, 400, 520, 260, '#ffd98a', .35, .3); c.restore();
   const p = seg(u, .2, 2.2);
   c.save(); c.globalAlpha = ss(p);
-  c.translate(W / 2 - 170 - 40 * ss(seg(u, 2.4, 3.6)), 400); c.rotate(-.12); drawSprite(c, PROPS.breadHalf, 0, 0, 4.2 * (.9 + .1 * ss(p))); c.restore();
-  c.save(); c.globalAlpha = ss(p); c.translate(W / 2 + 170 + 40 * ss(seg(u, 2.4, 3.6)), 400); c.scale(-1, 1); c.rotate(-.12); drawSprite(c, PROPS.breadHalf, 0, 0, 4.2 * (.9 + .1 * ss(p))); c.restore();
+  c.translate(W / 2 - 200 - 50 * ss(seg(u, 2.4, 3.6)), 390); c.rotate(-.12); drawSprite(c, PROPS.breadHalf, 0, 0, 6.2 * (.9 + .1 * ss(p))); c.restore();
+  c.save(); c.globalAlpha = ss(p); c.translate(W / 2 + 200 + 50 * ss(seg(u, 2.4, 3.6)), 390); c.scale(-1, 1); c.rotate(-.12); drawSprite(c, PROPS.breadHalf, 0, 0, 6.2 * (.9 + .1 * ss(p))); c.restore();
   withSeed(3, () => { for (let k = 0; k < 4; k++) { const q = (u * .3 + k / 4) % 1; c.save(); c.globalAlpha = Math.sin(q * Math.PI) * .5 * ss(p); brush(c, qcurve(W / 2 - 60 + k * 40, 300 - q * 60, W / 2 - 50 + k * 40 + Math.sin(u + k) * 14, 230 - q * 80, 12, 6), 5, '#fff6e6', { prof: 'tip', nb: 0 }); c.restore(); } });
   // the moral, revealed word by word as the narrator says it
   const L = lineById('L177'), words = L.words.slice(1);   // skip "Moral:"
   const lines = ['A little kindness can come back', 'to you in a big way.'];
-  c.save(); c.font = 'italic 700 86px "Cormorant Garamond"'; c.textAlign = 'left'; c.textBaseline = 'middle'; c.fillStyle = INKC;
+  c.save(); c.font = 'italic 700 104px "Cormorant Garamond"'; c.textAlign = 'left'; c.textBaseline = 'middle'; c.fillStyle = INKC;
   let wi = 0;
-  lines.forEach((ln, li) => { const tw = c.measureText(ln).width; let x = W / 2 - tw / 2; const y = 760 + li * 104;
+  lines.forEach((ln, li) => { const tw = c.measureText(ln).width; let x = W / 2 - tw / 2; const y = 735 + li * 120;
     for (const w of ln.split(' ')) { const ww = words[wi++]; const a = ww ? ss(seg(t, ww[1] - .08, ww[1] + .25)) : 1; c.globalAlpha = a; c.fillText(w, x, y + (1 - a) * 10); x += c.measureText(w + ' ').width; } });
   c.restore();
-  withSeed(5, () => drawS(c, mk(qcurve(W / 2 - 360, 905, W / 2 + 360, 900, -8, 20), 6, '#c8443a', { prof: 'even', nb: 3, a: .8 }), seg(t, L.t1, L.t1 + .8)));
+  withSeed(5, () => drawS(c, mk(qcurve(W / 2 - 420, 905, W / 2 + 420, 900, -8, 20), 6, '#c8443a', { prof: 'even', nb: 3, a: .8 }), seg(t, L.t1, L.t1 + .8)));
 }
-function moralTexts(s, t) { const L = lineById('L177'); if (t < L.words[1][1] - .1) return []; return [{ id: 'moral', text: MORAL, x0: 420, y0: 700, x1: 1500, y1: 920 }]; }
+function moralTexts(s, t) { const L = lineById('L177'); if (t < L.words[1][1] - .1) return []; return [{ id: 'moral', text: MORAL, x0: 300, y0: 660, x1: 1620, y1: 880 }]; }
 
 // ---------------- the end card ----------------
 function drawEndCard(c, s, t) {
@@ -257,3 +260,28 @@ function drawEndCard(c, s, t) {
   c.save(); c.globalAlpha = ss(seg(u, 2.0, 2.8)); c.font = '700 64px Caveat'; c.textAlign = 'center'; c.fillStyle = '#f4e7cc'; c.fillText('Thank you for reading with us.', 1220, 488); c.restore();
 }
 function endTexts(s, t) { const u = t - s.t0; const o = []; if (u > .4) o.push({ id: 'endA', text: 'Lantern and Page', x0: 820, y0: 260, x1: 1620, y1: 400 }); if (u > 2.0) o.push({ id: 'endB', text: 'Thank you for reading with us.', x0: 860, y0: 450, x1: 1580, y1: 520 }); return o; }
+
+// effects drawn behind the characters (in layer coords): an open doorway, a door swinging
+function drawPre(c, f, t, cam, L) {
+  const u = t - f.t;
+  if (f.door) {   // the ogre's door opening inward: dark doorway + narrowing panel at the hinge
+    const o = ss(seg(u, 0, f.open || 1.6)) * (f.close ? 1 - ss(seg(t, f.t2 - .8, f.t2)) : 1);
+    c.save(); c.beginPath(); c.moveTo(-150, 300); c.lineTo(-150, 40); c.lineTo(-90, -40); c.lineTo(0, -70); c.lineTo(90, -40); c.lineTo(150, 40); c.lineTo(150, 300); c.closePath();
+    c.fillStyle = '#6a4a30'; c.fill(); c.clip();
+    c.fillStyle = rgba('#1e1418', o); c.fillRect(-160, -80, 320, 390);
+    if (f.glow) { c.globalAlpha = o; softBlob(c, 0, 150, 160, 160, '#ff9a3a', .25, .3); }
+    const w = 300 * (1 - o * .92); c.globalAlpha = 1;
+    c.fillStyle = '#6a4a30'; c.fillRect(-150, -80, w, 390); c.fillStyle = 'rgba(40,24,14,.35)'; c.fillRect(-150 + w - 8, -80, 8, 390);
+    c.restore();
+  }
+}
+
+function labelAnchor(f, s, t, cam) { const cs = (s.cast || []).find(c => c.id === f.on); if (!cs) return [W / 2, H / 2]; const st = castState(cs, t, s); const [wx, wy] = partPos(f.on, st, f.part || 'head'); return w2s(cam, cs.ly ?? 1, wx + (f.dx || 0), wy + (f.dy || 0)); }
+
+function contentBox(spr) {   // tight bounds of painted pixels, in the sprite's local units
+  const c = spr.cv.getContext('2d'), w = spr.cv.width, h = spr.cv.height, d = c.getImageData(0, 0, w, h).data;
+  let x0 = w, y0 = h, x1 = 0, y1 = 0;
+  for (let y = 0; y < h; y += 2) for (let x = 0; x < w; x += 2) if (d[(y * w + x) * 4 + 3] > 40) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  if (x1 <= x0) return [spr.x0, spr.y0, spr.x1, spr.y1];
+  return [spr.x0 + x0 / spr.r, spr.y0 + y0 / spr.r, spr.x0 + x1 / spr.r, spr.y0 + y1 / spr.r];
+}

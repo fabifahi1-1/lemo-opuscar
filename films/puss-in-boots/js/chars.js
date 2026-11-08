@@ -187,7 +187,7 @@ function drawFace(c, ch, hx, hy, hd, E, st, t) {
     // brows
     if (fc.brow !== false) {
       const by = y - er * (1.45 + E.by * .8) - (fc.browUp || 0) * er, bw = (fc.browW || 1) * er * 1.1;
-      let ang = E.ba * .5 * s;   // inner end up when ba>0
+      let ang = -E.ba * .5 * s;   // inner end up when ba>0
       let lift = 0; if (E.oneBrow && s * (st.face || 1) > 0) lift = er * .55;
       c.save(); c.translate(x, by - lift); c.rotate(-ang);
       c.strokeStyle = fc.browCol || INKC; c.lineWidth = er * (fc.browT || .34); c.lineCap = 'round';
@@ -377,7 +377,80 @@ function drawBeast(c, ch, st, t) {
 
 function drawChar(c, id, st, t) {
   const ch = CH[id]; if (!ch) return;
+  if (st.clip) { c.save(); c.beginPath(); c.rect(st.clip[0], st.clip[1], st.clip[2] - st.clip[0], st.clip[3] - st.clip[1]); c.clip(); }
+  if (st.clip) { drawChar(c, id, Object.assign({}, st, { clip: null }), t); c.restore(); return; }
   if (ch.kind === 'human') drawHuman(c, ch, st, t);
   else if (ch.kind === 'beast') drawBeast(c, ch, st, t);
   else if (ch.draw) ch.draw(c, ch, st, t);
+}
+
+// world position of a body part (for labels and effects): exact, from the same rig geometry used to draw
+function partPos(id, st, part) {
+  const ch = CH[id]; if (!ch) return [st.x, st.y];
+  const s = st.s || 1, f = st.face || 1, W2 = (lx, ly) => [st.x + lx * s * f, st.y + ly * s];
+  if (ch.kind === 'beast') { const g = ch.g, hx = g.neck[0], hy = -g.legL + g.neck[1];
+    if (part === 'head' || part === 'face') return W2(hx + (ch.sp.face ? ch.sp.face.hx : 0), hy);
+    if (part === 'eye') return W2(hx + ch.sp.face.hx + ch.sp.face.eyeX * ch.sp.face.hd.rx, hy + ch.sp.face.hy + ch.sp.face.eyeY * ch.sp.face.hd.ry);
+    if (part === 'foot' || part === 'slipper') return W2(g.bodyL * .36 + g.legW * .5, -2);
+    if (part === 'mane') return W2(hx - 40, hy - 40);
+    return W2(0, -g.legL - g.bodyH * .5); }
+  const g = ch.g, hipY = -g.leg + (st.bob || 0), sh = -g.torso, A = st.arms || POSE.down;
+  const headC = [g.neckX || 0, hipY + sh - g.neck - g.head.ry];
+  const fc = ch.sp.face;
+  switch (part) {
+    case 'head': case 'face': return W2(headC[0], headC[1]);
+    case 'eye': return W2(headC[0] + fc.eyeX * g.head.rx, headC[1] + fc.eyeY * g.head.ry);
+    case 'mouth': return W2(headC[0], headC[1] + fc.mouthY * g.head.ry);
+    case 'beard': return W2(headC[0], headC[1] + g.head.ry * 1.9);
+    case 'crown': case 'hat': return W2(headC[0], headC[1] - g.head.ry * 1.15);
+    case 'cheek': return W2(headC[0] + g.head.rx * .55, headC[1] + g.head.ry * .32);
+    case 'torso': case 'jacket': return W2(0, hipY + sh * .55);
+    case 'leg': case 'pants': return W2((g.legSpread ?? g.legW * .45) * .5, hipY * .5);
+    case 'foot': case 'shoe': case 'boot': return W2((g.legSpread ?? g.legW * .45) * .5 + g.legW * .55, -g.legW * .35);
+    case 'bag': return W2(-(g.hipW || 30) * .42, hipY + 4);
+    case 'tail': return W2(-62, hipY - 52);
+    case 'hand': case 'paw': default: {
+      const sx = g.shoulder * .55, sy = hipY + sh + g.armW * .4, L2 = g.fore + (g.hand || g.armW * .62) * .7;
+      const ex = sx + g.upper * Math.sin(A[2]), ey = sy + g.upper * Math.cos(A[2]);
+      return W2(ex + L2 * Math.sin(A[2] + A[3]), ey + L2 * Math.cos(A[2] + A[3]));
+    }
+  }
+}
+// the royal carriage: horse, coach, rolling wheels, passengers in the window
+function buildCarriage() {
+  if (CH.carriage) return;
+  buildCast(['horse']);
+  withSeed(808, () => {
+    const body = canvasSprite(-200, -300, 260, 10, 2, c => carriageBody(c, 0, 0, 1.3));
+    CH.carriage = { id: 'carriage', kind: 'carriage', body, wheelB: wheelSprite(62), wheelS: wheelSprite(46), g: { leg: 0, head: { ry: 0 } }, draw: drawCarriage };
+  });
+}
+const WIN = { x: 0, y: -30 - 247 * .64, rx: 90, ry: 52 };
+function drawCarriage(c, ch, st, t) {
+  const f = st.face || 1, s = st.s || 1;
+  c.save(); c.translate(st.x, st.y); c.scale(s * f, s);
+  groundShadow(c, 120, 4, 330, 20, .22);
+  // horse in front
+  const d = Math.abs(st.x - (st.x0 ?? st.x)) + (st.dist || 0);
+  drawBeast(c, CH.horse, { x: 330, y: 0, s: .95, face: 1, walk: d / 110 * Math.PI, moving: !!st.walking, E: exprMix('happy', 'happy', 0), blink: st.blink, tilt: 0 }, t);
+  brush ? 0 : 0;
+  c.strokeStyle = '#6a4a30'; c.lineWidth = 6; c.beginPath(); c.moveTo(150, -110); c.lineTo(290, -96); c.stroke();
+  // back wheel
+  c.save(); c.translate(-110, -46); c.rotate(d / 62); drawSprite(c, ch.wheelB); c.restore();
+  drawSprite(c, ch.body, 0, -30);
+  // passengers in the window
+  const pass = st.pass || [];
+  if (pass.length) {
+    c.save(); c.beginPath(); c.ellipse(WIN.x, WIN.y, WIN.rx * 1.3, WIN.ry * 1.3, 0, 0, TAU); c.clip();
+    c.fillStyle = '#3a2848'; c.fillRect(-150, -300, 300, 200);
+    pass.forEach((p, i) => { const pc = CH[p.id]; if (!pc) return; const ps = p.s || .62, hy = (pc.g.leg + pc.g.torso + pc.g.neck + pc.g.head.ry) * ps;
+      const pst = Object.assign({ x: (p.dx || 0), y: WIN.y + hy + (p.dy || 8), s: ps, face: p.face || 1, noShadow: true, arms: POSE[p.pose || 'down'], E: exprMix(p.expr || 'smile', p.expr || 'smile', 0), blink: p.blink ?? st.blink, tilt: .03 * Math.sin(t * .8 + i * 2) }, p);
+      pst.talk = talkAt(p.id, undefined, t); pst.E = exprMix(p.expr || 'smile', p.expr || 'smile', 0);
+      drawChar(c, p.id, pst, t); });
+    c.restore();
+    c.beginPath(); c.ellipse(WIN.x, WIN.y, WIN.rx * 1.3, WIN.ry * 1.3, 0, 0, TAU); c.strokeStyle = '#a8843a'; c.lineWidth = 8; c.stroke();
+  }
+  c.save(); c.translate(130, -40); c.rotate(d / 46); drawSprite(c, ch.wheelS); c.restore();
+  c.save(); c.translate(-110, -46); c.globalAlpha = .0; c.restore();
+  c.restore();
 }

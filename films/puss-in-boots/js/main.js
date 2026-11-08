@@ -20,7 +20,7 @@ function wordTime(lid, word, which = 'start') {
 function anchor(a, base = 0) {
   if (typeof a === 'number') return a;
   let s = a.trim(), off = 0;
-  const m = s.match(/^(.*?)([+-]\d+(\.\d+)?)$/); if (m && m[1] !== '') { s = m[1]; off = +m[2]; } else if (m) return base + +m[2];
+  const m = s.match(/^(.*?)([+-]\d*\.?\d+)$/); if (m && m[1] !== '') { s = m[1]; off = +m[2]; } else if (m) return base + +m[2];
   let t;
   if (s.includes(':')) { const [lid, w] = s.split(':'); t = w.endsWith('>') ? wordTime(lid, w.slice(0, -1), 'end') : wordTime(lid, w); }
   else if (s.endsWith('>')) t = lineById(s.slice(0, -1)).t1;
@@ -31,29 +31,33 @@ function anchor(a, base = 0) {
 // ---------------- timeline ----------------
 function resolveTimeline() {
   const shots = [], ev = [];
-  let sc = 0, last = 0;
+  let sc = 0, last = 0, scName = '';
   for (const S of SHOTS) {
-    if (S.scene) { sc++; continue; }
+    if (S.scene) { sc++; scName = S.name; continue; }
     const t0 = anchor(S.at, last); last = t0;
-    shots.push(Object.assign({}, S, { t0, sc: S.sc ?? sc }));
+    shots.push(Object.assign({}, S, { t0, sc: S.sc ?? sc, scName }));
   }
   shots.sort((a, b) => a.t0 - b.t0);
   for (let i = 0; i < shots.length; i++) shots[i].t1 = i + 1 < shots.length ? shots[i + 1].t0 : FILM_END;
   for (const s of shots) {   // resolve relative times inside each shot
     const R = a => typeof a === 'number' ? s.t0 + a : anchor(a, s.t0);
     s.cast = (s.cast || []).map(c => { const o = Object.assign({}, c); o.kf = (c.kf || []).map(([tt, p]) => [R(tt), p]).sort((a, b) => a[0] - b[0]); return o; });
-    s.fx = (s.fx || []).map(f => Object.assign({}, f, { t: R(f.at ?? 0), t2: f.to !== undefined ? R(f.to) : undefined }));
+    s.fx = (s.fx || []).map(f => { const o = Object.assign({}, f, { t: R(f.at ?? 0), t2: f.to !== undefined ? R(f.to) : undefined });
+      const txt = f.label || f.sw || f.bub; if (txt) o.dur = Math.max(f.dur ?? 2.1, txt.replace(/\s/g, '').length / 15 + (f.label ? 2.0 : 1.62)); return o; });
     s.camT = s.camAt ? s.camAt.map(R) : [s.t0, s.t1];
     for (const f of s.fx) { if (f.sfx) ev.push({ t: +(f.t + (f.sd || 0)).toFixed(3), type: f.sfx, g: f.g ?? 1, pan: f.pan ?? 0 }); }
     if (s.tr && s.tr !== 'cut') ev.push({ t: +s.t0.toFixed(3), type: 'tr_' + s.tr, g: 1 });
     if (s.sfx) for (const [tt, ty, g] of s.sfx) ev.push({ t: +R(tt).toFixed(3), type: ty, g: g ?? 1 });
   }
+  if (typeof MUSIC !== 'undefined') for (const [a, ty] of MUSIC) ev.push({ t: +anchor(a).toFixed(3), type: ty, g: 1 });
+  // the splash cuts the comic rise dead
   // word cards: cut in just before the word, hold 3.0 s
-  const cards = (VT.cards || []).map(c => { const tw = wordTime(c.line, c.word); return Object.assign({}, c, { tw, t0: tw - .28, t1: tw - .28 + 3.0 }); });
+  const cards = (VT.cards || []).map(c => { const tw = wordTime(c.line, c.word); const li = VT.lines.findIndex(l => l.id === c.line), nl = VT.lines[li + 1];
+    const t1 = Math.max(tw + 2.62, Math.min(tw - .28 + 3.0, nl ? nl.t0 - .05 : 1e9)); return Object.assign({}, c, { tw, t0: tw - .28, t1 }); });
   for (const c of cards) { ev.push({ t: +c.t0.toFixed(3), type: 'card_in', g: 1 }); ev.push({ t: +(c.tw).toFixed(3), type: 'type', n: c.text.length, g: 1 }); ev.push({ t: +(c.t1).toFixed(3), type: 'card_out', g: 1 }); }
   // scenes (clips): frame ranges
   const scenes = [];
-  for (const s of shots) { if (!scenes[s.sc]) scenes[s.sc] = { sc: s.sc, t0: s.t0, t1: s.t1, locs: new Set(), cast: new Set(), name: s.name || '' }; const Z = scenes[s.sc]; Z.t1 = Math.max(Z.t1, s.t1); }
+  for (const s of shots) { if (!scenes[s.sc]) scenes[s.sc] = { sc: s.sc, t0: s.t0, t1: s.t1, locs: new Set(), cast: new Set(), name: s.scName || '' }; const Z = scenes[s.sc]; Z.t1 = Math.max(Z.t1, s.t1); }
   const sceneList = scenes.filter(Boolean);
   for (const Z of sceneList) { Z.f0 = Math.round(Z.t0 * FPS); }
   for (let i = 0; i < sceneList.length; i++) sceneList[i].f1 = i + 1 < sceneList.length ? sceneList[i + 1].f0 : Math.round(FILM_END * FPS);
@@ -84,7 +88,7 @@ function castState(cs, t, shot) {
       const u = clamp((t - t0) / Math.max(1e-3, span));
       const e = (EASE[p.ease] || ss)(u);
       const out = Object.assign({}, cur);
-      for (const k of ['x', 'y', 's', 'turn', 'tilt', 'lean', 'alpha', 'dy', 'sy', 'sx', 'tailUp', 'water']) if (p[k] !== undefined && typeof p[k] === 'number') {
+      for (const k of ['x', 'y', 's', 'turn', 'tilt', 'lean', 'alpha', 'dy', 'sy', 'sx', 'tailUp', 'legF', 'legB']) if (p[k] !== undefined && typeof p[k] === 'number') {
         const a = cur[k] ?? (k === 's' || k === 'alpha' || k === 'sy' || k === 'sx' ? 1 : 0);
         out[k] = lerp(a, p[k], e);
         if (k === 'y' && p.hop) out.y -= Math.sin(u * Math.PI) * p.hop;
@@ -125,6 +129,8 @@ function finish(st, t, walkDist, ef, et, eT, pf, pt, pT, pD, cs) {
     st.breath = .012 * Math.sin(t * 2.1 + ph);
     if (st.tilt === undefined) st.tilt = .035 * Math.sin(t * .7 + ph);
     if (st.shiver) { st.x += Math.sin(t * 60) * 1.5; st.tilt = (st.tilt || 0) + Math.sin(t * 47) * .02; }
+  } else if (ch && ch.kind === 'carriage') {
+    st.dist = walkDist;
   } else if (ch && ch.kind === 'beast') {
     st.walk = walkDist / (ch.g.legL * 1.1) * Math.PI; st.moving = !!st.walking;
     if (st.tilt === undefined) st.tilt = .04 * Math.sin(t * .8 + ph);
@@ -178,6 +184,7 @@ function drawLocation(c, s, t) {
   const loc = LOC[s.loc], cam = camAt(s, t), P = lpAt(s, t);
   c.fillStyle = PAPER; c.fillRect(0, 0, W, H);
   const states = (s.cast || []).map(cs => ({ cs, st: castState(cs, t, s) }));
+  const drawOrder = states.slice().sort((a, b) => (a.st.y + (a.cs.z || 0)) - (b.st.y + (b.cs.z || 0)));
   for (const L of loc.layers) {
     if (s.hide && s.hide.includes(L.name)) continue;
     const a = L.alpha ? L.alpha(P) : 1; if (a <= .001) continue;
@@ -187,7 +194,8 @@ function drawLocation(c, s, t) {
     if (L.live) L.live(c, t, P, s);
     c.globalAlpha = 1;
     // characters on this layer (default: the ground layer, k=1)
-    for (const { cs, st } of states) {
+    for (const f of s.fx || []) if ((f.layer ?? 1) === L.k && f.pre && fxAlive(f, t)) drawPre(c, f, t, cam, L);
+    for (const { cs, st } of drawOrder) {
       if ((cs.ly ?? 1) !== L.k || st.hidden) continue;
       if (st.alpha !== undefined && st.alpha <= .01) continue;
       layerXf(c, cam, L.k);
@@ -277,11 +285,12 @@ window.TEXTS = t => textsAt(t + T_OFF);
   T_OFF = t0; window.DUR = +(t1 - t0).toFixed(4);
   // what this range needs
   const need = new Set(), cast = new Set(['puss', 'puss0', 'tom']), cardObjs = new Set();
-  TL.shots.forEach((s, i) => { const nxt = TL.shots[i + 1]; if (s.t1 > t0 - 2 && s.t0 < t1) { if (s.loc) need.add(s.loc); (s.cast || []).forEach(c => cast.add(c.id)); if (s.kind === 'moral' || s.kind === 'end') need.add('desk'); } });
+  TL.shots.forEach((s, i) => { const nxt = TL.shots[i + 1]; if (s.t1 > t0 - 2 && s.t0 < t1) { if (s.loc) need.add(s.loc); (s.cast || []).forEach(c => { cast.add(c.id); if (c.id === 'carriage') ['king', 'princess', 'tomFine'].forEach(x => cast.add(x)); }); if (s.kind === 'moral' || s.kind === 'end') need.add('desk'); } });
   TL.cards.forEach(c => { if (c.t1 > t0 && c.t0 < t1) cardObjs.add(c.obj); });
   await document.fonts.load('700 120px Andika'); await document.fonts.load('700 60px Caveat'); await document.fonts.load('700 80px Fredoka'); await document.fonts.load('italic 700 80px "Cormorant Garamond"'); await document.fonts.load('700 80px "Cormorant Garamond"'); await document.fonts.ready;
   buildTextures(); buildPaper(); buildProps();
-  buildCast([...cast].concat(CARD_CAST.filter(id => [...cardObjs].some(o => CARD_NEEDS[o] === id))));
+  if (cast.has('carriage')) buildCarriage();
+  buildCast([...cast].filter(id => id !== 'carriage').concat(CARD_CAST.filter(id => [...cardObjs].some(o => CARD_NEEDS[o] === id))));
   for (const id of need) buildLoc(id);
   buildCards([...cardObjs]);
   BUF = document.createElement('canvas'); BUF.width = W; BUF.height = H; BCTX = BUF.getContext('2d');
