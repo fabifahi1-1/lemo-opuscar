@@ -16,13 +16,13 @@ Times are film time. Every shot starts on a word of the narration (see `js/shots
 | # | Time | Dur | Place | Framing | Camera | Action | Word card / labels / effects | Sound | In |
 |---|---|---|---|---|---|---|---|---|---|
 | 3 | 0:14.60 | 3.6s | mill | wide | pan right + push in | Wide: Tom and the cat walk along the mill path |  | mus_mill | cut |
-| 4 | 0:18.24 | 2.7s | mill | extreme close-up | push in | Close: the clever cat winks | sparkle | twinkle | cut |
+| 4 | 0:18.24 | 2.7s | mill | extreme close-up | push in | Close: the clever cat winks | sparkle; label: the cat → | twinkle | cut |
 | 5 | 0:20.93 | 3.3s | mill | wide | pan left + push in | Wide pan: the old mill, wheel turning | label: the river → |  | cut |
 | 6 | 0:24.24 | 3.9s | mill | medium-wide | push in | The mill and the river (card: the mill) | **card: the mill** | water_in | cut |
 | 7 | 0:28.14 | 2.5s | mill | medium-wide | push in | Quiet: three brothers by the mill door, heads bowed |  |  | cut |
 | 8 | 0:30.65 | 2.6s | mill | medium | push in | The oldest brother gets the mill | sparkle |  | cut |
 | 9 | 0:33.30 | 3.3s | mill | medium-wide | pan right | The middle brother gets the donkey (card) | **card: the donkey** |  | cut |
-| 10 | 0:36.60 | 2.5s | mill | medium | push in | And Tom got the cat | label: the cat → |  | cut |
+| 10 | 0:36.60 | 2.5s | mill | medium | push in | And Tom got the cat |  |  | cut |
 | 11 | 0:39.10 | 2.1s | mill | close-up | push in | Close: "A cat?" said Tom |  |  | cut |
 | 12 | 0:41.18 | 2.8s | mill | medium | push in | Two-shot: "I can't buy dinner with a cat!" |  |  | cut |
 | 13 | 0:44.01 | 1.9s | mill | medium | push in | Tummy rumbles | sound word: RUMBLE! | rumble | cut |
@@ -58,9 +58,9 @@ Times are film time. Every shot starts on a word of the narration (see `js/shots
 |---|---|---|---|---|---|---|---|---|---|
 | 34 | 2:02.98 | 1.9s | throne | medium-wide | pan right + push in | A guard lets him in |  | door_big, hall, page turn | page |
 | 35 | 2:04.91 | 2.8s | throne | medium-wide | pull out | The king on his throne (card: the throne) | **card: the throne** | fanfare | cut |
-| 36 | 2:07.73 | 5.2s | throne | close-up | push in | Close: long white beard, tiny gold crown (card: the crown) | **card: the crown**; label: long white beard → |  | cut |
+| 36 | 2:07.73 | 5.2s | throne | close-up | push in | Close: long white beard, tiny gold crown (card: the crown) | **card: the crown** |  | cut |
 | 37 | 2:12.89 | 3.2s | throne | medium → close-up | push in | "Your Majesty," said Puss, bowing low |  | swish | cut |
-| 38 | 2:16.14 | 3.5s | throne | medium-wide | push in | "The Marquis of Carabas sends you a gift." |  |  | cut |
+| 38 | 2:16.14 | 3.5s | throne | medium-wide | push in | "The Marquis of Carabas sends you a gift." | label: long white beard → |  | cut |
 | 39 | 2:19.66 | 3.0s | throne | close-up | push in | Close: "The Marquis of Carabas?" | thought bubble: ? |  | cut |
 | 40 | 2:22.62 | 4.6s | throne | medium → close-up | push in | "Never heard of him. But these berries are delicious!" | hearts | nibble | cut |
 | 41 | 2:27.23 | 3.9s | throne | extreme close-up | push in | Close: Puss winks — there was no Marquis | thought bubble: crown | pop, twinkle | cut |
@@ -128,8 +128,8 @@ Times are film time. Every shot starts on a word of the narration (see `js/shots
 | 78 | 4:27.87 | 3.1s | fields | wide | pan right + push in | Wide: but a Marquis needs land and a castle | label: land → |  | cut |
 | 79 | 4:30.96 | 3.5s | fields | extreme close-up | push in | Close: Puss peeks out of the hedge — he knows just the place | thought bubble: miniCastle | pop | cut |
 | 80 | 4:34.44 | 1.9s | fields | medium | pan right | Swish, swish, swish! Puss runs through the wheat | sound word: SWISH!; sound word: SWISH!; sound word: SWISH!; speed lines | swish | cut |
-| 81 | 4:36.33 | 2.5s | fields | wide | pan right | He runs ahead of the carriage |  | run | cut |
-| 82 | 4:38.79 | 6.9s | fields | wide | pan right | Pan: fields, sheep and apple trees (card: the sheep) | **card: the sheep**; label: the fields →; label: apple trees → |  | cut |
+| 81 | 4:36.33 | 2.5s | fields | wide | pan right | He runs ahead of the carriage | label: the fields → | run | cut |
+| 82 | 4:38.79 | 6.9s | fields | wide | pan right | Pan: fields, sheep and apple trees (card: the sheep) | **card: the sheep**; label: apple trees → |  | cut |
 | 83 | 4:45.69 | 3.7s | fields | medium-wide | push in | Everybody is tired of the mean ogre | thought bubble: slipper |  | cut |
 | 84 | 4:49.40 | 2.8s | fields | close-up | push in | Puss still has a basket of peaches | label: peaches → |  | cut |
 | 85 | 4:52.16 | 4.4s | village | medium-wide | push in | At the village bakery: peaches for warm cookies (card: the cookies) | **card: the cookies** | brush wipe | wipe |
