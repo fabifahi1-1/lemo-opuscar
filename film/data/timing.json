@@ -19,20 +19,20 @@
     6,
     7
    ],
-   "action": "A small lantern glows beside an open storybook on a table; candle dust drifts (L7)",
-   "fx": "lantern flicker 1+.06 sin",
+   "action": "A cool blue night room: a metal lantern (cap, ring handle, framed glass, a small flickering flame) and an open storybook, together about 60% of the frame; a warm pool of lantern light",
+   "fx": "flame flicker, dust in the lantern light only",
    "sfx": "warm storybook theme enters, candle crackle",
    "cards": [],
    "kind": "open",
-   "dur": 2.6,
+   "dur": 2.2,
    "segs": [],
    "key": "open1",
    "lines": [],
    "t0": 0.0,
-   "t1": 2.6,
+   "t1": 2.2,
    "n": 1,
    "visible": [
-    2.6
+    2.2
    ]
   },
   {
@@ -50,20 +50,20 @@
     6,
     7
    ],
-   "action": "A page turns and the page becomes the sky; \"Puss in Boots\" grows in the clouds as cut paper",
-   "fx": "page-flip transition, title letters grow from an anchor edge",
-   "sfx": "page flip, paper rustle, chime on the title",
+   "action": "The camera moves in on the book; a page turns and becomes the sky; \"Puss in Boots\" grows in the clouds, then \"Retold by Lantern and Page\" types in below it in storybook lettering, half the size",
+   "fx": "page-turn transition (motion blur), letters grow from their base",
+   "sfx": "page flip, paper rustle, a chime on the title, soft letter ticks",
    "cards": [],
    "kind": "open",
-   "dur": 2.6,
+   "dur": 3.8,
    "segs": [],
    "key": "open2",
    "lines": [],
-   "t0": 2.6,
-   "t1": 5.2,
+   "t0": 2.2,
+   "t1": 6.0,
    "n": 2,
    "visible": [
-    2.6
+    3.8
    ]
   },
   {
@@ -80,20 +80,20 @@
     5,
     6
    ],
-   "action": "Slow tilt down through the far hills to the mill; \"Retold by Lantern and Page\" types in on the dark front strip",
-   "fx": "warm light through the hills",
+   "action": "Fast tilt down through the hills to the mill (motion blur)",
+   "fx": "-",
    "sfx": "theme holds, river fades in",
    "cards": [],
    "kind": "open",
-   "dur": 2.8,
+   "dur": 2.0,
    "segs": [],
    "key": "open3",
    "lines": [],
-   "t0": 5.2,
+   "t0": 6.0,
    "t1": 8.0,
    "n": 3,
    "visible": [
-    2.8
+    2.0
    ]
   },
   {
@@ -109,9 +109,9 @@
     5,
     6
    ],
-   "action": "HOOK: Tom sits on the mill steps; a sleeve edge, both wrists and both hands hold the last small piece of bread up in front of his chest, fingers wrapped under and around it; the fingers tighten a little and the thumb rubs the crust once; the cat's eyes glow softly in the dark doorway behind",
-   "fx": "slow push-in",
-   "sfx": "soft strings, quiet room tone",
+   "action": "HOOK, framed from mid-chest to knees (no face): Tom sits on the top step; sleeve edges, wrists and both hands; thumbs on the top front of the bread, fingers wrapped behind it; the fingers tighten (worried) and a thumb rubs the crust once",
+   "fx": "dolly push-in, a soft flour sack in the near foreground",
+   "sfx": "soft strings, room tone",
    "cards": [],
    "kind": "line",
    "segs": [
@@ -136,7 +136,7 @@
   {
    "part": "PART 1 | Opening, the hook, the mill, the talking cat",
    "loc": "MILL",
-   "size": "XCU",
+   "size": "MS",
    "angle": "eye",
    "move": "push",
    "layers": [
@@ -146,9 +146,9 @@
     5,
     6
    ],
-   "action": "New angle: the cat in the shadow of the doorway, still orange but dark, only his green eyes bright; he blinks slowly",
-   "fx": "eye glow",
-   "sfx": "a single soft harp note",
+   "action": "Tom's whole face, WORRIED, looking down at the bread: brows pinched up in the middle, mouth a little wobbly; a small sigh (shoulders rise, then drop); he blinks",
+   "fx": "ivy soft in the near foreground",
+   "sfx": "a soft sigh",
    "cards": [],
    "kind": "line",
    "segs": [
@@ -174,8 +174,8 @@
    "part": "PART 1 | Opening, the hook, the mill, the talking cat",
    "loc": "MILL",
    "size": "MS",
-   "angle": "eye",
-   "move": "pull",
+   "angle": "ots",
+   "move": "push",
    "layers": [
     2,
     3,
@@ -183,36 +183,36 @@
     5,
     6
    ],
-   "action": "Pull out from the bread to Tom sitting on the step, elbows near his knees, the bread held up at his chest; he looks down at it",
-   "fx": "breathing, blinks",
-   "sfx": "felt piano note",
+   "action": "THE EXPENSIVE SHOT, 3.7 s: over Tom's shoulder, his hands and the bread sharp in the near foreground, the cat soft in the doorway behind; over 1 s the focus shifts, the bread goes soft and the cat's green eyes come sharp; slow dolly push-in. The cat: ears forward, eyes on the bread, a nose twitch, then he looks up at Tom and does one slow blink",
+   "fx": "focus pull",
+   "sfx": "a harp note as the focus lands, a tiny sniff",
    "cards": [],
    "kind": "line",
    "segs": [
     [
      "L002",
      1,
-     6
+     8
     ]
    ],
-   "key": "L002[1:6]",
+   "key": "L002[1:8]",
    "lines": [
     "L002"
    ],
    "t0": 13.892857142857142,
-   "t1": 16.71428571428571,
+   "t1": 17.571428571428566,
    "n": 6,
-   "dur": 2.8214285714285694,
+   "dur": 3.6785714285714235,
    "visible": [
-    2.8214285714285694
+    3.6785714285714235
    ]
   },
   {
    "part": "PART 1 | Opening, the hook, the mill, the talking cat",
    "loc": "MILL",
    "size": "W",
-   "angle": "eye",
-   "move": "pull",
+   "angle": "low",
+   "move": "push",
    "layers": [
     1,
     2,
@@ -221,28 +221,28 @@
     5,
     6
    ],
-   "action": "Wider: the orange cat sits in the doorway shade on the step behind and beside Tom; Tom glances at him; the cat's tail sways",
-   "fx": "tail sway",
+   "action": "Wide, low and at a slight angle, the steps running diagonally: Tom on the top step turned three-quarters toward the cat; the cat on the threshold turned toward Tom, overlapping the doorframe. Tom's eyes slide to the cat, his head follows, and his face softens into a small kind smile",
+   "fx": "flour sack and ivy soft at the frame edges",
    "sfx": "single plucked note",
    "cards": [],
    "kind": "line",
    "segs": [
     [
      "L002",
-     7,
+     9,
      null
     ]
    ],
-   "key": "L002[7:]",
+   "key": "L002[9:]",
    "lines": [
     "L002"
    ],
-   "t0": 16.71428571428571,
+   "t0": 17.571428571428566,
    "t1": 19.785714285714285,
    "n": 7,
-   "dur": 3.071428571428573,
+   "dur": 2.214285714285719,
    "visible": [
-    3.071428571428573
+    2.214285714285719
    ]
   },
   {

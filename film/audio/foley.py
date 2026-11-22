@@ -43,3 +43,13 @@ def tick(v=1.0): return hp(noise(.02), 1800) * np.exp(-t_(.02) / .004) * v
 def air(d=2.4, v=1.0):
     t = t_(d); env = np.sin(np.pi * np.clip(t / d, 0, 1)) ** 2; return bp(noise(d), 400, 2600) * env * v * .12
 def room(d, v=1.0): return lp(noise(d), 700) * .012 * v
+def sigh(d=1.3):   # a soft breath out: shaped, filtered noise
+    t = t_(d); env = np.sin(np.pi * np.clip(t / d, 0, 1)) ** 1.5 * np.exp(-t / (d * .8))
+    return bp(noise(d), 300, 2200) * env * .35 + lp(noise(d), 500) * env * .1
+def sniff():       # one short sniff
+    d = .09; t = t_(d); return hp(noise(d), 1500) * np.sin(np.pi * t / d) ** 2 * .3
+def splashes(d):   # water from the flume hitting the wheel and the river: a steady pour plus little splats
+    x = bp(noise(d), 600, 5000) * .18 * (.75 + .25 * smooth_noise(d, 6))
+    for _ in range(int(d * 9)):
+        s = bp(noise(.06), 1200, 7000) * np.exp(-t_(.06) / .015) * rng.uniform(.1, .35); i = rng.integers(0, len(x) - len(s)); x[i:i + len(s)] += s
+    return x

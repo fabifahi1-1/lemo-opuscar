@@ -1,5 +1,7 @@
 # SAMPLE: the first 25 seconds
 
+**Sample 3 (premium pass):** every item of the director's 32-point list, with how each was checked, is in [`SAMPLE_CHECK.md`](SAMPLE_CHECK.md). The notes below describe earlier passes.
+
 `sample.mp4` (picture, music and effects, no voice, no subtitles) and `sample-sound.wav` (the music and effects alone, 48 kHz stereo, peak −7 dB). One command: `sh film/build.sh 0 25 sample`.
 
 It covers shots 1 to 9 of `SHOT_LIST.md`: the lantern and the book, the page turning into the sky and the title, the tilt down to the mill with "Retold by Lantern and Page", the hook (Tom's hands holding the bread), the cat's eyes in the doorway's shade, the pull-out to Tom sitting on the step, the reveal of the cat beside him, the mill by the river with the label "the mill →", and the start of the wheel and the door. The last shot is cut at 25.0 s.

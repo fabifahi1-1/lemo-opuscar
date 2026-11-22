@@ -41,7 +41,7 @@ export function star5(g, x, y, r, rot = -Math.PI / 2) { g.beginPath(); for (let 
 
 // ---------- fonts ----------
 export async function loadFonts() {
-  await Promise.all([document.fonts.load('200px "Lilita One"', 'Puss in Boots'), document.fonts.load('500 44px Fredoka', 'Retold by Lantern and Page the mill'), document.fonts.load('600 44px Fredoka', 'Retold')]);
+  await Promise.all([document.fonts.load('200px "Lilita One"', 'Puss in Boots'), document.fonts.load('500 44px Fredoka', 'Retold by Lantern and Page the mill'), document.fonts.load('100px "IM Fell English"', 'Retold by Lantern and Page'), document.fonts.load('italic 100px "IM Fell English"', 'Retold by Lantern and Page')]);
 }
 // a sheet of cut-paper text; returns { sheet, glyphs:[{ch, x, w}] } so letters can grow one by one
 export function textRun(str, family, size, fill, { res = 1, fin, weight = '' } = {}) {
@@ -57,7 +57,7 @@ export function glyphLayers(run, o = {}) {   // one Layer per glyph, anchored at
     if (gl.ch === ' ') continue;
     const w = Math.ceil(gl.w + run.size * .5), h = Math.ceil(run.size * 1.5);
     const sh = paint(w, h, g => { g.font = run.font; g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillStyle = run.fill; g.fillText(gl.ch, 0, 0); }, { res: run.res, ax: w / 2, ay: h * .74, fin: run.fin });
-    ls.push(new Layer({ sheet: sh, x: (o.x || 0) + gl.x, y: (o.y || 0), par: o.par ?? 1, zk: o.zk, z: o.z || 0, shadow: o.shadow, trans: o.trans || 0, glyph: gl }));
+    ls.push(new Layer({ sheet: sh, x: (o.x || 0) + gl.x, y: (o.y || 0), d: o.d, par: o.par ?? 1, z: o.z || 0, shadow: o.shadow ?? 'auto', trans: o.trans || 0, glyph: gl, sharp: true }));
   }
   return ls;
 }
