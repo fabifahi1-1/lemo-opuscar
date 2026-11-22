@@ -11,7 +11,7 @@ import foley as F
 A, B = float(sys.argv[1]), float(sys.argv[2]); D = B - A; N = int(round(D * SR))
 TL = json.load(open('/home/user/lemo-opuscar/film/data/timing.json'))
 S.seed(3)
-T_LINE, T_OPEN, T_GAP, TP_MAX = -30.0, -23.6, -25.5, -6.0
+T_LINE, T_OPEN, T_GAP, TP_MAX = -30.0, -23.9, -25.5, -6.0
 
 def stereo(): return np.zeros((N, 2), np.float32)
 def put(buf, x, t, g=1.0, pan=0.0):
@@ -33,8 +33,8 @@ ev += [dict(t=8.1, inst='cellos', pitch='G2', dur=3.6, vel=.26, attack=1.0, pan=
 for tt, p in [(8.1, 'G3'), (9.5, 'D4'), (10.9, 'B3')]: ev.append(dict(t=tt, inst='upright', pitch=p, dur=1.4, vel=.2, pan=-.1))
 ev += [dict(t=11.5, inst='cellos', pitch='E2', dur=2.5, vel=.26, attack=.6, pan=-.2), dict(t=11.55, inst='upright', pitch='E4', dur=1.6, vel=.22), dict(t=12.7, inst='upright', pitch='G3', dur=1.3, vel=.18)]
 # the focus pull: a harp note as the cat comes sharp; then the turn and the smile: a plucked note and warm strings
-ev += [dict(t=13.95, inst='violas', pitch='E3', dur=3.6, vel=.2, attack=1.0, pan=-.1), dict(t=16.0, inst='harp', pitch='E5', dur=2.0, vel=.45, pan=.3), dict(t=16.45, inst='harp', pitch='B5', dur=1.6, vel=.35, pan=.35)]
-ev += [dict(t=18.47, inst='violas_pizz', pitch='G3', dur=1.5, vel=.55, pan=.2), dict(t=18.5, inst='violins', pitch='G4', dur=1.3, vel=.22, attack=.5, pan=.2), dict(t=18.5, inst='cellos', pitch='C3', dur=1.3, vel=.22, attack=.5, pan=-.2)]
+ev += [dict(t=13.95, inst='violas', pitch='E3', dur=3.6, vel=.2, attack=1.0, pan=-.1), dict(t=15.9, inst='harp', pitch='E5', dur=2.0, vel=.45, pan=.3), dict(t=16.35, inst='harp', pitch='B5', dur=1.6, vel=.35, pan=.35)]
+ev += [dict(t=18.4, inst='violas_pizz', pitch='G3', dur=1.5, vel=.55, pan=.2), dict(t=18.5, inst='violins', pitch='G4', dur=1.3, vel=.22, attack=.5, pan=.2), dict(t=18.5, inst='cellos', pitch='C3', dur=1.3, vel=.22, attack=.5, pan=-.2)]
 # the mill: a flute line over a light arpeggio
 for i, p in enumerate(arp['C'] * 2 + arp['G'] * 2): ev.append(dict(t=19.9 + i * BEAT / 2, inst='upright', pitch=p, dur=BEAT / 2, vel=.16, pan=-.2 + (i % 4) * .1))
 ev += [dict(t=tt, inst='flute', pitch=p, dur=d, vel=.3, attack=.12, pan=.15) for tt, p, d in [(20.0, 'E5', 1.4), (21.5, 'D5', 1.2), (22.9, 'G5', 2.2), (25.3, 'E5', 1.4)]]
@@ -47,15 +47,15 @@ for e in ev:
 
 # ---------------- effects (all made here) ----------------
 fx = stereo()
-put(fx, F.fade(F.candle(6.4), .4, 1.0), 0, 1.0, -.2)
-put(fx, F.page_flip(.85), 2.35, .22, .15); put(fx, F.rustle(.8, .7), 3.0, .15, -.2)
-for k, (tt, p) in enumerate([(3.45, 'G5'), (3.7, 'D6'), (3.95, 'B5'), (4.2, 'G6')]): put(fx, S.note('glockenspiel', p, .8, vel=.4), tt, .35, .2)
-for i in range(26): put(fx, F.tick(.35), 4.4 + i * .046, .35, -.3 + .024 * i)      # the credit line's letters
-put(fx, F.air(2.2, 1.0), 5.9, .8, 0)
-put(fx, F.fade(F.river(D + 2), 1.5, 1.0), 7.0, .55, 0)                              # the river beside the mill, low on the steps
+put(fx, F.fade(F.candle(3.9), .4, 1.0), 0, 1.0, -.2)
+put(fx, F.page_flip(.85), 1.9, .22, .15); put(fx, F.rustle(.8, .7), 2.5, .15, -.2)   # the page turns
+for k, (tt, p) in enumerate([(3.75, 'G5'), (3.95, 'D6'), (4.15, 'B5'), (4.35, 'G6')]): put(fx, S.note('glockenspiel', p, .8, vel=.4), tt, .35, .2)
+for i in range(16): put(fx, F.tick(.35), 4.6 + i * .045, .35, -.3 + .04 * i)       # the credit line's letters
+put(fx, F.air(2.6, 1.0), 5.45, .5, 0)                                             # the slow tilt
+put(fx, F.fade(F.river(D + 2), 1.5, 1.0), 6.5, .55, 0)                              # the river beside the mill, low on the steps
 put(fx, F.room(12.0, 1.0), 8.0, 1.0, 0)
 for tt in np.sort(np.random.default_rng(4).uniform(8, 25, 9)): put(fx, F.bird(np.random.default_rng(int(tt * 10)).uniform(2600, 4200), 2), tt, .12, np.random.default_rng(int(tt * 7)).uniform(-.6, .6))
-put(fx, F.rustle(.9, .5), 9.9, .4, -.1)                                            # the thumb rubs the crust
+put(fx, F.rustle(.9, .5), 10.2, .4, -.1)                                           # the thumb rubs the crust once
 put(fx, F.sigh(1.3), 11.95, .7, -.1)                                               # Tom's small sigh
 for k in range(3): put(fx, F.sniff(), 14.35 + k * .17, .5, .3)                      # the cat sniffs
 put(fx, F.fade(F.river(8), .6, .6), 19.79, 1.0, 0)                                  # the mill wide: the river comes up

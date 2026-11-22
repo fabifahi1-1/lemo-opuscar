@@ -24,15 +24,15 @@
    "sfx": "warm storybook theme enters, candle crackle",
    "cards": [],
    "kind": "open",
-   "dur": 2.2,
+   "dur": 1.8,
    "segs": [],
    "key": "open1",
    "lines": [],
    "t0": 0.0,
-   "t1": 2.2,
+   "t1": 1.8,
    "n": 1,
    "visible": [
-    2.2
+    1.8
    ]
   },
   {
@@ -50,20 +50,20 @@
     6,
     7
    ],
-   "action": "The camera moves in on the book; a page turns and becomes the sky; \"Puss in Boots\" grows in the clouds, then \"Retold by Lantern and Page\" types in below it in storybook lettering, half the size",
-   "fx": "page-turn transition (motion blur), letters grow from their base",
+   "action": "The camera moves in on the book; a page turns and becomes the sky; once the painted sky fills the frame, \"Puss in Boots\" types in, then \"by Lantern and Page\" below it in storybook lettering, half the size",
+   "fx": "a real paper page turn (the page bows and casts a shadow), letters grow from their base",
    "sfx": "page flip, paper rustle, a chime on the title, soft letter ticks",
    "cards": [],
    "kind": "open",
-   "dur": 3.8,
+   "dur": 3.7,
    "segs": [],
    "key": "open2",
    "lines": [],
-   "t0": 2.2,
-   "t1": 6.0,
+   "t0": 1.8,
+   "t1": 5.5,
    "n": 2,
    "visible": [
-    3.8
+    3.7
    ]
   },
   {
@@ -80,20 +80,20 @@
     5,
     6
    ],
-   "action": "Fast tilt down through the hills to the mill (motion blur)",
+   "action": "A slow, eased 2.5 s tilt down to the mill; the title rides up out of frame; the mill ends sharp",
    "fx": "-",
    "sfx": "theme holds, river fades in",
    "cards": [],
    "kind": "open",
-   "dur": 2.0,
+   "dur": 2.5,
    "segs": [],
    "key": "open3",
    "lines": [],
-   "t0": 6.0,
+   "t0": 5.5,
    "t1": 8.0,
    "n": 3,
    "visible": [
-    2.0
+    2.5
    ]
   },
   {
@@ -174,7 +174,7 @@
    "part": "PART 1 | Opening, the hook, the mill, the talking cat",
    "loc": "MILL",
    "size": "MS",
-   "angle": "ots",
+   "angle": "eye",
    "move": "push",
    "layers": [
     2,
@@ -183,7 +183,7 @@
     5,
     6
    ],
-   "action": "THE EXPENSIVE SHOT, 3.7 s: over Tom's shoulder, his hands and the bread sharp in the near foreground, the cat soft in the doorway behind; over 1 s the focus shifts, the bread goes soft and the cat's green eyes come sharp; slow dolly push-in. The cat: ears forward, eyes on the bread, a nose twitch, then he looks up at Tom and does one slow blink",
+   "action": "THE EXPENSIVE SHOT, 3.7 s: the camera at Tom's right side looking along the step to the cat; Tom's shoulder, arm and hands with the bread big in the left foreground, joined to his body; the cat further along the step, the wall behind both. The focus moves from the bread to the cat in 1 s; the camera moves from the first frame",
    "fx": "focus pull",
    "sfx": "a harp note as the focus lands, a tiny sniff",
    "cards": [],

@@ -82,3 +82,33 @@ Shots in the sample (from `data/timing.json`):
 | 30 | Motion blur on fast things and fast camera moves | PARTLY DONE | DONE: the page turn and the dolly onto the page (5 sub-frames, 180° shutter, 2.3–3.7 s), and the tilt down to the mill (6 sub-frames over the whole shot, frame 7.2 s). NOT DONE: the small water droplets at the wheel move fast but have no blur. Every other move in the sample is slow. |
 | 31 | Clean, smooth edges; no flicker or jagged edges | DONE (checked by eye) | All drawing is antialiased Canvas2D with high-quality image smoothing; whiskers are 3.6-unit round-capped strokes. I checked frames 1.0, 9.5, 12.5, 16.6, 18.9 and 21.4 s at full size by eye. I did not run an automatic flicker test. |
 | 32 | Light direction and shadows constant within a scene | DONE | One light direction per scene, used by every layer shadow, every paper finish, the puppets' part shadows and the beams. It is the same upper left for the steps and the mill, and the lantern for the night room. Frames 9.5, 12.5, 14.4 and 18.9 s show shadows falling down-right throughout. |
+
+## Sample 4: the 14 fixes (rebuilt from scratch again)
+
+The opening shots are now 1.8 / 3.7 / 2.5 s (still 8.0 s in total; the voice timing is unchanged). I checked three frames of every shot in the final `sample.mp4`: 0.1, 0.9, 1.7 · 1.9, 2.3, 3.4, 4.0, 4.8, 5.4 · 5.6, 6.7, 7.95 · 8.1, 9.8, 11.4 · 11.6, 12.6, 13.8 · 13.95, 15.5, 17.5 · 17.6, 18.5, 19.7 · 19.9, 21.2, 22.6 · 22.8, 23.9, 24.95.
+
+| # | Fix | Status | Where to see it |
+|---|---|---|---|
+| 1 | "by Lantern and Page" | DONE | 4.8 s (typing), 5.4 s (complete) |
+| 2 | A real paper page turn; no ghost lines; the title types only once the sky fills the frame; no cursor | DONE | 2.3 s: the page lifts and bows, shaded, with its shadow on the page below, carrying the same mountain picture. Motion blur is off. The camera moves in until the painted sky fills the frame (3.3 s) and only then the real sky takes over (3.3–3.7 s). The title types from 3.75 s, letter by letter, each letter growing from 70 % size (no thin lines, no cursor). |
+| 3 | Slow 2.5 s eased tilt; the title moves up out of frame; the mill sharp | DONE | 5.5–8.0 s, eased in and out; no fade and no motion blur. The title rides up and out (6.7 s); the mill is sharp at 7.95 s. |
+| 4 | Random, uneven bread holes | DONE | 34 irregular holes of different sizes and tones, clipped to the crumb (9.8 s) |
+| 5 | Rounded arms with a bent elbow; the fingers tighten once; the thumb rubs once | DONE | Tapered, shaded sleeves, an elbow and a rounded forearm and wrist (8.1–11.4 s). One squeeze at 8.8–9.9 s, one thumb rub at 10.2–11.1 s. |
+| 6 | Medium shot: eyes open, looking down at the bread, worried brows, one blink, one sigh; the cat looks at the bread | DONE | 11.6–13.8 s. His face sits lower, as if bowed toward the bread, with eyes open and only a hint of upper lid. One sigh at 11.95 s, one blink at 13.3 s. The cat's eyes and head point down at the bread. |
+| 7 | Focus pull rebuilt from Tom's right side | DONE | 13.89–17.57 s. Tom's shoulder, arms and hands with the bread (his full puppet, joined) are big in the left foreground, with no face in frame. The cat sits further along the step, the wall behind both. The focus moves from the bread to the cat in 1 s (14.89–15.89 s), and the camera moves from the first frame. |
+| 8 | Eyes, then head, then smile; the cat looks up and slow-blinks; no winks | DONE | His eyes go to the cat at 17.67 s, his head at 17.81 s, the smile at 18.37 s. The cat looks up at 17.87–18.32 s and does one slow blink at 18.75–19.5 s. Each character has one blink value shared by both eyes. |
+| 9 | The same arched doorway in every shot | DONE | The doorway's hole, frame and dark inside now sit at the same distance, so they never slide apart (12.6, 15.5, 18.5 s) |
+| 10 | The egg shape is now a clear flour sack | DONE | Burlap with a woven texture, a tied neck with a rope, a floppy top, a stitched seam and spilled flour (8.1, 17.6 s) |
+| 11 | Soft foam with droplets; a moving water stream | DONE | Foam: soft white puffs that swell and fade. Stream: three wavering translucent ribbons with highlights running down and drops falling off (22.8–24.95 s). |
+| 12 | The subject is always sharp | DONE | No motion blur anywhere. The focus is on the subject of each shot (book, title, mill, Tom, the cat after the pull, the wheel). Only far layers and near foregrounds are blurred. |
+| 13 | Hands always joined to the body | DONE | The separate floating "hands with bread" piece is gone; every hand belongs to Tom's puppet (shoulder, arm, hand). |
+| 14 | One side of the scene | DONE | In every shot on the steps the wall is behind them, Tom is on the left and the cat is on the right. The view from behind Tom is gone. |
+
+Sound after the rebuild (ffmpeg ebur128 on the final file):
+
+| Section | Reading |
+|---|---|
+| Narration slots | −29.9 to −30.4 LUFS |
+| Opening | −23.9 LUFS, loudest moment −20.2 |
+| Pauses | −25.8 to −26.2 LUFS |
+| True peak | −9.0 dBTP |

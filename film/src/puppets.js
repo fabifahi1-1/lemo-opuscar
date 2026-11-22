@@ -86,8 +86,13 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     g.bezierCurveTo(54, -32, 30, -38, 4, -32); g.bezierCurveTo(-22, -28, -52, -20, -72, 2); g.closePath(); g.fill();
   });
   const tuft = sh(60, 60, 16, 50, g => { g.fillStyle = PAL.hair; g.beginPath(); g.moveTo(-8, 4); g.bezierCurveTo(-16, -22, 18, -28, 20, -8); g.bezierCurveTo(8, -14, 0, -6, 2, 6); g.closePath(); g.fill(); });
-  const upper = sh(70, 110, 35, 12, g => { g.fillStyle = sleeveC; g.beginPath(); g.moveTo(-21, -6); g.quadraticCurveTo(0, -16, 21, -6); g.lineTo(18, 84); g.quadraticCurveTo(0, 92, -18, 84); g.closePath(); g.fill(); });
-  const fore = sh(60, 90, 30, 10, g => { g.fillStyle = sleeveC; g.beginPath(); g.arc(0, 0, 18, Math.PI, 0); g.lineTo(16, 22); g.lineTo(-16, 22); g.closePath(); g.fill(); g.fillStyle = cuff; rr(g, -17, 18, 34, 11, 4); g.fill(); g.fillStyle = SK; g.beginPath(); g.moveTo(-12, 28); g.lineTo(12, 28); g.lineTo(10, 62); g.lineTo(-10, 62); g.closePath(); g.fill(); });
+  const cyl = (g, x0, x1, base) => { const gr = g.createLinearGradient(x0, 0, x1, 0); gr.addColorStop(0, 'rgba(255,236,205,.28)'); gr.addColorStop(.45, 'rgba(255,236,205,0)'); gr.addColorStop(1, 'rgba(40,16,4,.32)'); g.save(); g.globalCompositeOperation = 'source-atop'; g.fillStyle = gr; g.fillRect(x0, -40, x1 - x0, 200); g.restore(); };
+  const upper = sh(70, 120, 35, 14, g => { g.fillStyle = sleeveC; g.beginPath(); g.ellipse(0, 0, 22, 14, 0, Math.PI, 0); g.bezierCurveTo(24, 30, 20, 64, 18, 82); g.arc(0, 82, 18, 0, Math.PI); g.bezierCurveTo(-20, 64, -24, 30, -22, 0); g.closePath(); g.fill(); cyl(g, -24, 24); });
+  const fore = sh(64, 100, 32, 22, g => {
+    g.fillStyle = SK; g.beginPath(); g.moveTo(-13, 24); g.bezierCurveTo(-14, 40, -11, 54, -9, 62); g.quadraticCurveTo(0, 68, 9, 62); g.bezierCurveTo(11, 54, 14, 40, 13, 24); g.closePath(); g.fill(); cyl(g, -14, 14);   // forearm and wrist
+    g.fillStyle = sleeveC; g.beginPath(); g.arc(0, 0, 19, 0, TAU); g.fill(); g.beginPath(); g.moveTo(-18, 2); g.bezierCurveTo(-18, 12, -17, 18, -16, 24); g.lineTo(16, 24); g.bezierCurveTo(17, 18, 18, 12, 18, 2); g.closePath(); g.fill(); cyl(g, -19, 19);   // elbow and sleeve
+    g.fillStyle = cuff; g.beginPath(); g.ellipse(0, 24, 17, 6, 0, 0, TAU); g.fill();
+  });
   const bread = makeBread(HR);
   // left hand (mirrored for the right): back of the hand and heel behind the bread; slim fingertips round the side edge; the thumb on the top front
   const handBack = sh(80, 90, 40, 45, g => { g.fillStyle = SK; g.beginPath(); g.moveTo(-4, 36); g.bezierCurveTo(-24, 30, -30, 6, -24, -14); g.bezierCurveTo(-18, -30, 0, -34, 12, -24); g.lineTo(16, 30); g.closePath(); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1.4; g.beginPath(); g.moveTo(-18, 14); g.quadraticCurveTo(-10, 20, -2, 16); g.stroke(); }, HR);
@@ -99,7 +104,8 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
   }, HR);
   const thumb = sh(70, 40, 6, 22, g => { g.fillStyle = SK; g.beginPath(); g.moveTo(-4, 8); g.bezierCurveTo(4, -5, 22, -9, 34, -6); g.bezierCurveTo(40, -4, 40, 4, 33, 5.5); g.bezierCurveTo(22, 6.5, 10, 9, 0, 14); g.closePath(); g.fill(); g.fillStyle = '#f3cdb0'; rr(g, 28, -4.6, 8, 6.4, 3.2); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1.2; g.beginPath(); g.moveTo(16, -6.5); g.quadraticCurveTo(18, 0, 16, 6); g.stroke(); }, HR);
   const face = (g, p) => {   // head space (origin at the neck pivot). s.turn: -1..1, + = facing screen right
-    const s = p.face || {}, th = clamp(s.turn ?? tb, -1, 1), sh2 = th * 18, blink = s.blink ?? 0, lx = (s.lookX || 0) * 7, ly = (s.lookY || 0) * 6.5;
+    const s = p.face || {}, th = clamp(s.turn ?? tb, -1, 1), sh2 = th * 18, blink = s.blink ?? 0, lx = (s.lookX || 0) * 7, ly = (s.lookY || 0) * 8;
+    const dn = clamp((s.lookY || 0) - .4, 0, .6) * 16; g.save(); g.translate(0, dn);
     g.fillStyle = SK; const nearX = th >= 0 ? -64 + th * 16 : 64 + th * 16, farX = th >= 0 ? 64 + th * 40 : -64 + th * 40;
     if (Math.abs(th) < .35) { ell(g, farX, -62, 14, 18); g.fill(); }
     ell(g, nearX, -62, 15, 18); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1.6; g.beginPath(); g.arc(nearX + (th >= 0 ? 2 : -2), -62, 7, -1.2, 1.2); g.stroke();
@@ -108,8 +114,9 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
       const far = sx * th > 0, ew = far ? 1 - .28 * Math.abs(th) : 1, ex = sx * 24 * (far ? 1 - .2 * Math.abs(th) : 1) + sh2 + lx, ey = -82 + ly;
       g.fillStyle = PAL.ink;
       if (blink > .85) { g.strokeStyle = PAL.ink; g.lineWidth = 3.4; g.lineCap = 'round'; g.beginPath(); g.moveTo(ex - 9 * ew, ey); g.quadraticCurveTo(ex, ey + 4, ex + 9 * ew, ey); g.stroke(); }
-      else { g.save(); g.translate(ex, ey); g.scale(ew, 1 - blink * .9 + (s.wide || 0) * .25); ell(g, 0, 0, 8.5, 11); g.fill(); g.fillStyle = '#fff'; ell(g, -2.6 + lx * .3, -3.6 + ly * .3, 3, 3.6); g.fill();
-        const lid = clamp((s.lookY || 0) - .3, 0, .5) * .75; if (lid > 0) { g.fillStyle = SK; g.beginPath(); g.moveTo(-11, -13); g.lineTo(11, -13); g.lineTo(11, -13 + 26 * lid); g.quadraticCurveTo(0, -9 + 26 * lid, -11, -13 + 26 * lid); g.closePath(); g.fill(); } g.restore(); }
+      else { g.save(); g.translate(ex, ey); g.scale(ew, 1 - blink * .9 + (s.wide || 0) * .25); ell(g, 0, 0, 8.5, 11); g.fill(); g.fillStyle = '#fff'; ell(g, -2.6 + lx * .25, -3.6 + ly * .25, 3, 3.6); g.fill();
+        const lid = clamp((s.lookY || 0) - .5, 0, .5) * .25; if (lid > 0) { g.fillStyle = SK; g.beginPath(); g.moveTo(-11, -13); g.lineTo(11, -13); g.lineTo(11, -13 + 26 * lid); g.quadraticCurveTo(0, -10 + 26 * lid, -11, -13 + 26 * lid); g.closePath(); g.fill(); g.strokeStyle = PAL.ink; g.lineWidth = 2; g.beginPath(); g.moveTo(-10, -13 + 26 * lid); g.quadraticCurveTo(0, -10 + 26 * lid, 10, -13 + 26 * lid); g.stroke(); }   // a light upper lid: still open, looking down
+        g.restore(); }
       const br = (s.brow ?? 0) * 7, tilt = (s.browTilt || 0) * 8, bx = sx * 24 * (far ? 1 - .2 * Math.abs(th) : 1) + sh2;
       g.strokeStyle = PAL.hair; g.lineWidth = 4.6; g.lineCap = 'round'; g.beginPath(); g.moveTo(bx - sx * 11 * ew, -106 - br + tilt * .5); g.lineTo(bx + sx * 12 * ew, -106 - br - tilt * .5); g.stroke();
     }
@@ -119,6 +126,7 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     else if (m === 'smile') { const k = s.smile ?? 1; g.beginPath(); g.moveTo(mx - 9 - 4 * k, -44 - 3 * k); g.quadraticCurveTo(mx, -41 + 7 * k, mx + 9 + 4 * k, -44 - 3 * k); g.stroke(); }
     else if (m === 'wobbly') { const w = (s.wob ?? 0); g.beginPath(); g.moveTo(mx - 12, -42); g.bezierCurveTo(mx - 6, -47 - w, mx - 2, -38 + w, mx + 3, -44); g.bezierCurveTo(mx + 7, -48 + w, mx + 10, -42, mx + 13, -43); g.stroke(); }
     else { g.fillStyle = '#7b3b34'; ell(g, mx, -42, m === 'o' ? 8 : 12, 4 + o * (m === 'o' ? 9 : 10)); g.fill(); }
+    g.restore();
   };
   const k1 = tb * 14, spn = 1 - .14 * Math.abs(tb);
   const parts = [
@@ -145,7 +153,7 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     T.head.face = { turn: ht, blink: val(o.blink, 0), lookX: val(o.lookX, 0), lookY: val(o.lookY, .6), mouth: val(o.mouth, 'closed'), smile: val(o.smile, 1), wob: val(o.wob, 0), brow: val(o.brow, 0), browTilt: val(o.browTilt, -.4), blush: .2 };
     T.head.rot = Math.sin(t * .45 + 1) * .02 + val(o.headTilt, 0); T.head.jy = -128 + val(o.headDip, 0); T.head.jx = tb * 6 + ht * 3;
     T.hair.jx = -ht * 10; T.tuft.rot = val(o.tuftRot, 0) + Math.sin(t * 1.3) * .03;
-    const w = val(o.worry, 0), grip = w * (.6 + .4 * Math.sin(t * 2.2));   // fingers tighten a little when worried
+    const grip = val(o.worry, 0);   // how hard the fingers grip (0..1)
     T.tipsL.jx = -47 + 2.4 * grip; T.tipsR.jx = 47 - 2.4 * grip; T.thumbL.rot = .14 + .1 * grip; T.thumbR.rot = -.14 - .1 * grip;
     if (o.rubAt != null) { const u = clamp((t - o.rubAt) / .9); if (u > 0 && u < 1) T.thumbL.rot += Math.sin(u * TAU) * .22; }
     T.bread.jy = -76 + Math.sin(t / 3.6 * TAU) * 1.4;
@@ -168,7 +176,9 @@ export function makeBread(res = 3, w = 96, h = 64) {
     g.fillStyle = '#f2d9a4'; g.beginPath(); g.moveTo(w * .12, -h * .12); g.quadraticCurveTo(w * .3, -h * .2, w * .43, -h * .04);
     for (let i = 0; i <= 8; i++) { const yy = -h * .04 + i * (h * .38 / 8); g.lineTo(w * .43 - (i % 2 ? 4 + R() * 3 : R() * 2), yy); }
     g.quadraticCurveTo(w * .26, h * .38, w * .1, h * .3); g.quadraticCurveTo(w * .02, h * .1, w * .12, -h * .12); g.closePath(); g.fill();
-    g.fillStyle = 'rgba(176,128,70,.55)'; for (let i = 0; i < 16; i++) { ell(g, w * (.14 + R() * .26), h * (-.06 + R() * .32), 1.4 + R() * 2.6, 1.1 + R() * 2); g.fill(); }
+    { const Q = mulberry(913); g.save(); g.beginPath(); g.moveTo(w * .12, -h * .12); g.quadraticCurveTo(w * .3, -h * .2, w * .42, -h * .04); g.lineTo(w * .4, h * .32); g.quadraticCurveTo(w * .26, h * .38, w * .1, h * .3); g.quadraticCurveTo(w * .02, h * .1, w * .12, -h * .12); g.clip();
+      for (let i = 0; i < 34; i++) { const x = w * (.1 + Q() * .32), y = h * (-.12 + Q() * .46), r = (.5 + Q() * Q() * 2.2) * (w / 96); g.fillStyle = `rgba(${150 + Q() * 40 | 0},${105 + Q() * 30 | 0},${55 + Q() * 25 | 0},${.35 + Q() * .35})`; g.beginPath(); for (let k = 0; k < 7; k++) { const a = k / 7 * TAU, rr2 = r * (.6 + Q() * .7); g.lineTo(x + Math.cos(a) * rr2 * 1.3, y + Math.sin(a) * rr2); } g.closePath(); g.fill(); }
+      g.restore(); }
     const hl = g.createRadialGradient(-w * .12, -h * .3, 0, -w * .12, -h * .3, w * .26); hl.addColorStop(0, 'rgba(255,246,220,.75)'); hl.addColorStop(1, 'rgba(255,246,220,0)');
     g.save(); g.globalCompositeOperation = 'source-atop'; g.fillStyle = hl; g.fillRect(-w, -h, w * 2, h * 2); g.restore();
     g.strokeStyle = 'rgba(255,240,210,.85)'; g.lineWidth = 2.4; g.lineCap = 'round'; g.beginPath(); g.moveTo(-w * .28, -h * .3); g.quadraticCurveTo(-w * .12, -h * .44, w * .06, -h * .4); g.stroke();
@@ -222,7 +232,7 @@ export function makePuss({ res = 3, turn = -.5 } = {}) {
   });
   const ear = () => sh(90, 110, 45, 90, g => { g.fillStyle = O; g.beginPath(); g.moveTo(-28, 4); g.lineTo(-8, -78); g.lineTo(32, -16); g.closePath(); g.fill(); g.fillStyle = PAL.pink; g.beginPath(); g.moveTo(-16, -6); g.lineTo(-6, -58); g.lineTo(18, -18); g.closePath(); g.fill(); });
   const faceFn = (g, p) => {
-    const s = p.face || {}, blink = s.blink ?? 0, lx = (s.lookX ?? -.6) * 11, ly = (s.lookY ?? .4) * 9;
+    const s = p.face || {}, blink = s.blink ?? 0, lx = (s.lookX ?? -.6) * 13, ly = (s.lookY ?? .4) * 11;
     for (const sx of [-1, 1]) {
       const far = sx * tr > 0, ew = far ? 1 - .3 * Math.abs(tr) : 1, ex = sx * 42 * (far ? 1 - .22 * Math.abs(tr) : 1) + f, ey = -92;
       if (blink > .88) { g.strokeStyle = '#3a2a24'; g.lineWidth = 4.4; g.lineCap = 'round'; g.beginPath(); g.moveTo(ex - 20 * ew, ey); g.quadraticCurveTo(ex, ey + 8, ex + 20 * ew, ey); g.stroke(); }
@@ -253,7 +263,7 @@ export function makePuss({ res = 3, turn = -.5 } = {}) {
   rig.pose = (t, o = {}) => {
     const T = rig.parts, val = (v, d) => typeof v === 'function' ? v(t) : (v ?? d);
     T.body.sy = 1 + .02 * Math.sin(t / 3.1 * TAU + 1);                      // belly breathes
-    const hl = val(o.headLift, 0); T.head.rot = Math.sin(t * .5 + 2) * .02 + hl * .1; T.head.jy = -158 - hl * 6;
+    const hl = val(o.headLift, 0); T.head.rot = Math.sin(t * .5 + 2) * .02 + hl * .1; T.head.jy = -158 - hl * 6 + val(o.headDown, 0) * 8;
     const el = val(o.earLag, 0); T.earL.rot = -.12 + el + Math.sin(t * .9) * .02; T.earR.rot = .12 + el * .8 + Math.sin(t * .9 + .4) * .02;
     if (o.earTwitch != null) { const u = (t - o.earTwitch) / .35; if (u > 0 && u < 1) T.earR.rot += Math.sin(u * Math.PI) * .25; }
     T.tail.rot = Math.sin(t * 2.1) * .1 + val(o.tailLag, 0);

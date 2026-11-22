@@ -74,8 +74,32 @@ export function buildTable() {
   const pageFace = paint(380, 240, g => { PAGE(g, 1); g.fillStyle = '#efe0c0'; g.fill(); g.strokeStyle = 'rgba(90,60,40,.5)'; g.lineWidth = 3; g.lineCap = 'round'; for (let i = 0; i < 5; i++) { g.beginPath(); g.moveTo(30, -120 + i * 22); g.lineTo(300 - (i % 3) * 40, -116 + i * 22); g.stroke(); } }, { res: 1.2, ax: 6, ay: 190 });
   const pageBack = paint(380, 240, g => { PAGE(g, 1); g.fillStyle = '#e6d5b0'; g.fill(); }, { res: 1.2, ax: 6, ay: 190 });
   const newPage = paint(380, 240, g => { PAGE(g, 1); g.save(); g.clip(); g.fillStyle = grad(g, 0, -190, 0, 40, [[0, '#7fb0d8'], [.55, '#f4dcae'], [1, '#ffcf92']]); g.fillRect(0, -200, 380, 250); g.fillStyle = '#fff4de'; puffCloud(g, 120, -60, 120, 50, 3); puffCloud(g, 260, -100, 140, 56, 5); g.restore(); }, { res: 2, ax: 6, ay: 190 });
-  const pageFlip = new Layer({ sheet: pageFace, x: G.bookX, y: G.bookY, z: 3.4, d: 1.99, sx: .78, sy: .78, trans: .3, vis: false, face: pageFace, back: pageBack });
-  const pageNew = new Layer({ sheet: newPage, x: G.bookX, y: G.bookY, z: 3.3, d: 1.995, sx: .78, sy: .78, trans: .05, vis: false, shadow: false });
+  const pageNew = new Layer({ sheet: newPage, x: G.bookX, y: G.bookY, z: 3.3, d: 1.995, sx: .78, sy: .78, trans: .05, vis: false, shadow: false, haze: 0 });
+  const pageFlip = new Layer({ x: G.bookX, y: G.bookY, z: 3.4, d: 1.99, vis: false, flip: 0, draw(g, info, l) {
+    const { px, py, Z } = info, s = Z * .78, th = Math.PI * l.flip, c = Math.cos(th), sn = Math.sin(th), W2 = 356;
+    // a point of the turning page: u from the spine (0) to the free edge (1), v from the top (0) to the bottom (1)
+    const P = (u, v) => {
+      const bend = Math.sin(u * Math.PI) * 34 * sn;                         // the page bows as it lifts
+      const lift = 1 + .16 * sn * u;                                         // the lifted edge is nearer the camera: it looks taller
+      const ytop = -170 + (-176 + 170 + 26) * u, ybot = 20 + 10 * u, y = (ytop + (ybot - ytop) * v + 75) * lift - 75;
+      return [px + (6 + u * W2 * c + bend * (c >= 0 ? 1 : -1) * .6) * s, py + y * s];
+    };
+    // the shadow it throws on the page below
+    if (sn > .02) { g.save(); g.globalAlpha = .35 * sn; const [ax, ay] = P(0, 0), [bx] = P(1, .5); const gr = g.createLinearGradient(ax, 0, ax + (bx - ax) * 1.2 + 60 * s, 0); gr.addColorStop(0, 'rgba(20,10,4,.8)'); gr.addColorStop(1, 'rgba(20,10,4,0)'); g.fillStyle = gr; g.fillRect(Math.min(ax, bx + 80 * s), ay, Math.abs(bx - ax) + 160 * s, 200 * s); g.restore(); }
+    g.beginPath(); for (let i = 0; i <= 16; i++) g.lineTo(...P(i / 16, 0)); for (let i = 16; i >= 0; i--) g.lineTo(...P(i / 16, 1)); g.closePath();
+    const front = c >= 0; g.fillStyle = front ? '#efe0c0' : '#e4d2ac'; g.fill();
+    g.save(); g.clip();
+    const [sx0] = P(0, .5), [sx1] = P(1, .5), sg2 = g.createLinearGradient(sx0, 0, sx1, 0);     // shading: dark in the crease, a soft light on the curl
+    sg2.addColorStop(0, `rgba(60,36,14,${.35 * sn + .08})`); sg2.addColorStop(.55, `rgba(255,248,230,${.18 * sn})`); sg2.addColorStop(1, `rgba(60,36,14,${.22 * sn})`);
+    g.fillStyle = sg2; g.fillRect(Math.min(sx0, sx1) - 10, py - 260 * s, Math.abs(sx1 - sx0) + 20, 400 * s);
+    if (front) {   // the same picture as the book's right-hand page: two blue mountains and an orange sun
+      const L2P = (x, y) => { const uu = (x - 6) / W2, yt = -170 + 20 * uu, yb = 20 + 10 * uu; return P(uu, (y - yt) / (yb - yt)); };
+      g.fillStyle = '#6a8fb0'; g.beginPath(); [[40, 0], [110, -90], [170, -30], [230, -110], [330, 0]].forEach(([x, y], i) => i ? g.lineTo(...L2P(x, y)) : g.moveTo(...L2P(x, y))); g.closePath(); g.fill();
+      g.fillStyle = '#e8a050'; g.beginPath(); for (let k = 0; k <= 20; k++) { const a = k / 20 * TAU; g.lineTo(...L2P(256 + Math.cos(a) * 22, -100 + Math.sin(a) * 22)); } g.fill();
+    }
+    g.restore();
+    g.strokeStyle = 'rgba(60,40,20,.35)'; g.lineWidth = 1.5; g.beginPath(); for (let i = 0; i <= 16; i++) g.lineTo(...P(i / 16, 0)); g.stroke();
+  } });
   L.push(pageFlip, pageNew);
   const sc = {
     bg: '#0c1226', layers: L, cam: { x: 0, y: 0, zoom: 1, dz: 0 }, pageFlip, pageNew, flame,
@@ -104,15 +128,15 @@ export function buildMillWorld() {
   const sun = paint(220, 220, g => { g.fillStyle = '#fff4d0'; g.beginPath(); g.arc(0, 0, 70, 0, TAU); g.fill(); }, { res: 1, fin: { rim: 0, under: 0, side: 0 } });
   L.push(new Layer({ sheet: sun, x: -640, y: -380, z: .5, d: 18, trans: 1, lit: 1, shadow: false, haze: 0 }));
   const cl = [];
-  for (const [x, y, w, h, seed, d, drift] of [[-40, -760, 1300, 360, 5, 5, 0], [-820, -720, 520, 170, 3, 9, 9], [820, -660, 560, 190, 7, 9, -7], [-700, -330, 460, 150, 11, 8.5, 6], [720, -300, 500, 160, 13, 8.5, -5], [80, -420, 420, 140, 9, 9.5, 4]]) {
+  for (const [x, y, w, h, seed, d, drift] of [[-40, -760, 1300, 360, 5, 4, 0], [-820, -720, 520, 170, 3, 9, 9], [820, -660, 560, 190, 7, 9, -7], [-700, -330, 460, 150, 11, 8.5, 6], [720, -300, 500, 160, 13, 8.5, -5], [80, -420, 420, 140, 9, 9.5, 4]]) {
     const s = paint(w + 60, h + 60, g => { g.fillStyle = '#fff2da'; puffCloud(g, 0, h / 2 - 10, w, h, seed); }, { res: .8, fin: { rim: .5, under: .12, side: .1 } });
     const l = new Layer({ sheet: s, x, y, z: 1 + 1 / d, d, trans: .55, lit: .55, drift, x0: x, name: 'cloud' }); L.push(l); cl.push(l);
   }
   // title in the big cloud, and the storybook credit line under it (letters type in one by one)
   const run = textRun('Puss in Boots', '"Lilita One"', 210, '#2a2347', { res: 1, fin: { rim: .55, under: .35 } });
-  const letters = glyphLayers(run, { x: 0, y: -740, d: 5, z: 5.5 }); letters.forEach((l, i) => { l.gi = i; }); L.push(...letters);
-  const run2 = textRun('Retold by Lantern and Page', '"IM Fell English"', 100, '#3a2a4a', { res: 1.2, fin: { rim: .5, under: .3 } });
-  const credit = glyphLayers(run2, { x: 0, y: -620, d: 5, z: 5.51 }); credit.forEach((l, i) => { l.gi = i; }); L.push(...credit);
+  const letters = glyphLayers(run, { x: 0, y: -740, d: 4, z: 5.5 }); letters.forEach((l, i) => { l.gi = i; }); L.push(...letters);
+  const run2 = textRun('by Lantern and Page', '"IM Fell English"', 100, '#3a2a4a', { res: 1.2, fin: { rim: .5, under: .3 } });
+  const credit = glyphLayers(run2, { x: 0, y: -620, d: 4, z: 5.51 }); credit.forEach((l, i) => { l.gi = i; }); L.push(...credit);
   // hills
   const far = paint(3600, 700, g => { g.fillStyle = '#8fa8cf'; ridge(g, { x0: -1800, x1: 1800, base: -100, bottom: 350, amp: 150, f: [.0035, .009, .022], seed: 5 }); }, { res: .6, ay: 350, fin: { rim: .4, under: .18 } });
   L.push(new Layer({ sheet: far, x: 0, y: -170, z: 2.2, d: 8, trans: .5, lit: .7, name: 'far' }));
@@ -147,19 +171,30 @@ export function buildMillWorld() {
   const water = new Layer({ x: M.x - 172, y: M.base - 222, z: 4.25, d: 2.55, noDepth: true, draw(g, info) {
     const t = sc.t || 0, { px, py, Z } = info;
     g.save(); g.translate(px, py); g.scale(Z, Z);
-    const wg = g.createLinearGradient(0, 0, 0, 120); wg.addColorStop(0, 'rgba(170,215,240,.95)'); wg.addColorStop(1, 'rgba(210,236,250,.4)');
-    g.fillStyle = wg; g.beginPath(); g.moveTo(-6, 0); g.bezierCurveTo(-14, 40, -18, 80, -22, 118); g.lineTo(-2, 118); g.bezierCurveTo(-2, 80, 2, 40, 8, 0); g.closePath(); g.fill();
-    g.strokeStyle = 'rgba(255,255,255,.8)'; g.lineWidth = 2; for (let k = 0; k < 3; k++) { const o = ((t * 120 + k * 40) % 120); g.beginPath(); g.moveTo(-6 - o * .12, o); g.lineTo(-8 - o * .13, o + 14); g.stroke(); }
+    for (let s = 0; s < 3; s++) {   // three overlapping translucent ribbons, each wavering, flowing down
+      const off = s * 4 - 4; g.beginPath();
+      for (let y = 0; y <= 120; y += 6) { const x = -2 + off - y * .14 + Math.sin(y * .09 - t * 9 + s * 2) * (1.5 + y * .03); y ? g.lineTo(x - 5 - y * .03, y) : g.moveTo(x - 5, y); }
+      for (let y = 120; y >= 0; y -= 6) { const x = -2 + off - y * .14 + Math.sin(y * .09 - t * 9 + s * 2) * (1.5 + y * .03); g.lineTo(x + 5 + y * .03, y); }
+      g.closePath(); g.fillStyle = `rgba(${190 + s * 20},${225 + s * 8},${245},${.38 - s * .06})`; g.fill();
+    }
+    g.strokeStyle = 'rgba(255,255,255,.85)'; g.lineWidth = 1.8; g.lineCap = 'round';
+    for (let k = 0; k < 6; k++) { const o = ((t * 150 + k * 23) % 130); g.beginPath(); g.moveTo(-4 - o * .14, o); g.lineTo(-5 - (o + 10) * .14, o + 10); g.stroke(); }   // highlights running down
+    const R = mulberry(5); g.fillStyle = 'rgba(235,246,255,.8)';
+    for (let k = 0; k < 8; k++) { const ph = (t * 1.6 + R()) % 1, x = -18 - ph * 22 * (R() + .3), y = 20 + ph * 100; g.beginPath(); g.arc(x, y, 1.2 + R() * 1.4, 0, TAU); g.fill(); }   // drops falling off the stream
     g.restore();
   } });
   const splash = new Layer({ x: M.x - 178, y: M.base + 6, z: 5.2, d: 2.32, noDepth: true, draw(g, info) {
     const t = sc.t || 0, { px, py, Z } = info, R = mulberry(77);
     g.save(); g.translate(px, py); g.scale(Z, Z);
-    for (let i = 0; i < 22; i++) {   // droplets thrown up by the paddles, on short arcs
-      const ph = (t * 1.3 + R()) % 1, ang = -Math.PI / 2 + (R() - .5) * 1.8, v = 60 + R() * 70, x = (R() - .5) * 220 + Math.cos(ang) * v * ph, y = Math.sin(ang) * v * ph + 140 * ph * ph, r = 2.2 + R() * 3.4;
-      g.fillStyle = `rgba(255,255,255,${.9 * (1 - ph)})`; ell(g, x, y, r, r * 1.2); g.fill();
+    for (let i = 0; i < 16; i++) {   // soft foam: blurred white puffs that swell and fade
+      const ph = (t * .7 + R()) % 1, x = -130 + R() * 260 + Math.sin(t * 1.3 + i) * 6, r = 14 + R() * 22 + ph * 10, a = .55 * Math.sin(ph * Math.PI);
+      const gr = g.createRadialGradient(x, -2, 0, x, -2, r); gr.addColorStop(0, `rgba(255,255,255,${a})`); gr.addColorStop(.6, `rgba(250,252,255,${a * .45})`); gr.addColorStop(1, 'rgba(250,252,255,0)');
+      g.fillStyle = gr; g.beginPath(); g.ellipse(x, -2, r * 1.6, r * .55, 0, 0, TAU); g.fill();
     }
-    g.fillStyle = 'rgba(255,255,255,.88)'; for (let i = 0; i < 9; i++) { const x = -120 + i * 30 + Math.sin(t * 3 + i) * 5, w = 22 + 8 * Math.sin(t * 4 + i * 2); ell(g, x, -2 + Math.sin(t * 5 + i) * 2, w, 7); g.fill(); }   // foam
+    for (let i = 0; i < 26; i++) {   // droplets on short arcs
+      const ph = (t * 1.3 + R()) % 1, ang = -Math.PI / 2 + (R() - .5) * 1.8, v = 50 + R() * 70, x = (R() - .5) * 220 + Math.cos(ang) * v * ph, y = Math.sin(ang) * v * ph + 140 * ph * ph, r = 1.4 + R() * 2.4;
+      g.fillStyle = `rgba(255,255,255,${.85 * (1 - ph)})`; g.beginPath(); g.arc(x, y, r, 0, TAU); g.fill();
+    }
     g.restore();
   } });
   L.push(water);
@@ -228,9 +263,9 @@ export function buildSteps({ ots = false } = {}) {
   }, { res: .9, fin: { rim: .45, under: .3, side: .12 } });
   L.push(new Layer({ sheet: wall, x: 0, y: 0, z: 1, d: 2.8, trans: .15, lit: .6, name: 'wall' }));
   const inside = paint(340, 520, g => { const ig = g.createRadialGradient(0, -40, 20, 0, -40, 230); ig.addColorStop(0, '#3a2a34'); ig.addColorStop(1, '#120a10'); g.fillStyle = ig; g.fillRect(-170, -260, 340, 520); g.fillStyle = 'rgba(70,52,62,.8)'; rr(g, -130, 120, 80, 110, 30); g.fill(); ell(g, 100, 180, 52, 52); g.fill(); }, { res: 1, fin: { rim: .1, side: 0 } });
-  L.push(new Layer({ sheet: inside, x: G.doorX, y: -150 - (G.doorX) * slope * .45, z: .9, d: 3.2, shadow: false }));
+  L.push(new Layer({ sheet: inside, x: G.doorX, y: -150 - (G.doorX) * slope * .45, z: .9, d: 2.8, shadow: false, haze: 0 }));
   const frame = paint(320, 520, g => { g.save(); g.transform(1, -slope * .45, 0, 1, 0, 0); g.strokeStyle = '#6a4630'; g.lineWidth = 20; g.beginPath(); g.moveTo(-140, 250); g.lineTo(-140, -120); g.arc(0, -120, 140, Math.PI, 0); g.lineTo(140, 250); g.stroke(); g.restore(); }, { res: 1.2, fin: { rim: .5, side: .15 } });
-  L.push(new Layer({ sheet: frame, x: G.doorX, y: -170 - G.doorX * slope * .45, z: 1.1, d: 2.75, name: 'doorframe' }));
+  L.push(new Layer({ sheet: frame, x: G.doorX, y: -170 - G.doorX * slope * .45, z: 1.1, d: 2.8, shadow: { dx: 8, dy: 10, blur: 9, a: .3 }, name: 'doorframe' }));
   // the steps: a landing and one step, edges rising to the right, the side profile showing on the left; dark under each lip
   const steps = paint(2600, 900, g => {
     const sl = x => -x * slope;
@@ -259,8 +294,15 @@ export function buildSteps({ ots = false } = {}) {
   const hands = new Layer({ sheet: breadRear(2), x: G.catX - 300, y: G.catY + 230, z: 7.2, d: 1.5, vis: ots, shadow: { dx: 16, dy: 18, blur: 14, a: .3 }, name: 'breadRear' });
   L.push(rear, hands);
   // foreground: a flour sack (bottom left) and ivy (top right), soft
-  const sack = paint(420, 420, g => { g.fillStyle = '#e8dcc0'; g.beginPath(); g.moveTo(-170, 200); g.bezierCurveTo(-200, 40, -150, -120, -60, -160); g.lineTo(-30, -200); g.lineTo(40, -196); g.lineTo(70, -160); g.bezierCurveTo(160, -110, 200, 40, 170, 200); g.closePath(); g.fill(); g.fillStyle = '#b8a57e'; rr(g, -70, -176, 150, 18, 6); g.fill(); }, { res: .8, fin: { rim: .5, side: .25 } });
-  const sackL = new Layer({ sheet: sack, x: -760, y: 420, z: 8, d: 1.35, name: 'sack' });
+  const sack = paint(420, 440, g => {
+    g.fillStyle = '#c8a878'; g.beginPath(); g.moveTo(-150, 210); g.bezierCurveTo(-200, 120, -190, -40, -110, -110); g.quadraticCurveTo(-50, -150, -40, -150); g.lineTo(40, -150); g.quadraticCurveTo(60, -150, 110, -110); g.bezierCurveTo(190, -40, 200, 120, 150, 210); g.closePath(); g.fill();   // body
+    g.beginPath(); g.moveTo(-42, -150); g.bezierCurveTo(-80, -190, -60, -215, -20, -200); g.quadraticCurveTo(0, -225, 30, -205); g.bezierCurveTo(70, -215, 80, -185, 42, -150); g.closePath(); g.fill();   // the floppy top
+    g.strokeStyle = '#8a6a40'; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); g.moveTo(-46, -152); g.quadraticCurveTo(0, -140, 46, -152); g.stroke(); g.beginPath(); g.moveTo(30, -146); g.quadraticCurveTo(50, -120, 40, -96); g.stroke();   // rope and its loose end
+    g.strokeStyle = 'rgba(110,80,45,.35)'; g.lineWidth = 1.6; for (let y = -100; y < 200; y += 9) { g.beginPath(); g.moveTo(-180, y); g.lineTo(180, y + 3); g.stroke(); } for (let x = -170; x < 180; x += 9) { g.beginPath(); g.moveTo(x, -110); g.lineTo(x + 2, 205); g.stroke(); }   // burlap weave
+    g.strokeStyle = 'rgba(90,60,30,.6)'; g.lineWidth = 3; g.setLineDash([10, 8]); g.beginPath(); g.moveTo(-130, 200); g.quadraticCurveTo(-170, 60, -105, -95); g.stroke(); g.setLineDash([]);   // a stitched seam
+    g.fillStyle = 'rgba(255,250,238,.85)'; g.beginPath(); g.ellipse(0, -150, 44, 10, 0, 0, TAU); g.fill(); const Q = mulberry(21); for (let i = 0; i < 40; i++) { g.globalAlpha = .4 + Q() * .5; g.beginPath(); g.arc((Q() - .5) * 120, -150 + (Q() - .3) * 60, 1 + Q() * 3, 0, TAU); g.fill(); } g.globalAlpha = 1;   // flour spilling at the neck
+  }, { res: .9, fin: { rim: .5, side: .25 } });
+  const sackL = new Layer({ sheet: sack, x: -760, y: 420, z: 8, d: 1.6, name: 'sack' });
   const ivy = paint(700, 600, g => { g.fillStyle = '#2e4a2c'; const R = mulberry(12); g.strokeStyle = '#2a3a22'; g.lineWidth = 6; g.beginPath(); g.moveTo(300, -300); g.bezierCurveTo(100, -200, 40, -40, -60, 120); g.stroke(); for (let i = 0; i < 30; i++) { const u = R(), x = 300 - u * 360 + (R() - .5) * 90, y = -300 + u * 420 + (R() - .5) * 60; g.save(); g.translate(x, y); g.rotate(R() * TAU); g.beginPath(); g.moveTo(0, -22); g.quadraticCurveTo(20, -10, 0, 22); g.quadraticCurveTo(-20, -10, 0, -22); g.fill(); g.restore(); } }, { res: .8, fin: { rim: .4, side: .2 } });
   const ivyL = new Layer({ sheet: ivy, x: 820, y: -470, z: 8.1, d: 1.4, name: 'ivy' });
   L.push(sackL, ivyL);
