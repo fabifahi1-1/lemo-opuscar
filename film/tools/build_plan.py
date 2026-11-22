@@ -21,6 +21,21 @@ def expand_layers(s):
             out.add(int(part))
     return sorted(out)
 
+TOK = re.compile(r"^L(\d{3})(?:\[(\d*):(\d*)\])?$")
+def parse_range(spec):
+    """'L001', 'L001-L003', 'L001[1:7]', 'L001[8:]', 'L009[3:]-L010' -> [(line, first_word, last_word or None)]"""
+    a, _, b = spec.partition("-"); b = b or a
+    ma, mb = TOK.match(a.strip()), TOK.match(b.strip())
+    assert ma and mb, spec
+    ia, ib = int(ma.group(1)), int(mb.group(1))
+    segs = []
+    for i in range(ia, ib + 1):
+        w0 = int(ma.group(2) or 1) if i == ia else 1
+        w1 = (int(mb.group(3)) if mb.group(3) else None) if i == ib else None
+        if a == b and ma.group(3): w1 = int(ma.group(3))
+        segs.append(("L%03d" % i, w0, w1))
+    return segs
+
 def parse_shots():
     shots, part = [], None
     for raw in (ROOT / "data" / "shots.txt").read_text().splitlines():
@@ -36,12 +51,11 @@ def parse_shots():
         lines, loc, size, angle, move, layers, action, fx, sfx, card = f
         s = dict(part=part, loc=loc, size=size, angle=angle, move=move, layers=expand_layers(layers),
                  layers_txt=layers, action=action, fx=fx, sfx=sfx, cards=[])
-        if lines.startswith("dur="): s.update(kind="open", dur=float(lines[4:]), lines=[])
-        elif lines.startswith("end="): s.update(kind="end", dur=float(lines[4:]), lines=[])
+        if lines.startswith("dur="): s.update(kind="open", dur=float(lines[4:]), segs=[], key=f"open{sum(1 for x in shots if x['kind']=='open') + 1}")
+        elif lines.startswith("end="): s.update(kind="end", dur=float(lines[4:]), segs=[], key="end")
         else:
-            a, _, b = lines.partition("-"); b = b or a
-            ia, ib = int(a[1:]), int(b[1:])
-            s.update(kind="line", lines=["L%03d" % i for i in range(ia, ib + 1)])
+            s.update(kind="line", segs=parse_range(lines), key=lines)
+        s["lines"] = list(dict.fromkeys(seg[0] for seg in s["segs"]))
         for c in [x for x in card.split(";") if x.strip()]:
             text, _, ref = c.strip().partition("@"); lid, _, word = ref.partition(":")
             s["cards"].append(dict(text=text, line=lid, word=word))
@@ -64,58 +78,65 @@ def layout(shots, lines):
         if s["kind"] == "open":
             s["t0"], s["t1"] = t, t + s["dur"]; t = s["t1"]
     assert abs(t - HOOK_START) < 1e-6, f"opening shots must total {HOOK_START}s, got {t}"
-    # contiguous line coverage
-    seen = [x for s in shots for x in s["lines"]]
-    assert seen == order, "every script line must be covered exactly once, in order"
+    # contiguous coverage: every word of every line exactly once, in order
+    cur = (0, 1)   # (line index, next word)
     for s in shots:
         if s["kind"] != "line": continue
-        a, b = s["lines"][0], s["lines"][-1]
-        ia, ib = order.index(a), order.index(b)
-        s["t0"] = HOOK_START if ia == 0 else (lines[ia - 1]["end"] + lines[ia]["start"]) / 2
-        s["t1"] = T.build_end if ib == len(order) - 1 else (lines[ib]["end"] + lines[ib + 1]["start"]) / 2
+        for (lid, w0, w1) in s["segs"]:
+            li = order.index(lid); n = len(byid[lid]["wordtimes"])
+            assert (li, w0) == cur, f"gap or overlap at {s['key']}: expected {order[cur[0]]} word {cur[1]}, got {lid} word {w0}"
+            w1e = n if w1 is None else w1
+            assert 1 <= w0 <= w1e <= n, (s["key"], w0, w1e, n)
+            cur = (li + 1, 1) if w1e == n else (li, w1e + 1)
+    assert cur == (len(order), 1), "the shot list does not reach the last word"
+    def bound_before(li, w):   # cut time before word w of line li
+        l = lines[li]
+        if w > 1: return l["wordtimes"][w - 1]["t0"]
+        return HOOK_START if li == 0 else (lines[li - 1]["end"] + l["start"]) / 2
+    for s in shots:
+        if s["kind"] != "line": continue
+        lid0, w0, _ = s["segs"][0]; lid1, _, w1 = s["segs"][-1]
+        li0, li1 = order.index(lid0), order.index(lid1); n1 = len(lines[li1]["wordtimes"])
+        s["t0"] = bound_before(li0, w0)
+        if w1 is not None and w1 < n1: s["t1"] = lines[li1]["wordtimes"][w1]["t0"]
+        else: s["t1"] = T.build_end if li1 == len(order) - 1 else (lines[li1]["end"] + lines[li1 + 1]["start"]) / 2
     last = [s for s in shots if s["kind"] == "line"][-1]
     for s in shots:
         if s["kind"] == "end": s["t0"], s["t1"] = last["t1"], last["t1"] + s["dur"]
-    # word cards
-    need = {}
+    # word cards: the picture appears 1.8 s before the word finishes typing, holds 1 s after; 2.5-3 s; never moves the timing
+    over = []
     for s in shots:
         prev_end = s.get("t0")
         for c in s["cards"]:
             n0, n1 = noun_time(byid[c["line"]], c["word"])
             c0 = max(s["t0"], n1 - 1.8, prev_end)
             c1 = min(max(c0 + 2.5, n1 + 1.0), c0 + 3.0)
-            c.update(t0=c0, t1=c1, noun_t0=n0, noun_t1=n1)
-            prev_end = c1
-            if c1 > s["t1"] + 1e-6:
-                lid = s["lines"][-1]
-                need[lid] = max(need.get(lid, 0), (c1 - s["t1"]) * 2 + 0.02)
-    return need
+            c.update(t0=c0, t1=c1, noun_t0=n0, noun_t1=n1); prev_end = c1
+            if c1 > s["t1"] + 1e-6: over.append((s["key"], c["text"], round(c1 - s["t1"], 2)))
+    return over
+
+def visible_segments(s, shots_by_time):
+    """pieces of a shot not covered by any word card (cards can run over into the next shot)"""
+    cuts = [(c["t0"], c["t1"]) for x in shots_by_time for c in x["cards"] if c["t1"] > s["t0"] and c["t0"] < s["t1"]]
+    segs, t = [], s["t0"]
+    for a, b in sorted(cuts):
+        if a > t: segs.append(a - t)
+        t = max(t, b)
+    if s["t1"] > t: segs.append(s["t1"] - t)
+    return segs
 
 def main():
     shots = parse_shots()
-    for it in range(30):
-        lines, end = T.build(); T.build_end = end
-        need = layout(shots, lines)
-        # hook shot and its callback (L184) must last the same time
-        hook = next(s for s in shots if s["lines"][:1] == ["L001"])
-        cb = next(s for s in shots if s["lines"][:1] == ["L184"])
-        d_hook, d_cb = hook["t1"] - hook["t0"], cb["t1"] - cb["t0"]
-        if abs(d_hook - d_cb) > 0.02:
-            T.EXTRA["L184"] = max(0, T.EXTRA.get("L184", 0) + (d_hook - d_cb) * 2)
-            continue
-        if not need: break
-        for lid, x in need.items():
-            T.EXTRA[lid] = T.EXTRA.get(lid, 0) + x
-    else:
-        raise SystemExit("timing did not settle")
-    # ---- checks
+    lines, end = T.build(); T.build_end = end
+    over = layout(shots, lines)
     problems = []
     for i, s in enumerate(shots, 1):
-        s["n"] = i
+        s["n"] = i; s["dur"] = s["t1"] - s["t0"]
         if len(s["layers"]) < 4: problems.append(f"shot {i}: fewer than 4 layers")
-        s["dur"] = s["t1"] - s["t0"]
-    durs = [s["dur"] for s in shots]
-    # ---- speech beats for mouths
+    for s in shots:
+        s["visible"] = visible_segments(s, shots)
+        if s["kind"] == "line" and max(s["visible"] or [0]) > 5.0 + 1e-6:
+            problems.append(f"shot {s['n']} ({s['key']}): {max(s['visible']):.2f} s on screen without a cut (limit 5 s)")
     mouths = {}
     for l in lines:
         for a, b in l["dialog_spans"]:
@@ -127,12 +148,12 @@ def main():
     (ROOT / "data" / "timing.json").write_text(json.dumps(out, indent=1))
     write_voice(lines, shots, end, film_end)
     write_shots(lines, shots, film_end)
-    n = len(shots)
+    durs = [s["dur"] for s in shots]; n = len(shots)
     print(f"shots {n} (cards {sum(len(s['cards']) for s in shots)}), film {tc(film_end)} ({film_end:.1f} s), "
           f"avg shot {sum(durs)/n:.2f} s, speech ends {tc(end)}")
-    print("short (<1.5 s):", [(s['n'], round(s['dur'], 1)) for s in shots if s['dur'] < 1.5])
-    print("long (>6.5 s):", [(s['n'], round(s['dur'], 1)) for s in shots if s['dur'] > 6.5])
-    print("hook vs callback:", round(hook['t1'] - hook['t0'], 2), round(cb['t1'] - cb['t0'], 2))
+    print("longest on-screen pieces:", sorted(((round(max(s['visible'] or [0]), 2), s['n']) for s in shots if s['kind'] == 'line'), reverse=True)[:6])
+    print("short (<1.2 s):", [(s['n'], round(s['dur'], 2)) for s in shots if s['dur'] < 1.2])
+    print("cards running into the next shot:", over or "none")
     print("problems:", problems or "none")
 
 def write_voice(lines, shots, end, film_end):
@@ -168,17 +189,17 @@ LAYERS = "L1 sky · L2 far · L3 middle · L4 action · L5 near ground · L6 for
 def write_shots(lines, shots, film_end):
     byid = {l["id"]: l for l in lines}
     md = ["# SHOT_LIST", "",
-          f"{len(shots)} shots, {sum(len(s['cards']) for s in shots)} word cards, film length {tc(film_end)}. Times come from VOICE_TIMING.md, so the two files always agree. Cuts fall in the pauses between lines; the only exceptions are word cards, which interrupt a shot on purpose.", "",
-          "Layers: " + LAYERS + ". Every shot moves at least four. Moves: push, pull, pan, tilt, track, snap (a 6-frame comic zoom, used four times at most). Hook and callback (shots with L001 and L184) are the same framing and the same push-in.", "",
+          f"{len(shots)} shots, {sum(len(s['cards']) for s in shots)} word cards, film length {tc(film_end)}. Times come from VOICE_TIMING.md, so the two files always agree. No shot stays on screen longer than 5 s (director's note 14), except the opening title shots and the 15 s end screen. Most cuts fall in the pauses between lines; a long line is cut at a word boundary, written `L001[1:7]` (words 1 to 7) and `L001[8:]` (word 8 to the end). Word cards cut in on purpose.", "",
+          "Layers: " + LAYERS + ". Every shot moves at least four. Moves: push, pull, pan, tilt, track, snap (a 6-frame comic zoom, used four times at most). The hook (L001[1:7]) and the callback (L184[1:5]) share one framing and one push-in speed.", "",
           "**Sound-column rule:** during every line slot the music stays very quiet and effects soft; the voice is the loudest sound. Only the opening, the end screen and the gaps between lines may be fuller.", ""]
     cur = None
     for s in shots:
         if s["part"] != cur:
             cur = s["part"]
             md += ["", f"## {cur}", "", "| # | Time | Dur | Lines | Loc | Shot | Layers | Action and reactions | Effects | Sound | Word card |", "|---|---|---|---|---|---|---|---|---|---|---|"]
-        if s["lines"]:
-            ids = s["lines"][0] if len(s["lines"]) == 1 else f"{s['lines'][0]}–{s['lines'][-1]}"
-            txt = " ".join(byid[i]["text"] for i in s["lines"])
+        if s["segs"]:
+            ids = s["key"]
+            txt = " ".join(" ".join(w["w"] for w in byid[lid]["wordtimes"][w0 - 1:(w1 or len(byid[lid]["wordtimes"]))]) for lid, w0, w1 in s["segs"])
             txt = (txt[:46] + "…") if len(txt) > 48 else txt
             ln = f"{ids}<br>{txt}"
         else:

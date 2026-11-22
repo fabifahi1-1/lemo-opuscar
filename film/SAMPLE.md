@@ -2,7 +2,15 @@
 
 `sample.mp4` (picture, music and effects, no voice, no subtitles) and `sample-sound.wav` (the music and effects alone, 48 kHz stereo, peak −7 dB). One command: `sh film/build.sh 0 25 sample`.
 
-It covers shots 1 to 7 of `SHOT_LIST.md`: the lantern and the book, the page turning into the sky and the title, the tilt down to the mill with "Retold by Lantern and Page", the hook (Tom's hands and the bread, the cat's eyes in the dark), the pull-out to Tom and the cat on the step, the mill by the river with the label "the mill →", and the start of the wheel and the door. The last shot is cut at 25.0 s.
+It covers shots 1 to 9 of `SHOT_LIST.md`: the lantern and the book, the page turning into the sky and the title, the tilt down to the mill with "Retold by Lantern and Page", the hook (Tom's hands holding the bread), the cat's eyes in the doorway's shade, the pull-out to Tom sitting on the step, the reveal of the cat beside him, the mill by the river with the label "the mill →", and the start of the wheel and the door. The last shot is cut at 25.0 s.
+
+## Director's notes 11–15 (second version of the sample)
+
+- **11 Hands.** Each hand hangs from the shoulder through a sleeve, an elbow, a forearm with a cuff, and a wrist. The hands are smaller than his face, with a thumb, four fingers with nails and knuckle creases, curled round the bread from below and the sides. The bread is held up in front of his chest. The fingers tighten a little and ease, and the thumb rubs the crust once (about 9.5 s). The close-up shows a sleeve edge, both wrists and both hands.
+- **12 Pose.** Tom sits on the top step of the mill, elbows near his knees, his feet on the step below. He is no longer standing against a wall.
+- **13 Cat.** The cat is one colour, orange, in the shade of the open doorway in every shot of this scene, with only his green eyes bright. Nothing changes his colour inside a shot; the light beam never falls on him.
+- **14 Shot length.** No shot is on screen longer than 5 s, apart from the opening title shots. The hook is now two shots (the hands, then the cat's eyes in the shade), the pull-out is two (Tom, then the reveal of the cat), and the wheel-and-door shot is two. The whole shot list follows the same rule (234 shots); the voice timing is unchanged.
+- **15 Sparkles.** The yellow dots on the floor are gone. Flour and candle dust float only inside the light beams.
 
 ## One change from the plan: the engine
 
@@ -23,6 +31,5 @@ Cost: 600 frames in 99 seconds with 4 workers (0.17 s a frame), so the 725-secon
 
 ## Known rough spots
 
-- Tom is drawn in a simple front view; the hook shows his torso and hands and crops his head. I can frame the hook lower or show his face if you prefer.
 - The big white cloud behind the title is flat; the sky world is pale on purpose (morning) but could be richer.
 - `core/render/mux.sh` refuses ffmpeg 6.1 (it mistakes loudnorm's 3 s delay for a damaged file), so `film/tools/mux.sh` does the same two-pass −14 LUFS master with the system ffmpeg.

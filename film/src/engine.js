@@ -106,7 +106,7 @@ export function drawScene(g, sc) {
       g.globalAlpha = (l.shadow.a ?? .3) * l.alpha; g.filter = `blur(${(l.shadow.blur ?? 6) * Z}px) brightness(0)`; put(g, sp, l.shadow.dx || 0, l.shadow.dy ?? 8); g.filter = 'none'; g.globalAlpha = 1;
     }
     // the paper itself (front light baked into its colour)
-    const filt = ((l.blur > .4 && s.dyn) ? `blur(${l.blur * Z}px) ` : '') + ((l.bright !== undefined && l.bright < .99) ? `brightness(${l.bright})` : '');
+    const filt = ((l.blur > .4 && s.dyn) ? `blur(${l.blur * Z}px) ` : '') + ((l.bright !== undefined && l.bright < .99) ? `brightness(${l.bright}) ` : '') + (l.sat ? `saturate(${l.sat})` : '');
     if (filt) g.filter = filt;
     g.globalAlpha = l.alpha; put(g, sp); g.globalAlpha = 1; if (filt) g.filter = 'none';
     // light through the paper

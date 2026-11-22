@@ -35,7 +35,8 @@ def score():
     for tt, p in [(8.1, 'G3'), (9.5, 'D4'), (10.9, 'B3'), (12.3, 'E4'), (13.2, 'D4')]: ev.append(dict(t=tt, inst='upright', pitch=p, dur=1.4, vel=.2, pan=-.1, gain=.9))
     ev.append(dict(t=8.4, inst='cellos', pitch='G2', dur=5.4, vel=.26, attack=1.0, pan=-.2)); ev.append(dict(t=9.0, inst='violins', pitch='D4', dur=5.0, vel=.2, attack=1.4, pan=.2))
     # L002: a single plucked note, then a soft pad on Am
-    ev.append(dict(t=13.9, inst='violas_pizz', pitch='A3', dur=1.5, vel=.55, pan=0))
+    ev.append(dict(t=11.5, inst='harp', pitch='E5', dur=2.0, vel=.42, pan=.3))        # the cat's eyes in the shade
+    ev.append(dict(t=16.71, inst='violas_pizz', pitch='A3', dur=1.5, vel=.55, pan=.2))  # the reveal of the cat
     ev.append(dict(t=14.4, inst='cellos', pitch='A2', dur=5.4, vel=.24, attack=.8, pan=-.2)); ev.append(dict(t=14.9, inst='violas', pitch='E4', dur=4.8, vel=.2, attack=1.2, pan=.2))
     # mill (19.8-): a flute line over a light arpeggio on C then G
     for i, p in enumerate(arp['C'] * 2 + arp['G'] * 2):
@@ -74,6 +75,7 @@ put(fx, F.fade(F.river(D + 2), 1.5, 1.0), 6.3, 1.0, 0)
 for i in range(14): put(fx, F.creak_wood(.2 + .1 * (i % 3)), 6.6 + i * 1.9, .5, -.35)
 for tt_ in np.sort(np.random.default_rng(4).uniform(6.8, 25, 11)): put(fx, F.bird(np.random.default_rng(int(tt_ * 10)).uniform(2600, 4200), 2 + int(tt_) % 2), tt_, .16, np.random.default_rng(int(tt_ * 7)).uniform(-.6, .6))
 put(fx, F.room(6.0, 1.0), 8.0, 1.0, 0)
+put(fx, F.rustle(.9, .5), 9.5, .45, -.1)   # the thumb rubs the crust once
 put(fx, F.tick(1.0), 20.7, .5, -.2); put(fx, F.rustle(.5, .5), 20.55, .4, -.2)
 put(fx, F.fade(F.stones(4.0), .4, .5), 22.6, .8, .2)
 # effects: softer under the voice, too

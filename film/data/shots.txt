@@ -5,10 +5,13 @@
 dur=2.6 | TABLE | W | eye | push | 1-7 | A small lantern glows beside an open storybook on a table; candle dust drifts (L7) | lantern flicker 1+.06 sin | warm storybook theme enters, candle crackle |
 dur=2.6 | TABLE | CU | eye | push | 1-7 | A page turns and the page becomes the sky; "Puss in Boots" grows in the clouds as cut paper | page-flip transition, title letters grow from an anchor edge | page flip, paper rustle, chime on the title |
 dur=2.8 | MILL | XW | eye | tilt | 1-6 | Slow tilt down through the far hills to the mill; "Retold by Lantern and Page" types in on the dark front strip | warm light through the hills | theme holds, river fades in |
-L001 | MILL | XCU | eye | push | 2-6 | HOOK: Tom's hands hold the last small piece of bread. In the dark behind, two green cat eyes blink | slow push-in, crumbs (L6) | soft strings, tummy-quiet room tone |
-L002 | MILL | MS | eye | pull | 2-6 | Pull out from the bread to Tom on the step and the orange cat beside him; they blink at different times; Tom glances at the cat | tail sway, breathing | single plucked note |
+L001[1:7] | MILL | XCU | eye | push | 2-6 | HOOK: Tom sits on the mill steps; a sleeve edge, both wrists and both hands hold the last small piece of bread up in front of his chest, fingers wrapped under and around it; the fingers tighten a little and the thumb rubs the crust once; the cat's eyes glow softly in the dark doorway behind | slow push-in | soft strings, quiet room tone |
+L001[8:] | MILL | XCU | eye | push | 2-6 | New angle: the cat in the shadow of the doorway, still orange but dark, only his green eyes bright; he blinks slowly | eye glow | a single soft harp note |
+L002[1:6] | MILL | MS | eye | pull | 2-6 | Pull out from the bread to Tom sitting on the step, elbows near his knees, the bread held up at his chest; he looks down at it | breathing, blinks | felt piano note |
+L002[7:] | MILL | W | eye | pull | 1-6 | Wider: the orange cat sits in the doorway shade on the step behind and beside Tom; Tom glances at him; the cat's tail sways | tail sway | single plucked note |
 L003 | MILL | XW | eye | track | 1-7 | The mill by the river: waterwheel turning, sparkling water, flour specks in sunbeams; hand-drawn label "the mill →" | label arrow points at the mill, flour specks (L7) | river and waterwheel bed, birds |
-L004 | MILL | MS | eye | pan | 2-6 | Pan from the turning wheel to the millstone door and a flour sack; flour dust in the sunbeam | flour specks | wheel creak, grinding stones |
+L004[1:5] | MILL | MS | eye | pan | 2-6 | The waterwheel turns, water spilling from the paddles | water sparkle | wheel creak, splashing |
+L004[6:] | MILL | MS | eye | pan | 2-7 | The mill door: a millstone and a flour sack; flour dust floats in the sunbeam only | flour dust in the beam | grinding stones |
 L005 | MILL | MS | eye | push | 2-6 | The father is shown gently: his empty chair and hat by the mill door; slow push-in | dust in a sunbeam | music softens to one held note, ambience low |
 L006 | MILL | MS | eye | pan | 2-6 | The oldest brother takes the mill key and walks into the mill (strut, proud) | key glint | boots on boards, door thud | the mill@L006:mill
 L007 | MILL | MS | eye | pan | 2-6 | The middle brother leads the donkey away; the donkey's ears flop, a tail swish | ears flop | hoof clops, donkey huff | the donkey@L007:donkey
@@ -17,57 +20,72 @@ L009 | MILL | CU | eye | push | 2-6 | Tom on "A cat?": eyebrows up, hands open (
 L010 | MILL | MS | ots | push | 2-6 | Tom complains; the cat's head in the foreground (L6) looks up at him; Tom gestures with both hands | - | playful pizzicato |
 L011 | MILL | XCU | eye | push | 3-6 | Tom's tummy: comic rumble lines, he pats it | rumble lines | tummy rumble |
 L012 | MILL | CU | eye | pan | 2-6 | Tom looks down at the bread (WORRIED: brows in, eyes down); pan down to his hand | - | music thins | the bread@L012:bread
-L013 | MILL | XCU | eye | pan | 2-6 | The bread cracks in two; the halves in close-up; a hand slides one half toward the cat's paws | crumbs pop | soft bread crack, paw pat |
-L014 | MILL | CU | eye | tilt | 2-6 | Tilt up the cat from white paws to bright green eyes: sleek, orange | whisker twitch | gentle woodwind phrase |
+L013[1:6] | MILL | XCU | eye | push | 2-6 | The bread cracks in two in Tom's hands (same framing family as the hook) | crumbs pop | soft bread crack |
+L013[7:] | MILL | MS | ots | pan | 2-6 | Over Tom's shoulder: his hand offers one half to the cat; the cat sniffs it | - | paw pat |
+L014[1:6] | MILL | CU | eye | tilt | 2-6 | Tilt up the sleek orange cat, now in the light | whisker twitch | gentle woodwind phrase |
+L014[7:] | MILL | XCU | eye | push | 2-6 | The cat's face: bright green eyes open wide, a white paw lifts to wipe a whisker | eye sparkle | twinkle |
 L015 | MILL | CU | eye | push | 2-6 | The cat eats slowly, eyes closed with pleasure, a paw wipes the whiskers | crumbs | nibble sounds |
 L016 | MILL | CU | eye | push | 2-6 | The cat's mouth moves on "Thank you, Master." (talking loop only on the quoted words) | sparkle | - |
 L017 | MILL | MS | eye | snap | 2-6 | Tom jumps back: SURPRISE in three beats (small lean away, big jump, settle); eyebrows up, "!" pops | "!" pop, small shake | pluck sting |
 L018 | MILL | CU | eye | push | 2-6 | Tom "You can TALK?": eyes wide, mouth moves on the words; speech bubble "TALK?" | bubble pop | - |
 L019 | MILL | CU | eye | push | 2-6 | The cat answers "Of course." (calm, one brow raised) | - | - |
-L020 | MILL | MS | ots | pan | 2-6 | Two-shot, Tom's shoulder in the foreground: the cat explains, one paw gestures on "boots", chin up (PROUD) | tiny sparkle on "rich" | light woodwind |
+L020[1:9] | MILL | MS | ots | pan | 2-6 | Tom's shoulder in the foreground: the cat explains, one paw gestures on "boots", chin up (PROUD) | - | light woodwind |
+L020[10:] | MILL | CU | eye | push | 2-6 | Reaction: Tom listens, eyebrows going up, mouth a small O | tiny sparkle on "rich" | - |
 L021 | MILL | CU | eye | push | 2-6 | Tom "Why boots?" (puzzled, head tilt) | - | - |
 L022 | MILL | MS | eye | push | 2-6 | The cat, chin up, tail high, on "important" | - | - |
 L023 | MILL | CU | eye | push | 2-6 | The cat "And important cats get invited places." (PROUD, half-closed eyes, a sparkle) | sparkle | chime |
 
 #PART 2 | The boots, the berries, the king
 L024 | MILL | CU | eye | push | 2-6 | Tom thinking: eyes up, paw on chin, thought bubble grows from three dots | thought bubble | music box notes |
-L025 | MILL | MS | eye | pan | 2-6 | Shed corner: Tom searches; an old bag and a tiny pair of boots pop in | pop-in 0 to 110 to 100% | cloth rustle, pop sounds | the bag@L025:bag; the boots@L025:boots
+L025[1:7] | MILL | MS | eye | pan | 2-6 | Shed corner: Tom searches, moving a crate and a basket | dust | cloth rustle |
+L025[8:] | MILL | MS | eye | push | 2-6 | A shelf: an old bag and a tiny pair of boots pop in | pop-in 0 to 110 to 100% | pop sounds | the bag@L025:bag; the boots@L025:boots
 L026 | MILL | XCU | eye | push | 3-6 | Paws pull on the boots, one then the other | tiny stamp | boot slide-on, thump |
 L027-L028 | ROAD | XCU | low | track | 2-6 | The boots strut: CLIP-CLOP! CLIP-CLOP! words pop with a wobble | CLIP-CLOP words | clip-clop x2, playful music enters |
 L029 | ROAD | W | eye | track | 1-6 | Puss struts down the road (chest out, tail straight up, boot step every 10 frames); grass edge (L5), flowers frame the left (L6) | flowers parallax | clip-clop, birds |
 L030 | ROAD | CU | eye | push | 2-6 | Tom covers his mouth, shoulders shaking with a held laugh | - | stifled giggle |
 L031 | ROAD | CU | eye | push | 2-6 | Puss "call me Puss": PROUD, sparkle | sparkle | chime |
 L032 | FOREST | XW | eye | pan | 1-6 | The next morning (cross-dissolve): forest edge in birdsong, Puss walks in | dissolve 14 frames | birdsong |
-L033 | FOREST | MS | eye | pan | 2-7 | Puss reaches into the berry bush and holds his bag open; red berries glow | berry pop-ins | rustle, music playful |
+L033[1:10] | FOREST | W | eye | track | 1-6 | Puss walks to the edge of the forest carrying his bag | - | birdsong, footsteps |
+L033[11:] | FOREST | MS | eye | pan | 2-7 | Puss reaches into the berry bush and holds his bag open; red berries glow | berry pop-ins | rustle |
 L034 | FOREST | XCU | eye | push | 3-6 | Berries pop into the bag one by one: Pick, pick, pick! | pop-ins | pick, pick, pick |
 L035 | HILL | XW | low | tilt | 1-6 | Tiny Puss marches up the hill; tilt up to the castle towers and flags | flags flap | footsteps, light march theme | the castle@L035:castle
 L036 | THRONE | W | eye | push | 2-6 | Throne room: the guard opens the door and Puss walks in | - | door creak, echo |
 L037 | THRONE | MS | low | push | 2-6 | The king on his throne, seen from low | breathing | - | the king@L037:king
-L038 | THRONE | XCU | eye | tilt | 2-6 | Tilt up the long white beard to the tiny gold crown; hold so kids notice how tiny it is | crown glint | single bell tone | the crown@L038:crown
+L038[1:6] | THRONE | XCU | eye | tilt | 2-6 | Tilt up the king's long white beard | - | - |
+L038[7:] | THRONE | XCU | eye | push | 2-6 | The tiny gold crown on the big head; hold so kids notice how tiny it is | crown glint | single bell tone | the crown@L038:crown
 L039 | THRONE | MS | ots | push | 2-6 | Over Puss's shoulder: he bows very low | - | boots scrape |
 L040 | THRONE | W | eye | push | 1-6 | GIFT FRAMING (same each time): Puss at left offers the bag of berries to the king on his throne | berries glow | - |
 L041 | THRONE | CU | eye | push | 2-6 | The king puzzled: "The Marquis of Carabas?" (eyebrows angled, mouth moves) | - | - |
 L042-L043 | THRONE | CU | eye | push | 2-6 | The king bites a berry: eyes close, happy face | berry pop | crunch |
 L044 | THRONE | MS | eye | push | 2-6 | Puss, innocent: nobody here by that name (eyes slide aside) | sweat drop | - |
 L045 | THRONE | CU | eye | push | 2-6 | Puss paw to mouth; the name "Marquis" pops up in letters over his head | letter pops | pluck |
-L046 | THRONE | CU | eye | push | 2-6 | Thought bubble shows a grand, fancy lord with a tall hat; Puss winks | thought bubble | harp glissando |
+L046[1:6] | THRONE | CU | eye | push | 2-6 | Inside Puss's thought bubble: a grand, fancy lord with a tall hat bows | thought bubble | harp glissando |
+L046[7:] | THRONE | CU | eye | push | 2-6 | Puss winks; the bubble pops | bubble pop | pluck |
 L047 | THRONE | MS | low | push | 2-6 | The king dreamily repeats the name; a star over his head | sparkle | - |
-L048 | THRONE | MS | eye | pan | 2-6 | The next week (slow cross-dissolve, window light changes): Puss at the door with peaches and warm bread | peach and bread pop-ins | playful pizzicato |
+L048[1:3] | THRONE | W | eye | push | 1-6 | The next week (slow cross-dissolve): the throne room window, the light changed | dissolve 16 frames | playful pizzicato |
+L048[4:] | THRONE | MS | eye | pan | 2-6 | Puss at the door with sweet peaches and warm bread popping into his arms | peach and bread pop-ins | - |
 L049 | THRONE | W | eye | push | 1-6 | GIFT FRAMING again: "From the Marquis of Carabas," Puss says | - | - |
-L050 | THRONE | CU | eye | push | 2-6 | King with his mouth full, cheeks puffed | munch | munch |
+L050[1:7] | THRONE | CU | eye | push | 2-6 | SAME CATCHPHRASE FRAMING: the king, "Never heard of him" | - | - |
+L050[8:] | THRONE | XCU | eye | push | 2-6 | Insert: the king's puffed cheeks, munching | munch lines | munch |
 L051 | THRONE | CU | eye | push | 2-6 | Reaction: Puss's smug little smile while the king praises the bread | - | - |
-L052 | THRONE | W | eye | push | 1-6 | A week later (slow dissolve): GIFT FRAMING, Puss offers a jar of golden honey | honey glints | - |
-L053 | THRONE | XCU | eye | tilt | 2-6 | Honey drips onto sticky fingers; tilt up as the king licks them | honey drip | drip, lick |
-L054-L055 | THRONE | CU | eye | push | 2-6 | The king "I really must meet this Marquis": stronger push-in on his face | - | music swells a little |
+L052[1:4] | THRONE | W | eye | push | 1-6 | The week after that (slow cross-dissolve): the window light turns golden | dissolve 16 frames | - |
+L052[5:] | THRONE | W | eye | push | 1-6 | GIFT FRAMING: Puss offers a jar of golden honey | honey glints | - |
+L053[1:7] | THRONE | CU | eye | push | 2-6 | SAME CATCHPHRASE FRAMING: the king, "Never heard of him" | - | - |
+L053[8:] | THRONE | XCU | eye | tilt | 2-6 | Insert: honey drips onto sticky fingers; the king licks them | honey drip | drip, lick |
+L054 | THRONE | MS | eye | push | 2-6 | The king, a happy bounce: "But this is delicious!" | - | - |
+L055 | THRONE | CU | eye | push | 2-6 | The king "I really must meet this Marquis": stronger push-in on his face | - | music swells a little |
 L056-L057 | THRONE | CU | eye | push | 2-6 | Puss's sly smile, then a wink on "the plan all along" | sparkle | pluck |
 
 #PART 3 | The town crier
-L058 | SQUARE | XW | eye | track | 1-7 | One morning (cross-dissolve): village square, villagers walk by (L4), bunting frames the top (L6); tiny Puss strolls through | bunting sway | crowd murmur, playful music |
+L058[1:9] | SQUARE | XW | eye | track | 1-7 | One morning (cross-dissolve): village square, villagers walk by (L4), bunting frames the top (L6); tiny Puss strolls through | bunting sway | crowd murmur, playful music |
+L058[10:] | SQUARE | W | eye | push | 1-6 | The town crier climbs onto his stand and lifts his bell; villagers turn to look | - | crowd hush |
 L059 | SQUARE | MS | eye | push | 2-6 | The town crier swings his bell | motion lines, "Ding-ding-ding!" word | ding-ding-ding |
-L060 | SQUARE | MS | ots | push | 2-6 | The crier reads his scroll; Puss's ear twitches in the foreground | - | - |
+L060[1:5] | SQUARE | MS | ots | push | 2-6 | The crier reads his scroll; Puss's ear in the foreground | - | - |
+L060[6:] | SQUARE | CU | eye | push | 2-6 | Reaction: Puss's ears perk up | ear twitch | - |
 L061 | SQUARE | XCU | eye | push | 3-6 | Puss's eyes: a sparkle pops and lights up | eye sparkle | twinkle |
 L062 | SQUARE | MS | eye | push | 2-6 | Puss clenches both paws, tail high: this is the chance | - | determined strings |
-L063 | ROAD | W | eye | track | 1-6 | Puss runs home, dust puffs, boot steps every 6 frames, strong parallax | dust puffs, motion lines | swish, fast clip-clop |
+L063[1:5] | ROAD | W | eye | track | 1-6 | Puss runs home, dust puffs, strong parallax | dust puffs, motion lines | swish |
+L063[6:] | ROAD | XCU | low | track | 3-6 | The boots running fast, a step every 6 frames | motion lines | fast clip-clop |
 
 #PART 4 | The river and the carriage
 L064 | RIVER | W | eye | push | 1-6 | Tom sits by the river; Puss bursts in from the left and points: "Master, jump in the river!" | motion lines | - |
@@ -78,7 +96,8 @@ L069 | RIVER | CU | eye | snap | 2-6 | COMIC SNAP-ZOOM on Puss: "TRUST ME!" in a
 L070 | RIVER | W | eye | pull | 1-6 | SPLASH! Tom in the river; water drops fly | SPLASH word, small shake, drops | splash |
 L071 | RIVER | MS | high | push | 2-6 | High angle: Tom shivers in the cold river, teeth chattering | shiver lines | water drips, chattering teeth | the river@L071:river
 L072 | RIVER | MS | eye | pan | 2-6 | Puss hides the old clothes under a rock; the rock wobbles | - | rock thud |
-L073 | ROAD | W | eye | pan | 1-6 | Puss runs to the road and waves both paws | motion lines | swish, quick steps |
+L073[1:6] | ROAD | W | eye | pan | 1-6 | Puss runs up the bank to the road | motion lines | swish, quick steps |
+L073[7:] | ROAD | MS | eye | push | 2-6 | Puss waves both paws at the road | - | - |
 L074 | ROAD | XW | eye | track | 1-6 | The royal carriage rolls in; wheels and hooves | dust | carriage wheels, horse hooves | the carriage@L074:carriage
 L075 | ROAD | MS | eye | push | 2-6 | Puss: "HELP!" speech bubble | speech bubble | - |
 L076 | ROAD | MS | eye | push | 2-6 | Puss flails his paws: "Robbers took the Marquis's clothes!" | sweat drop | - |
@@ -86,12 +105,15 @@ L077 | ROAD | CU | eye | push | 2-6 | The king leans out of the carriage: SURPRI
 L078 | ROAD | CU | eye | push | 2-6 | The king, puzzled then pleased: "The one who sends me gifts?" | - | - |
 L079-L080 | ROAD | MS | eye | push | 2-6 | The king points commandingly: "Stop the carriage! Bring him my best clothes!" | - | carriage halt |
 L081 | RIVER | W | eye | track | 1-6 | A servant runs to the river with a bundle of clothes | motion lines | swish |
-L082 | RIVER | MS | eye | push | 2-6 | A bush wiggles; a jacket, a pair of pants and shiny shoes pop up over it, one on each word | pop-ins | bush rustle |
+L082[1:5] | RIVER | MS | eye | pan | 2-6 | Tom scrambles out of the river and behind a bush | drips | splashing steps, bush rustle |
+L082[6:11] | RIVER | MS | eye | push | 2-6 | The bush wiggles; a blue jacket pops up over it | pop-in | rustle |
+L082[12:] | RIVER | CU | eye | push | 2-6 | New pants and shiny shoes pop up over the bush, one on each word | pop-ins, sparkle on the shoes | rustle, twinkle |
 L083 | RIVER | MS | eye | pan | 1-6 | Tom steps out in his blue jacket (sparkle); pan to the carriage where the princess smiles | sparkle | twinkle | the princess@L083:princess
 L084 | RIVER | CU | eye | push | 2-6 | Tom SHY: the blush fades in, eyes down, small smile | blush | - |
 L085 | ROAD | MS | eye | push | 2-6 | The king from the carriage window: "Please, ride with us" | - | - |
 L086 | ROAD | MS | eye | pan | 2-6 | Tom climbs into the carriage | - | carriage creak |
-L087 | ROAD | W | eye | pan | 1-6 | The carriage rolls off one way; Puss tiptoes into the trees the other way | - | hooves fade, tiptoe |
+L087[1:6] | ROAD | MS | eye | push | 2-6 | Puss glances left and right, sly | - | - |
+L087[7:] | ROAD | W | eye | pan | 1-6 | The carriage rolls off one way; Puss tiptoes into the trees the other way | - | hooves fade, tiptoe |
 
 #PART 5 | The fields, the sheep, the apples
 L088 | CARRIAGE | MS | eye | push | 2-6 | Inside the carriage: Tom in his blue jacket looks very grand and very awkward; window frame in front (L6) | breathing | soft strings |
@@ -99,19 +121,26 @@ L089 | FOREST | CU | eye | push | 2-6 | Puss peeks from the trees; thought bubbl
 L090 | FOREST | CU | eye | push | 2-6 | Puss's sly smile; he looks down the road | - | pluck |
 L091 | ROAD | W | eye | track | 1-6 | Puss runs ahead: swish lines | swish lines | swish x3 |
 L092 | ROAD | W | eye | track | 1-6 | Puss overtakes the carriage; it shrinks into the far layers | dust puffs | swish, hooves |
-L093 | FIELDS | XW | eye | pan | 1-7 | Long pan across farmland, a sheep meadow and an apple orchard with strong parallax; each picks out its own cut-paper colour | cards for sheep and apples | playful music | the sheep@L093:sheep; the apples@L093:apple
+L093[1:9] | FIELDS | XW | eye | pan | 1-7 | Pan across farmland, a sheep meadow and an apple orchard along the road | - | playful music | the sheep@L093:sheep; the apples@L093:apple
+L093[10:14] | FIELDS | W | eye | push | 1-6 | A huge ogre-shaped shadow slides across the fields; the farmers look up | shadow | low rumble |
+L093[15:] | FIELDS | MS | eye | push | 2-6 | The farmers sigh and roll their eyes | sigh puffs | sigh |
 L094 | SQUARE | MS | eye | push | 2-6 | At the bakery stall Puss holds up a basket of peaches | peach pop-ins | stall bustle |
-L095 | SQUARE | MS | eye | push | 2-6 | Basket handed over; a plate of warm cookies handed back; cookies pop in one by one | cookie pop-ins | crunch, basket thump |
-L096 | FIELDS | W | eye | track | 1-6 | Puss tracks past the farmers, the shepherd and the apple picker, handing a cookie to each; each smiles and nods | cookie pop-ins | swish, nibble |
+L095[1:4] | SQUARE | MS | eye | push | 2-6 | At the bakery stall Puss hands over the basket of peaches | - | basket thump |
+L095[5:] | SQUARE | MS | eye | push | 2-6 | A plate of warm cookies handed back; cookies pop in one by one | cookie pop-ins | stall bustle |
+L096[1:9] | FIELDS | MS | eye | track | 2-6 | Puss hands a cookie to the farmers; they smile and nod | cookie pop-ins | nibble |
+L096[10:] | FIELDS | W | eye | track | 1-6 | Track on to the shepherd, then the apple picker, a cookie each | cookie pop-ins | swish, nibble |
 L097 | FIELDS | CU | eye | push | 2-6 | Puss whispers with a paw beside his mouth | - | whisper |
-L098 | FIELDS | MS | ots | pan | 2-6 | Over Puss's shoulder, the three listeners nod; on "ogre" they scowl | - | - |
+L098[1:8] | FIELDS | CU | eye | push | 2-6 | Puss, earnest, paw on his chest | - | - |
+L098[9:] | FIELDS | MS | ots | pan | 2-6 | Over Puss's shoulder, the three listeners nod; on "ogre" they scowl | - | - |
 L099 | FIELDS | CU | eye | push | 2-6 | Three heads in a row cheer: "Deal!" | - | cheer |
 L100 | FIELDS | XW | eye | pan | 1-6 | Soon the carriage rolls by along the field road | - | carriage wheels |
 L101 | CARRIAGE | CU | eye | push | 2-6 | SAME FRAMING each time: the king at the carriage window asks "Whose fields are these?" | - | - |
-L102 | FIELDS | MS | pov | push | 2-6 | POV through the carriage window: the farmers answer, crumbs on their chins | - | - |
+L102[1:8] | FIELDS | MS | pov | push | 2-6 | POV through the carriage window: the farmers answer, crumbs on their chins | - | - |
+L102[9:] | CARRIAGE | CU | eye | push | 2-6 | SAME REACTION FRAMING: the king at the window, impressed | - | - |
 L103 | FIELDS | MS | eye | push | 2-6 | Cookie crumbs fly everywhere | crumb burst | crunch |
 L104 | CARRIAGE | CU | eye | push | 2-6 | SAME FRAMING: the king asks "Whose sheep are these?" | - | - |
-L105 | FIELDS | MS | pov | push | 2-6 | POV: the shepherd answers | - | - |
+L105[1:8] | FIELDS | MS | pov | push | 2-6 | POV: the shepherd answers | - | - |
+L105[9:] | CARRIAGE | CU | eye | push | 2-6 | SAME REACTION FRAMING: the king, impressed again | - | - |
 L106 | FIELDS | CU | eye | push | 2-6 | A sheep says "Baaa!" in a bubble | bubble pop | baaa |
 L107 | CARRIAGE | CU | eye | push | 2-6 | The king nods: "Even the sheep agree" | - | - |
 L108 | CARRIAGE | CU | eye | push | 2-6 | SAME FRAMING: the king asks "Whose apples are these?" | - | - |
@@ -125,12 +154,16 @@ L115 | CARRIAGE | MS | eye | push | 2-6 | Two-shot in the carriage: Tom awkward,
 
 #PART 6 | The promise, the ogre, the lion
 L116 | ROAD | W | eye | pull | 1-6 | The carriage rolls on slowly | - | carriage wheels fade |
-L117 | ROAD | W | eye | track | 1-6 | Puss runs ahead again, dust puffs, all the way to the end of the road | dust puffs | swish, quick steps |
+L117[1:4] | ROAD | W | eye | track | 1-6 | Puss runs ahead again, dust puffs | dust puffs | swish, quick steps |
+L117[5:] | ROAD | XW | high | push | 1-6 | High angle: tiny Puss arrives at the end of the road | dust puffs | quick steps |
 L118 | HILL | MS | eye | push | 2-6 | Puss alone at the end of the road; music drops away | - | silence, wind |
 L119 | HILL | CU | eye | push | 2-6 | Slow push-in to Puss WORRIED: brows in, wobbly mouth, a gulp | sweat drop | gulp |
-L120 | OGRE | XW | low | tilt | 1-6 | A huge castle with tall stone towers and colorful flags; slow tilt up | flags flap | wind, low drone |
+L120[1:5] | OGRE | XW | low | tilt | 1-6 | A huge castle; slow tilt up | - | wind, low drone |
+L120[6:] | OGRE | MS | low | pan | 1-6 | Tall stone towers and colorful flags flapping | flags flap | flag flutter |
 L121 | OGRE | XCU | eye | push | 3-6 | Doormat: BEWARE OF OGRE (cut-paper letters) | - | single soft thud |
-L122 | OGRE | XW | low | tilt | 1-6 | Tilt up the huge door (twice as tall as a door should be); a giant shadow in the window; thunder; startled birds; end on a pair of huge fluffy pink slippers airing on the step | birds pop | thunder rumble, bird flutter | the ogre@L122:ogre
+L122[1:12] | OGRE | XW | low | tilt | 1-6 | Tilt up the huge door, twice as tall as a door should be; tiny Puss at its foot | - | low drone | the ogre@L122:ogre
+L122[13:17] | OGRE | MS | eye | push | 1-6 | A giant shadow passes the window; thunder; startled birds | birds pop, shutters shake | thunder rumble, bird flutter |
+L122[18:] | OGRE | XCU | eye | push | 2-6 | A pair of huge fluffy pink slippers airing on the step | - | - |
 L123 | OGRE | MS | eye | push | 2-6 | Three tiny forest animals hide behind a bush, whispering about the pink slippers; nobody dares tell him | - | tiny whispers |
 L124 | OGRE | W | high | track | 1-6 | High angle: tiny Puss walks up to the huge door | - | footsteps |
 L125 | OGRE | MS | eye | push | 2-6 | KNOCK GAG, same framing on the door: Knock. (small) | door shake, KNOCK word small | knock |
@@ -140,11 +173,13 @@ L128 | OGRE | MS | eye | push | 2-6 | KNOCK! (bigger still) | door shake, KNOCK 
 L129 | OGRE | MS | eye | push | 2-6 | KNOCK! (biggest), small shake | shake 3 px, KNOCK word | KNOCK |
 L130 | OGRE | MS | eye | push | 2-6 | Puss shrugs, ears drooping: nobody answered | - | crickets |
 L131 | OGRE | XCU | eye | push | 3-6 | A paw presses the doorbell | - | click |
-L132 | OGRE | MS | eye | push | 2-6 | The doorbell plays a happy little tune; music notes float out; Puss taps his foot | music notes | doorbell tune |
+L132[1:6] | OGRE | XCU | eye | push | 3-6 | The doorbell: music notes float out | music notes | doorbell tune |
+L132[7:] | OGRE | MS | eye | push | 2-6 | Puss taps his foot to the tune | music notes | doorbell tune |
 L133 | OGRE | CU | eye | push | 2-6 | Puss raises one eyebrow, amused by the silly tune | - | - |
 L134 | OGRE | W | low | pull | 1-6 | The door creaks open; slow pull-out reveals the ogre, twice as tall as the door; fluffy pink slippers | dust | door creak, low sting |
 L135 | OGRE | MS | high | push | 2-6 | High angle: tiny Puss looks up and bows slightly: "Sir Ogre" | - | - |
-L136-L137 | OGRE | MS | high | push | 2-6 | Puss, innocent: "I hear you can turn into any animal. Is it true?" with paw gestures | - | - |
+L136 | OGRE | MS | high | push | 2-6 | Puss, innocent: "I hear you can turn into any animal", paw gestures | - | - |
+L137 | OGRE | CU | eye | push | 2-6 | Puss tilts his head: "Is it true?" | blink | - |
 L138-L139 | OGRE | MS | low | push | 2-6 | Low angle: the ogre "Of course!"; POOF smoke, he becomes a lion; ROAR with a small shake | POOF smoke, ROAR word, small shake | funny roar |
 L140 | OGRE | W | low | push | 1-6 | The lion fills the frame; tiny Puss beside him | - | - | the lion@L140:lion
 L141 | OGRE | CU | eye | snap | 2-6 | Puss FEAR (comic): fur puffs, eyes wide, body shrinks back; "EEEK!" | fur puff, shiver lines | eeek |
@@ -152,7 +187,8 @@ L142 | OGRE | W | eye | pan | 1-6 | Puss leaps onto the roof | motion arc | whoo
 L143 | OGRE | XCU | eye | push | 3-6 | Boots slip on the roof tiles | - | tile slip |
 L144 | OGRE | W | eye | pan | 1-6 | Puss slides down the roof: Slide, slide, slide! | motion lines | roof-tile slide |
 L145 | OGRE | CU | eye | push | 2-6 | Puss straightens his whiskers, pretending he meant to do that | - | - |
-L146 | OGRE | W | eye | pan | 1-6 | The ogre turns back into himself (small POOF); Puss climbs down the gutter | POOF smoke | poof |
+L146[1:6] | OGRE | W | eye | pan | 1-6 | The ogre turns back into himself (small POOF) | POOF smoke | poof |
+L146[7:] | OGRE | MS | eye | push | 2-6 | Puss climbs down the drainpipe | - | scrape |
 
 #PART 7 | The mouse, the empty castle, the truth
 L147 | OGRE | MS | eye | push | 2-6 | Puss flatters the ogre, clapping his paws: "Very impressive!" | - | - |
@@ -164,14 +200,19 @@ L154 | OGRE | W | low | push | 1-6 | POOF! smoke fills the frame, small shake | 
 L155 | OGRE | MS | high | push | 2-6 | High angle: where the ogre stood is a tiny mouse | - | squeak | the mouse@L155:mouse
 L156 | OGRE | CU | eye | snap | 2-6 | COMIC SNAP-ZOOM on Puss: "BOO!" bubble | speech bubble, small shake | boo |
 L157 | OGRE | CU | eye | push | 2-6 | The mouse: "SQUEAK!" bubble | bubble pop | squeak |
-L158 | OGRE | W | eye | track | 1-6 | The mouse zooms out the door and down the hill, tiny running feet, motion lines; one fluffy pink slipper stays behind | motion lines | mouse feet running | the slipper@L158:slipper
+L158[1:6] | OGRE | W | eye | track | 1-6 | The mouse zooms out of the door, tiny running feet, motion lines | motion lines | mouse feet running |
+L158[7:10] | OGRE | XW | high | pan | 1-6 | High angle: the tiny mouse races down the hill | motion lines | mouse feet running |
+L158[11:] | HALL | MS | eye | push | 2-6 | In the doorway one fluffy pink slipper stays behind | - | - | the slipper@L158:slipper
 L159 | HALL | XCU | eye | push | 3-6 | The slipper alone on the floor; hold, quiet | - | silence, room tone |
 L160 | HALL | MS | eye | push | 2-6 | Puss peeks around the door | - | door creak |
 L161 | HALL | XW | eye | pull | 1-6 | Pull out to the huge empty hall | - | soft echo |
 L162 | HALL | MS | high | push | 2-6 | Tiny Puss alone in the hall; thought bubble: a new owner | thought bubble | - |
-L163 | OGRE | W | eye | track | 1-6 | Puss hurries to the gate as the royal carriage rolls up | dust | quick steps, wheels |
-L164 | OGRE | MS | low | push | 2-6 | Puss bows with arms wide before the castle: "Welcome to the castle of the Marquis of Carabas!" | sparkle | fanfare notes |
-L165 | OGRE | MS | low | tilt | 2-6 | Tom steps out of the carriage and tilts back to look at the huge castle | - | - |
+L163[1:5] | OGRE | W | eye | track | 1-6 | Puss hurries to the gate | dust | quick steps |
+L163[6:] | OGRE | XW | eye | pan | 1-6 | The royal carriage rolls up to the gate | dust | wheels, hooves |
+L164[1:9] | OGRE | MS | low | push | 2-6 | Puss bows with arms wide before the castle: "Welcome to the castle of the Marquis of Carabas!" | sparkle | fanfare notes |
+L164[10:] | CARRIAGE | CU | eye | push | 2-6 | Reaction: the king at the carriage window, impressed | - | - |
+L165[1:6] | OGRE | MS | eye | pan | 2-6 | Tom steps down from the carriage | - | step creak |
+L165[7:] | OGRE | XW | low | tilt | 1-6 | Tom's view: the huge castle towers over him; tilt up | - | low drone |
 L166 | OGRE | CU | eye | push | 2-6 | Tom WORRIED: "Then he felt bad." | - | music softens |
 L167 | CARRIAGE | CU | eye | push | 2-6 | Cutaway: the king smiles trustingly in the carriage window | - | - |
 L168 | OGRE | CU | eye | push | 2-6 | Tom takes a deep breath, chest rises | - | breath |
@@ -180,8 +221,10 @@ L170 | OGRE | CU | eye | push | 2-6 | The king listens, steady and kind | - | - 
 L171-L172 | OGRE | CU | eye | push | 2-6 | Tom: "I am just Tom. My cat made up everything." | - | - |
 L173 | OGRE | CU | eye | push | 2-6 | Puss covers his eyes with both paws and peeks through his fingers | - | - |
 L174 | OGRE | MS | eye | push | 2-6 | The king laughs, belly shaking, eyes squinting | laugh lines | warm laugh |
-L175 | OGRE | CU | eye | push | 2-6 | The king, with a twinkle: "A real Marquis does not say 'um.'" | - | - |
-L176 | OGRE | CU | eye | push | 2-6 | Reaction: Tom's eyes wide, a flicker of hope | - | - |
+L175[1:7] | OGRE | CU | eye | push | 2-6 | The king, with a twinkle: "A real Marquis does not say 'um.'" | - | - |
+L175[8:] | OGRE | CU | eye | push | 2-6 | Reaction: the princess hides a giggle | - | - |
+L176[1:5] | OGRE | CU | eye | push | 2-6 | Reaction: Tom's eyes wide, a flicker of hope | - | - |
+L176[6:] | OGRE | CU | eye | push | 2-6 | Reaction: Puss peeks out between his paws | - | - |
 L177 | OGRE | CU | eye | push | 2-6 | The king warmly: "But I like an honest young man, Tom." | - | - |
 L178 | OGRE | MS | eye | pan | 2-6 | The king gestures to the princess: "Would you like to marry my daughter?" | - | - |
 L179 | OGRE | MS | eye | pan | 2-6 | Tom looks to the side; pan to the princess | - | - |
@@ -189,15 +232,21 @@ L180 | OGRE | CU | eye | push | 2-6 | The princess nods, SHY smile | blush | - |
 L181 | OGRE | MS | eye | push | 2-6 | Tom HAPPY: a small bounce: "Yes, please!" | sparkle | warm music swells |
 
 #PART 8 | The bread again, the ending, the moral, the end screen
-L182 | KITCHEN | XW | eye | pan | 1-7 | That night (cross-dissolve): castle kitchen, candle glow, night window with stars; pan from the window to Tom and Puss at supper | candle flicker, candle dust | crickets, candle crackle, soft music |
+L182[1:2] | KITCHEN | XW | eye | push | 1-7 | That night (cross-dissolve): the castle under the stars, its kitchen window lit | stars twinkle | crickets |
+L182[3:7] | HALL | W | eye | pan | 1-7 | The hall decorated with ribbons after the happy news | candle flicker | soft music |
+L182[8:] | KITCHEN | W | eye | push | 1-7 | The castle kitchen: Tom and Puss at supper, candle glow, night window | candle flicker, candle dust near the flame | crickets, candle crackle |
 L183 | KITCHEN | MS | eye | push | 2-6 | One warm loaf on the table; steam rises | steam | - |
-L184 | KITCHEN | XCU | eye | push | 2-6 | MATCHES THE HOOK SHOT exactly (angle, size, push-in): Tom's hands break the bread and give half; two green eyes in the dark | slow push-in | soft strings (same as hook) |
+L184[1:5] | KITCHEN | XCU | eye | push | 2-6 | MATCHES THE HOOK FRAMING (angle, size, push-in speed): Tom's hands break the warm bread in two | slow push-in | soft bread crack, the hook's strings |
+L184[6:] | KITCHEN | MS | eye | push | 2-6 | Puss receives one half, eyes closed happily | sparkle | - |
 L185 | KITCHEN | CU | eye | push | 2-6 | Puss: "Thank you, Master," | - | - |
 L186-L187 | KITCHEN | CU | eye | push | 2-6 | Tom smiling: "No, Puss. Thank YOU." | sparkle | - |
 L188 | HALL | W | eye | pull | 1-7 | Tom and the princess in the lived-in castle, candlelit | candle flicker | warm music |
 L189 | HALL | MS | eye | pan | 2-6 | "And Puss?" The empty chair; a question mark pops | "?" pop | - |
-L190 | BEDROOM | MS | eye | pull | 1-6 | The softest bed; Puss bounces in his boots, then settles | bounce | boots on mattress |
+L190[1:8] | BEDROOM | MS | eye | pull | 1-6 | The softest bed; Puss bounces on it in his boots | bounce | boots on mattress |
+L190[9:] | HALL | W | eye | track | 1-6 | Puss struts through the castle in his boots, everywhere | - | clip-clop |
 L191 | BEDROOM | CU | eye | push | 2-6 | Puss asleep with his boots still on: zzz pop, slow breathing, a tiny snore | zzz pop | snore, soft lullaby |
-L192 | KITCHEN | XCU | eye | push | 2-6 | The two bread halves on the table, candlelit; slow push-in | candle flicker | warm theme |
-L193 | KITCHEN | XCU | eye | push | 2-6 | MORAL CARD: the two bread halves, the moral line grows in as cut paper in its time slot | letters grow from an anchor edge | warm music swells |
+L192[1:8] | KITCHEN | XCU | eye | push | 2-6 | The two bread halves on the table, candlelit | candle flicker | warm theme |
+L192[9:] | KITCHEN | MS | eye | push | 2-6 | Tom and Puss side by side at the table, sharing | candle flicker | warm theme |
+L193[1:4] | KITCHEN | XCU | eye | push | 2-6 | MORAL CARD: the two bread halves; "A little kindness" grows in as cut paper | letters grow from an anchor edge | warm music swells |
+L193[5:] | KITCHEN | CU | eye | push | 2-6 | MORAL CARD, closer: "can come back to you in a big way." grows in below | letters grow from an anchor edge | warm music |
 end=15 | TABLE | W | eye | pull | 1-7 | END SCREEN, 15 s: the lantern and the closed storybook; "Lantern and Page" small at the bottom; left and right thirds kept empty for end-screen buttons; gentle drift and candle flicker only | lantern flicker | warm storybook theme, candle crackle |

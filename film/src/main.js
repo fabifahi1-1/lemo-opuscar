@@ -12,7 +12,7 @@ const shots = TL.shots;
 window.render = tt => {
   const t = FROM + tt;
   let i = shots.findIndex(s => t >= s.t0 && t < s.t1); if (i < 0) i = shots.length - 1;
-  const s = shots[i], f = SHOT[s.n]; if (!f) { g.fillStyle = '#222'; g.fillRect(0, 0, W, H); return; }
+  const s = shots[i], f = SHOT[s.key]; if (!f) { g.fillStyle = '#222'; g.fillRect(0, 0, W, H); return; }
   f.draw(g, t - s.t0);
 };
 window.READY = true;

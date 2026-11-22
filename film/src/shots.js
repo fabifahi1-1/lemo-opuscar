@@ -58,15 +58,24 @@ function s3() {
   } };
 }
 
-// the hook and the pull-out (same set)
-function s4() { return { draw(g, t) { const sc = step(); sc.cat.dim = 1; sc.cat.blur = 6; sc.cam.zoom = K(3.0, 3.3, t / 5.89, x => x); sc.cam.x = -70; sc.cam.y = 85; sc.tomLookY = .6; sc.update(t); drawScene(g, sc); } }; }
-function s5() {
-  return { draw(g, t) {
-    const sc = step(), u = t / 5.89;
-    sc.cat.dim = 1 - ss(seg(t, 1.0, 3.6)); sc.cat.blur = Math.round(6 * (1 - ss(seg(t, 1.0, 3.6))) * 2) / 2;
-    sc.cam.zoom = K(3.3, 1.32, u, eio); sc.cam.x = K(-70, 30, u, eio); sc.cam.y = K(85, 40, u, eio);
-    sc.tomLook = ss(seg(t, 3.4, 4.2)) * .9; sc.tomLookY = .6 - ss(seg(t, 3.4, 4.2)) * .5; sc.update(t + 5.89); drawScene(g, sc);
-  } };
+// the hook, the cat in the shade, and the pull-out (the mill steps). Each shot keeps the cat's colour constant.
+const G = () => step();
+function hook() {   // XCU: a sleeve edge, both wrists and both hands holding the bread up at his chest
+  return { draw(g, t) { const sc = step(); sc.hires = true; sc.leaves = false; sc.eyeGlow = .35; sc.pose = { lookY: .7, rubAt: 1.5, brow: .1, browTilt: -.6 };
+    sc.cam.zoom = lerp(5.6, 5.9, t / 3.5); sc.cam.x = -65; sc.cam.y = -52; sc.update(t); drawScene(g, sc); } };
+}
+function catShade() {   // XCU: the cat in the doorway's shade, still orange, only the eyes bright
+  return { draw(g, t) { const sc = step(); sc.hires = false; sc.leaves = false; sc.eyeGlow = .6; sc.catLook = -.6; sc.pose = { lookY: .7 };
+    sc.cam.zoom = lerp(5.0, 5.2, t / 2.4); sc.cam.x = 330; sc.cam.y = -200; sc.update(t + 3.5); drawScene(g, sc); } };
+}
+function pullTom() {    // pull out from the bread to Tom sitting on the step, elbows near his knees
+  return { draw(g, t) { const sc = step(), u = clamp(t / 2.9); sc.hires = u < .45; sc.leaves = false; sc.eyeGlow = .35; sc.catLook = -.5; sc.pose = { lookY: .7, browTilt: -.5 };
+    sc.cam.zoom = K(4.2, 1.75, u, eio); sc.cam.x = K(-65, -40, u, eio); sc.cam.y = K(-52, -40, u, eio); sc.update(t + 6); drawScene(g, sc); } };
+}
+function revealCat() {  // wider: the cat sits in the doorway shade behind and beside Tom; Tom glances at him
+  return { draw(g, t) { const sc = step(), u = clamp(t / 2.9); sc.hires = false; sc.leaves = true; sc.eyeGlow = .3; sc.catLook = -.8;
+    sc.pose = { look: ss(seg(t, .5, 1.1)) * .9, lookY: .7 - ss(seg(t, .5, 1.1)) * .6, tilt: ss(seg(t, .5, 1.1)) * .06 };
+    sc.cam.zoom = K(1.32, 1.22, u, x => x); sc.cam.x = K(70, 60, u, x => x); sc.cam.y = -30; sc.update(t + 9); drawScene(g, sc); } };
 }
 
 // the mill by the river: a slow track, the label "the mill →" grows in
@@ -87,11 +96,11 @@ function s6() {
     Wd.cam.zoom = 1; Wd.cam.x = K(-120, 110, t / 2.89, x => x); Wd.cam.y = 0; Wd.update(t + 5); drawScene(g, Wd);
   } };
 }
-// the wheel and the door
+// the wheel (L004 first half)
 function s7() {
   return { draw(g, t) {
     const Wd = world(); const lb = label(); lb.alpha = 0; Wd.letters.forEach(l => { l.alpha = 0; }); Wd.layers.find(l => l.seal).alpha = 0;
-    const u = t / 5.64; Wd.cam.zoom = K(1.75, 1.85, u, x => x); Wd.cam.x = K(-250, 80, u, eio); Wd.cam.y = K(185, 160, u, eio); Wd.update(t + 9); drawScene(g, Wd);
+    const u = t / 2.39; Wd.cam.zoom = K(1.8, 1.86, u, x => x); Wd.cam.x = K(-270, -215, u, eio); Wd.cam.y = K(190, 182, u, eio); Wd.update(t + 9); drawScene(g, Wd);
   } };
 }
-export const SHOT = { 1: s1(), 2: s2(), 3: s3(), 4: s4(), 5: s5(), 6: s6(), 7: s7() };
+export const SHOT = { open1: s1(), open2: s2(), open3: s3(), 'L001[1:7]': hook(), 'L001[8:]': catShade(), 'L002[1:6]': pullTom(), 'L002[7:]': revealCat(), L003: s6(), 'L004[1:5]': s7() };

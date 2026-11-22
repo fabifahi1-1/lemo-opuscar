@@ -90,7 +90,7 @@ export function buildTable() {
       const Z = 1 + (cam.zoom - 1) * .9, lx = W / 2 + (-420 - cam.x) * Z, ly = H / 2 + (150 - cam.y) * Z;
       if (!sc.noGlow) glow(g, lx, ly, 520 * Z, [255, 170, 90], .42 * f); if (!sc.noGlow) glow(g, lx, ly, 230 * Z, [255, 214, 150], .5 * f);
       if (!sc.noGlow) glow(g, W / 2 + (-100 - cam.x) * Z, H / 2 + (330 - cam.y) * Z, 640 * Z, [255, 160, 80], .22 * f);   // spill on the table
-      specks(g, t, { n: 46, seed: 3, col: [255, 214, 150], a: .75, r: 2.6, speed: 10, w: W, h: H });
+      g.save(); g.beginPath(); g.arc(lx, ly - 60 * Z, 430 * Z, 0, TAU); g.clip(); specks(g, t, { n: 40, seed: 3, col: [255, 214, 150], a: .7, r: 2.4, speed: 10, w: W, h: H }); g.restore();   // candle dust only in the lantern's light
     }],
     update(t) { sc.t = t; for (const l of L) if (l.flick) l.lit = .8 * flick(t); },
   };
@@ -183,7 +183,9 @@ export function buildMillWorld({ title = true } = {}) {
       const [sx, sy] = p(560, 70, .15); glow(g, sx, sy, 560, [255, 226, 160], .3);
       const [wx, wy] = p(mx, MILLBASE - 194, .75); for (const dx of [-84, 84]) { const [a, b] = p(mx + dx, MILLBASE - 194, .75); glow(g, a, b, 120 * Z, [255, 200, 110], .55); }
       // flour specks in the sunbeam by the mill
-      g.save(); g.beginPath(); const [mxs, mys] = p(mx, MILLBASE - 150, .75); g.rect(mxs - 340 * Z, mys - 300 * Z, 680 * Z, 380 * Z); g.clip(); specks(g, t, { n: 34, seed: 8, col: [255, 244, 214], a: .55, r: 1.8 * Z, speed: 6, vx: 6, w: W * 1.4, h: H }); g.restore();
+      g.save(); g.beginPath(); [[520, -700], [780, -700], [mx + 120, MILLBASE + 10], [mx - 120, MILLBASE + 10]].map(([x, y]) => p(x, y, .75)).forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.closePath();
+      { const [a1, b1] = p(650, -700, .75), [a2, b2] = p(mx, MILLBASE, .75), gr = g.createLinearGradient(a1, b1, a2, b2); gr.addColorStop(0, 'rgba(255,236,190,.14)'); gr.addColorStop(1, 'rgba(255,236,190,.02)'); g.globalCompositeOperation = 'lighter'; g.fillStyle = gr; g.fill(); g.globalCompositeOperation = 'source-over'; }
+      g.clip(); specks(g, t, { n: 46, seed: 8, col: [255, 244, 214], a: .6, r: 1.8 * Z, speed: 6, vx: 6, w: W, h: H }); g.restore();   // flour dust: only inside the sunbeam
       // smooth river sparkle
       const [rx, ry] = p(0, MILLBASE + 60, .9); g.globalCompositeOperation = 'lighter'; const R = mulberry(17);
       for (let i = 0; i < 26; i++) { const x = ((R() * 3200 - 1600 + t * 6 * (.4 + R())) % 3200 + 3200) % 3200 - 1600, y = R() * 120 - 40, a = (.5 + .5 * Math.sin(t * 3 + i * 7)) * .55; const [qx, qy] = p(x, MILLBASE + 30 + y, .9); g.fillStyle = `rgba(255,248,226,${a})`; g.fillRect(qx, qy, 14 * Z, 2.4 * Z); }
@@ -197,64 +199,75 @@ export function buildMillWorld({ title = true } = {}) {
   return sc;
 }
 
-// =============== STEP: Tom on the mill step, Puss beside him (hook and pull-out) ===============
+// =============== STEP: the mill's front steps. Tom sits on the top step, the cat sits in the shade of the open doorway behind him ===============
+// Sunlight comes from the upper left through a gap past the mill's corner; flour dust floats only inside that beam.
+const LAND = 30, STEP2 = 168, STEP1 = 300, GROUND = 432;           // tops of the steps (world y)
+export const STEP_GEO = { tomX: -60, seatY: LAND + 10, tomS: 1.25, catX: 225, catY: LAND + 4, catS: .82 };
 export function buildStep() {
-  const L = [];
-  const wall = paint(2600, 1500, g => {
-    g.fillStyle = '#7a5560'; g.fillRect(-1300, -750, 2600, 1500);
-    g.fillStyle = '#6a4854'; for (let x = -1300; x < 1300; x += 130) g.fillRect(x, -750, 5, 1500);
-    cut(g, () => { const R = mulberry(5); g.lineWidth = 2.6; for (let x = -1300; x < 1300; x += 130) { g.beginPath(); g.moveTo(x + 70, -750 + R() * 40); g.lineTo(x + 70 + R() * 6, 750); g.stroke(); } for (let i = 0; i < 6; i++) { ell(g, -900 + R() * 1800, -300 + R() * 700, 10, 18); g.fill(); } });
-  }, { res: 1, fin: { rim: .35, under: .25 } });
-  L.push(new Layer({ sheet: wall, x: 0, y: -50, z: 0, par: .18, trans: .55, lit: .85 }));
-  const door = paint(380, 640, g => { g.fillStyle = '#3d2a36'; rr(g, -150, -300, 300, 600, 12); g.fill(); g.fillStyle = '#e8c58f'; rr(g, -170, -320, 340, 22, 4); g.fill(); g.fillRect(-170, -320, 20, 640); g.fillRect(150, -320, 20, 640); cut(g, () => { g.lineWidth = 2.5; for (const x of [-50, 50]) { g.beginPath(); g.moveTo(x, -290); g.lineTo(x, 290); g.stroke(); } }); }, { res: 1, fin: { rim: .3 } });
-  L.push(new Layer({ sheet: door, x: 560, y: -20, z: .5, par: .3, trans: .25 }));
-  const lightW = paint(420, 520, g => { g.fillStyle = '#ffd890'; rr(g, -150, -200, 300, 400, 150); g.fill(); cut(g, () => { g.fillRect(-4, -200, 8, 400); g.fillRect(-150, -20, 300, 8); }); }, { res: 1, fin: { rim: .2 } });
-  L.push(new Layer({ sheet: lightW, x: -520, y: -190, z: .6, par: .3, trans: .5, lit: .25 }));
-  const stepS = paint(2400, 420, g => { g.fillStyle = '#9a8c88'; rr(g, -1200, -20, 2400, 80, 8); g.fill(); g.fillStyle = '#7d706d'; g.fillRect(-1200, 60, 2400, 360); cut(g, () => { g.lineWidth = 3; g.beginPath(); g.moveTo(-1200, 60); g.lineTo(1200, 60); g.stroke(); const R = mulberry(6); for (let x = -1100; x < 1200; x += 220) { g.beginPath(); g.moveTo(x, 70); g.lineTo(x + R() * 14, 420); g.stroke(); } }); }, { res: 1, ay: 100, fin: { rim: .5, under: .3 } });
-  L.push(new Layer({ sheet: stepS, x: 0, y: 240, z: 2, par: .9, trans: .15, lit: .8, shadow: { dy: -6, blur: 8, a: .3 } }));
-  // puppets
-  const tom = makeTom(), puss = makePuss();
-  const T = tom.parts, Pp = puss.parts;
-  const tomL = new Layer({ sheet: tom.dyn, x: -150, y: 250, z: 3, par: .95, sx: 1.25, sy: 1.25, trans: .1, lit: .9, shadow: { dy: 6, blur: 8, a: .35 }, name: 'tom' });
-  const pussL = new Layer({ sheet: puss.dyn, x: 235, y: 250, z: 2.9, par: .9, sx: .98, sy: .98, trans: .3, lit: .9, shadow: { dy: 6, blur: 8, a: .3 }, name: 'puss' });
+  const L = [], G = STEP_GEO;
+  const sky = paint(2600, 1400, g => { g.fillStyle = grad(g, 0, -700, 0, 700, [[0, '#7fb0d8'], [.45, '#f3dcae'], [1, '#f2b77c']]); g.fillRect(-1300, -700, 2600, 1400); }, { res: .5, fin: { rim: 0, under: 0, grain: false } });
+  L.push(new Layer({ sheet: sky, x: 0, y: -200, z: 0, par: .1, trans: .4, lit: .5 }));
+  const far = paint(1800, 600, g => { g.fillStyle = '#93abcf'; ridge(g, { x0: -900, x1: 900, base: -40, bottom: 300, amp: 120, f: [.004, .011, .027], seed: 3 }); g.fillStyle = '#7e9d88'; ridge(g, { x0: -900, x1: 900, base: 90, bottom: 300, amp: 70, f: [.006, .015, .03], seed: 9 }); }, { res: .7, fin: { rim: .3, under: .15 } });
+  L.push(new Layer({ sheet: far, x: -900, y: 120, z: .5, par: .25, trans: .5, lit: .6 }));
+  // the mill's front wall: stone foundation, timber frame and plaster, with the open doorway cut out
+  const wall = paint(2200, 1300, g => {
+    g.fillStyle = '#cfa978'; g.fillRect(-640, -650, 1800, 1300);                                  // plaster (starts at the mill's corner, x = -640)
+    g.fillStyle = '#8f5a3c'; for (const x of [-640, -330, 20, 470, 900]) g.fillRect(x - 9, -650, 18, 1300); g.fillRect(-640, -420, 1800, 18); g.fillRect(-640, -40, 1800, 18);
+    g.save(); g.beginPath(); g.rect(-640, 0, 1800, 650); g.clip(); g.fillStyle = '#a99a8f'; g.fillRect(-640, 0, 1800, 650);     // stone foundation
+    g.fillStyle = '#95877d'; const R = mulberry(4); for (let r = 0; r < 8; r++) for (let x = -640 + (r % 2) * 60; x < 1160; x += 120) { rr(g, x + 4, 6 + r * 46, 112 - R() * 8, 40, 6); g.fill(); } g.restore();
+    g.fillStyle = '#f0b860'; rr(g, -520, -360, 150, 190, 20); g.fill();                             // a lit window on the left
+    cut(g, () => { rr(g, G.catX - 160, -400, 320, 440, 150); g.fill(); g.fillRect(G.catX - 160, -250, 320, 290); });   // doorway
+    g.fillStyle = '#6a4630'; g.lineWidth = 20; g.strokeStyle = '#6a4630'; g.beginPath(); g.moveTo(G.catX - 170, 40); g.lineTo(G.catX - 170, -250); g.arc(G.catX, -250, 170, Math.PI, 0); g.lineTo(G.catX + 170, 40); g.stroke();
+  }, { res: 1, fin: { rim: .4, under: .3 } });
+  L.push(new Layer({ sheet: wall, x: 0, y: 0, z: 1, par: .5, trans: .18, lit: .6, shadow: { dx: 10, dy: 14, blur: 14, a: .3 } }));
+  const inside = paint(380, 520, g => { g.fillStyle = '#2a1e28'; g.fillRect(-190, -260, 380, 520); g.fillStyle = '#3b2c38'; rr(g, -150, 120, 90, 120, 30); g.fill(); ell(g, 110, 180, 60, 60); g.fill(); }, { res: 1, fin: { rim: .1 } });
+  L.push(new Layer({ sheet: inside, x: G.catX, y: -170, z: .9, par: .5 }));
+  // the steps: each a light top edge and a darker riser
+  const steps = paint(2400, 900, g => {
+    const band = (top, h, w, c1, c2) => { g.fillStyle = c1; rr(g, -w / 2, top, w, 16, 4); g.fill(); g.fillStyle = c2; g.fillRect(-w / 2 + 6, top + 14, w - 12, h - 14); };
+    band(LAND, STEP2 - LAND, 1500, '#cbbdb2', '#8f817a'); band(STEP2, STEP1 - STEP2, 1700, '#c4b5aa', '#857770'); band(STEP1, GROUND - STEP1, 1900, '#bcad a2'.replace(' ', ''), '#7c6f69');
+    cut(g, () => { g.lineWidth = 2.4; const R = mulberry(8); for (const [t, b, w] of [[LAND, STEP2, 1500], [STEP2, STEP1, 1700], [STEP1, GROUND, 1900]]) for (let x = -w / 2 + 140 + R() * 80; x < w / 2 - 60; x += 180 + R() * 90) { g.beginPath(); g.moveTo(x, t + 20); g.lineTo(x + R() * 6, b - 4); g.stroke(); } });
+  }, { res: 1, ay: 0, ax: 1200, fin: { rim: .5, under: .3 } });
+  L.push(new Layer({ sheet: steps, x: 60, y: 0, z: 2, par: .9, trans: .12, lit: .7, shadow: { dy: -8, blur: 10, a: .25 } }));
+  // puppets: two resolutions of Tom (close-ups use the sharp one); the cat is one colour, orange, in the doorway's shade
+  const tomLo = makeTom({ res: 2 }), tomHi = makeTom({ res: 5 }), puss = makePuss({ res: 3 });
+  const tomL = new Layer({ sheet: tomLo.dyn, x: G.tomX, y: G.seatY, z: 3, par: .92, sx: G.tomS, sy: G.tomS, trans: 0, shadow: { dx: 14, dy: 6, blur: 9, a: .33 }, name: 'tom' });
+  const pussL = new Layer({ sheet: puss.dyn, x: G.catX, y: G.catY, z: 2.5, par: .9, sx: G.catS, sy: G.catS, trans: 0, bright: .46, sat: 1.35, name: 'puss' });
   L.push(pussL, tomL);
-  const near = paint(2600, 300, g => { g.fillStyle = '#1f1a24'; tufts(g, -1300, 1300, -60, 40, 9, 22); g.fillRect(-1300, -60, 2600, 400); }, { res: 1, ay: 100, fin: { rim: .2, under: .3 } });
-  L.push(new Layer({ sheet: near, x: 0, y: 540, z: 6, par: 1.2, trans: .05, shadow: { dy: -8, blur: 10, a: .4 } }));
-  const crumbs = paint(1400, 200, g => { g.fillStyle = '#e2b36a'; const R = mulberry(2); for (let i = 0; i < 18; i++) { ell(g, (R() - .5) * 1300, (R() - .5) * 160, 8 + R() * 14, 6 + R() * 10, R()); g.fill(); } }, { res: 1, fin: { rim: .2 } });
-  L.push(new Layer({ sheet: crumbs, x: -150, y: 420, z: 7, par: 1.5, blur: 8, alpha: .8 }));
+  const ground = paint(2600, 400, g => { g.fillStyle = '#6f6a52'; g.fillRect(-1300, 0, 2600, 400); g.fillStyle = '#2f4430'; tufts(g, -1300, 1300, 30, 46, 9, 20); g.fillRect(-1300, 30, 2600, 380); }, { res: 1, ay: 0, fin: { rim: .3, under: .3 } });
+  L.push(new Layer({ sheet: ground, x: 0, y: GROUND, z: 5, par: 1.1, trans: .05 }));
+  const leaves = paint(500, 900, g => { g.fillStyle = '#16231c'; const R = mulberry(12); for (let i = 0; i < 26; i++) { g.save(); g.translate((R() - .5) * 300, -420 + i * 34); g.rotate(-.8 + R() * 1.6); ell(g, 60, 0, 70, 22); g.fill(); g.restore(); } g.fillRect(-20, -450, 14, 900); }, { res: .7, fin: { rim: .1 } });
+  const leafL = new Layer({ sheet: leaves, x: -1020, y: -60, z: 8, par: 1.5, blur: 6, name: 'leaves' }); L.push(leafL);
+  // the light beam (world space, follows the wall layer) with flour dust inside it only
+  const beamPoly = [[-900, -720], [-600, -720], [-120, 300], [-560, 320]];   // falls to the left of Tom, never on the cat
   const sc = {
-    bg: '#2a1f2e', layers: L, cam: { x: 0, y: 0, zoom: 1 }, tomL, pussL, cat: { dim: 0, blur: 0 },
-    light: { x: -420, y: -160, r: 1250, col: [255, 208, 140], floor: .35 },
-    post: { bloom: .26, vig: .55, tint: [255, 236, 214], tintA: .1 }, litGain: .6,
+    bg: '#2a1f2e', layers: L, cam: { x: 0, y: 0, zoom: 1 }, tomL, pussL, tomLo, tomHi, puss, hires: false, pose: {},
+    light: { x: -700, y: -420, r: 1500, col: [255, 214, 150], floor: .45 },
+    post: { bloom: .1, vig: .45, tint: [255, 236, 212], tintA: .06 }, litGain: .35,
     fx: [(g, { cam }) => {
-      const t = sc.t || 0, Z = 1 + (cam.zoom - 1) * (.35 + .65 * .9 / 1.5);
-      const p = (x, y, par) => [W / 2 + (x - cam.x * par) * (1 + (cam.zoom - 1) * (.35 + .65 * par / 1.5)), H / 2 + (y - cam.y * par) * (1 + (cam.zoom - 1) * (.35 + .65 * par / 1.5))];
-      const [wx, wy] = p(-520, -190, .3); glow(g, wx, wy, 700, [255, 196, 110], .26);
-      // cat eyes glow in the dark while the cat is dimmed
-      const dim = sc.cat.dim; if (dim > .02) {
-        const bl = blinkAt(t, 3, 3.2) > .5 ? 0 : 1; const s = .98 * (pussL.sx || 1);
-        for (const sx of [-1, 1]) { const [ex, ey] = p(235 + sx * 42 * s, 250 - 250 * s + 0, .9); glow(g, ex, ey - 0, 62 * Z, [140, 255, 120], .5 * dim * bl); }
-      }
-      specks(g, t, { n: 26, seed: 5, col: [255, 214, 150], a: .5, r: 2.2, speed: 8 });
+      const t = sc.t || 0, par = .7, Zp = 1 + (cam.zoom - 1) * (.35 + .65 * par / 1.5);
+      const P = ([x, y]) => [W / 2 + (x - cam.x * par) * Zp, H / 2 + (y - cam.y * par) * Zp];
+      const pts = beamPoly.map(P);
+      g.save(); g.beginPath(); pts.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.closePath();
+      const [ax, ay] = P([-750, -720]), [bx, by] = P([-340, 300]); const gr = g.createLinearGradient(ax, ay, bx, by);
+      gr.addColorStop(0, 'rgba(255,226,170,.10)'); gr.addColorStop(1, 'rgba(255,226,170,0)');
+      g.globalCompositeOperation = 'lighter'; g.fillStyle = gr; g.fill(); g.globalCompositeOperation = 'source-over';
+      g.clip();   // dust only inside the beam
+      const [cx, cy] = P([-300, -200]); specks(g, t, { n: 70, seed: 5, col: [255, 240, 205], a: .6, r: 1.6 * Zp, speed: 5, vx: 7, w: W, h: H });
+      g.restore();
+      // the cat's eyes stay bright in the shade
+      const cs = G.catS, eyeY = G.catY - (158 + 92) * cs, k = sc.eyeGlow ?? .45, bl = blinkAt(t, 5, 3.2);
+      if (k > 0 && bl < .5) for (const sx of [-1, 1]) { const [ex, ey] = P([G.catX + sx * 42 * cs, eyeY]).map((v, i) => v); const par2 = .9, Z2 = 1 + (cam.zoom - 1) * (.35 + .65 * par2 / 1.5); const qx = W / 2 + (G.catX + sx * 42 * cs - cam.x * par2) * Z2, qy = H / 2 + (eyeY - cam.y * par2) * Z2; glow(g, qx, qy, 46 * Z2, [150, 255, 130], k); }
     }],
     update(t) {
       sc.t = t;
-      // Tom: sits holding the bread in both hands; breathes, blinks, sways
-      const b = breathe(t, 0, 3.7), tb = blinkAt(t, 1, 4.1);
-      T.torso.sy = b; T.torso.rot = Math.sin(t * .6) * .012; T.head.rot = Math.sin(t * .45 + 1) * .03 + (sc.tomTilt || 0); T.head.face = { blink: tb, lookX: sc.tomLook ?? 0, lookY: sc.tomLookY ?? .5, mouth: sc.tomMouth || 'closed', brow: sc.tomBrow ?? -.2, browTilt: sc.tomBrowTilt ?? -.4, blush: .2 };
-      const handT = [[-34, -62], [34, -62]].map(([x, y]) => [x + Math.sin(t * 1.1) * 1.5, y + Math.sin(t * 1.3) * 1.2]);
-      const shoulders = [[-92, -172], [92, -172]], names = [['uArmL', 'fArmL', 'handL'], ['uArmR', 'fArmR', 'handR']];
-      [0, 1].forEach(i => { const [sx, sy] = shoulders[i], [ux, uy] = [handT[i][0] - sx, handT[i][1] - sy - 66]; const [a1, a2] = ik(ux, uy, 62, 78, i ? 1 : -1); T[names[i][0]].rot = a1; T[names[i][1]].rot = a2; T[names[i][2]].rot = -(a1 + a2) + (i ? -.35 : .35); });
-      T.bread.vis = true; T.bread.parent = 'torso'; T.bread.jx = 0; T.bread.jy = -52; T.bread.rot = -.06; T.bread.z = 6.9; T.bread.sx = T.bread.sy = 1.15;
-      tom.render();
-      // Puss: sits, tail sways, blinks, ears twitch
+      const rig = sc.hires ? tomHi : tomLo; tomL.sheet = rig.dyn; rig.pose(t, sc.pose);
+      const Pp = puss.parts;
       Pp.tail.rot = Math.sin(t * 2.3) * .1; Pp.body.sy = breathe(t, .3, 3.4); Pp.head.rot = Math.sin(t * .5 + 2) * .035;
-      Pp.head.face = { blink: blinkAt(t, 5, 3.2), lookX: Math.sin(t * .3) * .6 - .4, mouth: 'closed', brow: 0 };
+      Pp.head.face = { blink: blinkAt(t, 5, 3.2), lookX: sc.catLook ?? -.5, mouth: 'closed', brow: 0 };
       puss.render();
-      pussL.alpha = 1; pussL.blur = sc.cat.blur; pussL.bright = 1 - sc.cat.dim * .78; pussL.trans = .1;
+      leafL.vis = !!sc.leaves;
     },
   };
-  // dim the cat by drawing a dark veil over just its layer: handled by an extra after-draw
-  pussL.draw = null;
   return sc;
 }
