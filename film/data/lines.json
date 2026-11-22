@@ -1,0 +1,8125 @@
+[
+ {
+  "para": 0,
+  "text": "Tom had one small piece of bread left in the whole world.",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "small",
+    1,
+    false
+   ],
+   [
+    "piece",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "bread",
+    1,
+    false
+   ],
+   [
+    "left",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "whole",
+    1,
+    false
+   ],
+   [
+    "world.",
+    1,
+    false
+   ]
+  ],
+  "id": "L001"
+ },
+ {
+  "para": 0,
+  "text": "And he was about to give half of it to a cat.",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "And",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "about",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "give",
+    1,
+    false
+   ],
+   [
+    "half",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "cat.",
+    1,
+    false
+   ]
+  ],
+  "id": "L002"
+ },
+ {
+  "para": 1,
+  "text": "Tom's father was a miller.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Tom's",
+    1,
+    false
+   ],
+   [
+    "father",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "miller.",
+    1,
+    false
+   ]
+  ],
+  "id": "L003"
+ },
+ {
+  "para": 1,
+  "text": "He ground wheat into flour at the old mill by the river.",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "ground",
+    1,
+    false
+   ],
+   [
+    "wheat",
+    1,
+    false
+   ],
+   [
+    "into",
+    1,
+    false
+   ],
+   [
+    "flour",
+    1,
+    false
+   ],
+   [
+    "at",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "old",
+    1,
+    false
+   ],
+   [
+    "mill",
+    1,
+    false
+   ],
+   [
+    "by",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "river.",
+    1,
+    false
+   ]
+  ],
+  "id": "L004"
+ },
+ {
+  "para": 1,
+  "text": "But one day, he died.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "But",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "day,",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "died.",
+    1,
+    false
+   ]
+  ],
+  "id": "L005"
+ },
+ {
+  "para": 1,
+  "text": "Tom's oldest brother got the mill.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "Tom's",
+    1,
+    false
+   ],
+   [
+    "oldest",
+    1,
+    false
+   ],
+   [
+    "brother",
+    1,
+    false
+   ],
+   [
+    "got",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "mill.",
+    1,
+    false
+   ]
+  ],
+  "id": "L006"
+ },
+ {
+  "para": 1,
+  "text": "His middle brother got the donkey.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "His",
+    1,
+    false
+   ],
+   [
+    "middle",
+    1,
+    false
+   ],
+   [
+    "brother",
+    1,
+    false
+   ],
+   [
+    "got",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "donkey.",
+    1,
+    false
+   ]
+  ],
+  "id": "L007"
+ },
+ {
+  "para": 1,
+  "text": "And Tom got the cat.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "And",
+    1,
+    false
+   ],
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "got",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "cat.",
+    1,
+    false
+   ]
+  ],
+  "id": "L008"
+ },
+ {
+  "para": 2,
+  "text": "\"A cat?\" said Tom.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"A",
+    1,
+    true
+   ],
+   [
+    "cat?\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Tom.",
+    1,
+    false
+   ]
+  ],
+  "id": "L009"
+ },
+ {
+  "para": 2,
+  "text": "\"I can't buy dinner with a cat!\"",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "\"I",
+    1,
+    true
+   ],
+   [
+    "can't",
+    1,
+    true
+   ],
+   [
+    "buy",
+    1,
+    true
+   ],
+   [
+    "dinner",
+    1,
+    true
+   ],
+   [
+    "with",
+    1,
+    true
+   ],
+   [
+    "a",
+    1,
+    true
+   ],
+   [
+    "cat!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L010"
+ },
+ {
+  "para": 3,
+  "text": "His tummy rumbled.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "His",
+    1,
+    false
+   ],
+   [
+    "tummy",
+    1,
+    false
+   ],
+   [
+    "rumbled.",
+    1,
+    false
+   ]
+  ],
+  "id": "L011"
+ },
+ {
+  "para": 3,
+  "text": "He looked at his last piece of bread.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "looked",
+    1,
+    false
+   ],
+   [
+    "at",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "last",
+    1,
+    false
+   ],
+   [
+    "piece",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "bread.",
+    1,
+    false
+   ]
+  ],
+  "id": "L012"
+ },
+ {
+  "para": 3,
+  "text": "Then he broke it in half, and gave one half to the cat.",
+  "kind": "speech",
+  "words": 13,
+  "dialog": [
+   [
+    "Then",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "broke",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "half,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "gave",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "half",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "cat.",
+    1,
+    false
+   ]
+  ],
+  "id": "L013"
+ },
+ {
+  "para": 4,
+  "text": "The cat was sleek and orange, with white paws and bright green eyes.",
+  "kind": "speech",
+  "words": 13,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "cat",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "sleek",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "orange,",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "white",
+    1,
+    false
+   ],
+   [
+    "paws",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "bright",
+    1,
+    false
+   ],
+   [
+    "green",
+    1,
+    false
+   ],
+   [
+    "eyes.",
+    1,
+    false
+   ]
+  ],
+  "id": "L014"
+ },
+ {
+  "para": 4,
+  "text": "He ate slowly, every last crumb.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "ate",
+    1,
+    false
+   ],
+   [
+    "slowly,",
+    1,
+    false
+   ],
+   [
+    "every",
+    1,
+    false
+   ],
+   [
+    "last",
+    1,
+    false
+   ],
+   [
+    "crumb.",
+    1,
+    false
+   ]
+  ],
+  "id": "L015"
+ },
+ {
+  "para": 4,
+  "text": "Then he said, \"Thank you, Master.\"",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "Then",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "said,",
+    1,
+    false
+   ],
+   [
+    "\"Thank",
+    1,
+    true
+   ],
+   [
+    "you,",
+    1,
+    true
+   ],
+   [
+    "Master.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L016"
+ },
+ {
+  "para": 5,
+  "text": "Tom jumped.",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "jumped.",
+    1,
+    false
+   ]
+  ],
+  "id": "L017"
+ },
+ {
+  "para": 5,
+  "text": "\"You can TALK?\"",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "\"You",
+    1,
+    true
+   ],
+   [
+    "can",
+    1,
+    true
+   ],
+   [
+    "TALK?\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L018"
+ },
+ {
+  "para": 6,
+  "text": "\"Of course.",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "\"Of",
+    1,
+    true
+   ],
+   [
+    "course.",
+    1,
+    true
+   ]
+  ],
+  "id": "L019"
+ },
+ {
+  "para": 6,
+  "text": "Give me a bag and a pair of boots, and I will make you rich.\"",
+  "kind": "speech",
+  "words": 15,
+  "dialog": [
+   [
+    "Give",
+    1,
+    true
+   ],
+   [
+    "me",
+    1,
+    true
+   ],
+   [
+    "a",
+    1,
+    true
+   ],
+   [
+    "bag",
+    1,
+    true
+   ],
+   [
+    "and",
+    1,
+    true
+   ],
+   [
+    "a",
+    1,
+    true
+   ],
+   [
+    "pair",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "boots,",
+    1,
+    true
+   ],
+   [
+    "and",
+    1,
+    true
+   ],
+   [
+    "I",
+    1,
+    true
+   ],
+   [
+    "will",
+    1,
+    true
+   ],
+   [
+    "make",
+    1,
+    true
+   ],
+   [
+    "you",
+    1,
+    true
+   ],
+   [
+    "rich.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L020"
+ },
+ {
+  "para": 7,
+  "text": "\"Why boots?\" said Tom.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Why",
+    1,
+    true
+   ],
+   [
+    "boots?\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Tom.",
+    1,
+    false
+   ]
+  ],
+  "id": "L021"
+ },
+ {
+  "para": 8,
+  "text": "\"A cat in boots looks important,\" said the cat.",
+  "kind": "speech",
+  "words": 9,
+  "dialog": [
+   [
+    "\"A",
+    1,
+    true
+   ],
+   [
+    "cat",
+    1,
+    true
+   ],
+   [
+    "in",
+    1,
+    true
+   ],
+   [
+    "boots",
+    1,
+    true
+   ],
+   [
+    "looks",
+    1,
+    true
+   ],
+   [
+    "important,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "cat.",
+    1,
+    false
+   ]
+  ],
+  "id": "L022"
+ },
+ {
+  "para": 8,
+  "text": "\"And important cats get invited places.\"",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "\"And",
+    1,
+    true
+   ],
+   [
+    "important",
+    1,
+    true
+   ],
+   [
+    "cats",
+    1,
+    true
+   ],
+   [
+    "get",
+    1,
+    true
+   ],
+   [
+    "invited",
+    1,
+    true
+   ],
+   [
+    "places.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L023"
+ },
+ {
+  "para": 9,
+  "text": "Tom did not know what to think.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "did",
+    1,
+    false
+   ],
+   [
+    "not",
+    1,
+    false
+   ],
+   [
+    "know",
+    1,
+    false
+   ],
+   [
+    "what",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "think.",
+    1,
+    false
+   ]
+  ],
+  "id": "L024"
+ },
+ {
+  "para": 9,
+  "text": "But he had nothing else, so he found an old bag and a tiny pair of boots.",
+  "kind": "speech",
+  "words": 17,
+  "dialog": [
+   [
+    "But",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "nothing",
+    1,
+    false
+   ],
+   [
+    "else,",
+    1,
+    false
+   ],
+   [
+    "so",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "found",
+    1,
+    false
+   ],
+   [
+    "an",
+    1,
+    false
+   ],
+   [
+    "old",
+    1,
+    false
+   ],
+   [
+    "bag",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "tiny",
+    1,
+    false
+   ],
+   [
+    "pair",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "boots.",
+    1,
+    false
+   ]
+  ],
+  "id": "L025"
+ },
+ {
+  "para": 9,
+  "text": "The cat put them on.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "cat",
+    1,
+    false
+   ],
+   [
+    "put",
+    1,
+    false
+   ],
+   [
+    "them",
+    1,
+    false
+   ],
+   [
+    "on.",
+    1,
+    false
+   ]
+  ],
+  "id": "L026"
+ },
+ {
+  "para": 9,
+  "text": "Clip-clop!",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Clip-clop!",
+    2,
+    false
+   ]
+  ],
+  "id": "L027"
+ },
+ {
+  "para": 9,
+  "text": "Clip-clop!",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Clip-clop!",
+    2,
+    false
+   ]
+  ],
+  "id": "L028"
+ },
+ {
+  "para": 9,
+  "text": "He walked down the road like he owned it.",
+  "kind": "speech",
+  "words": 9,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "walked",
+    1,
+    false
+   ],
+   [
+    "down",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "road",
+    1,
+    false
+   ],
+   [
+    "like",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "owned",
+    1,
+    false
+   ],
+   [
+    "it.",
+    1,
+    false
+   ]
+  ],
+  "id": "L029"
+ },
+ {
+  "para": 9,
+  "text": "(Tom tried hard not to laugh.)",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "(Tom",
+    1,
+    false
+   ],
+   [
+    "tried",
+    1,
+    false
+   ],
+   [
+    "hard",
+    1,
+    false
+   ],
+   [
+    "not",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "laugh.)",
+    1,
+    false
+   ]
+  ],
+  "id": "L030"
+ },
+ {
+  "para": 10,
+  "text": "\"From now on, call me Puss,\" said the cat.",
+  "kind": "speech",
+  "words": 9,
+  "dialog": [
+   [
+    "\"From",
+    1,
+    true
+   ],
+   [
+    "now",
+    1,
+    true
+   ],
+   [
+    "on,",
+    1,
+    true
+   ],
+   [
+    "call",
+    1,
+    true
+   ],
+   [
+    "me",
+    1,
+    true
+   ],
+   [
+    "Puss,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "cat.",
+    1,
+    false
+   ]
+  ],
+  "id": "L031"
+ },
+ {
+  "para": 11,
+  "text": "The next morning, Puss had a plan.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "next",
+    1,
+    false
+   ],
+   [
+    "morning,",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "plan.",
+    1,
+    false
+   ]
+  ],
+  "id": "L032"
+ },
+ {
+  "para": 11,
+  "text": "He took his bag to the edge of the forest and filled it with fresh red berries.",
+  "kind": "speech",
+  "words": 17,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "took",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "bag",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "edge",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "forest",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "filled",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "fresh",
+    1,
+    false
+   ],
+   [
+    "red",
+    1,
+    false
+   ],
+   [
+    "berries.",
+    1,
+    false
+   ]
+  ],
+  "id": "L033"
+ },
+ {
+  "para": 11,
+  "text": "Pick, pick, pick!",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Pick,",
+    1,
+    false
+   ],
+   [
+    "pick,",
+    1,
+    false
+   ],
+   [
+    "pick!",
+    1,
+    false
+   ]
+  ],
+  "id": "L034"
+ },
+ {
+  "para": 11,
+  "text": "Then he marched up the hill to the castle.",
+  "kind": "speech",
+  "words": 9,
+  "dialog": [
+   [
+    "Then",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "marched",
+    1,
+    false
+   ],
+   [
+    "up",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "hill",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "castle.",
+    1,
+    false
+   ]
+  ],
+  "id": "L035"
+ },
+ {
+  "para": 12,
+  "text": "A guard let him in.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "A",
+    1,
+    false
+   ],
+   [
+    "guard",
+    1,
+    false
+   ],
+   [
+    "let",
+    1,
+    false
+   ],
+   [
+    "him",
+    1,
+    false
+   ],
+   [
+    "in.",
+    1,
+    false
+   ]
+  ],
+  "id": "L036"
+ },
+ {
+  "para": 12,
+  "text": "The king sat on his throne.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "king",
+    1,
+    false
+   ],
+   [
+    "sat",
+    1,
+    false
+   ],
+   [
+    "on",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "throne.",
+    1,
+    false
+   ]
+  ],
+  "id": "L037"
+ },
+ {
+  "para": 12,
+  "text": "He had a long white beard and a tiny gold crown.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "long",
+    1,
+    false
+   ],
+   [
+    "white",
+    1,
+    false
+   ],
+   [
+    "beard",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "tiny",
+    1,
+    false
+   ],
+   [
+    "gold",
+    1,
+    false
+   ],
+   [
+    "crown.",
+    1,
+    false
+   ]
+  ],
+  "id": "L038"
+ },
+ {
+  "para": 13,
+  "text": "\"Your Majesty,\" said Puss, bowing low.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "\"Your",
+    1,
+    true
+   ],
+   [
+    "Majesty,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Puss,",
+    1,
+    false
+   ],
+   [
+    "bowing",
+    1,
+    false
+   ],
+   [
+    "low.",
+    1,
+    false
+   ]
+  ],
+  "id": "L039"
+ },
+ {
+  "para": 13,
+  "text": "\"The Marquis of Carabas sends you a gift.\"",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "\"The",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas",
+    1,
+    true
+   ],
+   [
+    "sends",
+    1,
+    true
+   ],
+   [
+    "you",
+    1,
+    true
+   ],
+   [
+    "a",
+    1,
+    true
+   ],
+   [
+    "gift.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L040"
+ },
+ {
+  "para": 14,
+  "text": "\"The Marquis of Carabas?\" said the king.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "\"The",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas?\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king.",
+    1,
+    false
+   ]
+  ],
+  "id": "L041"
+ },
+ {
+  "para": 14,
+  "text": "\"Never heard of him.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Never",
+    1,
+    true
+   ],
+   [
+    "heard",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "him.",
+    1,
+    true
+   ]
+  ],
+  "id": "L042"
+ },
+ {
+  "para": 14,
+  "text": "But these berries are delicious!\"",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "But",
+    1,
+    true
+   ],
+   [
+    "these",
+    1,
+    true
+   ],
+   [
+    "berries",
+    1,
+    true
+   ],
+   [
+    "are",
+    1,
+    true
+   ],
+   [
+    "delicious!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L043"
+ },
+ {
+  "para": 15,
+  "text": "There was no Marquis.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "There",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "no",
+    1,
+    false
+   ],
+   [
+    "Marquis.",
+    1,
+    false
+   ]
+  ],
+  "id": "L044"
+ },
+ {
+  "para": 15,
+  "text": "Puss made up the name.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "made",
+    1,
+    false
+   ],
+   [
+    "up",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "name.",
+    1,
+    false
+   ]
+  ],
+  "id": "L045"
+ },
+ {
+  "para": 15,
+  "text": "(A Marquis is an important lord, and Puss thought it sounded fancy.)",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "(A",
+    1,
+    false
+   ],
+   [
+    "Marquis",
+    1,
+    false
+   ],
+   [
+    "is",
+    1,
+    false
+   ],
+   [
+    "an",
+    1,
+    false
+   ],
+   [
+    "important",
+    1,
+    false
+   ],
+   [
+    "lord,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "thought",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "sounded",
+    1,
+    false
+   ],
+   [
+    "fancy.)",
+    1,
+    false
+   ]
+  ],
+  "id": "L046"
+ },
+ {
+  "para": 15,
+  "text": "He wanted the king to remember it.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "wanted",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "remember",
+    1,
+    false
+   ],
+   [
+    "it.",
+    1,
+    false
+   ]
+  ],
+  "id": "L047"
+ },
+ {
+  "para": 16,
+  "text": "The next week, Puss brought sweet peaches and warm bread.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "next",
+    1,
+    false
+   ],
+   [
+    "week,",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "brought",
+    1,
+    false
+   ],
+   [
+    "sweet",
+    1,
+    false
+   ],
+   [
+    "peaches",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "warm",
+    1,
+    false
+   ],
+   [
+    "bread.",
+    1,
+    false
+   ]
+  ],
+  "id": "L048"
+ },
+ {
+  "para": 16,
+  "text": "\"From the Marquis of Carabas,\" he said.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "\"From",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas,\"",
+    1,
+    true
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "said.",
+    1,
+    false
+   ]
+  ],
+  "id": "L049"
+ },
+ {
+  "para": 17,
+  "text": "\"Never heard of him,\" said the king, with his mouth full.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "\"Never",
+    1,
+    true
+   ],
+   [
+    "heard",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "him,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king,",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "mouth",
+    1,
+    false
+   ],
+   [
+    "full.",
+    1,
+    false
+   ]
+  ],
+  "id": "L050"
+ },
+ {
+  "para": 17,
+  "text": "\"But this is delicious!\"",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"But",
+    1,
+    true
+   ],
+   [
+    "this",
+    1,
+    true
+   ],
+   [
+    "is",
+    1,
+    true
+   ],
+   [
+    "delicious!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L051"
+ },
+ {
+  "para": 18,
+  "text": "The week after that, Puss brought a jar of golden honey.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "week",
+    1,
+    false
+   ],
+   [
+    "after",
+    1,
+    false
+   ],
+   [
+    "that,",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "brought",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "jar",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "golden",
+    1,
+    false
+   ],
+   [
+    "honey.",
+    1,
+    false
+   ]
+  ],
+  "id": "L052"
+ },
+ {
+  "para": 19,
+  "text": "\"Never heard of him,\" said the king, licking his sticky fingers.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "\"Never",
+    1,
+    true
+   ],
+   [
+    "heard",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "him,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king,",
+    1,
+    false
+   ],
+   [
+    "licking",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "sticky",
+    1,
+    false
+   ],
+   [
+    "fingers.",
+    1,
+    false
+   ]
+  ],
+  "id": "L053"
+ },
+ {
+  "para": 19,
+  "text": "\"But this is delicious!",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"But",
+    1,
+    true
+   ],
+   [
+    "this",
+    1,
+    true
+   ],
+   [
+    "is",
+    1,
+    true
+   ],
+   [
+    "delicious!",
+    1,
+    true
+   ]
+  ],
+  "id": "L054"
+ },
+ {
+  "para": 19,
+  "text": "I really must meet this Marquis.\"",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "I",
+    1,
+    true
+   ],
+   [
+    "really",
+    1,
+    true
+   ],
+   [
+    "must",
+    1,
+    true
+   ],
+   [
+    "meet",
+    1,
+    true
+   ],
+   [
+    "this",
+    1,
+    true
+   ],
+   [
+    "Marquis.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L055"
+ },
+ {
+  "para": 20,
+  "text": "Puss smiled.",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "smiled.",
+    1,
+    false
+   ]
+  ],
+  "id": "L056"
+ },
+ {
+  "para": 20,
+  "text": "(That was the plan all along.)",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "(That",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "plan",
+    1,
+    false
+   ],
+   [
+    "all",
+    1,
+    false
+   ],
+   [
+    "along.)",
+    1,
+    false
+   ]
+  ],
+  "id": "L057"
+ },
+ {
+  "para": 21,
+  "text": "Then, one morning, Puss was walking through the village when the town crier rang his bell.",
+  "kind": "speech",
+  "words": 16,
+  "dialog": [
+   [
+    "Then,",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "morning,",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "walking",
+    1,
+    false
+   ],
+   [
+    "through",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "village",
+    1,
+    false
+   ],
+   [
+    "when",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "town",
+    1,
+    false
+   ],
+   [
+    "crier",
+    1,
+    false
+   ],
+   [
+    "rang",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "bell.",
+    1,
+    false
+   ]
+  ],
+  "id": "L058"
+ },
+ {
+  "para": 21,
+  "text": "Ding-ding-ding!",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Ding-ding-ding!",
+    3,
+    false
+   ]
+  ],
+  "id": "L059"
+ },
+ {
+  "para": 21,
+  "text": "\"The king and the princess will ride past the river today!\"",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "\"The",
+    1,
+    true
+   ],
+   [
+    "king",
+    1,
+    true
+   ],
+   [
+    "and",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "princess",
+    1,
+    true
+   ],
+   [
+    "will",
+    1,
+    true
+   ],
+   [
+    "ride",
+    1,
+    true
+   ],
+   [
+    "past",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "river",
+    1,
+    true
+   ],
+   [
+    "today!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L060"
+ },
+ {
+  "para": 22,
+  "text": "Puss's green eyes lit up.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Puss's",
+    1,
+    false
+   ],
+   [
+    "green",
+    1,
+    false
+   ],
+   [
+    "eyes",
+    1,
+    false
+   ],
+   [
+    "lit",
+    1,
+    false
+   ],
+   [
+    "up.",
+    1,
+    false
+   ]
+  ],
+  "id": "L061"
+ },
+ {
+  "para": 22,
+  "text": "This was the chance he was waiting for.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "This",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "chance",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "waiting",
+    1,
+    false
+   ],
+   [
+    "for.",
+    1,
+    false
+   ]
+  ],
+  "id": "L062"
+ },
+ {
+  "para": 22,
+  "text": "He ran home as fast as his boots could go.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "ran",
+    1,
+    false
+   ],
+   [
+    "home",
+    1,
+    false
+   ],
+   [
+    "as",
+    1,
+    false
+   ],
+   [
+    "fast",
+    1,
+    false
+   ],
+   [
+    "as",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "boots",
+    1,
+    false
+   ],
+   [
+    "could",
+    1,
+    false
+   ],
+   [
+    "go.",
+    1,
+    false
+   ]
+  ],
+  "id": "L063"
+ },
+ {
+  "para": 23,
+  "text": "\"Master, jump in the river!\"",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "\"Master,",
+    1,
+    true
+   ],
+   [
+    "jump",
+    1,
+    true
+   ],
+   [
+    "in",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "river!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L064"
+ },
+ {
+  "para": 24,
+  "text": "Tom looked up.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "looked",
+    1,
+    false
+   ],
+   [
+    "up.",
+    1,
+    false
+   ]
+  ],
+  "id": "L065"
+ },
+ {
+  "para": 24,
+  "text": "\"Why?\"",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "\"Why?\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L066"
+ },
+ {
+  "para": 25,
+  "text": "\"Trust me,\" said Puss.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Trust",
+    1,
+    true
+   ],
+   [
+    "me,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L067"
+ },
+ {
+  "para": 26,
+  "text": "\"Is the water cold?\" said Tom.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "\"Is",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "water",
+    1,
+    true
+   ],
+   [
+    "cold?\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Tom.",
+    1,
+    false
+   ]
+  ],
+  "id": "L068"
+ },
+ {
+  "para": 27,
+  "text": "\"TRUST ME!\"",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "\"TRUST",
+    1,
+    true
+   ],
+   [
+    "ME!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L069"
+ },
+ {
+  "para": 28,
+  "text": "SPLASH!",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "SPLASH!",
+    1,
+    false
+   ]
+  ],
+  "id": "L070"
+ },
+ {
+  "para": 28,
+  "text": "Tom sat in the cold river, shivering.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "sat",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "cold",
+    1,
+    false
+   ],
+   [
+    "river,",
+    1,
+    false
+   ],
+   [
+    "shivering.",
+    1,
+    false
+   ]
+  ],
+  "id": "L071"
+ },
+ {
+  "para": 28,
+  "text": "Puss hid Tom's old clothes under a rock.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "hid",
+    1,
+    false
+   ],
+   [
+    "Tom's",
+    1,
+    false
+   ],
+   [
+    "old",
+    1,
+    false
+   ],
+   [
+    "clothes",
+    1,
+    false
+   ],
+   [
+    "under",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "rock.",
+    1,
+    false
+   ]
+  ],
+  "id": "L072"
+ },
+ {
+  "para": 28,
+  "text": "Then he ran to the road and waved his paws.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "Then",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "ran",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "road",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "waved",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "paws.",
+    1,
+    false
+   ]
+  ],
+  "id": "L073"
+ },
+ {
+  "para": 29,
+  "text": "The royal carriage was coming.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "royal",
+    1,
+    false
+   ],
+   [
+    "carriage",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "coming.",
+    1,
+    false
+   ]
+  ],
+  "id": "L074"
+ },
+ {
+  "para": 29,
+  "text": "\"HELP!\" cried Puss.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "\"HELP!\"",
+    1,
+    true
+   ],
+   [
+    "cried",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L075"
+ },
+ {
+  "para": 29,
+  "text": "\"Robbers took the Marquis's clothes!\"",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "\"Robbers",
+    1,
+    true
+   ],
+   [
+    "took",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis's",
+    1,
+    true
+   ],
+   [
+    "clothes!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L076"
+ },
+ {
+  "para": 30,
+  "text": "\"The Marquis of Carabas?\" said the king.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "\"The",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas?\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king.",
+    1,
+    false
+   ]
+  ],
+  "id": "L077"
+ },
+ {
+  "para": 30,
+  "text": "\"The one who sends me gifts?",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "\"The",
+    1,
+    true
+   ],
+   [
+    "one",
+    1,
+    true
+   ],
+   [
+    "who",
+    1,
+    true
+   ],
+   [
+    "sends",
+    1,
+    true
+   ],
+   [
+    "me",
+    1,
+    true
+   ],
+   [
+    "gifts?",
+    1,
+    true
+   ]
+  ],
+  "id": "L078"
+ },
+ {
+  "para": 30,
+  "text": "Stop the carriage!",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Stop",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "carriage!",
+    1,
+    true
+   ]
+  ],
+  "id": "L079"
+ },
+ {
+  "para": 30,
+  "text": "Bring him my best clothes!\"",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Bring",
+    1,
+    true
+   ],
+   [
+    "him",
+    1,
+    true
+   ],
+   [
+    "my",
+    1,
+    true
+   ],
+   [
+    "best",
+    1,
+    true
+   ],
+   [
+    "clothes!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L080"
+ },
+ {
+  "para": 31,
+  "text": "A servant ran to the river with the clothes.",
+  "kind": "speech",
+  "words": 9,
+  "dialog": [
+   [
+    "A",
+    1,
+    false
+   ],
+   [
+    "servant",
+    1,
+    false
+   ],
+   [
+    "ran",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "river",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "clothes.",
+    1,
+    false
+   ]
+  ],
+  "id": "L081"
+ },
+ {
+  "para": 31,
+  "text": "Tom hid behind a bush and put on a blue jacket, new pants, and shiny shoes.",
+  "kind": "speech",
+  "words": 16,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "hid",
+    1,
+    false
+   ],
+   [
+    "behind",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "bush",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "put",
+    1,
+    false
+   ],
+   [
+    "on",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "blue",
+    1,
+    false
+   ],
+   [
+    "jacket,",
+    1,
+    false
+   ],
+   [
+    "new",
+    1,
+    false
+   ],
+   [
+    "pants,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "shiny",
+    1,
+    false
+   ],
+   [
+    "shoes.",
+    1,
+    false
+   ]
+  ],
+  "id": "L082"
+ },
+ {
+  "para": 31,
+  "text": "When he came out, the princess smiled.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "When",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "came",
+    1,
+    false
+   ],
+   [
+    "out,",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "princess",
+    1,
+    false
+   ],
+   [
+    "smiled.",
+    1,
+    false
+   ]
+  ],
+  "id": "L083"
+ },
+ {
+  "para": 31,
+  "text": "Tom's cheeks turned pink.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "Tom's",
+    1,
+    false
+   ],
+   [
+    "cheeks",
+    1,
+    false
+   ],
+   [
+    "turned",
+    1,
+    false
+   ],
+   [
+    "pink.",
+    1,
+    false
+   ]
+  ],
+  "id": "L084"
+ },
+ {
+  "para": 32,
+  "text": "\"Please, ride with us,\" said the king.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "\"Please,",
+    1,
+    true
+   ],
+   [
+    "ride",
+    1,
+    true
+   ],
+   [
+    "with",
+    1,
+    true
+   ],
+   [
+    "us,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king.",
+    1,
+    false
+   ]
+  ],
+  "id": "L085"
+ },
+ {
+  "para": 33,
+  "text": "Tom climbed into the carriage.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "climbed",
+    1,
+    false
+   ],
+   [
+    "into",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "carriage.",
+    1,
+    false
+   ]
+  ],
+  "id": "L086"
+ },
+ {
+  "para": 33,
+  "text": "Puss waited until nobody was looking, then slipped away through the trees.",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "waited",
+    1,
+    false
+   ],
+   [
+    "until",
+    1,
+    false
+   ],
+   [
+    "nobody",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "looking,",
+    1,
+    false
+   ],
+   [
+    "then",
+    1,
+    false
+   ],
+   [
+    "slipped",
+    1,
+    false
+   ],
+   [
+    "away",
+    1,
+    false
+   ],
+   [
+    "through",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "trees.",
+    1,
+    false
+   ]
+  ],
+  "id": "L087"
+ },
+ {
+  "para": 34,
+  "text": "Now Tom looked like a Marquis.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "Now",
+    1,
+    false
+   ],
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "looked",
+    1,
+    false
+   ],
+   [
+    "like",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "Marquis.",
+    1,
+    false
+   ]
+  ],
+  "id": "L088"
+ },
+ {
+  "para": 34,
+  "text": "But a Marquis needs land and a castle.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "But",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "Marquis",
+    1,
+    false
+   ],
+   [
+    "needs",
+    1,
+    false
+   ],
+   [
+    "land",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "castle.",
+    1,
+    false
+   ]
+  ],
+  "id": "L089"
+ },
+ {
+  "para": 34,
+  "text": "And Puss knew just the place.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "And",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "knew",
+    1,
+    false
+   ],
+   [
+    "just",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "place.",
+    1,
+    false
+   ]
+  ],
+  "id": "L090"
+ },
+ {
+  "para": 35,
+  "text": "Swish, swish, swish!",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Swish,",
+    1,
+    false
+   ],
+   [
+    "swish,",
+    1,
+    false
+   ],
+   [
+    "swish!",
+    1,
+    false
+   ]
+  ],
+  "id": "L091"
+ },
+ {
+  "para": 35,
+  "text": "Puss ran ahead of the carriage.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "ran",
+    1,
+    false
+   ],
+   [
+    "ahead",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "carriage.",
+    1,
+    false
+   ]
+  ],
+  "id": "L092"
+ },
+ {
+  "para": 35,
+  "text": "The fields, sheep, and apple trees along this road belonged to a mean ogre, and everybody was tired of him.",
+  "kind": "speech",
+  "words": 20,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "fields,",
+    1,
+    false
+   ],
+   [
+    "sheep,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "apple",
+    1,
+    false
+   ],
+   [
+    "trees",
+    1,
+    false
+   ],
+   [
+    "along",
+    1,
+    false
+   ],
+   [
+    "this",
+    1,
+    false
+   ],
+   [
+    "road",
+    1,
+    false
+   ],
+   [
+    "belonged",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "mean",
+    1,
+    false
+   ],
+   [
+    "ogre,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "everybody",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "tired",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "him.",
+    1,
+    false
+   ]
+  ],
+  "id": "L093"
+ },
+ {
+  "para": 35,
+  "text": "Puss still had a basket of peaches.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "still",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "basket",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "peaches.",
+    1,
+    false
+   ]
+  ],
+  "id": "L094"
+ },
+ {
+  "para": 35,
+  "text": "He traded it for warm cookies at the village bakery.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "traded",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "for",
+    1,
+    false
+   ],
+   [
+    "warm",
+    1,
+    false
+   ],
+   [
+    "cookies",
+    1,
+    false
+   ],
+   [
+    "at",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "village",
+    1,
+    false
+   ],
+   [
+    "bakery.",
+    1,
+    false
+   ]
+  ],
+  "id": "L095"
+ },
+ {
+  "para": 35,
+  "text": "Then he gave one cookie each to the farmers, the shepherd, and the apple picker.",
+  "kind": "speech",
+  "words": 15,
+  "dialog": [
+   [
+    "Then",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "gave",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "cookie",
+    1,
+    false
+   ],
+   [
+    "each",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "farmers,",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "shepherd,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "apple",
+    1,
+    false
+   ],
+   [
+    "picker.",
+    1,
+    false
+   ]
+  ],
+  "id": "L096"
+ },
+ {
+  "para": 36,
+  "text": "\"Say these belong to the Marquis of Carabas,\" he whispered.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "\"Say",
+    1,
+    true
+   ],
+   [
+    "these",
+    1,
+    true
+   ],
+   [
+    "belong",
+    1,
+    true
+   ],
+   [
+    "to",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas,\"",
+    1,
+    true
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "whispered.",
+    1,
+    false
+   ]
+  ],
+  "id": "L097"
+ },
+ {
+  "para": 36,
+  "text": "\"Help me, and I will do my best to chase the ogre away.\"",
+  "kind": "speech",
+  "words": 13,
+  "dialog": [
+   [
+    "\"Help",
+    1,
+    true
+   ],
+   [
+    "me,",
+    1,
+    true
+   ],
+   [
+    "and",
+    1,
+    true
+   ],
+   [
+    "I",
+    1,
+    true
+   ],
+   [
+    "will",
+    1,
+    true
+   ],
+   [
+    "do",
+    1,
+    true
+   ],
+   [
+    "my",
+    1,
+    true
+   ],
+   [
+    "best",
+    1,
+    true
+   ],
+   [
+    "to",
+    1,
+    true
+   ],
+   [
+    "chase",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "ogre",
+    1,
+    true
+   ],
+   [
+    "away.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L098"
+ },
+ {
+  "para": 37,
+  "text": "\"Deal!\" they said.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "\"Deal!\"",
+    1,
+    true
+   ],
+   [
+    "they",
+    1,
+    false
+   ],
+   [
+    "said.",
+    1,
+    false
+   ]
+  ],
+  "id": "L099"
+ },
+ {
+  "para": 38,
+  "text": "Soon, the carriage rolled by.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Soon,",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "carriage",
+    1,
+    false
+   ],
+   [
+    "rolled",
+    1,
+    false
+   ],
+   [
+    "by.",
+    1,
+    false
+   ]
+  ],
+  "id": "L100"
+ },
+ {
+  "para": 38,
+  "text": "\"Whose fields are these?\" asked the king.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "\"Whose",
+    1,
+    true
+   ],
+   [
+    "fields",
+    1,
+    true
+   ],
+   [
+    "are",
+    1,
+    true
+   ],
+   [
+    "these?\"",
+    1,
+    true
+   ],
+   [
+    "asked",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king.",
+    1,
+    false
+   ]
+  ],
+  "id": "L101"
+ },
+ {
+  "para": 39,
+  "text": "\"These fields belong to the Marquis of Carabas!\" said the farmers.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "\"These",
+    1,
+    true
+   ],
+   [
+    "fields",
+    1,
+    true
+   ],
+   [
+    "belong",
+    1,
+    true
+   ],
+   [
+    "to",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "farmers.",
+    1,
+    false
+   ]
+  ],
+  "id": "L102"
+ },
+ {
+  "para": 39,
+  "text": "Cookie crumbs flew everywhere.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "Cookie",
+    1,
+    false
+   ],
+   [
+    "crumbs",
+    1,
+    false
+   ],
+   [
+    "flew",
+    1,
+    false
+   ],
+   [
+    "everywhere.",
+    1,
+    false
+   ]
+  ],
+  "id": "L103"
+ },
+ {
+  "para": 40,
+  "text": "\"Whose sheep are these?\"",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Whose",
+    1,
+    true
+   ],
+   [
+    "sheep",
+    1,
+    true
+   ],
+   [
+    "are",
+    1,
+    true
+   ],
+   [
+    "these?\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L104"
+ },
+ {
+  "para": 41,
+  "text": "\"These sheep belong to the Marquis of Carabas!\" said the shepherd.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "\"These",
+    1,
+    true
+   ],
+   [
+    "sheep",
+    1,
+    true
+   ],
+   [
+    "belong",
+    1,
+    true
+   ],
+   [
+    "to",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "shepherd.",
+    1,
+    false
+   ]
+  ],
+  "id": "L105"
+ },
+ {
+  "para": 42,
+  "text": "\"Baaa!\" said a sheep.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Baaa!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "sheep.",
+    1,
+    false
+   ]
+  ],
+  "id": "L106"
+ },
+ {
+  "para": 43,
+  "text": "\"Even the sheep agree,\" said the king.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "\"Even",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "sheep",
+    1,
+    true
+   ],
+   [
+    "agree,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king.",
+    1,
+    false
+   ]
+  ],
+  "id": "L107"
+ },
+ {
+  "para": 44,
+  "text": "\"Whose apples are these?\"",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Whose",
+    1,
+    true
+   ],
+   [
+    "apples",
+    1,
+    true
+   ],
+   [
+    "are",
+    1,
+    true
+   ],
+   [
+    "these?\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L108"
+ },
+ {
+  "para": 45,
+  "text": "\"These apples belong to the... um...\" said the apple picker.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "\"These",
+    1,
+    true
+   ],
+   [
+    "apples",
+    1,
+    true
+   ],
+   [
+    "belong",
+    1,
+    true
+   ],
+   [
+    "to",
+    1,
+    true
+   ],
+   [
+    "the...",
+    1,
+    true
+   ],
+   [
+    "um...\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "apple",
+    1,
+    false
+   ],
+   [
+    "picker.",
+    1,
+    false
+   ]
+  ],
+  "id": "L109"
+ },
+ {
+  "para": 45,
+  "text": "A boot poked out from behind a tree.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "A",
+    1,
+    false
+   ],
+   [
+    "boot",
+    1,
+    false
+   ],
+   [
+    "poked",
+    1,
+    false
+   ],
+   [
+    "out",
+    1,
+    false
+   ],
+   [
+    "from",
+    1,
+    false
+   ],
+   [
+    "behind",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "tree.",
+    1,
+    false
+   ]
+  ],
+  "id": "L110"
+ },
+ {
+  "para": 45,
+  "text": "Tap, tap.",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Tap,",
+    1,
+    false
+   ],
+   [
+    "tap.",
+    1,
+    false
+   ]
+  ],
+  "id": "L111"
+ },
+ {
+  "para": 46,
+  "text": "\"Marquis,\" whispered a voice.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Marquis,\"",
+    1,
+    true
+   ],
+   [
+    "whispered",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "voice.",
+    1,
+    false
+   ]
+  ],
+  "id": "L112"
+ },
+ {
+  "para": 47,
+  "text": "\"...to the Marquis of Carabas!\"",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "\"...to",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L113"
+ },
+ {
+  "para": 48,
+  "text": "\"Marquis, you are so rich!\" said the king.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "\"Marquis,",
+    1,
+    true
+   ],
+   [
+    "you",
+    1,
+    true
+   ],
+   [
+    "are",
+    1,
+    true
+   ],
+   [
+    "so",
+    1,
+    true
+   ],
+   [
+    "rich!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "king.",
+    1,
+    false
+   ]
+  ],
+  "id": "L114"
+ },
+ {
+  "para": 49,
+  "text": "\"Um... thank you?\" said Tom.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "\"Um...",
+    1,
+    true
+   ],
+   [
+    "thank",
+    1,
+    true
+   ],
+   [
+    "you?\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Tom.",
+    1,
+    false
+   ]
+  ],
+  "id": "L115"
+ },
+ {
+  "para": 50,
+  "text": "The carriage rolled on slowly.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "carriage",
+    1,
+    false
+   ],
+   [
+    "rolled",
+    1,
+    false
+   ],
+   [
+    "on",
+    1,
+    false
+   ],
+   [
+    "slowly.",
+    1,
+    false
+   ]
+  ],
+  "id": "L116"
+ },
+ {
+  "para": 50,
+  "text": "Puss ran ahead again, all the way to the end of the road.",
+  "kind": "speech",
+  "words": 13,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "ran",
+    1,
+    false
+   ],
+   [
+    "ahead",
+    1,
+    false
+   ],
+   [
+    "again,",
+    1,
+    false
+   ],
+   [
+    "all",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "way",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "end",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "road.",
+    1,
+    false
+   ]
+  ],
+  "id": "L117"
+ },
+ {
+  "para": 50,
+  "text": "He had made a big promise.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "made",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "big",
+    1,
+    false
+   ],
+   [
+    "promise.",
+    1,
+    false
+   ]
+  ],
+  "id": "L118"
+ },
+ {
+  "para": 50,
+  "text": "Now he had to keep it.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "Now",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "keep",
+    1,
+    false
+   ],
+   [
+    "it.",
+    1,
+    false
+   ]
+  ],
+  "id": "L119"
+ },
+ {
+  "para": 51,
+  "text": "There stood a huge castle with tall stone towers and colorful flags.",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "There",
+    1,
+    false
+   ],
+   [
+    "stood",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "huge",
+    1,
+    false
+   ],
+   [
+    "castle",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "tall",
+    1,
+    false
+   ],
+   [
+    "stone",
+    1,
+    false
+   ],
+   [
+    "towers",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "colorful",
+    1,
+    false
+   ],
+   [
+    "flags.",
+    1,
+    false
+   ]
+  ],
+  "id": "L120"
+ },
+ {
+  "para": 51,
+  "text": "A big doormat said BEWARE OF OGRE.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "A",
+    1,
+    false
+   ],
+   [
+    "big",
+    1,
+    false
+   ],
+   [
+    "doormat",
+    1,
+    false
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "BEWARE",
+    1,
+    false
+   ],
+   [
+    "OF",
+    1,
+    false
+   ],
+   [
+    "OGRE.",
+    1,
+    false
+   ]
+  ],
+  "id": "L121"
+ },
+ {
+  "para": 51,
+  "text": "The ogre who lived there was twice as tall as the door, with a voice like thunder and fluffy pink slippers.",
+  "kind": "speech",
+  "words": 21,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "ogre",
+    1,
+    false
+   ],
+   [
+    "who",
+    1,
+    false
+   ],
+   [
+    "lived",
+    1,
+    false
+   ],
+   [
+    "there",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "twice",
+    1,
+    false
+   ],
+   [
+    "as",
+    1,
+    false
+   ],
+   [
+    "tall",
+    1,
+    false
+   ],
+   [
+    "as",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "door,",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "voice",
+    1,
+    false
+   ],
+   [
+    "like",
+    1,
+    false
+   ],
+   [
+    "thunder",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "fluffy",
+    1,
+    false
+   ],
+   [
+    "pink",
+    1,
+    false
+   ],
+   [
+    "slippers.",
+    1,
+    false
+   ]
+  ],
+  "id": "L122"
+ },
+ {
+  "para": 51,
+  "text": "(Nobody had the courage to tell him they were pink.)",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "(Nobody",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "courage",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "tell",
+    1,
+    false
+   ],
+   [
+    "him",
+    1,
+    false
+   ],
+   [
+    "they",
+    1,
+    false
+   ],
+   [
+    "were",
+    1,
+    false
+   ],
+   [
+    "pink.)",
+    1,
+    false
+   ]
+  ],
+  "id": "L123"
+ },
+ {
+  "para": 52,
+  "text": "Puss walked up to the door.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "walked",
+    1,
+    false
+   ],
+   [
+    "up",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "door.",
+    1,
+    false
+   ]
+  ],
+  "id": "L124"
+ },
+ {
+  "para": 52,
+  "text": "Knock.",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "Knock.",
+    1,
+    false
+   ]
+  ],
+  "id": "L125"
+ },
+ {
+  "para": 52,
+  "text": "...",
+  "kind": "pause",
+  "words": 0,
+  "dialog": [],
+  "id": null
+ },
+ {
+  "para": 52,
+  "text": "Knock, knock.",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Knock,",
+    1,
+    false
+   ],
+   [
+    "knock.",
+    1,
+    false
+   ]
+  ],
+  "id": "L126"
+ },
+ {
+  "para": 52,
+  "text": "...",
+  "kind": "pause",
+  "words": 0,
+  "dialog": [],
+  "id": null
+ },
+ {
+  "para": 52,
+  "text": "KNOCK!",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "KNOCK!",
+    1,
+    false
+   ]
+  ],
+  "id": "L127"
+ },
+ {
+  "para": 52,
+  "text": "KNOCK!",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "KNOCK!",
+    1,
+    false
+   ]
+  ],
+  "id": "L128"
+ },
+ {
+  "para": 52,
+  "text": "KNOCK!",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "KNOCK!",
+    1,
+    false
+   ]
+  ],
+  "id": "L129"
+ },
+ {
+  "para": 52,
+  "text": "Nobody answered.",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Nobody",
+    1,
+    false
+   ],
+   [
+    "answered.",
+    1,
+    false
+   ]
+  ],
+  "id": "L130"
+ },
+ {
+  "para": 52,
+  "text": "So Puss pressed the doorbell.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "So",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "pressed",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "doorbell.",
+    1,
+    false
+   ]
+  ],
+  "id": "L131"
+ },
+ {
+  "para": 52,
+  "text": "It played a happy little tune: Ding-a-ling-a-ling!",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "It",
+    1,
+    false
+   ],
+   [
+    "played",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "happy",
+    1,
+    false
+   ],
+   [
+    "little",
+    1,
+    false
+   ],
+   [
+    "tune:",
+    1,
+    false
+   ],
+   [
+    "Ding-a-ling-a-ling!",
+    5,
+    false
+   ]
+  ],
+  "id": "L132"
+ },
+ {
+  "para": 52,
+  "text": "(A silly tune for an ogre.)",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "(A",
+    1,
+    false
+   ],
+   [
+    "silly",
+    1,
+    false
+   ],
+   [
+    "tune",
+    1,
+    false
+   ],
+   [
+    "for",
+    1,
+    false
+   ],
+   [
+    "an",
+    1,
+    false
+   ],
+   [
+    "ogre.)",
+    1,
+    false
+   ]
+  ],
+  "id": "L133"
+ },
+ {
+  "para": 53,
+  "text": "The door creaked open.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "door",
+    1,
+    false
+   ],
+   [
+    "creaked",
+    1,
+    false
+   ],
+   [
+    "open.",
+    1,
+    false
+   ]
+  ],
+  "id": "L134"
+ },
+ {
+  "para": 54,
+  "text": "\"Sir Ogre,\" said Puss.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Sir",
+    1,
+    true
+   ],
+   [
+    "Ogre,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L135"
+ },
+ {
+  "para": 54,
+  "text": "\"I hear you can turn into any animal.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "\"I",
+    1,
+    true
+   ],
+   [
+    "hear",
+    1,
+    true
+   ],
+   [
+    "you",
+    1,
+    true
+   ],
+   [
+    "can",
+    1,
+    true
+   ],
+   [
+    "turn",
+    1,
+    true
+   ],
+   [
+    "into",
+    1,
+    true
+   ],
+   [
+    "any",
+    1,
+    true
+   ],
+   [
+    "animal.",
+    1,
+    true
+   ]
+  ],
+  "id": "L136"
+ },
+ {
+  "para": 54,
+  "text": "Is it true?\"",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Is",
+    1,
+    true
+   ],
+   [
+    "it",
+    1,
+    true
+   ],
+   [
+    "true?\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L137"
+ },
+ {
+  "para": 55,
+  "text": "\"Of course!\"",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "\"Of",
+    1,
+    true
+   ],
+   [
+    "course!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L138"
+ },
+ {
+  "para": 55,
+  "text": "ROAR!",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "ROAR!",
+    1,
+    false
+   ]
+  ],
+  "id": "L139"
+ },
+ {
+  "para": 55,
+  "text": "The ogre turned into a lion.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "ogre",
+    1,
+    false
+   ],
+   [
+    "turned",
+    1,
+    false
+   ],
+   [
+    "into",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "lion.",
+    1,
+    false
+   ]
+  ],
+  "id": "L140"
+ },
+ {
+  "para": 56,
+  "text": "\"EEEK!\"",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "\"EEEK!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L141"
+ },
+ {
+  "para": 56,
+  "text": "Puss jumped onto the roof.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "jumped",
+    1,
+    false
+   ],
+   [
+    "onto",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "roof.",
+    1,
+    false
+   ]
+  ],
+  "id": "L142"
+ },
+ {
+  "para": 56,
+  "text": "His boots slipped.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "His",
+    1,
+    false
+   ],
+   [
+    "boots",
+    1,
+    false
+   ],
+   [
+    "slipped.",
+    1,
+    false
+   ]
+  ],
+  "id": "L143"
+ },
+ {
+  "para": 56,
+  "text": "Slide, slide, slide!",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Slide,",
+    1,
+    false
+   ],
+   [
+    "slide,",
+    1,
+    false
+   ],
+   [
+    "slide!",
+    1,
+    false
+   ]
+  ],
+  "id": "L144"
+ },
+ {
+  "para": 56,
+  "text": "(Puss pretended he meant to do that.)",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "(Puss",
+    1,
+    false
+   ],
+   [
+    "pretended",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "meant",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "do",
+    1,
+    false
+   ],
+   [
+    "that.)",
+    1,
+    false
+   ]
+  ],
+  "id": "L145"
+ },
+ {
+  "para": 56,
+  "text": "The ogre turned back into himself, and Puss climbed down.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "ogre",
+    1,
+    false
+   ],
+   [
+    "turned",
+    1,
+    false
+   ],
+   [
+    "back",
+    1,
+    false
+   ],
+   [
+    "into",
+    1,
+    false
+   ],
+   [
+    "himself,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "climbed",
+    1,
+    false
+   ],
+   [
+    "down.",
+    1,
+    false
+   ]
+  ],
+  "id": "L146"
+ },
+ {
+  "para": 57,
+  "text": "\"Very impressive!\" said Puss.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Very",
+    1,
+    true
+   ],
+   [
+    "impressive!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L147"
+ },
+ {
+  "para": 57,
+  "text": "\"But anyone can be big.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "\"But",
+    1,
+    true
+   ],
+   [
+    "anyone",
+    1,
+    true
+   ],
+   [
+    "can",
+    1,
+    true
+   ],
+   [
+    "be",
+    1,
+    true
+   ],
+   [
+    "big.",
+    1,
+    true
+   ]
+  ],
+  "id": "L148"
+ },
+ {
+  "para": 57,
+  "text": "Can you be tiny?",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "Can",
+    1,
+    true
+   ],
+   [
+    "you",
+    1,
+    true
+   ],
+   [
+    "be",
+    1,
+    true
+   ],
+   [
+    "tiny?",
+    1,
+    true
+   ]
+  ],
+  "id": "L149"
+ },
+ {
+  "para": 57,
+  "text": "Like a mouse?",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Like",
+    1,
+    true
+   ],
+   [
+    "a",
+    1,
+    true
+   ],
+   [
+    "mouse?",
+    1,
+    true
+   ]
+  ],
+  "id": "L150"
+ },
+ {
+  "para": 57,
+  "text": "That is probably too hard.\"",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "That",
+    1,
+    true
+   ],
+   [
+    "is",
+    1,
+    true
+   ],
+   [
+    "probably",
+    1,
+    true
+   ],
+   [
+    "too",
+    1,
+    true
+   ],
+   [
+    "hard.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L151"
+ },
+ {
+  "para": 58,
+  "text": "\"Too hard?",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "\"Too",
+    1,
+    true
+   ],
+   [
+    "hard?",
+    1,
+    true
+   ]
+  ],
+  "id": "L152"
+ },
+ {
+  "para": 58,
+  "text": "Watch this!\"",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "Watch",
+    1,
+    true
+   ],
+   [
+    "this!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L153"
+ },
+ {
+  "para": 58,
+  "text": "POOF!",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "POOF!",
+    1,
+    false
+   ]
+  ],
+  "id": "L154"
+ },
+ {
+  "para": 58,
+  "text": "The ogre was a tiny mouse.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "ogre",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "tiny",
+    1,
+    false
+   ],
+   [
+    "mouse.",
+    1,
+    false
+   ]
+  ],
+  "id": "L155"
+ },
+ {
+  "para": 59,
+  "text": "\"BOO!\" said Puss.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "\"BOO!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L156"
+ },
+ {
+  "para": 60,
+  "text": "\"SQUEAK!\"",
+  "kind": "speech",
+  "words": 1,
+  "dialog": [
+   [
+    "\"SQUEAK!\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L157"
+ },
+ {
+  "para": 60,
+  "text": "The mouse zoomed out the door and down the hill, leaving one fluffy slipper behind.",
+  "kind": "speech",
+  "words": 15,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "mouse",
+    1,
+    false
+   ],
+   [
+    "zoomed",
+    1,
+    false
+   ],
+   [
+    "out",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "door",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "down",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "hill,",
+    1,
+    false
+   ],
+   [
+    "leaving",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "fluffy",
+    1,
+    false
+   ],
+   [
+    "slipper",
+    1,
+    false
+   ],
+   [
+    "behind.",
+    1,
+    false
+   ]
+  ],
+  "id": "L158"
+ },
+ {
+  "para": 60,
+  "text": "He never came back.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "never",
+    1,
+    false
+   ],
+   [
+    "came",
+    1,
+    false
+   ],
+   [
+    "back.",
+    1,
+    false
+   ]
+  ],
+  "id": "L159"
+ },
+ {
+  "para": 61,
+  "text": "Puss peeked inside.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "peeked",
+    1,
+    false
+   ],
+   [
+    "inside.",
+    1,
+    false
+   ]
+  ],
+  "id": "L160"
+ },
+ {
+  "para": 61,
+  "text": "The castle was empty.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "castle",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "empty.",
+    1,
+    false
+   ]
+  ],
+  "id": "L161"
+ },
+ {
+  "para": 61,
+  "text": "Now it needed a new owner.",
+  "kind": "speech",
+  "words": 6,
+  "dialog": [
+   [
+    "Now",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "needed",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "new",
+    1,
+    false
+   ],
+   [
+    "owner.",
+    1,
+    false
+   ]
+  ],
+  "id": "L162"
+ },
+ {
+  "para": 61,
+  "text": "He hurried to the gate just as the royal carriage rolled up.",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "hurried",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "gate",
+    1,
+    false
+   ],
+   [
+    "just",
+    1,
+    false
+   ],
+   [
+    "as",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "royal",
+    1,
+    false
+   ],
+   [
+    "carriage",
+    1,
+    false
+   ],
+   [
+    "rolled",
+    1,
+    false
+   ],
+   [
+    "up.",
+    1,
+    false
+   ]
+  ],
+  "id": "L163"
+ },
+ {
+  "para": 62,
+  "text": "\"Welcome to the castle of the Marquis of Carabas!\" said Puss.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "\"Welcome",
+    1,
+    true
+   ],
+   [
+    "to",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "castle",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L164"
+ },
+ {
+  "para": 63,
+  "text": "Tom stepped out of the carriage and looked at the huge castle.",
+  "kind": "speech",
+  "words": 12,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "stepped",
+    1,
+    false
+   ],
+   [
+    "out",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "carriage",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "looked",
+    1,
+    false
+   ],
+   [
+    "at",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "huge",
+    1,
+    false
+   ],
+   [
+    "castle.",
+    1,
+    false
+   ]
+  ],
+  "id": "L165"
+ },
+ {
+  "para": 63,
+  "text": "Then he felt bad.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "Then",
+    1,
+    false
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "felt",
+    1,
+    false
+   ],
+   [
+    "bad.",
+    1,
+    false
+   ]
+  ],
+  "id": "L166"
+ },
+ {
+  "para": 63,
+  "text": "The king trusted him, and it was all lies.",
+  "kind": "speech",
+  "words": 9,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "king",
+    1,
+    false
+   ],
+   [
+    "trusted",
+    1,
+    false
+   ],
+   [
+    "him,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "all",
+    1,
+    false
+   ],
+   [
+    "lies.",
+    1,
+    false
+   ]
+  ],
+  "id": "L167"
+ },
+ {
+  "para": 63,
+  "text": "He took a deep breath.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "took",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "deep",
+    1,
+    false
+   ],
+   [
+    "breath.",
+    1,
+    false
+   ]
+  ],
+  "id": "L168"
+ },
+ {
+  "para": 64,
+  "text": "\"Your Majesty,\" said Tom, \"I must tell you the truth.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "\"Your",
+    1,
+    true
+   ],
+   [
+    "Majesty,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Tom,",
+    1,
+    false
+   ],
+   [
+    "\"I",
+    1,
+    true
+   ],
+   [
+    "must",
+    1,
+    true
+   ],
+   [
+    "tell",
+    1,
+    true
+   ],
+   [
+    "you",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "truth.",
+    1,
+    true
+   ]
+  ],
+  "id": "L169"
+ },
+ {
+  "para": 64,
+  "text": "I am not a Marquis.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "I",
+    1,
+    true
+   ],
+   [
+    "am",
+    1,
+    true
+   ],
+   [
+    "not",
+    1,
+    true
+   ],
+   [
+    "a",
+    1,
+    true
+   ],
+   [
+    "Marquis.",
+    1,
+    true
+   ]
+  ],
+  "id": "L170"
+ },
+ {
+  "para": 64,
+  "text": "I am just Tom.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "I",
+    1,
+    true
+   ],
+   [
+    "am",
+    1,
+    true
+   ],
+   [
+    "just",
+    1,
+    true
+   ],
+   [
+    "Tom.",
+    1,
+    true
+   ]
+  ],
+  "id": "L171"
+ },
+ {
+  "para": 64,
+  "text": "My cat made up everything.\"",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "My",
+    1,
+    true
+   ],
+   [
+    "cat",
+    1,
+    true
+   ],
+   [
+    "made",
+    1,
+    true
+   ],
+   [
+    "up",
+    1,
+    true
+   ],
+   [
+    "everything.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L172"
+ },
+ {
+  "para": 65,
+  "text": "Puss covered his eyes with his paws.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "covered",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "eyes",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "paws.",
+    1,
+    false
+   ]
+  ],
+  "id": "L173"
+ },
+ {
+  "para": 66,
+  "text": "The king laughed.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "The",
+    1,
+    false
+   ],
+   [
+    "king",
+    1,
+    false
+   ],
+   [
+    "laughed.",
+    1,
+    false
+   ]
+  ],
+  "id": "L174"
+ },
+ {
+  "para": 66,
+  "text": "\"A real Marquis does not say 'um,'\" he said.",
+  "kind": "speech",
+  "words": 10,
+  "dialog": [
+   [
+    "\"A",
+    1,
+    true
+   ],
+   [
+    "real",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "does",
+    1,
+    true
+   ],
+   [
+    "not",
+    1,
+    true
+   ],
+   [
+    "say",
+    1,
+    true
+   ],
+   [
+    "'um,'\"",
+    2,
+    true
+   ],
+   [
+    "he",
+    1,
+    false
+   ],
+   [
+    "said.",
+    1,
+    false
+   ]
+  ],
+  "id": "L175"
+ },
+ {
+  "para": 66,
+  "text": "\"And I still have never heard of the Marquis of Carabas.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "\"And",
+    1,
+    true
+   ],
+   [
+    "I",
+    1,
+    true
+   ],
+   [
+    "still",
+    1,
+    true
+   ],
+   [
+    "have",
+    1,
+    true
+   ],
+   [
+    "never",
+    1,
+    true
+   ],
+   [
+    "heard",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "the",
+    1,
+    true
+   ],
+   [
+    "Marquis",
+    1,
+    true
+   ],
+   [
+    "of",
+    1,
+    true
+   ],
+   [
+    "Carabas.",
+    1,
+    true
+   ]
+  ],
+  "id": "L176"
+ },
+ {
+  "para": 66,
+  "text": "But I like an honest young man, Tom.",
+  "kind": "speech",
+  "words": 8,
+  "dialog": [
+   [
+    "But",
+    1,
+    true
+   ],
+   [
+    "I",
+    1,
+    true
+   ],
+   [
+    "like",
+    1,
+    true
+   ],
+   [
+    "an",
+    1,
+    true
+   ],
+   [
+    "honest",
+    1,
+    true
+   ],
+   [
+    "young",
+    1,
+    true
+   ],
+   [
+    "man,",
+    1,
+    true
+   ],
+   [
+    "Tom.",
+    1,
+    true
+   ]
+  ],
+  "id": "L177"
+ },
+ {
+  "para": 66,
+  "text": "Would you like to marry my daughter?\"",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "Would",
+    1,
+    true
+   ],
+   [
+    "you",
+    1,
+    true
+   ],
+   [
+    "like",
+    1,
+    true
+   ],
+   [
+    "to",
+    1,
+    true
+   ],
+   [
+    "marry",
+    1,
+    true
+   ],
+   [
+    "my",
+    1,
+    true
+   ],
+   [
+    "daughter?\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L178"
+ },
+ {
+  "para": 67,
+  "text": "Tom looked at the princess.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "looked",
+    1,
+    false
+   ],
+   [
+    "at",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "princess.",
+    1,
+    false
+   ]
+  ],
+  "id": "L179"
+ },
+ {
+  "para": 67,
+  "text": "She nodded.",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "She",
+    1,
+    false
+   ],
+   [
+    "nodded.",
+    1,
+    false
+   ]
+  ],
+  "id": "L180"
+ },
+ {
+  "para": 68,
+  "text": "\"Yes, please!\" said Tom.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"Yes,",
+    1,
+    true
+   ],
+   [
+    "please!\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Tom.",
+    1,
+    false
+   ]
+  ],
+  "id": "L181"
+ },
+ {
+  "para": 69,
+  "text": "That night, after all the happy news, Tom and Puss ate supper in the castle kitchen.",
+  "kind": "speech",
+  "words": 16,
+  "dialog": [
+   [
+    "That",
+    1,
+    false
+   ],
+   [
+    "night,",
+    1,
+    false
+   ],
+   [
+    "after",
+    1,
+    false
+   ],
+   [
+    "all",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "happy",
+    1,
+    false
+   ],
+   [
+    "news,",
+    1,
+    false
+   ],
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "Puss",
+    1,
+    false
+   ],
+   [
+    "ate",
+    1,
+    false
+   ],
+   [
+    "supper",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "castle",
+    1,
+    false
+   ],
+   [
+    "kitchen.",
+    1,
+    false
+   ]
+  ],
+  "id": "L182"
+ },
+ {
+  "para": 69,
+  "text": "There was one warm loaf of bread.",
+  "kind": "speech",
+  "words": 7,
+  "dialog": [
+   [
+    "There",
+    1,
+    false
+   ],
+   [
+    "was",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "warm",
+    1,
+    false
+   ],
+   [
+    "loaf",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "bread.",
+    1,
+    false
+   ]
+  ],
+  "id": "L183"
+ },
+ {
+  "para": 69,
+  "text": "Tom broke it in half, and gave one half to Puss.",
+  "kind": "speech",
+  "words": 11,
+  "dialog": [
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "broke",
+    1,
+    false
+   ],
+   [
+    "it",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "half,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "gave",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "half",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L184"
+ },
+ {
+  "para": 70,
+  "text": "\"Thank you, Master,\" said Puss.",
+  "kind": "speech",
+  "words": 5,
+  "dialog": [
+   [
+    "\"Thank",
+    1,
+    true
+   ],
+   [
+    "you,",
+    1,
+    true
+   ],
+   [
+    "Master,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Puss.",
+    1,
+    false
+   ]
+  ],
+  "id": "L185"
+ },
+ {
+  "para": 71,
+  "text": "\"No, Puss,\" said Tom.",
+  "kind": "speech",
+  "words": 4,
+  "dialog": [
+   [
+    "\"No,",
+    1,
+    true
+   ],
+   [
+    "Puss,\"",
+    1,
+    true
+   ],
+   [
+    "said",
+    1,
+    false
+   ],
+   [
+    "Tom.",
+    1,
+    false
+   ]
+  ],
+  "id": "L186"
+ },
+ {
+  "para": 71,
+  "text": "\"Thank YOU.\"",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "\"Thank",
+    1,
+    true
+   ],
+   [
+    "YOU.\"",
+    1,
+    true
+   ]
+  ],
+  "id": "L187"
+ },
+ {
+  "para": 72,
+  "text": "So Tom lived in the castle with the princess.",
+  "kind": "speech",
+  "words": 9,
+  "dialog": [
+   [
+    "So",
+    1,
+    false
+   ],
+   [
+    "Tom",
+    1,
+    false
+   ],
+   [
+    "lived",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "castle",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "princess.",
+    1,
+    false
+   ]
+  ],
+  "id": "L188"
+ },
+ {
+  "para": 72,
+  "text": "And Puss?",
+  "kind": "speech",
+  "words": 2,
+  "dialog": [
+   [
+    "And",
+    1,
+    false
+   ],
+   [
+    "Puss?",
+    1,
+    false
+   ]
+  ],
+  "id": "L189"
+ },
+ {
+  "para": 72,
+  "text": "He had the softest bed in the castle, and wore his favorite boots everywhere.",
+  "kind": "speech",
+  "words": 14,
+  "dialog": [
+   [
+    "He",
+    1,
+    false
+   ],
+   [
+    "had",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "softest",
+    1,
+    false
+   ],
+   [
+    "bed",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "the",
+    1,
+    false
+   ],
+   [
+    "castle,",
+    1,
+    false
+   ],
+   [
+    "and",
+    1,
+    false
+   ],
+   [
+    "wore",
+    1,
+    false
+   ],
+   [
+    "his",
+    1,
+    false
+   ],
+   [
+    "favorite",
+    1,
+    false
+   ],
+   [
+    "boots",
+    1,
+    false
+   ],
+   [
+    "everywhere.",
+    1,
+    false
+   ]
+  ],
+  "id": "L190"
+ },
+ {
+  "para": 72,
+  "text": "Even to bed.",
+  "kind": "speech",
+  "words": 3,
+  "dialog": [
+   [
+    "Even",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "bed.",
+    1,
+    false
+   ]
+  ],
+  "id": "L191"
+ },
+ {
+  "para": 73,
+  "text": "All because of one small piece of bread, shared with a hungry cat.",
+  "kind": "speech",
+  "words": 13,
+  "dialog": [
+   [
+    "All",
+    1,
+    false
+   ],
+   [
+    "because",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "one",
+    1,
+    false
+   ],
+   [
+    "small",
+    1,
+    false
+   ],
+   [
+    "piece",
+    1,
+    false
+   ],
+   [
+    "of",
+    1,
+    false
+   ],
+   [
+    "bread,",
+    1,
+    false
+   ],
+   [
+    "shared",
+    1,
+    false
+   ],
+   [
+    "with",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "hungry",
+    1,
+    false
+   ],
+   [
+    "cat.",
+    1,
+    false
+   ]
+  ],
+  "id": "L192"
+ },
+ {
+  "para": 74,
+  "text": "Remember: a little kindness can come back to you in a big way.",
+  "kind": "speech",
+  "words": 13,
+  "dialog": [
+   [
+    "Remember:",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "little",
+    1,
+    false
+   ],
+   [
+    "kindness",
+    1,
+    false
+   ],
+   [
+    "can",
+    1,
+    false
+   ],
+   [
+    "come",
+    1,
+    false
+   ],
+   [
+    "back",
+    1,
+    false
+   ],
+   [
+    "to",
+    1,
+    false
+   ],
+   [
+    "you",
+    1,
+    false
+   ],
+   [
+    "in",
+    1,
+    false
+   ],
+   [
+    "a",
+    1,
+    false
+   ],
+   [
+    "big",
+    1,
+    false
+   ],
+   [
+    "way.",
+    1,
+    false
+   ]
+  ],
+  "id": "L193"
+ }
+]
