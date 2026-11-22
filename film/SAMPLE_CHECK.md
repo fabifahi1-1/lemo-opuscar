@@ -112,3 +112,36 @@ Sound after the rebuild (ffmpeg ebur128 on the final file):
 | Opening | −23.9 LUFS, loudest moment −20.2 |
 | Pauses | −25.8 to −26.2 LUFS |
 | True peak | −9.0 dBTP |
+
+## Sample 5
+
+Only the seven fixes asked for. Camera moves, angles, on-screen text, lighting and sound are unchanged: `film/audio/`, `film/data/`, `VOICE_TIMING.md` and `SCRIPT.md` have no changes, and the sound measures exactly as in sample 4. Rebuilt from scratch (`film/out`, `sample.mp4` and `sample-sound.wav` deleted first).
+
+| # | Fix | Status | Where to see it |
+|---|---|---|---|
+| 1 | Fingers: thumbs on top; four fingers curl under and behind the loaf with only the tips showing at the sides; locked to the bread | DONE | 8.0–11.5 s. The back of each hand sits behind the loaf, and four slim fingertips peek round its side edge. The thumbs lie on the top crust. Hands and thumbs are pinned to the loaf, so they ride with it and never slide. |
+| 2 | The cat sits ON the step, same spot every shot, with a contact shadow and a faint wall shadow | DONE | The cat sits at the same depth as the steps, so camera moves can't slide him off. His paws and bottom rest on the step's top surface, with a soft dark contact shadow under him and a faint shadow on the wall. He keeps the same spot in every shot: on the step, to Tom's right, in front of the doorway (11.6, 15.9, 18.6 s). |
+| 3 | Arms: no pipes, no hollow sleeve ends; a soft cuff; smooth taper; a soft elbow bend | DONE | Shorter arm bones (62 + 46 instead of 80 + 60), so the elbows stay close to his sides instead of sticking out. The upper arm tapers from a rounded shoulder to the elbow, and its rounded end sits over the forearm, with a soft crease, so the bend reads as an elbow. The forearm tapers to a closed, soft cuff, with the wrist showing below it. |
+| 4 | Hands smaller (about ¾ of face height), slim fingers, rounded tips, no round palm blobs | DONE | Each hand is about 0.7 of the face height (12.7 s frame). There is no palm disc: the slim back of the hand is behind the bread, with rounded fingertips and slim thumbs with a nail. |
+| 5 | Legs: no purple knee circles; thighs go back to the body, a gentle knee bump, tapering shins | DONE | Each leg is one soft shape: the thigh runs back toward the body, the knee is a low rounded dome, and the shin tapers into the shoe. The old round knee pieces are gone. The patch on his left knee is now a soft, crooked patch with stitching that follows its outline, not a circle. |
+| 6 | Soft, rounded shoulders and torso | DONE | Curved shoulders that slope into the sleeves, a softly curved hem and belt (11.7, 18.6 s) |
+| 7 | Soft curves everywhere; no perfect circles, tubes or rectangles; same paper-cut look and colours | DONE | Every body piece is a bezier shape with the same paper grain, rim light and colours as before |
+
+Checks made before committing (the tools and their output are in the repository):
+
+- **Hands, frame by frame** (`film/tools/hands_check.mjs`, output in `film/checks/hands_check.txt`). For each of the 84 frames from 8.0 to 11.5 s, the four fingertips of each hand and both thumb tips are mapped into the loaf's own coordinates:
+  - The fingers move in only 26 frames, 8.83–9.88 s. That is the one squeeze: at most 1.25 puppet units, inward.
+  - The thumb moves only in 10.21–11.08 s. That is the one rub.
+  - In every other frame, both stay exactly still on the bread.
+- **Paws on the step** (`film/tools/paws_check.mjs`, output in `film/checks/paws_check.txt`). I checked 20 frames across all three steps shots (worried medium shot, focus pull, wide shot). The cat is painted blue and the steps magenta. Directly under every one of the cat's lowest pixels is the step: the walk down passes only through the anti-aliased edge, never through wall or air. The cat touches the step in 20 of 20 frames.
+  - In measurement mode the shadows and the depth-of-field blur are switched off, so they can't hide a gap.
+- **Three frames per shot** from the final file: all shots reviewed (opening, hands, medium, focus pull, wide, mill wide, wheel).
+
+Sound (ffmpeg ebur128 on the final file, identical to sample 4):
+
+| Section | Reading |
+|---|---|
+| Narration slots | −29.9 to −30.4 LUFS |
+| Opening | −23.9 LUFS, loudest moment −20.2 |
+| Pauses | −25.8 to −26.2 LUFS |
+| True peak | −9.0 dBTP |

@@ -241,8 +241,8 @@ export function buildMillWorld() {
 // ===================== STEPS: the mill's front steps on a slight diagonal; afternoon sun from the upper left =====================
 // Tom sits on the top step, turned three-quarters toward the cat; the cat sits on the threshold behind him, turned toward Tom, overlapping the doorframe.
 const slope = .1;                                                      // step edges rise toward the right
-export const STEP = { tomX: -200, tomY: 120, tomS: 1.25, catX: 72, catS: .37, doorX: 190 };
-STEP.catY = STEP.tomY - (STEP.catX - STEP.tomX) * slope - 14;       // further back on the landing: a little higher
+export const STEP = { tomX: -200, tomY: 120, tomS: 1.25, catX: 150, catS: .37, doorX: 190 };
+STEP.catY = STEP.tomY + 8 - (STEP.catX - STEP.tomX) * slope + 9;   // ON the landing: paws and bottom resting on the top of the step, in front of the doorway
 const stepTop = x => STEP.tomY + 8 - (x - STEP.tomX) * slope;          // the landing's front edge at x
 export function buildSteps({ ots = false } = {}) {
   setLight(.62, .78);
@@ -267,7 +267,7 @@ export function buildSteps({ ots = false } = {}) {
   const frame = paint(320, 520, g => { g.save(); g.transform(1, -slope * .45, 0, 1, 0, 0); g.strokeStyle = '#6a4630'; g.lineWidth = 20; g.beginPath(); g.moveTo(-140, 250); g.lineTo(-140, -120); g.arc(0, -120, 140, Math.PI, 0); g.lineTo(140, 250); g.stroke(); g.restore(); }, { res: 1.2, fin: { rim: .5, side: .15 } });
   L.push(new Layer({ sheet: frame, x: G.doorX, y: -170 - G.doorX * slope * .45, z: 1.1, d: 2.8, shadow: { dx: 8, dy: 10, blur: 9, a: .3 }, name: 'doorframe' }));
   // the steps: a landing and one step, edges rising to the right, the side profile showing on the left; dark under each lip
-  const steps = paint(2600, 900, g => {
+  const steps = paint(2600, 1100, g => {
     const sl = x => -x * slope;
     const band = (top, h, x0, x1, c1, c2) => {
       g.fillStyle = c2; g.beginPath(); g.moveTo(x0, top + sl(x0) + 14); g.lineTo(x1, top + sl(x1) + 14); g.lineTo(x1, top + h + sl(x1)); g.lineTo(x0, top + h + sl(x0)); g.closePath(); g.fill();
@@ -278,7 +278,7 @@ export function buildSteps({ ots = false } = {}) {
     };
     band(0, 130, -760, 900, '#cbbcae', '#8f8078'); band(130, 140, -860, 1000, '#c2b2a4', '#857770');
     g.strokeStyle = 'rgba(40,24,16,.35)'; g.lineWidth = 2.4; const R = mulberry(8); for (const [t, b, x0, x1] of [[0, 130, -760, 900], [130, 270, -860, 1000]]) for (let x = x0 + 140 + R() * 80; x < x1 - 60; x += 180 + R() * 90) { g.beginPath(); g.moveTo(x, t + 20 + sl(x)); g.lineTo(x + R() * 6, b - 4 + sl(x)); g.stroke(); }
-  }, { res: .9, ax: 1300, ay: 0, fin: { rim: .5, under: .3, side: .1 } });
+  }, { res: .9, ax: 1300, ay: 200, fin: { rim: .5, under: .3, side: .1 } });   // headroom above y = 0: the steps rise to the right
   L.push(new Layer({ sheet: steps, x: 0, y: stepTop(0), z: 2, d: 2.2, trans: .08, name: 'steps' }));
   const ground = paint(2800, 500, g => { g.fillStyle = '#7a6a50'; g.fillRect(-1400, 0, 2800, 500); g.fillStyle = '#3a5234'; tufts(g, -1400, 1400, 40, 46, 9, 20); g.fillRect(-1400, 40, 2800, 480); }, { res: .7, ay: 0, fin: { rim: .3, under: .3 } });
   L.push(new Layer({ sheet: ground, x: 0, y: stepTop(0) + 262, z: 2.1, d: 2.1 }));
@@ -287,7 +287,7 @@ export function buildSteps({ ots = false } = {}) {
   const contact = (w, h, a) => (g, info, l) => { const { px, py, Z } = info; g.save(); g.translate(px + 6 * Z, py + 2 * Z); g.scale(1, h / w); const gr = g.createRadialGradient(0, 0, 0, 0, 0, w * Z * l.sx); gr.addColorStop(0, `rgba(25,12,6,${a})`); gr.addColorStop(1, 'rgba(25,12,6,0)'); g.fillStyle = gr; g.fillRect(-w * Z * 1.5 * l.sx, -w * Z * 1.5 * l.sx, w * 3 * Z * l.sx, w * 3 * Z * l.sx); g.restore(); };
   const tomL = new Layer({ sheet: tomLo.dyn, x: G.tomX, y: G.tomY, z: 3, d: 2.0, sx: G.tomS, sy: G.tomS, shadow: { dx: 26, dy: 22, blur: 16, a: .34 }, name: 'tom',
     pre: (g, info, l) => { contact(110, 26, .55)(g, info, l); const f = { ...info, py: info.py + 138 * G.tomS * info.Z }; contact(150, 22, .45)(g, f, l); } });
-  const pussL = new Layer({ sheet: puss.dyn, x: G.catX, y: G.catY, z: 2.6, d: 2.2, sx: G.catS, sy: G.catS, shadow: { dx: 20, dy: 16, blur: 12, a: .32 }, name: 'puss', pre: contact(120, 18, .55) });
+  const pussL = new Layer({ sheet: puss.dyn, x: G.catX, y: G.catY, z: 2.95, d: 2.2, sx: G.catS, sy: G.catS, shadow: { dx: 16, dy: -4, blur: 12, a: .26 }, name: 'puss', pre: contact(130, 16, .6) });   // a faint shadow on the wall behind, a dark contact shadow under him
   L.push(pussL, tomL);
   // over-the-shoulder pieces (only in the focus-pull shot)
   const rear = new Layer({ sheet: tomRear(1.4), x: G.catX - 560, y: G.catY + 120, z: 7, d: 1.3, vis: ots, shadow: false, name: 'tomRear' });

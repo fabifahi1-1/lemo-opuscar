@@ -66,16 +66,26 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
   CUR_RES = Math.max(2, res);
   const tb = bodyTurn, tunic = jacket ? '#3f6fc0' : PAL.tunic, tunicD = jacket ? '#2f55a0' : '#7a4f30', cuff = jacket ? '#2a4f96' : '#6d4429', sleeveC = jacket ? '#3866b4' : '#8d5c38';
   const SK = PAL.skin, SKD = PAL.skinD, HR = Math.max(3, CUR_RES + 1);
-  const shin = sh(80, 160, 40, 10, g => { g.fillStyle = PAL.pants; g.beginPath(); g.moveTo(-24, -6); g.lineTo(24, -6); g.lineTo(20, 100); g.lineTo(-20, 100); g.closePath(); g.fill(); g.fillStyle = PAL.shoe; ell(g, 2, 110, 36, 17); g.fill(); rr(g, -21, 92, 42, 22, 8); g.fill(); });
-  const knee = sh(100, 100, 50, 50, g => { g.fillStyle = PAL.pants; ell(g, 0, 0, 40, 36); g.fill(); });
-  const kneeP = sh(100, 100, 50, 50, g => { g.fillStyle = PAL.pants; ell(g, 0, 0, 40, 36); g.fill(); g.fillStyle = '#5c4b72'; rr(g, -12, -14, 28, 24, 8); g.fill(); g.strokeStyle = '#3a2f4c'; g.lineWidth = 1.4; g.setLineDash([3.5, 3.5]); rr(g, -9, -11, 22, 18, 6); g.stroke(); g.setLineDash([]); });
+  const leg = (patch) => sh(130, 200, 65, 60, g => {
+    g.fillStyle = PAL.pants;
+    g.beginPath(); g.moveTo(-14, 92); g.bezierCurveTo(-17, 62, -24, 34, -27, 10); g.bezierCurveTo(-30, -8, -18, -24, 0, -24); g.bezierCurveTo(18, -24, 30, -10, 27, 8); g.bezierCurveTo(24, 32, 17, 62, 14, 92); g.closePath(); g.fill();   // the knee, a soft dome (the thigh goes back from it, out of sight), and the tapering shin
+    g.fillStyle = 'rgba(30,20,50,.18)'; g.beginPath(); g.moveTo(-24, 14); g.quadraticCurveTo(0, 22, 24, 12); g.quadraticCurveTo(0, 30, -24, 14); g.fill();   // a soft fold below the knee
+    g.fillStyle = PAL.shoe; g.beginPath(); g.moveTo(-17, 88); g.bezierCurveTo(-30, 96, -34, 112, -22, 118); g.bezierCurveTo(-6, 124, 22, 124, 30, 116); g.bezierCurveTo(36, 108, 26, 92, 16, 88); g.closePath(); g.fill();   // shoe
+    if (patch) {   // a soft, slightly crooked patch; the stitches follow its outline (no circles)
+      const blob = k => { g.beginPath(); g.moveTo(-11 * k, -9 * k); g.bezierCurveTo(-4 * k, -14 * k, 8 * k, -13 * k, 11 * k, -8 * k); g.bezierCurveTo(14 * k, -2 * k, 12 * k, 7 * k, 9 * k, 10 * k); g.bezierCurveTo(2 * k, 13 * k, -8 * k, 12 * k, -11 * k, 7 * k); g.bezierCurveTo(-14 * k, 1 * k, -13 * k, -5 * k, -11 * k, -9 * k); g.closePath(); };
+      g.save(); g.translate(1, -2); g.rotate(-.22); g.fillStyle = '#5c4b72'; blob(1); g.fill(); g.strokeStyle = '#3a2f4c'; g.lineWidth = 1.2; g.setLineDash([2.6, 2.6]); blob(.74); g.stroke(); g.setLineDash([]); g.restore(); }
+  });
+  const legL = leg(true), legR = leg(false);
+
+
   const torso = sh(240, 200, 120, 150, g => {
-    g.fillStyle = tunic; g.beginPath(); g.moveTo(-72, -126); g.quadraticCurveTo(0, -142, 72, -126); g.lineTo(86, 4); g.quadraticCurveTo(0, 18, -86, 4); g.closePath(); g.fill();
+    g.fillStyle = tunic; g.beginPath(); g.moveTo(-26, -140); g.bezierCurveTo(-50, -141, -74, -134, -80, -114); g.bezierCurveTo(-86, -94, -78, -60, -74, -36); g.bezierCurveTo(-79, -18, -88, -2, -82, 6);
+    g.bezierCurveTo(-40, 17, 40, 17, 82, 6); g.bezierCurveTo(88, -2, 79, -18, 74, -36); g.bezierCurveTo(78, -60, 86, -94, 80, -114); g.bezierCurveTo(74, -134, 50, -141, 26, -140); g.closePath(); g.fill();
     g.fillStyle = tunicD; g.beginPath(); g.moveTo(-70, -126); g.quadraticCurveTo(0, -116, 70, -126); g.lineTo(44, -100); g.quadraticCurveTo(0, -88, -44, -100); g.closePath(); g.fill();
     g.fillStyle = SK; g.beginPath(); g.moveTo(-24, -132); g.quadraticCurveTo(0, -112, 24, -132); g.lineTo(20, -140); g.lineTo(-20, -140); g.closePath(); g.fill();
     const ao = g.createRadialGradient(4, -128, 0, 4, -128, 46); ao.addColorStop(0, 'rgba(40,16,4,.45)'); ao.addColorStop(1, 'rgba(40,16,4,0)');   // under the chin
     g.save(); g.globalCompositeOperation = 'source-atop'; g.fillStyle = ao; g.fillRect(-60, -150, 120, 70); g.restore();
-    g.fillStyle = '#4a3326'; rr(g, -84, -30, 168, 18, 5); g.fill();
+    g.fillStyle = '#4a3326'; g.beginPath(); g.moveTo(-77, -30); g.quadraticCurveTo(0, -24, 77, -30); g.quadraticCurveTo(80, -21, 78, -12); g.quadraticCurveTo(0, -6, -78, -12); g.quadraticCurveTo(-80, -21, -77, -30); g.closePath(); g.fill();   // belt, following the body's curve
   });
   const headBase = sh(200, 200, 100, 160, g => {
     const ng = g.createLinearGradient(0, -34, 0, 8); ng.addColorStop(0, '#a8704c'); ng.addColorStop(1, SK); g.fillStyle = ng; rr(g, -22, -34, 44, 44, 14); g.fill();   // neck, dark under the chin
@@ -87,22 +97,26 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
   });
   const tuft = sh(60, 60, 16, 50, g => { g.fillStyle = PAL.hair; g.beginPath(); g.moveTo(-8, 4); g.bezierCurveTo(-16, -22, 18, -28, 20, -8); g.bezierCurveTo(8, -14, 0, -6, 2, 6); g.closePath(); g.fill(); });
   const cyl = (g, x0, x1, base) => { const gr = g.createLinearGradient(x0, 0, x1, 0); gr.addColorStop(0, 'rgba(255,236,205,.28)'); gr.addColorStop(.45, 'rgba(255,236,205,0)'); gr.addColorStop(1, 'rgba(40,16,4,.32)'); g.save(); g.globalCompositeOperation = 'source-atop'; g.fillStyle = gr; g.fillRect(x0, -40, x1 - x0, 200); g.restore(); };
-  const upper = sh(70, 120, 35, 14, g => { g.fillStyle = sleeveC; g.beginPath(); g.ellipse(0, 0, 22, 14, 0, Math.PI, 0); g.bezierCurveTo(24, 30, 20, 64, 18, 82); g.arc(0, 82, 18, 0, Math.PI); g.bezierCurveTo(-20, 64, -24, 30, -22, 0); g.closePath(); g.fill(); cyl(g, -24, 24); });
-  const fore = sh(64, 100, 32, 22, g => {
-    g.fillStyle = SK; g.beginPath(); g.moveTo(-13, 24); g.bezierCurveTo(-14, 40, -11, 54, -9, 62); g.quadraticCurveTo(0, 68, 9, 62); g.bezierCurveTo(11, 54, 14, 40, 13, 24); g.closePath(); g.fill(); cyl(g, -14, 14);   // forearm and wrist
-    g.fillStyle = sleeveC; g.beginPath(); g.arc(0, 0, 19, 0, TAU); g.fill(); g.beginPath(); g.moveTo(-18, 2); g.bezierCurveTo(-18, 12, -17, 18, -16, 24); g.lineTo(16, 24); g.bezierCurveTo(17, 18, 18, 12, 18, 2); g.closePath(); g.fill(); cyl(g, -19, 19);   // elbow and sleeve
-    g.fillStyle = cuff; g.beginPath(); g.ellipse(0, 24, 17, 6, 0, 0, TAU); g.fill();
+  // arms (director's note 3): no tubes. The upper arm tapers from a soft shoulder to the elbow (rounded end over the forearm,
+  // so the bend reads as a soft elbow); the forearm tapers on to a soft cuff closed round the wrist. Bones: 62 + 46.
+  const upper = sh(60, 100, 30, 16, g => { g.fillStyle = sleeveC; g.beginPath(); g.moveTo(-17, 0); g.bezierCurveTo(-17, -15, 17, -15, 17, 0); g.bezierCurveTo(17, 22, 15, 44, 13, 58); g.bezierCurveTo(12, 70, -12, 70, -13, 58); g.bezierCurveTo(-15, 44, -17, 22, -17, 0); g.closePath(); g.fill(); cyl(g, -18, 18);
+    g.strokeStyle = 'rgba(70,40,18,.35)'; g.lineWidth = 1.4; g.beginPath(); g.moveTo(-8, 52); g.quadraticCurveTo(-2, 56, 6, 53); g.stroke(); });   // a soft crease at the elbow
+  const fore = sh(50, 80, 25, 14, g => {   // elbow (anchor) to wrist: the sleeve tapers and ends in a soft cuff; a little wrist below it
+    g.fillStyle = SK; g.beginPath(); g.moveTo(-7, 38); g.bezierCurveTo(-7, 44, -6.5, 49, -5, 52); g.quadraticCurveTo(0, 55, 5, 52); g.bezierCurveTo(6.5, 49, 7, 44, 7, 38); g.closePath(); g.fill();
+    g.fillStyle = sleeveC; g.beginPath(); g.moveTo(-12.5, -4); g.bezierCurveTo(-12, -13, 12, -13, 12.5, -4); g.bezierCurveTo(13, 10, 11, 24, 10, 36); g.lineTo(-10, 36); g.bezierCurveTo(-11, 24, -13, 10, -12.5, -4); g.closePath(); g.fill(); cyl(g, -13, 13);
+    g.fillStyle = cuff; g.beginPath(); g.moveTo(-11, 34); g.bezierCurveTo(-11.5, 30, 11.5, 30, 11, 34); g.bezierCurveTo(12, 39, 10.5, 43, 8.5, 44.5); g.bezierCurveTo(3, 46.5, -3, 46.5, -8.5, 44.5); g.bezierCurveTo(-10.5, 43, -12, 39, -11, 34); g.closePath(); g.fill();   // soft cuff, closed
   });
   const bread = makeBread(HR);
   // left hand (mirrored for the right): back of the hand and heel behind the bread; slim fingertips round the side edge; the thumb on the top front
-  const handBack = sh(80, 90, 40, 45, g => { g.fillStyle = SK; g.beginPath(); g.moveTo(-4, 36); g.bezierCurveTo(-24, 30, -30, 6, -24, -14); g.bezierCurveTo(-18, -30, 0, -34, 12, -24); g.lineTo(16, 30); g.closePath(); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1.4; g.beginPath(); g.moveTo(-18, 14); g.quadraticCurveTo(-10, 20, -2, 16); g.stroke(); }, HR);
-  const tips = sh(50, 70, 10, 35, g => {
-    for (const [y, a] of [[-13, .28], [-1, .12], [11, -.04]]) {
-      g.save(); g.translate(0, y); g.rotate(a); g.fillStyle = SK; g.beginPath(); g.moveTo(-6, -4.6); g.quadraticCurveTo(6, -6.4, 13, -2.6); g.quadraticCurveTo(16, 0, 13, 2.8); g.quadraticCurveTo(6, 5.4, -6, 4.6); g.closePath(); g.fill();
-      g.fillStyle = '#f3cdb0'; ell(g, 10.5, 0, 2.6, 2.2); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1.1; g.beginPath(); g.moveTo(2, -4.8); g.quadraticCurveTo(3.4, 0, 2, 4.8); g.stroke(); g.restore();
+  const handBehind = sh(150, 130, 85, 65, g => {   // origin = the bread's centre
+    g.fillStyle = SK;
+    g.beginPath(); g.moveTo(-47, 38); g.bezierCurveTo(-54, 34, -57, 22, -56, 8); g.bezierCurveTo(-55, 0, -51, -8, -45, -10); g.lineTo(-40, 12); g.bezierCurveTo(-40, 24, -41, 32, -47, 38); g.closePath(); g.fill();   // the slim edge of the hand, wrist to knuckles
+    for (const [y, len] of [[-12, 11], [-3, 12], [6, 11.5], [14, 9]]) {   // the fingers wrap the back of the loaf; only their rounded tips show past its edge
+      g.beginPath(); g.moveTo(-40, y - 4); g.bezierCurveTo(-48, y - 4.5, -52 - len * .3, y - 3.8, -50 - len * .4, y); g.bezierCurveTo(-52 - len * .3, y + 3.8, -48, y + 4.5, -40, y + 4); g.closePath(); g.fill();
+      g.strokeStyle = SKD; g.lineWidth = 1; g.beginPath(); g.moveTo(-45, y + 4.2); g.lineTo(-40, y + 4.2); g.stroke();
     }
   }, HR);
-  const thumb = sh(70, 40, 6, 22, g => { g.fillStyle = SK; g.beginPath(); g.moveTo(-4, 8); g.bezierCurveTo(4, -5, 22, -9, 34, -6); g.bezierCurveTo(40, -4, 40, 4, 33, 5.5); g.bezierCurveTo(22, 6.5, 10, 9, 0, 14); g.closePath(); g.fill(); g.fillStyle = '#f3cdb0'; rr(g, 28, -4.6, 8, 6.4, 3.2); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1.2; g.beginPath(); g.moveTo(16, -6.5); g.quadraticCurveTo(18, 0, 16, 6); g.stroke(); }, HR);
+  const thumb = sh(60, 30, 4, 15, g => { g.fillStyle = SK; g.beginPath(); g.moveTo(-3, 4); g.bezierCurveTo(2, -4, 14, -6, 25, -4.5); g.bezierCurveTo(30, -3.5, 31, 2.5, 25, 3.8); g.bezierCurveTo(16, 5, 7, 6.5, -1, 9); g.closePath(); g.fill(); g.fillStyle = '#f3cdb0'; g.beginPath(); g.ellipse(25.5, -.5, 3.2, 2.4, 0, 0, TAU); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1; g.beginPath(); g.moveTo(13, -5); g.quadraticCurveTo(14.5, 0, 13, 4.8); g.stroke(); }, HR);
   const face = (g, p) => {   // head space (origin at the neck pivot). s.turn: -1..1, + = facing screen right
     const s = p.face || {}, th = clamp(s.turn ?? tb, -1, 1), sh2 = th * 18, blink = s.blink ?? 0, lx = (s.lookX || 0) * 7, ly = (s.lookY || 0) * 8;
     const dn = clamp((s.lookY || 0) - .4, 0, .6) * 16; g.save(); g.translate(0, dn);
@@ -130,17 +144,15 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
   };
   const k1 = tb * 14, spn = 1 - .14 * Math.abs(tb);
   const parts = [
-    P('shinL', shin, null, -58 * spn + k1, -10, 1.0), P('shinR', shin, null, 58 * spn + k1, -10, .9),
     P('torso', torso, null, 0, 0, 2, { sx: 1 - .08 * Math.abs(tb) }),
     P('head', headBase, 'torso', tb * 6, -128, 3, { hook: face, drop: 1 }),
     P('hair', hair, 'head', 0, -80, 3.5), P('tuft', tuft, 'hair', 2, -70, 3.6),
-    P('kneeL', kneeP, null, -60 * spn + k1, -16, tb >= 0 ? 3.3 : 3.2, { drop: 1 }), P('kneeR', knee, null, 60 * spn + k1, -16, tb >= 0 ? 3.2 : 3.3, { drop: 1 }),
-    P('uArmL', upper, 'torso', -70 + tb * 6, -112, 4, { drop: 1 }), P('fArmL', fore, 'uArmL', 0, 80, 4.2, { drop: 1 }),
-    P('uArmR', upper, 'torso', 70 - tb * 8, -112, 3.9, { drop: 1 }), P('fArmR', fore, 'uArmR', 0, 80, 4.1, { drop: 1 }),
-    P('handBackL', handBack, 'bread', -40, 14, 5.4, { drop: 1, sx: .74, sy: .74 }), P('handBackR', handBack, 'bread', 40, 14, 5.4, { sx: -.74, sy: .74, drop: 1 }),
+    P('legL', legL, null, -58 * spn + k1, -16, tb >= 0 ? 3.3 : 3.2, { drop: 1 }), P('legR', legR, null, 58 * spn + k1, -16, tb >= 0 ? 3.2 : 3.3, { drop: 1, sx: -1 }),
+    P('uArmL', upper, 'torso', -66 + tb * 6, -112, 4.2, { drop: 1 }), P('fArmL', fore, 'uArmL', 0, 62, 4, { drop: 1 }),
+    P('uArmR', upper, 'torso', 66 - tb * 8, -112, 4.1, { drop: 1 }), P('fArmR', fore, 'uArmR', 0, 62, 3.9, { drop: 1 }),
+    P('handL', handBehind, 'bread', 0, 0, 5.6, { drop: 1 }), P('handR', handBehind, 'bread', 0, 0, 5.6, { sx: -1, drop: 1 }),
     P('bread', bread, 'torso', tb * 8, -76, 6, { drop: 2 }),
-    P('tipsL', tips, 'bread', -47, 4, 6.5), P('tipsR', tips, 'bread', 47, 4, 6.5, { sx: -1 }),
-    P('thumbL', thumb, 'bread', -36, -22, 7, { drop: 1, rot: .14 }), P('thumbR', thumb, 'bread', 36, -22, 7, { sx: -1, drop: 1, rot: -.14 }),
+    P('thumbL', thumb, 'bread', -40, -25, 7, { drop: 1, rot: .1 }), P('thumbR', thumb, 'bread', 40, -25, 7, { sx: -1, drop: 1, rot: -.1 }),
   ];
   const rig = new Rig(parts, 440, 540, 220, 340, CUR_RES); CUR_RES = 2;
   rig.height = 300;   // seat to the top of the hair, puppet units
@@ -154,12 +166,12 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     T.head.rot = Math.sin(t * .45 + 1) * .02 + val(o.headTilt, 0); T.head.jy = -128 + val(o.headDip, 0); T.head.jx = tb * 6 + ht * 3;
     T.hair.jx = -ht * 10; T.tuft.rot = val(o.tuftRot, 0) + Math.sin(t * 1.3) * .03;
     const grip = val(o.worry, 0);   // how hard the fingers grip (0..1)
-    T.tipsL.jx = -47 + 2.4 * grip; T.tipsR.jx = 47 - 2.4 * grip; T.thumbL.rot = .14 + .1 * grip; T.thumbR.rot = -.14 - .1 * grip;
-    if (o.rubAt != null) { const u = clamp((t - o.rubAt) / .9); if (u > 0 && u < 1) T.thumbL.rot += Math.sin(u * TAU) * .22; }
+    T.handL.sx = 1 - .025 * grip; T.handR.sx = -(1 - .025 * grip); T.thumbL.rot = .1 + .05 * grip; T.thumbR.rot = -.1 - .05 * grip;
+    if (o.rubAt != null) { const u = clamp((t - o.rubAt) / .9); if (u > 0 && u < 1) T.thumbL.rot += Math.sin(u * TAU) * .14; }
     T.bread.jy = -76 + Math.sin(t / 3.6 * TAU) * 1.4;
     for (const [u, f, side] of [['uArmL', 'fArmL', -1], ['uArmR', 'fArmR', 1]]) {
-      const sx = side * 70 + (side < 0 ? tb * 6 : -tb * 8), sy = -112 * T.torso.sy, wx = side * 48 + tb * 8, wy = T.bread.jy + 38;
-      const [a1, a2] = ik(wx - sx, wy - sy, 80, 60, side < 0 ? -1 : 1); T[u].rot = a1; T[f].rot = a2;
+      const sx = side * 66 + (side < 0 ? tb * 6 : -tb * 8), sy = -112 * T.torso.sy, wx = side * 48 + tb * 8, wy = T.bread.jy + 34;
+      const [a1, a2] = ik(wx - sx, wy - sy, 62, 46, side < 0 ? -1 : 1); T[u].rot = a1; T[f].rot = a2;
     }
     return rig.render();
   };

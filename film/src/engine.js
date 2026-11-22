@@ -147,7 +147,7 @@ export function drawScene(g, sc) {
     const hw = (sp.c.width / sp.res) * Z * Math.max(1, Math.abs(l.sx)) * .75 + 60, hh = (sp.c.height / sp.res) * Z * Math.max(1, Math.abs(l.sy)) * .75 + 60;
     const rad = Math.hypot(hw, hh); if (px + rad < 0 || px - rad > W || py + rad < 0 || py - rad > H) { prevD = l.d; continue; }
     // soft cast shadow on the layer(s) behind: offset away from the light, bigger and softer with the depth gap
-    if (l.shadow) {
+    if (l.shadow && !globalThis.MASKS) {
       let dx, dy, bl, a;
       if (l.shadow === 'auto') {
         const gap = prevD == null ? .4 : clamp(prevD - l.d, .05, 30);
@@ -161,11 +161,11 @@ export function drawScene(g, sc) {
         g.globalAlpha = a * l.alpha; g.filter = `blur(${bl}px) brightness(0)`; put(g, sp, dx / Z, dy / Z); g.filter = 'none'; g.globalAlpha = 1;
       }
     }
-    if (l.pre) { g.save(); l.pre(g, info, l); g.restore(); }
+    if (l.pre && !globalThis.MASKS) { g.save(); l.pre(g, info, l); g.restore(); }   // (measurement mode draws no shadows)
     // the paper itself
     const filt = ((B > .45 && s.dyn) ? `blur(${B}px) ` : '') + ((l.bright !== undefined && l.bright < .99) ? `brightness(${l.bright}) ` : '') + (l.sat ? `saturate(${l.sat})` : '');
-    if (filt) g.filter = filt;
     const MK = globalThis.MASKS && l.name && globalThis.MASKS[l.name];
+    if (filt && !MK) g.filter = filt;
     if (MK) {   // measurement mode: this layer in one flat colour (occlusion by nearer layers is kept)
       sg.globalCompositeOperation = 'source-over'; sg.clearRect(0, 0, W, H); sg.globalAlpha = 1; put(sg, sp); sg.globalCompositeOperation = 'source-in'; sg.fillStyle = MK; sg.fillRect(0, 0, W, H);
       g.drawImage(SC, 0, 0); if (l.after) { g.save(); l.after(g, info, l); g.restore(); } prevD = l.d; continue;
