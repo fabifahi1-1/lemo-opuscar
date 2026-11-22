@@ -108,14 +108,26 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
   });
   const bread = makeBread(HR);
   // left hand (mirrored for the right): back of the hand and heel behind the bread; slim fingertips round the side edge; the thumb on the top front
-  const handBehind = sh(150, 130, 85, 65, g => {   // origin = the bread's centre
+  // each hand grips the loaf from its side: the palm sits against the side (behind the loaf's edge), ALL FOUR fingers curve
+  // over the front crust, and the thumb lies on top. Origin = the bread's centre; the right hand is the mirror image.
+  const handBehind = sh(150, 130, 85, 65, g => {   // the palm and the heel of the hand, against the loaf's side
     g.fillStyle = SK;
-    g.beginPath(); g.moveTo(-47, 38); g.bezierCurveTo(-54, 34, -57, 22, -56, 8); g.bezierCurveTo(-55, 0, -51, -8, -45, -10); g.lineTo(-40, 12); g.bezierCurveTo(-40, 24, -41, 32, -47, 38); g.closePath(); g.fill();   // the slim edge of the hand, wrist to knuckles
-    for (const [y, len] of [[-12, 11], [-3, 12], [6, 11.5], [14, 9]]) {   // the fingers wrap the back of the loaf; only their rounded tips show past its edge
-      g.beginPath(); g.moveTo(-40, y - 4); g.bezierCurveTo(-48, y - 4.5, -52 - len * .3, y - 3.8, -50 - len * .4, y); g.bezierCurveTo(-52 - len * .3, y + 3.8, -48, y + 4.5, -40, y + 4); g.closePath(); g.fill();
-      g.strokeStyle = SKD; g.lineWidth = 1; g.beginPath(); g.moveTo(-45, y + 4.2); g.lineTo(-40, y + 4.2); g.stroke();
+    g.beginPath(); g.moveTo(-47, 38); g.bezierCurveTo(-54, 34, -57, 22, -56, 8); g.bezierCurveTo(-55, -6, -50, -22, -42, -27); g.bezierCurveTo(-38, -26, -36, -22, -36, -18); g.lineTo(-38, 12); g.bezierCurveTo(-40, 24, -41, 32, -47, 38); g.closePath(); g.fill();
+  }, HR);
+  const FING = [[-53, 13, 16, -.1, 6.6], [-53.5, 4.6, 20, -.03, 7.4], [-50.5, -4, 22, .05, 7.9], [-46, -12.6, 20, .13, 7.6]];   // pinky, ring, middle, index: base x, y, length, angle, width
+  const fingers = sh(150, 130, 85, 65, g => {
+    for (const [bx, by, L, a, w] of FING) {
+      g.save(); g.translate(bx, by); g.rotate(a);
+      const finger = () => { g.beginPath(); g.moveTo(-2, -w / 2); g.bezierCurveTo(L * .4, -w / 2 - .3, L * .75, -w * .47, L - 3, -w * .42); g.bezierCurveTo(L + 1.4, -w * .3, L + 1.4, w * .3, L - 3, w * .42); g.bezierCurveTo(L * .75, w * .47, L * .4, w / 2 + .3, -2, w / 2); g.closePath(); };
+      const sg = g.createLinearGradient(0, -w / 2, 0, w / 2); sg.addColorStop(0, '#f7c9a6'); sg.addColorStop(.55, SK); sg.addColorStop(1, '#d99872');
+      g.fillStyle = sg; finger(); g.fill();
+      g.strokeStyle = 'rgba(150,80,50,.55)'; g.lineWidth = .9; g.beginPath(); g.moveTo(1, w / 2 - .2); g.bezierCurveTo(L * .4, w / 2 + .1, L * .75, w * .45, L - 3, w * .4); g.stroke();   // the line between this finger and the next
+      g.strokeStyle = 'rgba(150,80,50,.45)'; g.lineWidth = .8; g.beginPath(); g.moveTo(L * .42, -w * .32); g.quadraticCurveTo(L * .45, 0, L * .42, w * .32); g.stroke();   // the middle knuckle crease
+      g.fillStyle = '#f6d8c0'; g.beginPath(); g.moveTo(L - 6.2, -w * .24); g.bezierCurveTo(L - 3, -w * .3, L - .6, -w * .2, L - .6, 0); g.bezierCurveTo(L - .6, w * .2, L - 3, w * .3, L - 6.2, w * .24); g.bezierCurveTo(L - 7, w * .1, L - 7, -w * .1, L - 6.2, -w * .24); g.closePath(); g.fill();   // the nail
+      g.restore();
     }
   }, HR);
+  const FTIPS = FING.map(([bx, by, L, a]) => [bx + Math.cos(a) * L, by + Math.sin(a) * L]);
   const thumb = sh(60, 30, 4, 15, g => { g.fillStyle = SK; g.beginPath(); g.moveTo(-3, 4); g.bezierCurveTo(2, -4, 14, -6, 25, -4.5); g.bezierCurveTo(30, -3.5, 31, 2.5, 25, 3.8); g.bezierCurveTo(16, 5, 7, 6.5, -1, 9); g.closePath(); g.fill(); g.fillStyle = '#f3cdb0'; g.beginPath(); g.ellipse(25.5, -.5, 3.2, 2.4, 0, 0, TAU); g.fill(); g.strokeStyle = SKD; g.lineWidth = 1; g.beginPath(); g.moveTo(13, -5); g.quadraticCurveTo(14.5, 0, 13, 4.8); g.stroke(); }, HR);
   const face = (g, p) => {   // head space (origin at the neck pivot). s.turn: -1..1, + = facing screen right
     const s = p.face || {}, th = clamp(s.turn ?? tb, -1, 1), sh2 = th * 18, blink = s.blink ?? 0, lx = (s.lookX || 0) * 7, ly = (s.lookY || 0) * 8;
@@ -151,6 +163,7 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     P('uArmL', upper, 'torso', -66 + tb * 6, -112, 4.2, { drop: 1 }), P('fArmL', fore, 'uArmL', 0, 62, 4, { drop: 1 }),
     P('uArmR', upper, 'torso', 66 - tb * 8, -112, 4.1, { drop: 1 }), P('fArmR', fore, 'uArmR', 0, 62, 3.9, { drop: 1 }),
     P('handL', handBehind, 'bread', 0, 0, 5.6, { drop: 1 }), P('handR', handBehind, 'bread', 0, 0, 5.6, { sx: -1, drop: 1 }),
+    P('fingL', fingers, 'bread', 0, 0, 6.9, { drop: 1 }), P('fingR', fingers, 'bread', 0, 0, 6.9, { sx: -1, drop: 1 }),
     P('bread', bread, 'torso', tb * 8, -76, 6, { drop: 2 }),
     P('thumbL', thumb, 'bread', -40, -25, 7, { drop: 1, rot: .1 }), P('thumbR', thumb, 'bread', 40, -25, 7, { sx: -1, drop: 1, rot: -.1 }),
   ];
@@ -166,7 +179,7 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     T.head.rot = Math.sin(t * .45 + 1) * .02 + val(o.headTilt, 0); T.head.jy = -128 + val(o.headDip, 0); T.head.jx = tb * 6 + ht * 3;
     T.hair.jx = -ht * 10; T.tuft.rot = val(o.tuftRot, 0) + Math.sin(t * 1.3) * .03;
     const grip = val(o.worry, 0);   // how hard the fingers grip (0..1)
-    T.handL.sx = 1 - .025 * grip; T.handR.sx = -(1 - .025 * grip); T.thumbL.rot = .1 + .05 * grip; T.thumbR.rot = -.1 - .05 * grip;
+    T.handL.sx = T.fingL.sx = 1 - .025 * grip; T.handR.sx = T.fingR.sx = -(1 - .025 * grip); T.thumbL.rot = .1 + .05 * grip; T.thumbR.rot = -.1 - .05 * grip;
     if (o.rubAt != null) { const u = clamp((t - o.rubAt) / .9); if (u > 0 && u < 1) T.thumbL.rot += Math.sin(u * TAU) * .14; }
     T.bread.jy = -76 + Math.sin(t / 3.6 * TAU) * 1.4;
     for (const [u, f, side] of [['uArmL', 'fArmL', -1], ['uArmR', 'fArmR', 1]]) {
@@ -175,6 +188,7 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     }
     return rig.render();
   };
+  rig.FTIPS = FTIPS;
   return rig;
 }
 

@@ -145,3 +145,19 @@ Sound (ffmpeg ebur128 on the final file, identical to sample 4):
 | Opening | −23.9 LUFS, loudest moment −20.2 |
 | Pauses | −25.8 to −26.2 LUFS |
 | True peak | −9.0 dBTP |
+
+### Sample 5, revision: all four fingers on the bread
+
+Your note: "There is only one finger from left and right hand. Either it should be all the fingers or none." The lone thumb lying on top read as a single finger.
+
+- **Now (all the fingers):** each hand grips the loaf from its side.
+  - The palm rests against the side of the loaf.
+  - All four fingers (index, middle, ring, little) curve over the front crust, side by side, each with a knuckle crease and a nail.
+  - The thumb lies on top.
+  - The right hand mirrors the left. Each whole hand is about 0.7 of the face height.
+- The fingers and palm are pinned to the loaf like before.
+- **Frame-by-frame check** (`film/checks/hands_check.txt`). All 84 frames from 8.0 to 11.5 s were checked, tracking all eight fingertips, both palms and both thumbs in the loaf's own coordinates:
+  - the fingers move only during the one squeeze, 8.83–9.88 s, at most 1.05 puppet units, inward;
+  - the thumb moves only during the one rub, 10.21–11.08 s;
+  - in every other frame they are exactly still.
+- Rebuilt from scratch. Nothing else changed: the sound report is identical, and the cat, camera, text and light are untouched.

@@ -1,5 +1,5 @@
-// Do the fingers stay put on the bread? For every frame of a span, take Tom's rig and map the four fingertips and the
-// thumb tip into the loaf's own coordinates. Anything that moves there slides on the bread. usage: node hands_check.mjs FROM TO
+// Do the fingers stay put on the bread? For every frame of a span, take Tom's rig and map all four fingertips of each hand,
+// the palm and the thumb tip into the loaf's own coordinates. Anything that moves there slides on the bread. usage: node hands_check.mjs FROM TO
 import { openDemo, closeServer } from '/home/user/lemo-opuscar/core/render/page.mjs';
 const [A, B] = process.argv.slice(2).map(Number), FPS = 24;
 const { browser, page } = await openDemo('film', {});
@@ -10,8 +10,9 @@ for (let f = Math.ceil(A * FPS); f / FPS < B; f++) {
     window.render(t); const sc = globalThis.LAST_SCENE, rig = sc.hires ? sc.tomHi : sc.tomLo, P = rig.parts;
     const loc = p => { const c = Math.cos(p.rot), s = Math.sin(p.rot); return [c * p.sx, s * p.sx, -s * p.sy, c * p.sy, p.jx, p.jy]; };
     const ap = (m, x, y) => [m[0] * x + m[2] * y + m[4], m[1] * x + m[3] * y + m[5]];
-    const tips = [[-50, -12], [-50, -3], [-50, 6], [-48, 14]], out = {};
-    for (const h of ['handL', 'handR']) tips.forEach((q, i) => out[h + i] = ap(loc(P[h]), ...q));   // hands are children of the bread
+    const out = {};
+    for (const h of ['fingL', 'fingR']) rig.FTIPS.forEach((q, i) => out[h + i] = ap(loc(P[h]), ...q));   // the four fingertips of each hand (children of the bread)
+    for (const h of ['handL', 'handR']) out[h] = ap(loc(P[h]), -42, -27);   // the palm
     for (const h of ['thumbL', 'thumbR']) out[h] = ap(loc(P[h]), 52, 0);
     return { t, vis: sc.tomL?.vis !== false, out };
   }, t));
