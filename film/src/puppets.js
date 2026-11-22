@@ -239,8 +239,8 @@ export function breadRear(res = 3) {
 }
 
 // ================= Puss, seated (three-quarter turn baked in: turn < 0 faces screen left) =================
-export function makePuss({ res = 3, turn = -.5 } = {}) {
-  CUR_RES = res;
+export function catSheets(res = 3, turn = -.5) {
+  const prev = CUR_RES; CUR_RES = res;
   const O = PAL.orange, OD = PAL.orangeD, Wt = PAL.white, tr = turn, f = tr * 18;
   const tail = sh(200, 260, 40, 230, g => { g.fillStyle = O; g.beginPath(); g.moveTo(-18, 0); g.bezierCurveTo(70, -30, 130, -80, 118, -170); g.bezierCurveTo(112, -205, 88, -214, 76, -190); g.bezierCurveTo(86, -130, 50, -70, -18, -40); g.closePath(); g.fill(); g.fillStyle = OD; for (const [x, y, a] of [[58, -44, .5], [92, -88, .2], [108, -134, -.1]]) { g.save(); g.translate(x, y); g.rotate(a); rr(g, -20, -7, 40, 14, 6); g.fill(); g.restore(); } g.fillStyle = Wt; ell(g, 94, -196, 18, 15); g.fill(); });
   const body = sh(330, 330, 165, 300, g => {
@@ -256,44 +256,76 @@ export function makePuss({ res = 3, turn = -.5 } = {}) {
     g.fillStyle = OD; for (const dx of [-26, 0, 26]) { rr(g, dx - 6 + f * .6, -166, 12, 30 - Math.abs(dx) * .3, 6); g.fill(); }
     g.fillStyle = Wt; ell(g, -26 + f * 1.25, -42, 36 * (tr < 0 ? 1 : .8), 28, .2); g.fill(); ell(g, 26 + f * 1.25, -42, 36 * (tr < 0 ? .8 : 1), 28, -.2); g.fill();
   });
-  const ear = () => sh(90, 110, 45, 90, g => { g.fillStyle = O; g.beginPath(); g.moveTo(-28, 4); g.lineTo(-8, -78); g.lineTo(32, -16); g.closePath(); g.fill(); g.fillStyle = PAL.pink; g.beginPath(); g.moveTo(-16, -6); g.lineTo(-6, -58); g.lineTo(18, -18); g.closePath(); g.fill(); });
+  const ear = () => sh(90, 110, 45, 90, g => { g.fillStyle = O; g.beginPath(); g.moveTo(-28, 4); g.lineTo(-8, -78); g.lineTo(32, -16); g.closePath(); g.fill(); g.fillStyle = PAL.pink; g.beginPath(); g.moveTo(-16, -6); g.lineTo(-6, -58); g.lineTo(18, -18); g.closePath(); g.fill(); }, res);
   const faceFn = (g, p) => {
-    const s = p.face || {}, blink = s.blink ?? 0, lx = (s.lookX ?? -.6) * 13, ly = (s.lookY ?? .4) * 11;
+    const s = p.face || {}, blink = s.blink ?? 0, lx = (s.lookX ?? -.6) * 13, ly = (s.lookY ?? .4) * 11, eyes = s.eyes || 'open';
     for (const sx of [-1, 1]) {
       const far = sx * tr > 0, ew = far ? 1 - .3 * Math.abs(tr) : 1, ex = sx * 42 * (far ? 1 - .22 * Math.abs(tr) : 1) + f, ey = -92;
-      if (blink > .88) { g.strokeStyle = '#3a2a24'; g.lineWidth = 4.4; g.lineCap = 'round'; g.beginPath(); g.moveTo(ex - 20 * ew, ey); g.quadraticCurveTo(ex, ey + 8, ex + 20 * ew, ey); g.stroke(); }
+      const wink = (eyes === 'winkL' && sx < 0) || (eyes === 'winkR' && sx > 0);
+      if (eyes === 'happy' || wink) { g.strokeStyle = '#3a2a24'; g.lineWidth = 4.6; g.lineCap = 'round'; g.beginPath(); g.moveTo(ex - 20 * ew, ey + 6); g.quadraticCurveTo(ex, ey - 14, ex + 20 * ew, ey + 6); g.stroke(); }
+      else if (blink > .88) { g.strokeStyle = '#3a2a24'; g.lineWidth = 4.4; g.lineCap = 'round'; g.beginPath(); g.moveTo(ex - 20 * ew, ey); g.quadraticCurveTo(ex, ey + 8, ex + 20 * ew, ey); g.stroke(); }
       else {
-        g.save(); g.translate(ex, ey); g.scale(ew, 1 - blink * .95);
-        g.fillStyle = '#fffbe9'; ell(g, 0, 0, 26, 30); g.fill(); g.fillStyle = PAL.green; ell(g, lx * .9, ly * .9, 20, 24); g.fill();
-        g.fillStyle = PAL.ink; ell(g, lx, ly, 6, 20); g.fill(); g.fillStyle = '#fff'; ell(g, lx - 6, ly - 9, 5, 6); g.fill();
-        if (blink > 0) { g.fillStyle = O; g.fillRect(-30, -34, 60, 34 * Math.min(1, blink * 1.1)); }
+        const wide = eyes === 'wide' ? 1 : (s.wide || 0);
+        g.save(); g.translate(ex, ey); g.scale(ew * (1 + wide * .12), (1 - blink * .95) * (1 + wide * .15));
+        g.fillStyle = '#fffbe9'; ell(g, 0, 0, 26, 30); g.fill(); g.fillStyle = PAL.green; ell(g, lx * .9, ly * .9, 20 - wide * 6, 24 - wide * 8); g.fill();
+        g.fillStyle = PAL.ink; if (wide > .3) { ell(g, lx, ly, 5, 6); g.fill(); } else { ell(g, lx, ly, 6, 20); g.fill(); } g.fillStyle = '#fff'; ell(g, lx - 6, ly - 9, 5, 6); g.fill();
+        if (s.sparkle) { g.fillStyle = '#fff'; g.save(); g.translate(lx + 6, ly - 12); g.rotate(.3); const k = s.sparkle * 7; g.beginPath(); for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4, r = i % 2 ? k * .35 : k; g.lineTo(Math.cos(a) * r, Math.sin(a) * r); } g.closePath(); g.fill(); g.restore(); }
+        const lid = (eyes === 'half' ? .5 : 0) + (s.lid || 0);
+        if (blink > 0 || lid > 0) { g.fillStyle = O; g.fillRect(-30, -34, 60, 34 * Math.min(1, Math.max(blink * 1.1, lid * 1.15))); if (lid > 0) { g.strokeStyle = '#3a2a24'; g.lineWidth = 3; g.beginPath(); g.moveTo(-24, -34 + 34 * lid * 1.15); g.quadraticCurveTo(0, -30 + 34 * lid * 1.15, 24, -34 + 34 * lid * 1.15); g.stroke(); } }
         g.restore();
       }
-      g.strokeStyle = OD; g.lineWidth = 5; g.lineCap = 'round'; g.beginPath(); g.moveTo(ex - 16 * ew, -128 - (s.brow ?? 0) * 8); g.lineTo(ex + 16 * ew, -128 - (s.brow ?? 0) * 8); g.stroke();
+      const bU = (s.brow ?? 0) + (sx < 0 ? (s.browL || 0) : (s.browR || 0)), bt = (s.browTilt || 0) * 7 * (sx * (tr < 0 ? 1 : 1));
+      g.strokeStyle = OD; g.lineWidth = 5; g.lineCap = 'round'; g.beginPath(); g.moveTo(ex - 16 * ew, -128 - bU * 8 + bt * sx); g.lineTo(ex + 16 * ew, -128 - bU * 8 - bt * sx); g.stroke();
     }
-    const tw = s.sniff || 0, nx = f * 1.45;
+    const tw = s.sniff || 0, nx = f * 1.45, m = s.mouth || 'closed', o = Math.max(0, Math.min(1, s.talk || 0));
     g.fillStyle = '#e8708c'; g.beginPath(); g.moveTo(nx - 9 * (1 + tw * .15), -56 - tw * 2); g.lineTo(nx + 9 * (1 + tw * .15), -56 - tw * 2); g.lineTo(nx, -45 - tw * 1.2); g.closePath(); g.fill();
-    g.strokeStyle = '#6b3a30'; g.lineWidth = 3.2; g.lineCap = 'round'; g.beginPath(); g.moveTo(nx, -45); g.lineTo(nx, -37); g.moveTo(nx - 14, -34); g.quadraticCurveTo(nx - 7, -27, nx, -37); g.quadraticCurveTo(nx + 7, -27, nx + 14, -34); g.stroke();
-    g.strokeStyle = 'rgba(255,248,235,.95)'; g.lineWidth = 3.6; g.lineCap = 'round';
-    for (const sx of [-1, 1]) for (const [dy, a] of [[-48, -.25], [-40, 0], [-32, .22]]) { g.beginPath(); g.moveTo(nx + sx * 36, dy - tw); g.lineTo(nx + sx * (sx * tr > 0 ? 74 : 96), dy + a * 60 - tw * 2); g.stroke(); }
+    if (o > .06 || m === 'o' || m === 'grin') {   // an open mouth under the nose: dark, with a pink tongue
+      const h = m === 'o' ? 16 : m === 'grin' ? 12 : 4 + o * 14, w = m === 'o' ? 9 : m === 'grin' ? 17 : 10 + o * 4;
+      g.fillStyle = '#5a2430'; g.beginPath(); g.moveTo(nx - w, -36); g.quadraticCurveTo(nx, -40, nx + w, -36); g.quadraticCurveTo(nx + w * .8, -36 + h, nx, -36 + h); g.quadraticCurveTo(nx - w * .8, -36 + h, nx - w, -36); g.fill();
+      if (h > 9) { g.fillStyle = '#e8708c'; ell(g, nx, -36 + h * .72, w * .55, h * .24); g.fill(); }
+      g.strokeStyle = '#6b3a30'; g.lineWidth = 3.2; g.lineCap = 'round'; g.beginPath(); g.moveTo(nx, -45); g.lineTo(nx, -39); g.stroke();
+    } else {
+      g.strokeStyle = '#6b3a30'; g.lineWidth = 3.2; g.lineCap = 'round'; g.beginPath(); g.moveTo(nx, -45); g.lineTo(nx, -37);
+      if (m === 'smile') { g.moveTo(nx - 18, -38); g.quadraticCurveTo(nx - 9, -24, nx, -37); g.quadraticCurveTo(nx + 9, -24, nx + 18, -38); }
+      else if (m === 'smirk') { g.moveTo(nx - 13, -33); g.quadraticCurveTo(nx - 7, -27, nx, -37); g.quadraticCurveTo(nx + 9, -26, nx + 19, -40); }
+      else if (m === 'wobbly') { g.moveTo(nx - 15, -30); g.bezierCurveTo(nx - 10, -36, nx - 5, -26, nx, -33); g.bezierCurveTo(nx + 5, -26, nx + 10, -36, nx + 15, -30); }
+      else { g.moveTo(nx - 14, -34); g.quadraticCurveTo(nx - 7, -27, nx, -37); g.quadraticCurveTo(nx + 7, -27, nx + 14, -34); }
+      g.stroke();
+    }
+    g.strokeStyle = 'rgba(255,248,235,.95)'; g.lineWidth = 3.6; g.lineCap = 'round'; const wt = s.whisk || 0;
+    for (const sx of [-1, 1]) for (const [dy, a] of [[-48, -.25], [-40, 0], [-32, .22]]) { g.beginPath(); g.moveTo(nx + sx * 36, dy - tw); g.lineTo(nx + sx * (sx * tr > 0 ? 74 : 96), dy + a * 60 - tw * 2 - (sx > 0 ? wt * 10 : 0)); g.stroke(); }
+    if (s.blush) { g.fillStyle = `rgba(240,110,110,${s.blush})`; ell(g, -52 + f, -58, 16, 9); g.fill(); ell(g, 52 + f, -58, 16, 9); g.fill(); }
   };
+  CUR_RES = prev;
+  return { O, OD, Wt, tr, f, tail, body, legF, head, ear, faceFn };
+}
+export function catFace(rig, t, o, val) {   // the face options shared by both cat rigs
+  return { blink: val(o.blink, 0), lookX: val(o.lookX, -.6), lookY: val(o.lookY, .4), sniff: val(o.sniff, 0), brow: val(o.brow, 0), browL: val(o.browL, 0), browR: val(o.browR, 0), browTilt: val(o.browTilt, 0),
+    eyes: val(o.eyes, 'open'), mouth: val(o.mouth, 'closed'), talk: val(o.talk, 0), wide: val(o.wide, 0), lid: val(o.lid, 0), sparkle: val(o.sparkle, 0), whisk: val(o.whisk, 0), blush: val(o.blush, 0) };
+}
+// ================= Puss, seated (three-quarter turn baked in: turn < 0 faces screen left) =================
+export function makePuss({ res = 3, turn = -.5 } = {}) {
+  const C = catSheets(res, turn), { tr, f } = C;
   const parts = [
-    P('tail', tail, null, tr < 0 ? 70 : -70, -26, 1, { sx: tr < 0 ? 1 : -1 }),
-    P('body', body, null, 0, 0, 2),
-    P('legL', legF, 'body', -42 + f, -134, 3, { drop: 1 }), P('legR', legF, 'body', 42 + f, -134, 3, { drop: 1 }),
-    P('earL', ear(), 'head', -66 + f * .5, -128, 4.5, { rot: -.12 }), P('earR', ear(), 'head', 66 + f * .5, -128, 4.4, { sx: -1, rot: .12 }),
-    P('head', head, 'body', f * .4, -158, 5, { hook: faceFn, drop: 1 }),
+    P('tail', C.tail, null, tr < 0 ? 70 : -70, -26, 1, { sx: tr < 0 ? 1 : -1 }),
+    P('body', C.body, null, 0, 0, 2),
+    P('legL', C.legF, 'body', -42 + f, -134, 3, { drop: 1 }), P('legR', C.legF, 'body', 42 + f, -134, 3, { drop: 1 }),
+    P('earL', C.ear(), 'head', -66 + f * .5, -128, 4.5, { rot: -.12 }), P('earR', C.ear(), 'head', 66 + f * .5, -128, 4.4, { sx: -1, rot: .12 }),
+    P('head', C.head, 'body', f * .4, -158, 5, { hook: C.faceFn, drop: 1 }),
   ];
   const rig = new Rig(parts, 600, 560, 300, 420, res); CUR_RES = 2;
   rig.height = 354;   // paws to ear tips, puppet units
   rig.pose = (t, o = {}) => {
     const T = rig.parts, val = (v, d) => typeof v === 'function' ? v(t) : (v ?? d);
     T.body.sy = 1 + .02 * Math.sin(t / 3.1 * TAU + 1);                      // belly breathes
-    const hl = val(o.headLift, 0); T.head.rot = Math.sin(t * .5 + 2) * .02 + hl * .1; T.head.jy = -158 - hl * 6 + val(o.headDown, 0) * 8;
+    const hl = val(o.headLift, 0); T.head.rot = Math.sin(t * .5 + 2) * .02 + hl * .1 + val(o.headTilt, 0); T.head.jy = -158 - hl * 6 + val(o.headDown, 0) * 8;
     const el = val(o.earLag, 0); T.earL.rot = -.12 + el + Math.sin(t * .9) * .02; T.earR.rot = .12 + el * .8 + Math.sin(t * .9 + .4) * .02;
     if (o.earTwitch != null) { const u = (t - o.earTwitch) / .35; if (u > 0 && u < 1) T.earR.rot += Math.sin(u * Math.PI) * .25; }
-    T.tail.rot = Math.sin(t * 2.1) * .1 + val(o.tailLag, 0);
-    T.head.face = { blink: val(o.blink, 0), lookX: val(o.lookX, -.6), lookY: val(o.lookY, .4), sniff: val(o.sniff, 0), brow: val(o.brow, 0) };
+    T.tail.rot = Math.sin(t * 2.1) * .1 + val(o.tailLag, 0) + val(o.tailUp, 0);
+    // a front paw lifts (to wipe a whisker, to gesture): 0..1, plus a little wave
+    const pl = val(o.pawLift, 0), pw = val(o.pawWave, 0); T.legR.rot = (tr < 0 ? 1 : -1) * (pl * 2.3 + pw * .25); T.legR.jy = -134 - pl * 10; T.legR.sy = 1 - pl * .25;
+    const pl2 = val(o.pawLift2, 0); T.legL.rot = (tr < 0 ? 1 : -1) * pl2 * 2.1; T.legL.jy = -134 - pl2 * 10; T.legL.sy = 1 - pl2 * .25;
+    T.head.face = catFace(rig, t, o, val);
     return rig.render();
   };
   return rig;

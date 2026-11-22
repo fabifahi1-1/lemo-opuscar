@@ -31,4 +31,5 @@ window.render = tt => {
   ag.globalAlpha = 1; ag.globalCompositeOperation = 'source-over'; g.drawImage(ACC, 0, 0);
 };
 const clamp0 = (x, hi) => Math.max(0, Math.min(hi, x));
+if (Q.has('lab')) { const lab = await import('./lab.js'); window.render = tt => lab.draw(g, tt, Q.get('lab')); }
 window.READY = true;
