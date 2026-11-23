@@ -108,7 +108,7 @@ export const P5 = {
   'L095[5:]': S(c => {
     c.set(SQUARE); c.layer(new Layer({ sheet: stall(1), x: SQ.stallX, y: GY + 40, d: 2.3, z: 3.3, name: 'stall' }));
     const n = 1 + Math.min(4, Math.floor(c.t / .45));
-    person(c, 'baker', SQ.stallX + 60, GY + 10, { d: 2.32, z: 3.25, name: 'baker', face: 'R', pose: { lookX: .7, lookY: .3, mouth: 'smile', eyes: 'happy', armN: { x: 90, y: -160 }, handN: 'hold', propN: { sheet: PR.plate(3, n), x: 0, y: -4, s: .9 } } });
+    person(c, 'baker', SQ.stallX + 60, GY + 10, { d: 2.32, z: 3.25, name: 'baker', face: 'R', pose: { lookX: .7, lookY: .3, mouth: 'smile', eyes: 'happy', armN: { x: 110, y: -95 }, handN: 'hold', propN: { sheet: PR.plate(3, n), x: 0, y: -4, s: .9 } } });
     puss(c, { x: SQ.stallX + 360, y: GY + 90, d: 2.0, z: 4.5, face: 'L', pose: { lookX: -.8, lookY: -.4, mouth: 'grin', eyes: c.t > 1.6 ? 'happy' : 'open', sparkle: ss(seg(c.t, 1.4, 1.8)) } });
     aim(c, SQ.stallX + 210, GY - 250, 2.0, 1.6, .5, .45, { dz: .06 });
     for (let k = 1; k < 5; k++) c.fx(sparkle(SQ.stallX + 160 - 30 + k * 14, GY - 230, k * .45, { n: 2, size: 9, spread: 12 }));
@@ -158,7 +158,7 @@ export const P5 = {
   'L099': S(c => {
     c.set(FIELDS); const ch = ss(seg(c.t, .05, .3));
     const P = k => ({ lookX: .1 * k, lookY: -.2, eyes: 'happy', mouth: 'grin', lift: 14 * Math.abs(Math.sin(c.t * 8 + k)) * ch, armN: { x: -40 - 130 * ch, y: -120 - 150 * ch }, handN: 'open' });
-    person(c, 'shepherd', -1640, GY + 40, { name: 'shepherd', who: 'Villagers', face: 'R', z: 3.5, pose: P(0) }); person(c, 'farmer1', -1440, GY + 30, { name: 'farmer1', who: 'Villagers', face: 'R', z: 3.6, pose: P(1) }); person(c, 'picker', -1240, GY + 50, { name: 'picker', who: 'Villagers', face: 'L', z: 3.7, pose: P(2) });
+    person(c, 'shepherd', -1720, GY + 40, { name: 'shepherd', who: 'Villagers', face: 'R', z: 3.5, pose: P(0) }); person(c, 'farmer1', -1440, GY + 30, { name: 'farmer1', who: 'Villagers', face: 'R', z: 3.6, pose: P(1) }); person(c, 'picker', -1170, GY + 50, { name: 'picker', who: 'Villagers', face: 'L', z: 3.7, pose: P(2) });
     aim(c, -1440, GY - 410, 2, 2.0, .5, .42, { dz: .06 });
     c.fx(sparkle(-1640, GY - 600, .2, { n: 4, size: 14, spread: 50 }), sparkle(-1240, GY - 600, .3, { n: 4, size: 14, spread: 50 }));
   }),
@@ -171,7 +171,7 @@ export const P5 = {
   'L101': S(c => KW(c, -1550, { brow: .3, browTilt: .3, mouth: 'closed', armN: { x: 80, y: -200 }, handN: 'point' })),
   // POV through the window: the farmers answer, crumbs on their chins
   'L102[1:8]': S(c => {
-    c.set(FIELDS); farmers(c, { lookX: -.2, lookY: -.1, mouth: 'smile', eyes: 'open', brow: .3, armN: { x: 40, y: -160 }, handN: 'point' }); crumbsOn(c, F1[0] + 14, F1[1] - HEADY + 60); crumbsOn(c, F2[0] - 6, F2[1] - HEADY + 70);
+    c.set(FIELDS); farmers(c, { lookX: -.2, lookY: -.1, mouth: 'smile', eyes: 'open', brow: .3, armN: { x: 120, y: -100 }, handN: 'point' }); crumbsOn(c, F1[0] + 14, F1[1] - HEADY + 60); crumbsOn(c, F2[0] - 6, F2[1] - HEADY + 70);
     aim(c, -1400, GY - 330, 2.0, 1.7, .5, .45, { dz: .06 }); c.fx(povFrame);
   }),
   'L102[9:]': S(c => KW(c, -1550, { brow: .8, wide: .5, mouth: 'o', lift: 20 * ss(seg(c.t, .1, .4)) })),
@@ -184,7 +184,7 @@ export const P5 = {
   'L104': S(c => KW(c, -150, { brow: .3, browTilt: .3, lookX: 1, mouth: 'closed', armN: { x: 80, y: -200 }, handN: 'point' })),
   // POV: the shepherd answers, his sheep around him
   'L105[1:8]': S(c => {
-    c.set(FIELDS); sheepFlock(c, SHEP[0] + 220); shepherd(c, { lookX: -.2, lookY: -.1, mouth: 'smile', brow: .3, armN: { x: 60, y: -160 }, handN: 'point' }); crumbsOn(c, SHEP[0] + 12, SHEP[1] - HEADY + 60);
+    c.set(FIELDS); sheepFlock(c, SHEP[0] + 220); shepherd(c, { lookX: -.2, lookY: -.1, mouth: 'smile', brow: .3, armN: { x: 120, y: -100 }, handN: 'point' }); crumbsOn(c, SHEP[0] + 12, SHEP[1] - HEADY + 60);
     aim(c, SHEP[0] + 160, GY - 300, 2.0, 1.6, .5, .45, { dz: .06 }); c.fx(povFrame);
   }),
   'L105[9:]': S(c => KW(c, -150, { brow: .7, wide: .4, mouth: 'smile', nod: Math.sin(c.t * 4) * .4 })),
@@ -199,7 +199,7 @@ export const P5 = {
   // POV: the apple picker freezes, eyes darting, a drop of sweat
   'L109': S(c => {
     c.set(FIELDS); tree(c); const [u0] = wt('L109', 'um..."'), fr = c.T > u0 - .1;
-    picker(c, { lookX: fr ? Math.sign(Math.sin(c.t * 7)) * .9 : -.2, lookY: -.1, mouth: fr ? 'wobbly' : 'smile', brow: fr ? .7 : .3, browTilt: fr ? -.5 : 0, armN: { x: 60, y: -160 }, handN: 'point' });
+    picker(c, { lookX: fr ? Math.sign(Math.sin(c.t * 7)) * .9 : -.2, lookY: -.1, mouth: fr ? 'wobbly' : 'smile', brow: fr ? .7 : .3, browTilt: fr ? -.5 : 0, armN: { x: 120, y: -100 }, handN: 'point' });
     aim(c, PICK[0] + 60, GY - 330, 2.0, 2.0, .45, .45, { dz: .06 });
     c.fx(sweat(PICK[0] + 60, PICK[1] - HEADY - 40, u0 - c.shot.t0 + .2)); c.fx(povFrame);
   }),
@@ -227,7 +227,7 @@ export const P5 = {
   }),
   // relieved, the picker finishes the sentence
   'L113': S(c => {
-    c.set(FIELDS); tree(c); picker(c, { lookX: -.2, lookY: -.1, mouth: 'smile', eyes: 'open', brow: .4, armN: { x: 60, y: -170 }, handN: 'point', sigh: c.shot.t0 + .05 });
+    c.set(FIELDS); tree(c); picker(c, { lookX: -.2, lookY: -.1, mouth: 'smile', eyes: 'open', brow: .4, armN: { x: 120, y: -100 }, handN: 'point', sigh: c.shot.t0 + .05 });
     aim(c, PICK[0] + 40, PICK[1] - HEADY, 2.0, 2.6, .45, .45, { dz: .07 }); c.fx(povFrame);
   }),
   // the king, delighted: "Marquis, you are so rich!"
