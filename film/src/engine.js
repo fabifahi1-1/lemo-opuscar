@@ -114,11 +114,13 @@ export function drawScene(g, sc) {
   g.fillStyle = sc.bg || '#000'; g.fillRect(0, 0, W, H);
   for (const f of sc.pre || []) { g.save(); f(g, { cam, sc }); g.restore(); }
   const ls = sc.layers.filter(l => l.vis && l.alpha > .002).sort((a, b) => a.z - b.z);
+  sc.placedAll = [];
   let prevD = null;
   for (const l of ls) {
     const P = place(l, cam); if (!P) continue;
     const { Z, px, py } = P, info = { cam, Z, px, py, g, sc };
     if (l.name) (sc.placed ||= {})[l.name] = { px, py, Z };
+    sc.placedAll.push([px, py, Z, l.d]);
     if (l.draw) { g.save(); l.draw(g, info, l); g.restore(); if (!l.noDepth) prevD = l.d; continue; }
     let s = l.sheet; if (!s) continue;
     if (s.dyn && l.update) l.update(s);

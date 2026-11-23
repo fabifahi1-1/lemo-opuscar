@@ -45,6 +45,7 @@ export function makePussStand({ res = 3, turn = -.5 } = {}) {
     P('head', C.head, 'body', f * .3, -146, 5, { hook: C.faceFn, drop: 1 }),
     P('earL', C.ear(), 'head', -66 + f * .5, -128, 4.5, { rot: -.12 }), P('earR', C.ear(), 'head', 66 + f * .5, -128, 4.4, { sx: -1, rot: .12 }),
     P('uArmF', upper, 'body', dir * 38, -130, 6, { drop: 1 }), P('fArmF', fore, 'uArmF', 0, 44, 6.1, { drop: 1 }), P('pawF', PAWS.rest, 'fArmF', 0, 32, 6.2, { drop: 1, sx: 1.3, sy: 1.3 }),
+    P('propF', null, 'pawF', 0, 16, 6.15, { drop: 1 }), P('propB', null, 'pawB', 0, 16, 1.15),
   ];
   const rig = new Rig(parts, 640, 760, 320, 600, res);
   rig.height = 500; rig.dir = dir;
@@ -79,6 +80,8 @@ export function makePussStand({ res = 3, turn = -.5 } = {}) {
     const sw = ph != null ? Math.sin(ph * Math.PI) * (.4 + run * .4) : 0;
     arm('uArmF', 'fArmF', 'pawF', dir, o.armF, o.pawF, { a: dir * (.15 - sw) + Math.sin(t * .8) * .02, e: dir * -.25 });
     arm('uArmB', 'fArmB', 'pawB', -dir, o.armB, o.pawB, { a: -dir * (.12 - sw), e: -dir * -.2 });
+    for (const [k, n] of [['propF', o.propF], ['propB', o.propB]]) { const pr = v(n, null); T[k].sheet = pr ? pr.sheet : null; if (pr) { T[k].jx = pr.x || 0; T[k].jy = 16 + (pr.y || 0); T[k].rot = pr.rot || 0; T[k].sx = T[k].sy = (pr.s || 1) / 1.3; } }
+    if (o.bow) { const b = v(o.bow, 0); T.body.rot += dir * b * .9; T.body.jy += b * 18; T.head.rot += dir * b * .25; }
     T.head.face = catFace(rig, t, o, v);
     return rig.render();
   };

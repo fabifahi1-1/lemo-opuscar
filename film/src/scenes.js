@@ -318,9 +318,10 @@ export function buildSteps({ ots = false } = {}) {
       g.globalCompositeOperation = 'lighter'; g.fillStyle = gr; g.fill(); g.globalCompositeOperation = 'source-over'; g.clip();
       specks(g, t, { n: 80, seed: 5, col: [255, 240, 205], a: .55, r: 1.5 * Math.min(2.2, pts[0][2] || 1), speed: 5, vx: 7 }); g.restore();
     }],
+    reset() { sc.tomRig = null; sc.tomPose = {}; sc.catPose = {}; sc.hires = false; sc.rear.vis = sc.hands.vis = false; },
     update(t) {
       sc.t = t;
-      const rig = sc.hires ? tomHi : tomLo; tomL.sheet = rig.dyn; if (tomL.vis) rig.pose(t, sc.tomPose);
+      const rig = sc.tomRig || (sc.hires ? tomHi : tomLo); tomL.sheet = rig.dyn; if (tomL.vis) rig.pose(t, sc.tomPose);
       puss.pose(t, sc.catPose);
     },
   };

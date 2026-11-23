@@ -167,6 +167,8 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     P('bread', bread, 'torso', tb * 8, -76, 6, { drop: 2 }),
     P('thumbL', thumb, 'bread', -40, -25, 7, { drop: 1, rot: .1 }), P('thumbR', thumb, 'bread', 40, -25, 7, { sx: -1, drop: 1, rot: -.1 }),
   ];
+  const halfL = makeHalf(1, HR), halfR = makeHalf(-1, HR);
+  parts.push(P('halfL', halfL, 'torso', tb * 8, -76, 6, { drop: 2, vis: false }), P('halfR', halfR, 'torso', tb * 8, -76, 6.05, { drop: 2, vis: false }));
   const rig = new Rig(parts, 440, 540, 220, 340, CUR_RES); CUR_RES = 2;
   rig.height = 300;   // seat to the top of the hair, puppet units
   rig.pose = (t, o = {}) => {
@@ -182,8 +184,16 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
     T.handL.sx = T.fingL.sx = 1 - .025 * grip; T.handR.sx = T.fingR.sx = -(1 - .025 * grip); T.thumbL.rot = .1 + .05 * grip; T.thumbR.rot = -.1 - .05 * grip;
     if (o.rubAt != null) { const u = clamp((t - o.rubAt) / .9); if (u > 0 && u < 1) T.thumbL.rot += Math.sin(u * TAU) * .14; }
     T.bread.jy = -76 + Math.sin(t / 3.6 * TAU) * 1.4;
+    // the bread breaks in two: each hand stays on its own half; o.split 0..1 (apart), o.offer 0..1 (the right half held out), o.give (the right half gone)
+    const sp = val(o.split, 0), of = val(o.offer, 0), gone = val(o.give, 0) > .5;
+    T.bread.vis = sp <= 0; T.halfL.vis = sp > 0; T.halfR.vis = sp > 0 && !gone;
+    for (const n of ['handL', 'fingL', 'thumbL']) T[n].parent = sp > 0 ? 'halfL' : 'bread';
+    for (const n of ['handR', 'fingR', 'thumbR']) { T[n].parent = sp > 0 ? 'halfR' : 'bread'; T[n].vis = !gone; }
+    if (sp > 0) { T.halfL.jx = tb * 8 - 26 * sp; T.halfL.jy = T.bread.jy - 6 * sp; T.halfL.rot = -.22 * sp; T.halfR.jx = tb * 8 + 26 * sp + of * 70; T.halfR.jy = T.bread.jy - 6 * sp - of * 24; T.halfR.rot = .22 * sp - of * .1; }
     for (const [u, f, side] of [['uArmL', 'fArmL', -1], ['uArmR', 'fArmR', 1]]) {
-      const sx = side * 66 + (side < 0 ? tb * 6 : -tb * 8), sy = -112 * T.torso.sy, wx = side * 48 + tb * 8, wy = T.bread.jy + 34;
+      const H2 = sp > 0 ? T[side < 0 ? 'halfL' : 'halfR'] : T.bread, sx = side * 66 + (side < 0 ? tb * 6 : -tb * 8), sy = -112 * T.torso.sy;
+      let wx = H2.jx - tb * 8 + side * 48 + tb * 8, wy = H2.jy + 34;
+      if (gone && side > 0) { wx = 40; wy = -20; }
       const [a1, a2] = ik(wx - sx, wy - sy, 62, 46, side < 0 ? -1 : 1); T[u].rot = a1; T[f].rot = a2;
     }
     return rig.render();
@@ -192,6 +202,17 @@ export function makeTom({ res = 2, bodyTurn = .45, jacket = false } = {}) {
   return rig;
 }
 
+// one half of the loaf (side 1 = left half), origin at the loaf's centre, so the hands keep their grip on it
+function makeHalf(side, res, w = 96, h = 64) {
+  return paint(w + 30, h + 30, g => {
+    const s = side; g.fillStyle = (() => { const c = g.createLinearGradient(0, -h / 2, 0, h / 2); c.addColorStop(0, '#d0923e'); c.addColorStop(.55, '#a8662a'); c.addColorStop(1, '#7e4a1e'); return c; })();
+    g.beginPath(); g.moveTo(0, -h / 2 + 1); g.bezierCurveTo(-s * w * .3, -h / 2 - 2, -s * (w / 2 + 4), -h * .25, -s * w / 2, h * .32); g.bezierCurveTo(-s * w * .3, h * .44, -s * 8, h * .44, 0, h * .42);
+    const R = mulberry(side > 0 ? 3 : 7); for (let i = 8; i >= 0; i--) g.lineTo(s * (R() * 7 - 2), -h / 2 + 1 + i * (h * .92 / 8)); g.closePath(); g.fill();
+    g.fillStyle = '#f2d9a4'; g.beginPath(); g.moveTo(s * 1, -h * .4); g.quadraticCurveTo(-s * 16, -h * .05, -s * 10, h * .34); g.lineTo(s * 4, h * .38); for (let i = 8; i >= 0; i--) g.lineTo(s * (2 + R() * 6), -h * .4 + i * (h * .78 / 8)); g.closePath(); g.fill();
+    const Q = mulberry(51 + side); for (let i = 0; i < 14; i++) { g.fillStyle = `rgba(170,120,60,${.3 + Q() * .35})`; g.beginPath(); g.ellipse(-s * (Q() * 10) + s * 2, -h * .32 + Q() * h * .62, 1 + Q() * 2.2, 1 + Q() * 1.6, Q() * 3, 0, TAU); g.fill(); }
+    const hl = g.createRadialGradient(-s * w * .22, -h * .3, 0, -s * w * .22, -h * .3, w * .24); hl.addColorStop(0, 'rgba(255,246,220,.72)'); hl.addColorStop(1, 'rgba(255,246,220,0)'); g.save(); g.globalCompositeOperation = 'source-atop'; g.fillStyle = hl; g.fillRect(-w, -h, w * 2, h * 2); g.restore();
+  }, { res, fin: { rim: .5, side: .2 } });
+}
 // the bread: a domed golden-brown crust with a shiny top, one torn side showing a soft crumb with holes (about two palms wide)
 export function makeBread(res = 3, w = 96, h = 64) {
   return paint(w + 30, h + 30, g => {

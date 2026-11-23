@@ -27,6 +27,7 @@ export const LOOKS = {
   shepherd: { skin: '#e4aa80', skinD: '#ca9066', hair: 'cap', hairC: '#3a2a20', hatC: '#6a7a4a', top: '#8a6a4a', topD: '#6a5038', sleeve: '#e6dcc6', cuff: '#cfc4ac', pants: '#4a4a3a', shoe: '#2a2018', belt: '#3a2a1e', vest: '#7a5a3a', height: 1.02 },
   picker: { skin: '#f0bc94', skinD: '#d6a07a', hair: 'kerchief', hairC: '#8a4a2a', hatC: '#d85a5a', top: '#6a9a5a', topD: '#527e46', sleeve: '#f0e8d6', cuff: '#d6ccb8', robe: '#6a9a5a', robeTrim: '#f0e8d6', apron: '#f4eee0', lashes: true, height: .95, shoe: '#4a3020', waist: .9 },
   ogre: { skin: '#a8b888', skinD: '#8a9c6c', hair: 'ogre', hairC: '#4a3a2a', top: '#8a6a4e', topD: '#6e5038', sleeve: '#7e6046', cuff: '#5a4030', pants: '#5a4a5a', shoe: '#f4a8c8', slippers: true, belt: '#3a2a20', belly: 1.45, height: 1.0, headScale: 1.1, nose: 'big', eye: 'small', brow: '#4a3a2a', teeth: true },
+  lord: { skin: '#f0c09a', skinD: '#d6a47e', hair: 'plume', hairC: '#6a4022', hatC: '#3a2a6a', top: '#c8383a', topD: '#a02a2c', sleeve: '#c03436', cuff: '#f6f0e0', pants: '#f0e6d4', shoe: '#2a2030', belt: '#e8b84a', buttons: '#e8b84a', collar: '#f6f0e0', mustache: true },
   vill1: { skin: '#e6b08a', skinD: '#cc9670', hair: 'short', hairC: '#5a3a22', top: '#7a8ab8', topD: '#5e6c96', sleeve: '#7484b0', cuff: '#5e6c96', pants: '#4a3e36', shoe: '#2a2020', belt: '#3a2a20' },
   vill2: { skin: '#f0c09a', skinD: '#d6a47e', hair: 'bun', hairC: '#7a4a2a', top: '#d89a5a', topD: '#b87e46', sleeve: '#f0e2c8', cuff: '#d6c8ae', robe: '#c86a6a', robeTrim: '#f0e2c8', apron: '#f4ecdc', lashes: true, height: .94 },
   vill3: { skin: '#c88c62', skinD: '#ae744c', hair: 'curly', hairC: '#2a1e18', top: '#6a9a8a', topD: '#527e70', sleeve: '#649282', cuff: '#527e70', pants: '#3e3a4a', shoe: '#221c22', belt: '#3a2a20', height: 1.03 },
@@ -142,6 +143,7 @@ function hatSheet(L, res) {
     else if (H === 'tricorn') { g.beginPath(); g.moveTo(-92, 4); g.bezierCurveTo(-60, -20, -50, -64, 0, -60); g.bezierCurveTo(50, -64, 60, -20, 92, 4); g.bezierCurveTo(40, -6, -40, -6, -92, 4); g.closePath(); g.fill(); g.fillStyle = '#e8c25a'; g.fillRect(-58, -10, 116, 5); }
     else if (H === 'chef') { g.beginPath(); g.moveTo(-58, 4); g.lineTo(-56, -40); g.bezierCurveTo(-90, -70, -60, -130, -20, -112); g.bezierCurveTo(-10, -150, 40, -150, 46, -112); g.bezierCurveTo(90, -126, 96, -60, 56, -40); g.lineTo(58, 4); g.closePath(); g.fill(); g.fillStyle = 'rgba(160,150,140,.35)'; g.fillRect(-58, -14, 116, 6); }
     else if (H === 'helmet') { g.beginPath(); g.moveTo(-76, 10); g.bezierCurveTo(-82, -80, 82, -80, 76, 10); g.closePath(); g.fill(); g.fillStyle = '#7a8494'; g.fillRect(-78, 0, 156, 12); g.fillStyle = '#c84a4a'; g.beginPath(); g.moveTo(-6, -58); g.bezierCurveTo(-30, -110, 40, -120, 30, -64); g.closePath(); g.fill(); }
+    else if (H === 'plume') { g.beginPath(); g.moveTo(-60, 2); g.lineTo(-52, -110); g.bezierCurveTo(-20, -126, 30, -126, 54, -110); g.lineTo(62, 2); g.closePath(); g.fill(); g.beginPath(); g.ellipse(0, 2, 100, 16, 0, 0, TAU); g.fill(); g.fillStyle = '#e8b84a'; g.fillRect(-56, -26, 114, 12); g.fillStyle = '#f6f0e6'; g.beginPath(); g.moveTo(40, -100); g.bezierCurveTo(90, -190, 150, -170, 130, -120); g.bezierCurveTo(110, -150, 80, -140, 50, -96); g.closePath(); g.fill(); }
     else if (H === 'kerchief') { g.beginPath(); g.moveTo(-76, 8); g.bezierCurveTo(-82, -76, 82, -76, 76, 8); g.bezierCurveTo(40, -16, -40, -16, -76, 8); g.closePath(); g.fill(); g.fillStyle = 'rgba(255,240,220,.7)'; for (let i = 0; i < 9; i++) { ell(g, -50 + (i % 3) * 50 + (i / 3 | 0) * 8, -44 + (i / 3 | 0) * 16, 4, 4); g.fill(); } }
   }, { res, ax: 130, ay: 160, fin: { rim: .5, under: .3 } });
 }
@@ -228,7 +230,7 @@ export function makePerson(L, { res = 2, turn = .45, seated = false } = {}) {
   ];
   if (L.hair === 'long') parts.push(P('hairBack', hairBackSheet(L, R), 'head', 0, -80, 1.2));
   if (tuft) parts.push(P('tuft', tuft, 'hair', 2, -70, 3.6));
-  if (hat) parts.push(P('hat', hat, 'head', 4, L.hair === 'straw' ? -118 : L.hair === 'chef' ? -128 : -116, 3.7));
+  if (hat) parts.push(P('hat', hat, 'head', 4, L.hair === 'straw' ? -118 : L.hair === 'chef' ? -128 : L.hair === 'plume' ? -124 : -116, 3.7));
   if (L.crown || L.tiara) parts.push(P('crown', crownSheet(R, L.tiara), 'head', 6, L.tiara ? -142 : -146, 3.8));
   if (L.beard) parts.push(P('beard', beardSheet(R), 'head', tb * 12, -10, 3.45), P('must', mustacheKing(R), 'head', tb * 22, -52, 3.46));
   if (seated) {
@@ -239,11 +241,12 @@ export function makePerson(L, { res = 2, turn = .45, seated = false } = {}) {
     parts.push(P('thighF', thigh, 'torso', -hx + tb * 18, -6, 1.6, { drop: 1 }), P('shinF', shin, 'thighF', 0, 70, 1.5, { drop: 1 }),
       P('thighB', thigh, 'torso', hx + tb * 4, -6, 1.2, { bright: .8 }), P('shinB', shin, 'thighB', 0, 70, 1.1));
   }
-  if (robe) parts.push(P('robe', robe, 'torso', 0, 0, 2.4, { drop: 1 }));
+  if (robe) parts.push(P('robe', robe, 'torso', 0, 0, seated ? 3.5 : 2.4, { drop: 1 }));
   if (feet && !seated) parts.push(P('feet', feet, 'root', tb * 10, 0, 2.2));
   // arms: N = near (toward the viewer, in front of the body), F = far (behind it)
   parts.push(P('uArmN', upper, 'torso', -66 + tb * 6, -112, 4.2, { drop: 1 }), P('fArmN', fore, 'uArmN', 0, 62, 4.1, { drop: 1 }), P('handN', HANDS.rest, 'fArmN', 0, 46, 4.15, { drop: 1 }),
-    P('uArmF', upper, 'torso', 66 - tb * 8, -112, 1.5, {}), P('fArmF', fore, 'uArmF', 0, 62, 1.45), P('handF', HANDS.rest, 'fArmF', 0, 46, 1.4));
+    P('uArmF', upper, 'torso', 66 - tb * 8, -112, 1.5, {}), P('fArmF', fore, 'uArmF', 0, 62, 1.45), P('handF', HANDS.rest, 'fArmF', 0, 46, 1.4),
+    P('propN', null, 'handN', 0, 26, 4.12, { drop: 1 }), P('propF', null, 'handF', 0, 26, 1.38));
   const W = 700, H = seated ? 620 : 760, rig = new Rig(parts, W, H, W / 2, seated ? 470 : 690, R);
   rig.height = (seated ? 300 : 456) * (L.height || 1); rig.look = L; rig.seated = seated;
   rig.handSheets = HANDS;
@@ -281,6 +284,7 @@ export function makePerson(L, { res = 2, turn = .45, seated = false } = {}) {
     const swing = ph != null ? Math.sin(ph * Math.PI) * .35 : 0;
     arm('uArmN', 'fArmN', 'handN', -1, o.armN, o.handN, o.handNRot, { a: .12 + swing + Math.sin(t * .7) * .015, e: -.12 });
     arm('uArmF', 'fArmF', 'handF', 1, o.armF, o.handF, o.handFRot, { a: -.1 - swing + Math.sin(t * .7 + 1) * .015, e: .1 });
+    for (const [k, n] of [['propN', o.propN], ['propF', o.propF]]) { const pr = v(n, null); T[k].sheet = pr ? pr.sheet : null; if (pr) { T[k].jx = pr.x || 0; T[k].jy = 26 + (pr.y || 0); T[k].rot = pr.rot || 0; T[k].sx = T[k].sy = pr.s || 1; T[k].z = pr.front === false ? 1 : T[k].z; } }
     if (o.extra) o.extra(T, t);
     return rig.render();
   };
