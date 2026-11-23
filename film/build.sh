@@ -3,6 +3,7 @@
 #   picture (Canvas2D, 4 workers) -> music+effects stem at its final level -> film/NAME.mp4 and film/NAME-sound.wav (24-bit)
 # Whole film: sh film/build.sh 0 725.5 puss-in-boots   (about 50 min on 4 CPU cores, no GPU)
 set -e
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
 A=${1:-0}; B=${2:-25}; NAME=${3:-sample}
 HERE=$(cd "$(dirname "$0")" && pwd); LIB=$(cd "$HERE/.." && pwd); cd "$LIB"
 python3 film/tools/build_plan.py > /dev/null

@@ -71,7 +71,7 @@ export const P7 = {
   'L156': S(c => {
     yard(c); const [b0, b1] = wt('L156', '"BOO!"'), tb = b0 - c.shot.t0, up = ss(seg(c.t, tb - .15, tb + .1));
     puss(c, { x: -150, y: F + 40, d: D, z: 4, face: 'R', pose: { lookX: .8, lookY: .3, eyes: up > .5 ? 'wide' : 'half', mouth: up > .5 ? 'grin' : 'smirk', armF: { x: 60, y: -170 - 60 * up }, armB: { x: 50, y: -170 - 60 * up }, pawF: 'open', pawB: 'open', puff: .3 * up, lean: .1 * up } });
-    const [hx, hy] = pussHead(-150, F + 40); aim(c, hx, hy, D, 2.8, .45, .45, { dz: .02 }); c.snap(tb - .05, 6, .5); c.shake(tb, .3, 3);
+    const [hx, hy] = pussHead(-150, F + 40); aim(c, hx, hy, D, 2.8, .45, .45, { dz: .02 }); c.snap(tb - .05, 6, .5);
     const [bx, by] = atS(c, .7, .3); c.fx(bubble('BOO!', bx, by, tb, b1 - c.shot.t0 + .8, { kind: 'shout', size: 90, tail: [-.9, 1] }));
   }),
   // the mouse: "SQUEAK!"
@@ -90,7 +90,7 @@ export const P7 = {
   }),
   // high and wide: the tiny mouse races down the hill
   'L158[7:10]': S(c => {
-    c.set(HILL); c.hide('near'); const u = c.t / c.dur, x = lerp(-20, -240, u), y = lerp(300, 620, u);
+    c.set(HILL).focus = 3.4; c.hide('near'); const u = c.t / c.dur, x = lerp(-20, -240, u), y = lerp(300, 620, u);
     c.actor('mouse', { x, y, d: 3.4, z: 3, s: .6, face: 'L', who: 'Mouse', pose: { walk: c.t * 9, lookX: -1 } });
     c.cam({ zoom: .9, x: -100, y: 200 }, { zoom: .9, x: -160, y: 320, dz: .02 });
     c.fx(speedLines(t => lerp(-20, -240, t / c.dur) + 30, t => lerp(300, 620, t / c.dur) - 20, 0, c.dur, { dir: -1, n: 3, h: 30, d: 3.4 }));

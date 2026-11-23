@@ -140,7 +140,7 @@ export const P2 = {
   }),
   // tiny Puss marches up the hill; a slow tilt up to the castle towers and flags (then the card "the castle")
   'L035': S(c => {
-    const sc = c.set(HILL); c.hide('near'); const u = clamp(c.t / 2.7), x = lerp(-120, -40, u), y = lerp(560, 420, u);
+    const sc = c.set(HILL); sc.focus = 3.4; c.hide('near'); const u = clamp(c.t / 2.7), x = lerp(-120, -40, u), y = lerp(560, 420, u);
     puss(c, { x, y, d: 3.4, face: 'R', s: .18, pose: { walk: c.t * 2.6, strut: .8, propF: { sheet: PR.bag(3, 1), x: 0, y: 20, s: .55 } } });
     c.cam({ zoom: 1.0, x: 0, y: 260 }, { zoom: 1.0, x: 0, y: -330, dz: .03 });
   }),

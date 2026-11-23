@@ -43,19 +43,19 @@ export const P6 = {
   }),
   // high and wide: tiny Puss reaches the end of the road
   'L117[5:]': S(c => {
-    c.set(HILL); c.hide('near'); const u = ss(seg(c.t, 0, 3.2)), x = lerp(-700, -140, u), y = lerp(640, 560, u);
+    c.set(HILL).focus = 3.4; c.hide('near'); const u = ss(seg(c.t, 0, 3.2)), x = lerp(-700, -140, u), y = lerp(640, 560, u);
     puss(c, { x, y, d: 3.4, face: 'R', s: .2, pose: { walk: u < 1 ? c.t * 4 : null, run: 1 - u, lookX: .9, lookY: -.4 } });
     for (let k = 0; k < 10; k++) c.fx(puffs(-700 + k * 56, 640 - k * 8, k * .32, { n: 2, size: 8, dur: .5, seed: k, d: 3.4 }));
     c.cam({ zoom: .75, x: -200, y: 260 }, { zoom: .82, x: -150, y: 200, dz: .03 });
   }),
   // Puss alone at the end of the road; the castle ahead; music drops away
   'L118': S(c => {
-    c.set(HILL); c.hide('near'); puss(c, { x: -140, y: 560, d: 3.4, face: 'R', s: .3, pose: { lookX: .6, lookY: -.8, earsDown: .3 } });
+    c.set(HILL).focus = 3.4; c.hide('near'); puss(c, { x: -140, y: 560, d: 3.4, face: 'R', s: .3, pose: { lookX: .6, lookY: -.8, earsDown: .3 } });
     c.cam({ zoom: 1.15, x: -170, y: 150 }, { zoom: 1.15, x: -170, y: 140, dz: .07 });
   }),
   // a slow push-in: Puss worried: brows in, a wobbly mouth, a gulp
   'L119': S(c => {
-    c.set(HILL); c.hide('near'); puss(c, { x: -140, y: 560, d: 3.4, face: 'R', s: .3, pose: { lookX: .4, lookY: -.6, brow: .7, browTilt: -.6, mouth: 'wobbly', earsDown: .6, puff: Math.max(0, Math.sin(clamp((c.t - 1.6) / .3) * Math.PI)) * .3 } });
+    c.set(HILL).focus = 3.4; c.hide('near'); puss(c, { x: -140, y: 560, d: 3.4, face: 'R', s: .3, pose: { lookX: .4, lookY: -.6, brow: .7, browTilt: -.6, mouth: 'wobbly', earsDown: .6, puff: Math.max(0, Math.sin(clamp((c.t - 1.6) / .3) * Math.PI)) * .3 } });
     const [hx, hy] = pussHead(-140, 560, .3); aim(c, hx, hy, 3.4, 3.4, .45, .44, { dz: .16 });
     c.fx(sweat(-140 + 40, 560 - .3 * 380 - 60, 1.0, { d: 3.4 }));
   }),
