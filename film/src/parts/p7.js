@@ -144,7 +144,7 @@ export const P7 = {
     c.cam({ zoom: .9, x: -760, y: F - 360 }, { zoom: .9, x: -420, y: F - 360, dz: .03 });
   }),
   // Tom's view: the huge castle towers over him; tilt up
-  'L165[7:]': S(c => { yard(c); tom(c, { lookX: .5, lookY: -1, mouth: 'o', wide: .4 }, { x: -300, z: 6, d: 1.7 }); c.cam({ zoom: .5, x: 100, y: F - 700 }, { zoom: .5, x: 100, y: F - 1250, dz: .02 }); }),
+  'L165[7:]': S(c => { yard(c); c.cam({ zoom: .5, x: 100, y: F - 700 }, { zoom: .5, x: 100, y: F - 1250, dz: .02 }); }),
   // Tom worried
   'L166': S(c => { yard(c); tom(c, { lookX: .3, lookY: .4, brow: .5, browTilt: -.6, mouth: 'wobbly', wob: t => Math.sin(t * 7) }); CU(c, TOM[0], TOM[1], 3.0, .42); }),
   // cutaway: the king smiles trustingly in the carriage window
