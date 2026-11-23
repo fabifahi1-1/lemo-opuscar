@@ -35,13 +35,14 @@ export function makePussStand({ res = 3, turn = -.5 } = {}) {
   const PAWS = { rest: paw('rest'), open: paw('open'), point: paw('point') };
   const thigh = sh(60, 80, 30, 12, g => { g.fillStyle = O; g.beginPath(); g.moveTo(-18, 0); g.bezierCurveTo(-20, -14, 20, -14, 18, 0); g.bezierCurveTo(18, 18, 15, 34, 13, 44); g.bezierCurveTo(10, 52, -10, 52, -13, 44); g.bezierCurveTo(-15, 34, -18, 18, -18, 0); g.closePath(); g.fill(); });
   const boot = sh(100, 110, 30, 12, g => bootShape(g), res + 1, { rim: .5, under: .3, side: .15 });
+  const foot = sh(100, 110, 30, 12, g => { g.fillStyle = O; g.beginPath(); g.moveTo(-12, -8); g.bezierCurveTo(-13, 20, -12, 44, -11, 60); g.lineTo(11, 60); g.bezierCurveTo(12, 44, 12, 20, 11, -8); g.closePath(); g.fill(); g.fillStyle = Wt; g.beginPath(); g.moveTo(-13, 56); g.bezierCurveTo(-16, 70, -12, 80, 0, 80); g.bezierCurveTo(14, 81, 30, 80, 33, 72); g.bezierCurveTo(35, 64, 22, 60, 10, 56); g.closePath(); g.fill(); g.strokeStyle = '#d8cbbb'; g.lineWidth = 1.6; for (const x of [18, 25]) { g.beginPath(); g.moveTo(x, 70); g.lineTo(x + 2, 79); g.stroke(); } }, res + 1, { rim: .4, under: .2, side: .1 });
   const parts = [
     P('root', null, null, 0, 0, 0),
     P('tail', C.tail, 'body', -dir * 52, -14, .8, { sx: dir < 0 ? 1 : -1 }),
-    P('thighB', thigh, 'body', dir * 16, -4, 1.1), P('bootB', boot, 'thighB', 0, 44, 1.0, { sx: dir * 1.22, sy: 1.22 }),
+    P('thighB', thigh, 'body', dir * 16, -4, 1.1), P('footB', foot, 'thighB', 0, 44, .95, { sx: dir * 1.22, sy: 1.22 }), P('bootB', boot, 'thighB', 0, 44, 1.0, { sx: dir * 1.22, sy: 1.22 }),
     P('uArmB', upper, 'body', -dir * 34, -132, 1.3), P('fArmB', fore, 'uArmB', 0, 44, 1.25), P('pawB', PAWS.rest, 'fArmB', 0, 32, 1.2, { sx: 1.3, sy: 1.3 }),
     P('body', body, 'root', 0, -150, 2),
-    P('thighF', thigh, 'body', -dir * 22, -2, 2.6, { drop: 1 }), P('bootF', boot, 'thighF', 0, 44, 2.5, { sx: dir * 1.22, sy: 1.22, drop: 1 }),
+    P('thighF', thigh, 'body', -dir * 22, -2, 2.6, { drop: 1 }), P('footF', foot, 'thighF', 0, 44, 2.45, { sx: dir * 1.22, sy: 1.22, drop: 1 }), P('bootF', boot, 'thighF', 0, 44, 2.5, { sx: dir * 1.22, sy: 1.22, drop: 1 }),
     P('head', C.head, 'body', f * .3, -146, 5, { hook: C.faceFn, drop: 1 }),
     P('earL', C.ear(), 'head', -66 + f * .5, -128, 4.5, { rot: -.12 }), P('earR', C.ear(), 'head', 66 + f * .5, -128, 4.4, { sx: -1, rot: .12 }),
     P('uArmF', upper, 'body', dir * 38, -130, 6, { drop: 1 }), P('fArmF', fore, 'uArmF', 0, 44, 6.1, { drop: 1 }), P('pawF', PAWS.rest, 'fArmF', 0, 32, 6.2, { drop: 1, sx: 1.3, sy: 1.3 }),
@@ -69,6 +70,8 @@ export function makePussStand({ res = 3, turn = -.5 } = {}) {
       T.thighF.rot = -dir * amp * a; T.thighB.rot = dir * amp * a;
       T.bootF.rot = dir * .4 * Math.max(0, Math.sin(ph * Math.PI - .8)) * (1 + run * .6); T.bootB.rot = dir * .4 * Math.max(0, -Math.sin(ph * Math.PI - .8)) * (1 + run * .6);
     } else { T.thighF.rot = v(o.legF, -dir * .06); T.thighB.rot = v(o.legB, dir * .06); T.bootF.rot = v(o.bootFRot, 0); T.bootB.rot = v(o.bootBRot, 0); }
+    // pulling the boots on: o.bootOn = [front, back]; -1 = not on yet (bare white foot), 0..1 = the boot slides up over the foot
+    { const bo = v(o.bootOn, null) || [1, 1]; for (const [k, u] of [['bootF', bo[0]], ['bootB', bo[1]]]) { T[k].sheet = u < 0 ? null : boot; T[k].jy = 44 + (1 - clamp(u, 0, 1)) * 74; } }
     if (v(o.crouch, 0)) { const c = v(o.crouch, 0); T.thighF.rot -= dir * c * .9; T.bootF.rot += dir * c * 1.1; T.thighB.rot -= dir * c * .7; T.bootB.rot += dir * c * 1.0; }
     // arms: o.armF / o.armB: { x, y } paw target in body space or { a, e } angles; o.pawF / o.pawB: rest | open | point
     const arm = (u, fa, pw, side, spec, kind, dflt) => {

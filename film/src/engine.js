@@ -143,7 +143,7 @@ export function drawScene(g, sc) {
     const sp = (B > .45 && !s.dyn) ? base.blurred(B / Z * base.res) : base;
     const sc2 = Z / sp.res;
     const put = (gg, spr, ox = 0, oy = 0, skew = 0) => {
-      gg.save(); gg.translate(px + ox * Z, py + oy * Z); if (skew) gg.transform(1, 0, skew, 1, 0, 0); gg.rotate((l.rot || 0) + (cam.roll || 0));
+      gg.save(); if (l.clip) { gg.beginPath(); l.clip(gg); gg.clip(); } gg.translate(px + ox * Z, py + oy * Z); if (skew) gg.transform(1, 0, skew, 1, 0, 0); gg.rotate((l.rot || 0) + (cam.roll || 0));
       gg.scale(sc2 * (l.sx * (l.flipX ? -1 : 1)), sc2 * l.sy); gg.drawImage(spr.c, -spr.ax, -spr.ay); gg.restore();
     };
     const hw = (sp.c.width / sp.res) * Z * Math.max(1, Math.abs(l.sx)) * .75 + 60, hh = (sp.c.height / sp.res) * Z * Math.max(1, Math.abs(l.sy)) * .75 + 60;

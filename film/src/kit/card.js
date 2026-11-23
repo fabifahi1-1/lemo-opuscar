@@ -51,7 +51,7 @@ function objects() {
     'the castle': { sheet: PR.castle(.6), k: .48 },
     'the king': { rig: makePerson('king', { res: 3, turn: .3 }), k: 1.05, pose: { blink: blink('King'), lookX: .5, mouth: 'smile', smile: .6 } },
     'the crown': { sheet: crownSheet(), k: 1.5 },
-    'the river': { sheet: riverSheet(), k: 1.1 },
+    'the river': { sheet: riverSheet(), k: 1.0 },
     'the carriage': { sheet: carriageCard(), k: .82 },
     'the princess': { rig: makePerson('princess', { res: 3, turn: .3 }), k: 1.1, pose: { blink: blink('Princess'), lookX: .5, mouth: 'smile', smile: .7, blush: .3 } },
     'the sheep': { rig: A.sheep({ res: 4 }), k: 2.2, pose: { blink: blink('Sheep') } },
@@ -62,7 +62,7 @@ function objects() {
     'the slipper': { sheet: PR.slipper(4), k: 2.2 },
   };
 }
-const OBJY = { 'the bread': 40, 'the crown': 20, 'the apples': 30, 'the bag': 200, 'the boots': 130, 'the slipper': 60, 'the river': 60, 'the mill': 230, 'the castle': 270, 'the carriage': 250 };
+const OBJY = { 'the bread': 40, 'the crown': 20, 'the apples': 30, 'the bag': 200, 'the boots': 130, 'the slipper': 60, 'the river': -20, 'the mill': 230, 'the castle': 270, 'the carriage': 250 };
 export function drawCard(g, card, T) {
   const o = objects()[card.text], lt = T - card.t0, dur = card.t1 - card.t0, push = 1 + .06 * eio(clamp(lt / dur));
   g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.filter = 'none';

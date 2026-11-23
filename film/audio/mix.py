@@ -13,7 +13,7 @@ A, B = float(sys.argv[1]), float(sys.argv[2]); D = B - A; N = int(round(D * SR))
 S.seed(3)
 from score import score, TL, SH
 import cues
-T_LINE, T_OPEN, T_GAP, TP_MAX = -30.0, -23.9, -25.5, -6.0
+T_LINE, T_OPEN, T_GAP, TP_MAX = -30.0, -24.3, -25.5, -6.0
 END_T0 = SH['end']['t0']
 
 def stereo(): return np.zeros((N, 2), np.float32)

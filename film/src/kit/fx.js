@@ -7,6 +7,8 @@ import { clamp, lerp, ss, back, mulberry, TAU, hash } from '../lib.js';
 const pop = (t, t0) => { const u = (t - t0) / .25; return u <= 0 ? 0 : u >= 1 ? 1 : u < .6 ? 1.1 * ss(u / .6) : 1.1 - .1 * ss((u - .6) / .4); };
 const life = (t, t0, hold, out = .3) => t < t0 ? 0 : t < t0 + .25 + hold ? 1 : 1 - clamp((t - t0 - .25 - hold) / out);
 const FONT = '"Lilita One"';
+// keep a box (centre px,py, half sizes hw,hh) inside the frame with a margin: pops never leave the picture
+const M = 36, keepIn = (px, py, hw, hh) => [Math.min(Math.max(px, hw + M), 1920 - hw - M), Math.min(Math.max(py, hh + M), 1080 - hh - M)];
 
 function paperText(g, txt, size, fill, ink = '#2a1a2e', stroke = .16) {   // cut-paper lettering: a dark backing sheet, the coloured letters, a soft drop
   g.font = `${size}px ${FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round';
@@ -19,7 +21,8 @@ function paperText(g, txt, size, fill, ink = '#2a1a2e', stroke = .16) {   // cut
 export function word(txt, x, y, t0, o = {}) {
   return (g, c) => {
     const a = life(c.t, t0, o.hold ?? 1, o.out ?? .3); if (a <= 0) return;
-    const [px, py, Z] = c.p(x, y, o.d ?? 2), k = pop(c.t, t0) * (o.size ?? 90) * (o.screen ? 1 : Math.min(2.4, Z));
+    let [px, py, Z] = c.p(x, y, o.d ?? 2); const k0 = (o.size ?? 90) * (o.screen ? 1 : Math.min(2.4, Z)), k = pop(c.t, t0) * k0;
+    g.font = `${k0}px ${FONT}`; const hw = g.measureText(txt).width * .58 + k0 * .1; [px, py] = keepIn(px, py, hw, k0 * .62);
     g.save(); g.globalAlpha = a; g.translate(px, py); g.rotate((o.rot ?? -.06) + Math.sin((c.t - t0) * 9) * .035 * Math.max(0, 1 - (c.t - t0)));
     paperText(g, txt, k, o.col || '#ffd24a', o.ink, o.stroke); g.restore();
   };
@@ -28,8 +31,9 @@ export function word(txt, x, y, t0, o = {}) {
 export function bubble(txt, x, y, t0, t1, o = {}) {
   return (g, c) => {
     if (c.t < t0 || c.t > t1 + .25) return;
-    const a = c.t > t1 ? 1 - (c.t - t1) / .25 : 1, [px, py, Z] = c.p(x, y, o.d ?? 2), sz = (o.size ?? 64) * (o.screen ? 1 : Math.min(2.2, Z)) * pop(c.t, t0);
+    const a = c.t > t1 ? 1 - (c.t - t1) / .25 : 1; let [px, py, Z] = c.p(x, y, o.d ?? 2); const s0 = (o.size ?? 64) * (o.screen ? 1 : Math.min(2.2, Z)), sz = s0 * pop(c.t, t0);
     if (sz <= 0) return;
+    g.font = `${s0}px ${FONT}`; [px, py] = keepIn(px, py, (g.measureText(txt).width / 2 + s0 * .55) * 1.25, s0 * 1.05);
     g.save(); g.globalAlpha = a; g.translate(px, py); g.rotate(o.rot ?? 0);
     g.font = `${sz}px ${FONT}`; const tw = g.measureText(txt).width, w = tw / 2 + sz * .55, h = sz * .85, kind = o.kind || 'speech', [tx, ty] = o.tail || [-.6, 1];
     g.shadowColor = 'rgba(30,12,4,.3)'; g.shadowBlur = sz * .2; g.shadowOffsetX = sz * .06; g.shadowOffsetY = sz * .1;
@@ -48,8 +52,13 @@ export function bubble(txt, x, y, t0, t1, o = {}) {
 export function thought(x, y, t0, t1, art, o = {}) {
   return (g, c) => {
     if (c.t < t0 || c.t > t1 + .3) return;
-    const [px, py, Z] = c.p(x, y, o.d ?? 2), k = (o.size ?? 1) * Math.min(2, Z), tt = c.t - t0, a = c.t > t1 ? 1 - (c.t - t1) / .3 : 1;
+    let [px, py, Z] = c.p(x, y, o.d ?? 2); const k = (o.size ?? 1) * Math.min(2, Z), tt = c.t - t0, a = c.t > t1 ? 1 - (c.t - t1) / .3 : 1;
     const [dx, dy] = o.dir || [1, -1];
+    { // the whole thought (dots and cloud, at full size) stays inside the frame
+      const W = (o.w ?? 260) * k, H = (o.h ?? 180) * k, cx = dx * (100 * k + W / 2), cy = dy * (80 * k + H / 2);
+      const x0 = Math.min(0, cx - W * .7), x1 = Math.max(0, cx + W * .7), y0 = Math.min(0, cy - H * .72), y1 = Math.max(0, cy + H * .72);
+      const [qx, qy] = keepIn(px + (x0 + x1) / 2, py + (y0 + y1) / 2, (x1 - x0) / 2, (y1 - y0) / 2); px += qx - px - (x0 + x1) / 2; py += qy - py - (y0 + y1) / 2;
+    }
     g.save(); g.globalAlpha = a; g.translate(px, py); g.fillStyle = '#fffaf0'; g.strokeStyle = '#2a1a2e'; g.lineWidth = 3 * k;
     g.shadowColor = 'rgba(30,12,4,.28)'; g.shadowBlur = 12 * k; g.shadowOffsetY = 6 * k;
     for (let i = 0; i < 3; i++) { const u = clamp((tt - i * .12) / .15); if (u <= 0) continue; const r = (6 + i * 5) * k * back(u); g.beginPath(); g.arc(dx * (i * 26 + 10) * k, dy * (i * 24 + 8) * k, r, 0, TAU); g.fill(); g.stroke(); }

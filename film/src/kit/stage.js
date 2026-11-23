@@ -87,6 +87,7 @@ export class Ctx {
     const lay = { sheet: rig.dyn, x: o.x ?? 0, y: o.y ?? 0, z: o.z ?? 3, d, sx: s * (!isCat && face === 'L' ? -1 : 1), sy: s, rot: o.rot || 0, alpha: o.alpha ?? 1, vis: o.vis ?? true, name: o.name || kind,
       shadow: o.shadow ?? { dx: (this.sc.lightDir || [.6, .8])[0] * 22, dy: (this.sc.lightDir || [.6, .8])[1] * 16, blur: 14, a: o.wallA ?? .26 }, blur: o.blur ?? 'auto', sharp: o.sharp, haze: o.haze ?? 0, trans: 0, lit: 0 };
     if (o.contact !== false) { const cw = (o.cw ?? (isCat ? 110 : 90)), ca = o.ca ?? .5; lay.pre = (g, info, l) => { const { px, py, Z } = info, w = cw * Z * Math.abs(l.sy); g.save(); g.translate(px + 4 * Z, py + 2 * Z); g.scale(1, .2); const gr = g.createRadialGradient(0, 0, 0, 0, 0, w); gr.addColorStop(0, `rgba(25,12,6,${ca})`); gr.addColorStop(1, 'rgba(25,12,6,0)'); g.fillStyle = gr; g.fillRect(-w, -w, w * 2, w * 2); g.restore(); }; }
+    if (o.clip) lay.clip = o.clip;
     this.actors.push(lay); return lay;
   }
   layer(l) { this.actors.push(l); return l; }
