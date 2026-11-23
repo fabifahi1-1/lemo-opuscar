@@ -113,5 +113,5 @@ export const P8 = {
     c.fx(grow('A little kindness', 960, 210, -1, 110), grow('can come back to you', 960, 360, .1, 90, .035), grow('in a big way.', 960, 480, .8, 90, .04));
   }),
   // END SCREEN, 15 s: the lantern and the closed storybook in the middle third; "Lantern and Page" small at the bottom
-  'end': S(c => { const sc = c.set(ENDTABLE); sc.t = c.T; c.cam({ zoom: 1.12, x: 0, y: 120 }, { zoom: 1.12, x: 0, y: 120, dz: .05 }, eio); }),
+  'end': S(c => { const sc = c.set(ENDTABLE); sc.t = c.T; c.cam({ zoom: 1.12, x: -24, y: 126 }, { zoom: 1.12, x: 24, y: 114, dz: .09 }, eio); const lan = c.L('lantern'); if (lan) lan.rot = Math.sin(c.T * .9) * .012; }),
 };

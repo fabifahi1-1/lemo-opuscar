@@ -75,8 +75,8 @@ for l in lines:
     if a - prev > .25: regs.append((prev, a, T_OPEN if prev >= END_T0 - .01 else T_GAP))
     regs.append((a, b, T_LINE)); prev = b
 if B - prev > .05:
-    if prev < END_T0 < B: regs.append((prev, END_T0, T_GAP)); regs.append((END_T0, B, T_OPEN))
-    else: regs.append((prev, B, T_OPEN if prev >= END_T0 - .01 else T_GAP))
+    if prev < END_T0 < B: regs.append((prev, END_T0, T_GAP)); regs.append((END_T0, B, T_OPEN - .8))
+    else: regs.append((prev, B, T_OPEN - .8 if prev >= END_T0 - .01 else T_GAP))
 def peaks4(x):   # 4x-oversampled peak per sample, in 20 s chunks (memory)
     out = np.empty(len(x)); C = SR * 20
     for i in range(0, len(x), C):
