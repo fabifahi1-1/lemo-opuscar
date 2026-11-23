@@ -102,6 +102,15 @@ for it in range(4):
     k = int(.15 * SR); sm = np.convolve(np.pad(step, (k, k), mode='edge'), np.ones(2 * k + 1) / (2 * k + 1), mode='valid')[:N]
     env = env * sm
 mix = limiter(mix * env[:, None])
+# momentary cap: no 400 ms window anywhere above -20.5 LUFS (the brief's limit is -20 momentary)
+def mcap(x, lim=-20.5):
+    y = kw(x.astype(np.float64)); p = (y ** 2).sum(axis=1); w = int(.4 * SR)
+    ms = np.convolve(p, np.ones(w) / w, mode='same'); M = -.691 + 10 * np.log10(ms + 1e-12)
+    g = np.minimum(1.0, 10 ** ((lim - M) / 20)); g = minimum_filter1d(g, size=w)
+    k = int(.1 * SR); g = np.convolve(np.pad(g, (k, k), mode='edge'), np.ones(2 * k + 1) / (2 * k + 1), mode='valid')[:len(x)]
+    return (x * np.minimum(1.0, g)[:, None]).astype(np.float32)
+for _ in range(2): mix = mcap(mix)
+mix = limiter(mix)
 tp = 20 * np.log10(peaks4(mix).max() + 1e-12)
 out = f'/home/user/lemo-opuscar/film/out/mix_{A:g}-{B:g}.wav'
 sf.write(out, mix, SR, subtype='PCM_24')

@@ -156,7 +156,7 @@ export const P2 = {
   // the king on his throne, seen from low (after the card "the king")
   'L037': S(c => { throne(c); king(c, { lookX: .5, lookY: .2 }); c.cam({ zoom: 1.6, x: 360, y: -120, dz: 0 }, { zoom: 1.6, x: 360, y: -140, dz: .07 }); }),
   // tilt up the king's long white beard
-  'L038[1:6]': S(c => { throne(c); king(c, { lookX: .5, lookY: .2 }); aim(c, kingHead[0] + 10, kingHead[1] + 190, KING.d, 3.4, .5, .55, { Y: kingHead[1] + 40, fy: .45, dz: .03 }); }),
+  'L038[1:6]': S(c => { throne(c); king(c, { lookX: .5, lookY: .2 }); aim(c, kingHead[0] + 10, kingHead[1] + 70, KING.d, 3.4, .5, .5, { Y: kingHead[1] + 30, fy: .45, dz: .03 }); }),
   // the tiny gold crown on the big head; hold so kids notice how tiny it is (the card "the crown" follows)
   'L038[7:]': S(c => { throne(c); king(c, { lookX: .5, lookY: -.3, brow: .3 }); aim(c, kingHead[0], kingHead[1] - 70, KING.d, 4.6, .5, .45, { dz: .05 }); c.fx(sparkle(kingHead[0] - 10, kingHead[1] - 120, .15, { n: 4, size: 14, spread: 30, d: KING.d })); }),
   // over Puss's shoulder: he bows very low, "Your Majesty"
