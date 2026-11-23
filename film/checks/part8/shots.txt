@@ -16,4 +16,4 @@ L192[1:8]   696.44 - 700.77 diff 6.11 moving 10/10
 L192[9:]    700.77 - 703.41 diff 2.63 moving 10/10 
 L193[1:4]   703.41 - 705.63 diff 3.34 moving 10/10 
 L193[5:]    705.63 - 710.48 diff 5.16 moving 10/10 
-end         710.48 - 725.48 diff 0.29 moving 1/6  FEW LAYERS
+end         710.48 - 725.48 diff 0.7 moving 5/6 
