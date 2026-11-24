@@ -137,3 +137,7 @@ styles/*/demo/stills/*_v1*
 
 # isometric-picture-book: the character list its font subset step writes
 styles/isometric-picture-book/demo/tools/chars.txt
+
+# the full-length film and soundtrack are over GitHub's 100 MB file limit: the repository holds them split in four (puss-in-boots-N-of-4.*)
+film/puss-in-boots.mp4
+film/puss-in-boots-sound.wav
