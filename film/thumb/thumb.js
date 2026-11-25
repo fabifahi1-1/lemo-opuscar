@@ -125,7 +125,7 @@ function boot(x, y, rot, layer) {   // a cavalier boot: flared cuff, shaft, roun
 function faceArt() {
   const eye = (cx, cy, rx, ry, lid) => {
     const c = uid('e'); DEFS.push(`<clipPath id="${c}"><ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/></clipPath>`);
-    const ix = cx + rx * .34, iy = cy - ry * .02, ly = cy - ry + ry * 2 * lid;
+    const ix = cx + rx * .34, iy = cy - ry * .14, ly = cy - ry + ry * 2 * lid;
     return `<ellipse cx="${cx}" cy="${cy}" rx="${rx + 5}" ry="${ry + 5}" fill="${INK}"/>
       <g clip-path="url(#${c})"><rect x="${cx - rx}" y="${cy - ry}" width="${rx * 2}" height="${ry * 2}" fill="#fffbee"/>
       <ellipse cx="${ix}" cy="${iy}" rx="${rx * .74}" ry="${ry * .78}" fill="url(#iris)"/>
@@ -157,9 +157,9 @@ function cloud(cx, cy, w, h, seed, { top = '#fffaf1', bot = '#f1c9bb', op = 1 } 
   return `<g opacity="${op}" clip-path="url(#${cl})"><g fill="${bot}" transform="translate(0 10)" filter="url(#b6)" opacity=".6">${c}</g><g fill="url(#${id})" filter="url(#cloudEdge)">${c}</g></g>`;
 }
 function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed roofs and flags, banners, a big studded door, a guard
-  const W = '#f8e8d2', WS = '#dcc0a0', WD = '#c4a282', RF = '#8a52c6', RFS = '#5e3394', RFL = '#b07ee0', GOLD = '#f2c14e';
+  const W = '#f8e8d2', WS = '#dcc0a0', WD = '#c4a282', RF = '#f2281e', RFS = '#b8140e', RFL = '#ff6a4a', GOLD = '#f2c14e';
   const bricks = (x0, x1, y0, y1) => { let b = ''; for (let yy = y0 + 14; yy < y1 - 10; yy += 34) { const off = ((yy - y0) / 34) % 2 ? 28 : 0; for (let xx = x0 + off; xx < x1 - 30; xx += 56) b += `<rect x="${n1(xx + 4)}" y="${n1(yy)}" width="44" height="22" rx="5" fill="${WS}" opacity=".45"/>`; } return b; };
-  const flag = (px, py, sc = 1, c = '#d8303c') => `<path d="M${px} ${py} L${px} ${py - 74 * sc}" stroke="#5a3a2a" stroke-width="${6 * sc}" stroke-linecap="round"/><circle cx="${px}" cy="${py - 76 * sc}" r="${7 * sc}" fill="${GOLD}"/>` +
+  const flag = (px, py, sc = 1, c = '#2f62c0') => `<path d="M${px} ${py} L${px} ${py - 74 * sc}" stroke="#5a3a2a" stroke-width="${6 * sc}" stroke-linecap="round"/><circle cx="${px}" cy="${py - 76 * sc}" r="${7 * sc}" fill="${GOLD}"/>` +
     `<path d="M${px} ${py - 70 * sc} C${px + 24 * sc} ${py - 82 * sc} ${px + 50 * sc} ${py - 60 * sc} ${px + 90 * sc} ${py - 70 * sc} L${px + 66 * sc} ${py - 52 * sc} L${px + 92 * sc} ${py - 36 * sc} C${px + 54 * sc} ${py - 28 * sc} ${px + 26 * sc} ${py - 46 * sc} ${px} ${py - 38 * sc} Z" fill="${c}"/>` +
     `<path d="M${px} ${py - 56 * sc} C${px + 26 * sc} ${py - 64 * sc} ${px + 50 * sc} ${py - 46 * sc} ${px + 80 * sc} ${py - 53 * sc}" stroke="${GOLD}" stroke-width="${5 * sc}" fill="none"/>`;
   const win = (wx, wy, w = 26, h = 46) => `<path d="M${wx - w / 2} ${wy + h} L${wx - w / 2} ${wy + w / 2} A${w / 2} ${w / 2} 0 0 1 ${wx + w / 2} ${wy + w / 2} L${wx + w / 2} ${wy + h} Z" fill="#6a4a3a"/><path d="M${wx - w / 2 + 4} ${wy + h} L${wx - w / 2 + 4} ${wy + w / 2} A${w / 2 - 4} ${w / 2 - 4} 0 0 1 ${wx + w / 2 - 4} ${wy + w / 2} L${wx + w / 2 - 4} ${wy + h} Z" fill="#ffd86a"/><ellipse cx="${wx}" cy="${wy + h * .6}" rx="${w * 1.2}" ry="${h * .9}" fill="#fff0a0" opacity=".35" filter="url(#b8)"/>`;
@@ -200,7 +200,7 @@ function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed r
     <circle cx="0" cy="-184" r="27" fill="#f2c19a"/><circle cx="-9" cy="-184" r="3.6" fill="#2a1a20"/><circle cx="9" cy="-184" r="3.6" fill="#2a1a20"/><ellipse cx="-16" cy="-174" rx="6" ry="3.5" fill="#f08c80" opacity=".7"/><ellipse cx="16" cy="-174" rx="6" ry="3.5" fill="#f08c80" opacity=".7"/><path d="M-6 -170 Q0 -165 6 -170" stroke="#7a3a2a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
     <path d="M-31 -190 C-31 -224 31 -224 31 -190 L36 -186 L-36 -186 Z" fill="#cfd6de"/><path d="M4 -219 C22 -214 31 -204 31 -190 L36 -186 L6 -186 Z" fill="#a8b0ba"/><path d="M0 -220 C-6 -250 20 -262 34 -246 C22 -246 12 -236 8 -220 Z" fill="#c8283a"/>
   </g>`;
-  return `<g transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="-460" rx="900" ry="700" fill="url(#cglow)"/>
+  return `<g><g transform="translate(${x} ${y}) scale(${k})">
     ${tower(-250, 112, 560, 190, { fs: .9 })}${tower(250, 112, 600, 200, { fs: .9, fc: '#e8a020' })}
     ${crenWall(-190, 190, 470)}${tower(0, 160, 660, 250, { fs: 1.25, wins: 3 })}
     ${crenWall(-400, 400, 290)}
@@ -208,7 +208,7 @@ function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed r
     ${crenWall(-170, 170, 400)}${banner(-118)}${banner(118)}${win(0, -380, 34, 56)}
     ${door}
     <path d="M-150 0 L150 0 L176 22 L-176 22 Z" fill="${WS}"/><path d="M-176 22 L176 22 L196 40 L-196 40 Z" fill="${WD}"/>
-    ${guard(236)}</g>`;
+    ${guard(-236)}</g></g>`;
 }
 DEFS.push(`<radialGradient id="cglow"><stop offset="0" stop-color="#fff6d0" stop-opacity=".75"/><stop offset=".6" stop-color="#fff0c0" stop-opacity=".25"/><stop offset="1" stop-color="#fff0c0" stop-opacity="0"/></radialGradient>`);
 function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the castle
@@ -217,22 +217,31 @@ function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the cas
 }
 function scene() {
   const o = [];
-  // sky: a rich sunset (rose-orange at the top to gold), a bright glow behind the castle
-  DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3f9a86"/><stop offset=".35" stop-color="#7cc4a0"/><stop offset=".7" stop-color="#c8e8b4"/><stop offset="1" stop-color="#eef6cc"/></linearGradient>`);
-  DEFS.push(`<radialGradient id="glow" cx="1050" cy="420" r="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe9b8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>`);
-  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1050, 420, 26, .16)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".45"/>`);
-  // clouds: a bright bank behind Puss (so the orange cat pops), smaller ones in the sky
-  o.push(cloud(1780, 860, 560, 170, 5, { op: .9 }), cloud(260, 900, 700, 200, 9, { op: .9 }), cloud(160, 150, 360, 100, 3, { op: .75 }));
-  o.push(cloud(1060, 900, 1500, 300, 4, { bot: '#cfe6c0' }));
-  // far lavender hills, the castle on its green hill, the road from Puss to the castle, the front hill
-  o.push(`<path d="M0 940 C200 900 420 900 600 960 C760 900 920 900 1080 930 C1260 880 1420 860 1600 890 C1740 880 1840 890 1920 900 L1920 1080 L0 1080 Z" fill="#8cbfa6"/>`);
-  o.push(`<path d="M0 1030 C300 1000 700 990 1250 1000 C1560 992 1800 996 1920 1004 L1920 1080 L0 1080 Z" fill="#9cc458"/><path d="M0 1030 C300 1000 700 990 1250 1000 C1560 992 1800 996 1920 1004" fill="none" stroke="#d6ec8e" stroke-width="6" opacity=".8"/>`);
-  o.push(castle(1060, 1078, 1.08));
-  
-  o.push(`<path d="M0 1002 C240 984 520 996 760 1030 C820 1040 860 1062 870 1080 L0 1080 Z" fill="#5f9a38"/>`);
-  let tufts = ''; const r = R0(41); for (let x = 8; x < 860; x += 26 + r() * 20) { const yb = 1006 + (x / 860) * 36, h = 18 + r() * 26; tufts += `<path d="M${n1(x - 6)} ${n1(yb + 10)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 4)} ${n1(yb - h * .4)} ${n1(x + 8)} ${n1(yb + 10)} Z"/>`; }
-  o.push(`<g fill="#4f8a2c">${tufts}</g>`);
-  let fl = ''; for (const [x, y, c] of [[60, 1040, '#fff6e0'], [130, 1056, '#ffd23a'], [700, 1062, '#ff7aa8'], [770, 1068, '#fff6e0'], [30, 1066, '#ff7aa8']]) fl += `<g fill="${c}">${[0, 1, 2, 3, 4].map(i => `<circle cx="${n1(x + Math.cos(i * 1.2566) * 7)}" cy="${n1(y + Math.sin(i * 1.2566) * 7)}" r="6"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="4.5" fill="#e8a22a"/>`;
+  // sky: a clear blue, paler toward the horizon, a soft light behind the castle
+  DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2f78d0"/><stop offset=".38" stop-color="#6fb2ec"/><stop offset=".66" stop-color="#bfe0f6"/><stop offset="1" stop-color="#eaf5f6"/></linearGradient>`);
+  DEFS.push(`<radialGradient id="glow" cx="1040" cy="430" r="820" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffdf0" stop-opacity=".45"/><stop offset=".45" stop-color="#f4fbff" stop-opacity=".15"/><stop offset="1" stop-color="#f4fbff" stop-opacity="0"/></radialGradient>`);
+  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1040, 430, 26, .12)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".35"/>`);
+  // clouds high in the sky and a soft bank along the horizon
+  o.push(cloud(620, 150, 380, 100, 3, { bot: '#d4e4f2', op: .85 }), cloud(1840, 760, 360, 100, 5, { bot: '#d4e4f2', op: .9 }), cloud(560, 700, 700, 150, 9, { bot: '#d8e8f2', op: .9 }), cloud(1500, 740, 900, 160, 4, { bot: '#d8e8f2', op: .9 }));
+  // far blue hills, the castle on its distant hill
+  o.push(`<path d="M0 760 C220 720 420 730 620 760 C820 720 980 700 1160 726 C1380 700 1600 712 1920 744 L1920 1080 L0 1080 Z" fill="#a9c4dc"/>`);
+  o.push(castle(1040, 786, .7));
+  o.push(`<path d="M420 840 C600 790 820 768 1040 770 C1260 768 1480 790 1680 840 L1680 1080 L420 1080 Z" fill="#6fb04a"/><path d="M420 840 C600 790 820 768 1040 770 C1260 768 1480 790 1680 840" fill="none" stroke="#9ad46a" stroke-width="6"/>`);
+  o.push(`<ellipse cx="1040" cy="784" rx="400" ry="16" fill="#2e5a20" opacity=".45" filter="url(#b8)"/>`);
+  o.push(`<path d="M680 786 C700 770 730 772 744 786 Z M1340 786 C1352 772 1380 770 1400 786 Z M880 788 C896 776 916 778 926 788 Z" fill="#5a9a3c"/>`);
+  // the valley between: fields, small trees and the road winding off to the castle gate
+  o.push(`<path d="M0 840 C300 806 600 800 900 814 C1200 800 1600 806 1920 822 L1920 1080 L0 1080 Z" fill="#8cc070"/>`);
+  o.push(`<path d="M0 900 C400 870 800 866 1200 880 C1500 870 1760 878 1920 888 L1920 1080 L0 1080 Z" fill="#7ab45c"/>`);
+  let trees = ''; const tr = R0(77);
+  const tree = (x, y, h, c) => `<rect x="${n1(x - h * .05)}" y="${n1(y - h * .4)}" width="${n1(h * .1)}" height="${n1(h * .4)}" fill="#6a4a30"/><circle cx="${n1(x)}" cy="${n1(y - h * .62)}" r="${n1(h * .3)}" fill="${c}"/><circle cx="${n1(x - h * .08)}" cy="${n1(y - h * .7)}" r="${n1(h * .14)}" fill="#ffffff" opacity=".12"/>`;
+  for (const [y0, hh, c, n] of [[820, 22, '#5f9a5a', 26], [862, 32, '#4f8e48', 22], [912, 46, '#45843c', 16]]) for (let i = 0; i < n; i++) { const x = (i + tr()) * 1920 / n; if (Math.abs(x - 1040) < 120 && y0 < 900) continue; trees += tree(x, y0 + tr() * 16, hh * (.8 + tr() * .4), c); }
+  o.push(trees);
+  o.push(`<path d="M1020 776 C1000 800 930 830 900 860 C860 900 900 930 820 970 C740 1010 640 1040 560 1080 L760 1080 C820 1040 920 1004 970 966 C1030 924 980 896 1010 864 C1040 832 1060 800 1060 776 Z" fill="#f0dca4"/>`);
+  // the near hill Puss stands on
+  o.push(`<path d="M0 990 C220 968 520 976 760 1010 C840 1022 880 1052 896 1080 L0 1080 Z" fill="#4e8a2e"/>`);
+  let tufts = ''; const r = R0(41); for (let x = 8; x < 880; x += 22 + r() * 18) { const yb = 992 + (x / 880) * 34, h = 22 + r() * 30; tufts += `<path d="M${n1(x - 7)} ${n1(yb + 12)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 5)} ${n1(yb - h * .4)} ${n1(x + 9)} ${n1(yb + 12)} Z"/>`; }
+  o.push(`<g fill="#3c7424">${tufts}</g>`);
+  let fl = ''; for (const [x, y, c] of [[60, 1036, '#fff6e0'], [130, 1054, '#ffd23a'], [700, 1060, '#ff7aa8'], [780, 1066, '#fff6e0'], [30, 1064, '#ff7aa8']]) fl += `<g fill="${c}">${[0, 1, 2, 3, 4].map(i => `<circle cx="${n1(x + Math.cos(i * 1.2566) * 8)}" cy="${n1(y + Math.sin(i * 1.2566) * 8)}" r="7"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="5" fill="#e8a22a"/>`;
   o.push(fl);
   return o.join('');
 }
@@ -257,15 +266,16 @@ function title() {
   const tx = x0 + fr * 2 + gap, lat = `x="${n1(tx)}" y="${fy + 27}" font-family='${F}' font-size="${ls}"`;
   const label = `<g><circle cx="${n1(fx + 4)}" cy="${fy + 8}" r="${fr + 8}" fill="#3a1a0c" opacity=".35" filter="url(#b6)"/><circle cx="${n1(fx)}" cy="${fy}" r="${fr + 7}" fill="#4a2414"/><g clip-path="url(#flagc)">${flag}<rect x="${n1(fx - fr)}" y="${fy - fr}" width="${n1(fr * 1.04)}" height="${n1(fr * .92)}" fill="#2a3f7a"/>${stars}</g>` +
     `<text ${lat} fill="#3a1a0c" opacity=".4" filter="url(#b6)" transform="translate(5 8)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round" transform="translate(3 5)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round">${lab}</text><text ${lat} fill="#fff">${lab}</text></g>`;
-  return `<ellipse cx="${CX}" cy="420" rx="480" ry="400" fill="#16301f" opacity=".46" filter="url(#soft)"/>` + label + line('PUSS', 300, 360, 10) + line('IN', 150, 494, 8) + line('BOOTS', 300, 732, 10);
+  return `<ellipse cx="${CX}" cy="420" rx="480" ry="400" fill="#0e1f3a" opacity=".42" filter="url(#soft)"/>` + label + line('PUSS', 300, 360, 10) + line('IN', 150, 494, 8) + line('BOOTS', 300, 732, 10);
 }
 
 function build() {
   const sceneSvg = scene(), pussSvg = puss(), titleSvg = title();
   const filters = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14].map(b => `<filter id="b${b}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="${b * .5}"/></filter>`).join('') +
+    `<filter id="haze" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse"><feColorMatrix values=".9 0 0 0 .06  0 .9 0 0 .08  0 0 .9 0 .11  0 0 0 1 0"/></filter>` +
     `<filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>` +
     `<filter id="cloudEdge" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="14"/><feGaussianBlur stdDeviation="1.2"/></filter>` +
-    `<filter id="mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".004 .006" numOctaves="3" seed="8"/><feColorMatrix values="0 0 0 0 .9  0 0 0 0 1  0 0 0 0 .85  0 0 0 .9 -.32"/></filter>` +
+    `<filter id="mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".004 .006" numOctaves="3" seed="8"/><feColorMatrix values="0 0 0 0 .9  0 0 0 0 .96  0 0 0 0 1  0 0 0 .9 -.32"/></filter>` +
     `<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .12  0 0 0 0 .05  0 0 0 .55 -.16"/></filter>` +
     `<filter id="brush" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".02 .09" numOctaves="2" seed="12"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 .7 -.3"/></filter>` +
     `<filter id="halo" x="-10%" y="-10%" width="120%" height="120%"><feMorphology in="SourceAlpha" operator="dilate" radius="5" result="d"/><feGaussianBlur in="d" stdDeviation="9" result="b"/><feFlood flood-color="#fffbe8" flood-opacity=".9"/><feComposite in2="b" operator="in" result="h"/><feMerge><feMergeNode in="h"/><feMergeNode in="SourceGraphic"/></feMerge></filter>` +
@@ -274,7 +284,7 @@ function build() {
     `<radialGradient id="vig" cx="960" cy="540" r="1150" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#2a1208" stop-opacity="0"/><stop offset="1" stop-color="#2a1208" stop-opacity=".32"/></radialGradient>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080"><defs>${filters}${DEFS.join('')}</defs>
     ${sceneSvg}
-    <g transform="translate(-6 54) scale(1)" filter="url(#halo)">${pussSvg}</g>
+    <g transform="translate(10 100) scale(.94)" filter="url(#halo)">${pussSvg}</g>
     ${titleSvg}
     <rect width="1920" height="1080" filter="url(#brush)" opacity=".18" style="mix-blend-mode:soft-light"/>
     <rect width="1920" height="1080" filter="url(#grain)" opacity=".5"/>
