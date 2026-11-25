@@ -208,7 +208,7 @@ function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed r
     ${crenWall(-170, 170, 400)}${banner(-118)}${banner(118)}${win(0, -380, 34, 56)}
     ${door}
     <path d="M-150 0 L150 0 L176 22 L-176 22 Z" fill="${WS}"/><path d="M-176 22 L176 22 L196 40 L-196 40 Z" fill="${WD}"/>
-    ${guard(232)}</g>`;
+    ${guard(-236)}</g>`;
 }
 DEFS.push(`<radialGradient id="cglow"><stop offset="0" stop-color="#fff6d0" stop-opacity=".75"/><stop offset=".6" stop-color="#fff0c0" stop-opacity=".25"/><stop offset="1" stop-color="#fff0c0" stop-opacity="0"/></radialGradient>`);
 function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the castle
@@ -219,25 +219,25 @@ function scene() {
   const o = [];
   // sky: a rich sunset (rose-orange at the top to gold), a bright glow behind the castle
   DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e8705a"/><stop offset=".35" stop-color="#f6a066"/><stop offset=".68" stop-color="#ffd08a"/><stop offset="1" stop-color="#ffe2a6"/></linearGradient>`);
-  DEFS.push(`<radialGradient id="glow" cx="1440" cy="560" r="950" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe9b8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>`);
-  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1440, 520, 24, .22)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".45"/>`);
+  DEFS.push(`<radialGradient id="glow" cx="1250" cy="560" r="950" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe9b8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>`);
+  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1250, 520, 24, .22)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".45"/>`);
   // clouds: a bright bank behind Puss (so the orange cat pops), smaller ones in the sky
-  o.push(cloud(1880, 640, 380, 110, 5, { op: .85 }), cloud(860, 860, 460, 130, 9, { op: .85 }), cloud(900, 420, 360, 100, 3, { op: .7 }));
-  o.push(cloud(330, 800, 1000, 340, 4));
+  o.push(cloud(130, 880, 520, 150, 5, { op: .9 }), cloud(560, 960, 620, 170, 9, { op: .85 }), cloud(1880, 300, 300, 90, 3, { op: .7 }));
+  o.push(cloud(1640, 820, 900, 320, 4));
   // far lavender hills, the castle on its green hill, the road from Puss to the castle, the front hill
-  o.push(`<path d="M600 960 C760 900 920 900 1080 930 C1260 880 1420 860 1600 890 C1740 880 1840 890 1920 900 L1920 1080 L600 1080 Z" fill="#c09ac4"/>`);
-  o.push(`<path d="M820 1080 C1000 1010 1200 990 1440 1000 C1640 990 1800 996 1920 1004 L1920 1080 Z" fill="#9cc458"/><path d="M820 1080 C1000 1010 1200 990 1440 1000 C1640 990 1800 996 1920 1004" fill="none" stroke="#d6ec8e" stroke-width="6" opacity=".8"/>`);
-  o.push(castle(1440, 1000, .74));
-  o.push(`<path d="M1370 1028 C1300 1046 1180 1062 1060 1080 L1260 1080 C1360 1066 1460 1048 1510 1028 Z" fill="#f2dca0"/>`);
-  o.push(`<path d="M0 1006 C220 986 560 996 940 1036 C1020 1046 1060 1064 1080 1080 L0 1080 Z" fill="#6fa040"/>`);
-  let tufts = ''; const r = R0(41); for (let x = 10; x < 1040; x += 26 + r() * 20) { const yb = 1010 + (x / 1040) * 34, h = 18 + r() * 26; tufts += `<path d="M${n1(x - 6)} ${n1(yb + 10)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 4)} ${n1(yb - h * .4)} ${n1(x + 8)} ${n1(yb + 10)} Z"/>`; }
+  o.push(`<path d="M0 940 C200 900 420 900 600 960 C760 900 920 900 1080 930 C1260 880 1420 860 1600 890 C1740 880 1840 890 1920 900 L1920 1080 L0 1080 Z" fill="#c09ac4"/>`);
+  o.push(`<path d="M0 1030 C300 1000 700 990 1250 1000 C1560 992 1800 996 1920 1004 L1920 1080 L0 1080 Z" fill="#9cc458"/><path d="M0 1030 C300 1000 700 990 1250 1000 C1560 992 1800 996 1920 1004" fill="none" stroke="#d6ec8e" stroke-width="6" opacity=".8"/>`);
+  o.push(castle(1250, 1000, .74));
+  o.push(`<path d="M1180 1028 C1100 1046 940 1062 780 1080 L1000 1080 C1120 1066 1240 1048 1320 1028 Z" fill="#f2dca0"/>`);
+  o.push(`<path d="M1920 1006 C1700 986 1400 996 1080 1036 C1000 1046 960 1064 940 1080 L1920 1080 Z" fill="#6fa040"/>`);
+  let tufts = ''; const r = R0(41); for (let x = 960; x < 1912; x += 26 + r() * 20) { const yb = 1010 + ((1920 - x) / 960) * 34, h = 18 + r() * 26; tufts += `<path d="M${n1(x - 6)} ${n1(yb + 10)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 4)} ${n1(yb - h * .4)} ${n1(x + 8)} ${n1(yb + 10)} Z"/>`; }
   o.push(`<g fill="#4f8a2c">${tufts}</g>`);
-  let fl = ''; for (const [x, y, c] of [[70, 1030, '#fff6e0'], [130, 1050, '#ffd23a'], [880, 1056, '#fff6e0'], [960, 1064, '#ff7aa8'], [40, 1062, '#ff7aa8']]) fl += `<g fill="${c}">${[0, 1, 2, 3, 4].map(i => `<circle cx="${n1(x + Math.cos(i * 1.2566) * 7)}" cy="${n1(y + Math.sin(i * 1.2566) * 7)}" r="6"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="4.5" fill="#e8a22a"/>`;
+  let fl = ''; for (const [x, y, c] of [[1850, 1030, '#fff6e0'], [1790, 1050, '#ffd23a'], [1060, 1060, '#fff6e0'], [1000, 1068, '#ff7aa8'], [1880, 1062, '#ff7aa8'], [60, 1060, '#fff6e0'], [130, 1050, '#ffd23a'], [620, 1064, '#ff7aa8']]) fl += `<g fill="${c}">${[0, 1, 2, 3, 4].map(i => `<circle cx="${n1(x + Math.cos(i * 1.2566) * 7)}" cy="${n1(y + Math.sin(i * 1.2566) * 7)}" r="6"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="4.5" fill="#e8a22a"/>`;
   o.push(fl);
   return o.join('');
 }
 function title() {
-  const m = document.createElement('canvas').getContext('2d'), CX = 960, MAXW = 1780, F = '"Lilita One"';
+  const m = document.createElement('canvas').getContext('2d'), CX = 452, MAXW = 820, F = '"Lilita One"';
   DEFS.push(`<linearGradient id="tfill" x1="0" y1="0" x2="0" y2="1" ><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#ffffff"/><stop offset="1" stop-color="#ffeccc"/></linearGradient>`);
   // white letters, a thick dark outline and a deep 3D edge, like the white titles of the references
   const line = (s, size, base, track = 0) => {
@@ -250,14 +250,14 @@ function title() {
       `<text ${at} fill="none" stroke="#ffffff" stroke-width="2" opacity=".5" transform="translate(-2 -3)">${s}</text>`;
   };
   // the accent label above the title, after the US reference: a round flag badge and the words
-  const lab = 'American accent', ls = 76; m.font = `${ls}px ${F}`; const lw = m.measureText(lab).width, fr = 44, gap = 22, x0 = 905 - (lw + fr * 2 + gap) / 2, fx = x0 + fr, fy = 322;
+  const lab = 'American accent', ls = 76; m.font = `${ls}px ${F}`; const lw = m.measureText(lab).width, fr = 44, gap = 22, x0 = CX - (lw + fr * 2 + gap) / 2, fx = x0 + fr, fy = 84;
   let flag = ''; for (let i = 0; i < 7; i++) flag += `<rect x="${n1(fx - fr)}" y="${n1(fy - fr + i * 2 * fr / 7)}" width="${2 * fr}" height="${n1(2 * fr / 7 + .5)}" fill="${i % 2 ? '#fbf6ee' : '#d0303c'}"/>`;
   let stars = ''; for (let rr = 0; rr < 3; rr++) for (let c = 0; c < 3; c++) stars += `<circle cx="${n1(fx - fr + 11 + c * 14 + (rr % 2) * 6)}" cy="${n1(fy - fr + 11 + rr * 13)}" r="3.4" fill="#fbf6ee"/>`;
   DEFS.push(`<clipPath id="flagc"><circle cx="${n1(fx)}" cy="${fy}" r="${fr}"/></clipPath>`);
   const tx = x0 + fr * 2 + gap, lat = `x="${n1(tx)}" y="${fy + 27}" font-family='${F}' font-size="${ls}"`;
   const label = `<g><circle cx="${n1(fx + 4)}" cy="${fy + 8}" r="${fr + 8}" fill="#3a1a0c" opacity=".35" filter="url(#b6)"/><circle cx="${n1(fx)}" cy="${fy}" r="${fr + 7}" fill="#4a2414"/><g clip-path="url(#flagc)">${flag}<rect x="${n1(fx - fr)}" y="${fy - fr}" width="${n1(fr * 1.04)}" height="${n1(fr * .92)}" fill="#2a3f7a"/>${stars}</g>` +
     `<text ${lat} fill="#3a1a0c" opacity=".4" filter="url(#b6)" transform="translate(5 8)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round" transform="translate(3 5)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round">${lab}</text><text ${lat} fill="#fff">${lab}</text></g>`;
-  return label + line('PUSS IN BOOTS', 250, 222, 6);
+  return label + line('PUSS', 300, 370, 10) + line('IN', 150, 508, 8) + line('BOOTS', 300, 750, 10);
 }
 
 function build() {
@@ -273,7 +273,7 @@ function build() {
     `<radialGradient id="vig" cx="960" cy="540" r="1150" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#2a1208" stop-opacity="0"/><stop offset="1" stop-color="#2a1208" stop-opacity=".32"/></radialGradient>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080"><defs>${filters}${DEFS.join('')}</defs>
     ${sceneSvg}
-    <g transform="translate(70 212) scale(.84)" filter="url(#halo)">${pussSvg}</g>
+    <g transform="translate(1912 252) scale(-.8 .8)" filter="url(#halo)">${pussSvg}</g>
     ${titleSvg}
     <rect width="1920" height="1080" filter="url(#brush)" opacity=".18" style="mix-blend-mode:soft-light"/>
     <rect width="1920" height="1080" filter="url(#grain)" opacity=".5"/>
