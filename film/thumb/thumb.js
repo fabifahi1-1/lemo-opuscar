@@ -203,9 +203,11 @@ function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed r
   return `<g><g transform="translate(${x} ${y}) scale(${k})">
     ${tower(-250, 112, 560, 190, { fs: .9 })}${tower(250, 112, 600, 200, { fs: .9, fc: '#e8a020' })}
     ${crenWall(-190, 190, 470)}${tower(0, 160, 660, 250, { fs: 1.25, wins: 3 })}
+    ${crenWall(-740, 740, 250)}${tower(-730, 150, 380, 170, { wins: 2, fc: '#e8a020' })}${tower(730, 150, 370, 170, { wins: 2 })}
     ${crenWall(-400, 400, 290)}
     ${tower(-430, 150, 430, 180, { wins: 2, fc: '#e8a020' })}${tower(430, 150, 410, 180, { wins: 2 })}
     ${crenWall(-170, 170, 400)}${banner(-118)}${banner(118)}${win(0, -380, 34, 56)}
+    <rect x="-820" y="-46" width="1640" height="46" fill="${WD}"/><rect x="-820" y="-46" width="1640" height="8" fill="${WS}"/>${(() => { let f = ''; for (let xx = -816; xx < 816; xx += 72) f += `<rect x="${xx}" y="-38" width="64" height="34" rx="5" fill="#b8966e" opacity=".55"/>`; return f; })()}
     ${door}
     <path d="M-150 0 L150 0 L176 22 L-176 22 Z" fill="${WS}"/><path d="M-176 22 L176 22 L196 40 L-196 40 Z" fill="${WD}"/>
     ${guard(-236)}</g></g>`;
@@ -217,32 +219,31 @@ function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the cas
 }
 function scene() {
   const o = [];
-  // sky: a clear blue, paler toward the horizon, a soft light behind the castle
-  DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2f78d0"/><stop offset=".38" stop-color="#6fb2ec"/><stop offset=".66" stop-color="#bfe0f6"/><stop offset="1" stop-color="#eaf5f6"/></linearGradient>`);
-  DEFS.push(`<radialGradient id="glow" cx="1040" cy="430" r="820" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffdf0" stop-opacity=".45"/><stop offset=".45" stop-color="#f4fbff" stop-opacity=".15"/><stop offset="1" stop-color="#f4fbff" stop-opacity="0"/></radialGradient>`);
-  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1040, 430, 26, .12)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".35"/>`);
-  // clouds high in the sky and a soft bank along the horizon
-  o.push(cloud(620, 150, 380, 100, 3, { bot: '#d4e4f2', op: .85 }), cloud(1840, 760, 360, 100, 5, { bot: '#d4e4f2', op: .9 }), cloud(560, 700, 700, 150, 9, { bot: '#d8e8f2', op: .9 }), cloud(1500, 740, 900, 160, 4, { bot: '#d8e8f2', op: .9 }));
-  // far blue hills, the castle on its distant hill
+  // sky: clear blue, paler toward the horizon (no beams)
+  DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2f78d0"/><stop offset=".4" stop-color="#6fb2ec"/><stop offset=".72" stop-color="#c4e2f6"/><stop offset="1" stop-color="#eaf5f6"/></linearGradient>`);
+  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".3"/>`);
+  o.push(cloud(600, 130, 380, 100, 3, { bot: '#d4e4f2', op: .9 }), cloud(140, 520, 420, 110, 5, { bot: '#d4e4f2', op: .85 }));
+  // distant blue hills behind the castle
   o.push(`<path d="M0 760 C220 720 420 730 620 760 C820 720 980 700 1160 726 C1380 700 1600 712 1920 744 L1920 1080 L0 1080 Z" fill="#a9c4dc"/>`);
-  o.push(castle(1040, 786, .7));
-  o.push(`<path d="M420 840 C600 790 820 768 1040 770 C1260 768 1480 790 1680 840 L1680 1080 L420 1080 Z" fill="#6fb04a"/><path d="M420 840 C600 790 820 768 1040 770 C1260 768 1480 790 1680 840" fill="none" stroke="#9ad46a" stroke-width="6"/>`);
-  o.push(`<ellipse cx="1040" cy="784" rx="400" ry="16" fill="#2e5a20" opacity=".45" filter="url(#b8)"/>`);
-  o.push(`<path d="M680 786 C700 770 730 772 744 786 Z M1340 786 C1352 772 1380 770 1400 786 Z M880 788 C896 776 916 778 926 788 Z" fill="#5a9a3c"/>`);
-  // the valley between: fields, small trees and the road winding off to the castle gate
-  o.push(`<path d="M0 840 C300 806 600 800 900 814 C1200 800 1600 806 1920 822 L1920 1080 L0 1080 Z" fill="#8cc070"/>`);
-  o.push(`<path d="M0 900 C400 870 800 866 1200 880 C1500 870 1760 878 1920 888 L1920 1080 L0 1080 Z" fill="#7ab45c"/>`);
-  let trees = ''; const tr = R0(77);
-  const tree = (x, y, h, c) => `<rect x="${n1(x - h * .05)}" y="${n1(y - h * .4)}" width="${n1(h * .1)}" height="${n1(h * .4)}" fill="#6a4a30"/><circle cx="${n1(x)}" cy="${n1(y - h * .62)}" r="${n1(h * .3)}" fill="${c}"/><circle cx="${n1(x - h * .08)}" cy="${n1(y - h * .7)}" r="${n1(h * .14)}" fill="#ffffff" opacity=".12"/>`;
-  for (const [y0, hh, c, n] of [[820, 22, '#5f9a5a', 26], [862, 32, '#4f8e48', 22], [912, 46, '#45843c', 16]]) for (let i = 0; i < n; i++) { const x = (i + tr()) * 1920 / n; if (Math.abs(x - 1040) < 120 && y0 < 900) continue; trees += tree(x, y0 + tr() * 16, hh * (.8 + tr() * .4), c); }
-  o.push(trees);
-  o.push(`<path d="M1020 776 C1000 800 930 830 900 860 C860 900 900 930 820 970 C740 1010 640 1040 560 1080 L760 1080 C820 1040 920 1004 970 966 C1030 924 980 896 1010 864 C1040 832 1060 800 1060 776 Z" fill="#f0dca4"/>`);
-  // the near hill Puss stands on
-  o.push(`<path d="M0 990 C220 968 520 976 760 1010 C840 1022 880 1052 896 1080 L0 1080 Z" fill="#4e8a2e"/>`);
-  let tufts = ''; const r = R0(41); for (let x = 8; x < 880; x += 22 + r() * 18) { const yb = 992 + (x / 880) * 34, h = 22 + r() * 30; tufts += `<path d="M${n1(x - 7)} ${n1(yb + 12)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 5)} ${n1(yb - h * .4)} ${n1(x + 9)} ${n1(yb + 12)} Z"/>`; }
-  o.push(`<g fill="#3c7424">${tufts}</g>`);
-  let fl = ''; for (const [x, y, c] of [[60, 1036, '#fff6e0'], [130, 1054, '#ffd23a'], [700, 1060, '#ff7aa8'], [780, 1066, '#fff6e0'], [30, 1064, '#ff7aa8']]) fl += `<g fill="${c}">${[0, 1, 2, 3, 4].map(i => `<circle cx="${n1(x + Math.cos(i * 1.2566) * 8)}" cy="${n1(y + Math.sin(i * 1.2566) * 8)}" r="7"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="5" fill="#e8a22a"/>`;
-  o.push(fl);
+  // the castle, wide and tall, standing on the courtyard
+  o.push(castle(890, 852, .82));
+  // the stone courtyard in front of the castle: cobbles in perspective, the road to the gate a little lighter
+  const GY = 852;
+  o.push(`<rect x="0" y="${GY - 2}" width="1920" height="${1082 - GY}" fill="#bfae92"/>`);
+  let cob = ''; const r = R0(91);
+  for (let y = GY + 4, row = 0; y < 1090; row++) {
+    const t = (y - GY) / (1080 - GY), h = 8 + t * 34, w = h * 2.1;
+    for (let x = -w * (row % 2 ? .5 : 0); x < 1940; x += w + 3 + t * 3) {
+      const v = r(), c = v < .33 ? '#d6c6aa' : v < .66 ? '#cbb998' : '#c2ae8c';
+      cob += `<rect x="${n1(x + 1)}" y="${n1(y)}" width="${n1(w - 1 + r() * 4)}" height="${n1(h)}" rx="${n1(h * .45)}" fill="${c}"/><rect x="${n1(x + 3)}" y="${n1(y + 1)}" width="${n1(w * .6)}" height="${n1(Math.max(1.5, h * .18))}" rx="${n1(h * .1)}" fill="#efe4cc" opacity=".55"/>`;
+    }
+    y += h + 2 + t * 2;
+  }
+  o.push(`<g>${cob}</g>`);
+  o.push(`<path d="M830 ${GY} L950 ${GY} C990 940 1090 1010 1190 1080 L470 1080 C590 1010 770 940 830 ${GY} Z" fill="#e6d6b4" opacity=".55"/>`);
+  o.push(`<rect x="0" y="${GY - 4}" width="1920" height="22" fill="#5a4630" opacity=".35" filter="url(#b8)"/>`);
+  // a little shade at the front edge so the eye stays in the picture
+  o.push(`<rect x="0" y="1000" width="1920" height="80" fill="#5a4630" opacity=".18" filter="url(#b12)"/>`);
   return o.join('');
 }
 function title() {
@@ -284,7 +285,7 @@ function build() {
     `<radialGradient id="vig" cx="960" cy="540" r="1150" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#2a1208" stop-opacity="0"/><stop offset="1" stop-color="#2a1208" stop-opacity=".32"/></radialGradient>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080"><defs>${filters}${DEFS.join('')}</defs>
     ${sceneSvg}
-    <g transform="translate(10 100) scale(.94)" filter="url(#halo)">${pussSvg}</g>
+    <g transform="translate(16 96) scale(.95)" filter="url(#halo)">${pussSvg}</g>
     ${titleSvg}
     <rect width="1920" height="1080" filter="url(#brush)" opacity=".18" style="mix-blend-mode:soft-light"/>
     <rect width="1920" height="1080" filter="url(#grain)" opacity=".5"/>
