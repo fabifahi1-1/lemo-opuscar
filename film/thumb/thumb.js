@@ -188,7 +188,7 @@ function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed r
   for (const yy of [-60, -150]) { door += `<rect x="${-D}" y="${yy - 9}" width="${D * 2}" height="18" fill="#3a2a2a"/>`; for (let xx = -D + 14; xx < D; xx += 26) door += `<circle cx="${xx}" cy="${yy}" r="4.5" fill="#8a8a92"/>`; }
   door += `<circle cx="-24" cy="-110" r="15" fill="none" stroke="${GOLD}" stroke-width="6"/><circle cx="24" cy="-110" r="15" fill="none" stroke="${GOLD}" stroke-width="6"/><path d="M${D * .35} ${-DH + 30} L${D} ${-DH + D} L${D} 0 L${D * .55} 0 Z" fill="#000" opacity=".12"/>`;
   // a guard at the door: helmet with a plume, red tunic, spear
-  const guard = (gx) => `<g transform="translate(${gx} 0)">
+  const guard = (gx) => `<g transform="translate(${gx} 0) scale(.55)">
     <ellipse cx="0" cy="2" rx="46" ry="9" fill="#2a1a10" opacity=".3"/>
     <rect x="-22" y="-62" width="17" height="60" rx="6" fill="#f2ece0"/><rect x="5" y="-62" width="17" height="60" rx="6" fill="#e2d8c8"/>
     <path d="M-28 -2 L-4 -2 L-4 -16 L-24 -16 Z" fill="#3a2418"/><path d="M4 -2 L30 -2 L24 -16 L4 -16 Z" fill="#2a1a10"/>
@@ -210,7 +210,7 @@ function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed r
     <rect x="-820" y="-46" width="1640" height="46" fill="${WD}"/><rect x="-820" y="-46" width="1640" height="8" fill="${WS}"/>${(() => { let f = ''; for (let xx = -816; xx < 816; xx += 72) f += `<rect x="${xx}" y="-38" width="64" height="34" rx="5" fill="#b8966e" opacity=".55"/>`; return f; })()}
     ${door}
     <path d="M-150 0 L150 0 L176 22 L-176 22 Z" fill="${WS}"/><path d="M-176 22 L176 22 L196 40 L-196 40 Z" fill="${WD}"/>
-    ${guard(-236)}</g></g>`;
+    ${guard(-170)}</g></g>`;
 }
 DEFS.push(`<radialGradient id="cglow"><stop offset="0" stop-color="#fff6d0" stop-opacity=".75"/><stop offset=".6" stop-color="#fff0c0" stop-opacity=".25"/><stop offset="1" stop-color="#fff0c0" stop-opacity="0"/></radialGradient>`);
 function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the castle
@@ -219,31 +219,35 @@ function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the cas
 }
 function scene() {
   const o = [];
-  // sky: clear blue, paler toward the horizon (no beams)
+  // sky: clear blue, paler toward the horizon
   DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2f78d0"/><stop offset=".4" stop-color="#6fb2ec"/><stop offset=".72" stop-color="#c4e2f6"/><stop offset="1" stop-color="#eaf5f6"/></linearGradient>`);
   o.push(`<rect width="1920" height="1080" fill="url(#sky)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".3"/>`);
   o.push(cloud(600, 130, 380, 100, 3, { bot: '#d4e4f2', op: .9 }), cloud(140, 520, 420, 110, 5, { bot: '#d4e4f2', op: .85 }));
-  // distant blue hills behind the castle
-  o.push(`<path d="M0 760 C220 720 420 730 620 760 C820 720 980 700 1160 726 C1380 700 1600 712 1920 744 L1920 1080 L0 1080 Z" fill="#a9c4dc"/>`);
-  // the castle, wide and tall, standing on the courtyard
-  o.push(castle(890, 852, .82));
-  // the stone courtyard in front of the castle: cobbles in perspective, the road to the gate a little lighter
-  const GY = 852;
-  o.push(`<rect x="0" y="${GY - 2}" width="1920" height="${1082 - GY}" fill="#bfae92"/>`);
-  let cob = ''; const r = R0(91);
-  for (let y = GY + 4, row = 0; y < 1090; row++) {
-    const t = (y - GY) / (1080 - GY), h = 8 + t * 34, w = h * 2.1;
-    for (let x = -w * (row % 2 ? .5 : 0); x < 1940; x += w + 3 + t * 3) {
-      const v = r(), c = v < .33 ? '#d6c6aa' : v < .66 ? '#cbb998' : '#c2ae8c';
-      cob += `<rect x="${n1(x + 1)}" y="${n1(y)}" width="${n1(w - 1 + r() * 4)}" height="${n1(h)}" rx="${n1(h * .45)}" fill="${c}"/><rect x="${n1(x + 3)}" y="${n1(y + 1)}" width="${n1(w * .6)}" height="${n1(Math.max(1.5, h * .18))}" rx="${n1(h * .1)}" fill="#efe4cc" opacity=".55"/>`;
-    }
-    y += h + 2 + t * 2;
-  }
-  o.push(`<g>${cob}</g>`);
-  o.push(`<path d="M830 ${GY} L950 ${GY} C990 940 1090 1010 1190 1080 L470 1080 C590 1010 770 940 830 ${GY} Z" fill="#e6d6b4" opacity=".55"/>`);
-  o.push(`<rect x="0" y="${GY - 4}" width="1920" height="22" fill="#5a4630" opacity=".35" filter="url(#b8)"/>`);
-  // a little shade at the front edge so the eye stays in the picture
-  o.push(`<rect x="0" y="1000" width="1920" height="80" fill="#5a4630" opacity=".18" filter="url(#b12)"/>`);
+  // distant blue mountains on the horizon
+  o.push(`<path d="M0 740 L160 660 L300 720 L470 640 L640 730 L820 690 L1000 740 L1200 680 L1380 730 L1560 650 L1740 720 L1920 680 L1920 1080 L0 1080 Z" fill="#9fbbd8"/>`);
+  o.push(`<path d="M0 790 C300 760 600 770 900 780 C1200 770 1600 760 1920 780 L1920 1080 L0 1080 Z" fill="#8fb8a4"/>`);
+  // the castle far away, on a stone terrace on top of its hill
+  const CY = 830;
+  o.push(castle(1000, CY, .78));
+  let blocks = ''; for (let y = CY, row = 0; y < CY + 64; y += 16, row++) for (let x = 330 + (row % 2) * 18; x < 1670; x += 36) blocks += `<rect x="${x}" y="${y + 1}" width="33" height="14" rx="3" fill="${(x + row * 7) % 3 ? '#cdb894' : '#c2ab86'}"/>`;
+  o.push(`<path d="M320 ${CY} L1680 ${CY} L1700 ${CY + 66} L300 ${CY + 66} Z" fill="#9a8466"/>${blocks}<rect x="320" y="${CY}" width="1360" height="6" fill="#e6d6b4"/>`);
+  o.push(`<path d="M60 ${CY + 130} C200 ${CY + 70} 260 ${CY + 66} 300 ${CY + 64} L1700 ${CY + 64} C1760 ${CY + 66} 1840 ${CY + 80} 1920 ${CY + 110} L1920 1080 L60 1080 Z" fill="#6aa84a"/>`);
+  o.push(`<path d="M300 ${CY + 66} L1700 ${CY + 66}" stroke="#4a3a28" stroke-width="10" opacity=".35" filter="url(#b6)"/>`);
+  // the road from the gate down the hill and into the forest
+  o.push(`<path d="M960 ${CY + 66} L1040 ${CY + 66} C1060 ${CY + 110} 1140 ${CY + 130} 1150 ${CY + 170} L1020 ${CY + 170} C1020 ${CY + 140} 960 ${CY + 110} 960 ${CY + 66} Z" fill="#e8d6a8"/>`);
+  // the forest between Puss and the castle
+  let trees = ''; const tr = R0(55);
+  const pine = (x, y, h, c) => `<path d="M${n1(x)} ${n1(y - h)} L${n1(x + h * .28)} ${n1(y - h * .45)} L${n1(x + h * .16)} ${n1(y - h * .45)} L${n1(x + h * .36)} ${n1(y - h * .05)} L${n1(x - h * .36)} ${n1(y - h * .05)} L${n1(x - h * .16)} ${n1(y - h * .45)} L${n1(x - h * .28)} ${n1(y - h * .45)} Z" fill="${c}"/><rect x="${n1(x - h * .04)}" y="${n1(y - h * .06)}" width="${n1(h * .08)}" height="${n1(h * .1)}" fill="#5a3e28"/>`;
+  const round = (x, y, h, c) => `<rect x="${n1(x - h * .05)}" y="${n1(y - h * .4)}" width="${n1(h * .1)}" height="${n1(h * .4)}" fill="#5a3e28"/><circle cx="${n1(x)}" cy="${n1(y - h * .6)}" r="${n1(h * .32)}" fill="${c}"/><circle cx="${n1(x - h * .1)}" cy="${n1(y - h * .7)}" r="${n1(h * .13)}" fill="#fff" opacity=".12"/>`;
+  for (const [y0, hh, cols, n] of [[968, 70, ['#3f7f3c', '#4a8a42'], 30], [1010, 92, ['#2f6e32', '#3a7a38'], 26], [1060, 120, ['#25602a', '#2f6a2e'], 20]])
+    for (let i = 0; i < n; i++) { const x = 380 + (i + tr()) * 1560 / n, h = hh * (.8 + tr() * .4), c = cols[(tr() * 2) | 0]; trees += tr() < .55 ? pine(x, y0 + tr() * 14, h, c) : round(x, y0 + tr() * 14, h, c); }
+  o.push(trees);
+  // the big rock Puss stands on, in the foreground at the left
+  o.push(`<path d="M0 1000 C80 986 200 978 320 980 C440 982 560 990 640 1004 C700 1016 740 1044 760 1080 L0 1080 Z" fill="#8f8a84"/>`);
+  o.push(`<path d="M0 1000 C80 986 200 978 320 980 C440 982 560 990 640 1004 C600 1012 520 1008 440 1010 C300 1014 160 1010 0 1018 Z" fill="#b5b0a8"/>`);
+  o.push(`<path d="M640 1004 C700 1016 740 1044 760 1080 L690 1080 C680 1050 660 1030 640 1004 Z" fill="#6e6a66"/><path d="M200 1030 L240 1060 M430 1026 L410 1066 M560 1030 L600 1062" stroke="#6e6a66" stroke-width="5" stroke-linecap="round"/>`);
+  let tufts = ''; const r = R0(41); for (let x = 10; x < 620; x += 30 + r() * 30) { const yb = 994 - Math.sin(x / 620 * Math.PI) * 10, h = 16 + r() * 22; tufts += `<path d="M${n1(x - 6)} ${n1(yb + 8)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 5)} ${n1(yb - h * .4)} ${n1(x + 8)} ${n1(yb + 8)} Z"/>`; }
+  o.push(`<g fill="#4e8a2e">${tufts}</g>`);
   return o.join('');
 }
 function title() {
@@ -285,7 +289,7 @@ function build() {
     `<radialGradient id="vig" cx="960" cy="540" r="1150" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#2a1208" stop-opacity="0"/><stop offset="1" stop-color="#2a1208" stop-opacity=".32"/></radialGradient>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080"><defs>${filters}${DEFS.join('')}</defs>
     ${sceneSvg}
-    <g transform="translate(16 96) scale(.95)" filter="url(#halo)">${pussSvg}</g>
+    <g transform="translate(14 128) scale(.86)" filter="url(#halo)">${pussSvg}</g>
     ${titleSvg}
     <rect width="1920" height="1080" filter="url(#brush)" opacity=".18" style="mix-blend-mode:soft-light"/>
     <rect width="1920" height="1080" filter="url(#grain)" opacity=".5"/>
