@@ -85,7 +85,9 @@ function puss() {
     extra: part(bib, WH, WHS, { s: 22, blur: 9 }) + `<g stroke="${STR}" stroke-width="15" stroke-linecap="round" fill="none"><path d="M252 520 Q278 524 300 538"/><path d="M252 582 Q278 588 298 600"/><path d="M258 642 Q280 648 300 656"/><path d="M484 556 Q466 562 456 574"/><path d="M482 610 Q466 614 456 624"/></g>` +
       `<ellipse cx="376" cy="436" rx="150" ry="34" fill="${ORS}" opacity=".75" filter="url(#b12)"/>` }));
   out.push(paw(486, 646, -2.2, 1));
+  out.push(`<path d="M172 440 Q240 414 300 436 Q392 534 478 692" fill="none" stroke="#5e4022" stroke-width="18" stroke-linecap="round"/><path d="M172 440 Q240 414 300 436 Q392 534 478 692" fill="none" stroke="#9a7446" stroke-width="12" stroke-linecap="round"/><path d="M172 440 Q240 414 300 436 Q392 534 478 692" fill="none" stroke="#c8a06a" stroke-width="3" stroke-dasharray="10 8" opacity=".9"/><ellipse cx="180" cy="446" rx="30" ry="14" fill="#7d5a32"/>`);
   // ears (behind the head)
+  out.push('<g transform="rotate(-9 380 440)">');
   out.push(part('M192 216 C172 150 168 80 186 28 C240 50 290 88 320 124 Z', OR, ORS, { hi: ORH, s: 10, blur: 5, edge: EDGE, extra: `<path d="M208 192 C197 142 195 98 205 64 C242 86 272 110 296 134 Z" fill="#f4a1a0"/><path d="M208 192 C197 142 195 98 205 64 C222 76 236 88 246 98 C228 120 218 160 208 192 Z" fill="#e48a8c"/>` }));
   out.push(part('M410 114 C450 74 505 42 550 24 C568 80 568 150 554 220 Z', OR, ORS, { hi: ORH, s: 10, blur: 5, edge: EDGE, extra: `<path d="M438 118 C470 90 505 68 534 56 C544 96 546 140 540 188 Z" fill="#f4a1a0"/>` }));
   out.push(`<g stroke="#fff3e0" stroke-width="3" stroke-linecap="round" opacity=".85"><path d="M222 176 L238 150 M232 186 L254 166 M218 160 L230 132"/><path d="M520 150 L540 128 M524 170 L546 156"/></g>`);
@@ -95,10 +97,11 @@ function puss() {
     `<g fill="${STR}"><path d="M332 98 Q340 150 348 160 Q356 150 360 98 Z"/><path d="M372 96 Q380 166 388 172 Q396 166 402 96 Z"/><path d="M414 98 Q424 150 432 158 Q440 148 444 102 Z"/></g>` +
     `<g stroke="${STR}" stroke-width="12" stroke-linecap="round"><path d="M168 248 Q196 252 218 264"/><path d="M168 290 Q192 292 210 300"/><path d="M574 246 Q554 252 540 262"/></g>` }));
   out.push(faceArt());
-  // near arm: holds the sack's neck over his shoulder
-  const nearArm = tube([[298, 478], [282, 534], [268, 588]], 64, 56) + tube([[268, 588], [238, 534], [206, 476]], 56, 50);
-  out.push(part(nearArm, OR, ORS, { hi: ORH, s: 16, blur: 6, rim: 8, edge: EDGE, extra: `<path d="M262 560 L286 552 M254 528 L276 520" stroke="${STR}" stroke-width="11" stroke-linecap="round"/>` }));
-  out.push(paw(198, 462, -.4, 1.05, true));
+  out.push('</g>');
+  // near arm: paw on the hip too (proud, both elbows out)
+  const nearArm = tube([[300, 478], [252, 516], [212, 568]], 64, 56) + tube([[212, 568], [236, 612], [266, 640]], 56, 50);
+  out.push(part(nearArm, OR, ORS, { hi: ORH, s: 16, blur: 6, rim: 8, edge: EDGE, extra: `<path d="M236 512 L254 530 M220 548 L242 560" stroke="${STR}" stroke-width="11" stroke-linecap="round"/>` }));
+  out.push(paw(270, 644, -.94, 1));
   return out.join('');
 }
 function paw(x, y, rot, k = 1, grip = false) {   // a white mitten paw with toe lines
@@ -122,7 +125,7 @@ function boot(x, y, rot, layer) {   // a cavalier boot: flared cuff, shaft, roun
 function faceArt() {
   const eye = (cx, cy, rx, ry, lid) => {
     const c = uid('e'); DEFS.push(`<clipPath id="${c}"><ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/></clipPath>`);
-    const ix = cx + rx * .22, iy = cy + ry * .1, ly = cy - ry + ry * 2 * lid;
+    const ix = cx + rx * .3, iy = cy - ry * .3, ly = cy - ry + ry * 2 * lid;
     return `<ellipse cx="${cx}" cy="${cy}" rx="${rx + 5}" ry="${ry + 5}" fill="${INK}"/>
       <g clip-path="url(#${c})"><rect x="${cx - rx}" y="${cy - ry}" width="${rx * 2}" height="${ry * 2}" fill="#fffbee"/>
       <ellipse cx="${ix}" cy="${iy}" rx="${rx * .74}" ry="${ry * .78}" fill="url(#iris)"/>
@@ -134,12 +137,12 @@ function faceArt() {
   };
   return `<g>
     <ellipse cx="290" cy="336" rx="34" ry="18" fill="#f07c74" opacity=".45" filter="url(#b6)"/><ellipse cx="500" cy="330" rx="26" ry="15" fill="#f07c74" opacity=".4" filter="url(#b6)"/>
-    ${eye(318, 262, 50, 58, .36)}${eye(464, 258, 42, 55, .38)}
-    <path d="M266 196 Q308 160 352 184" fill="none" stroke="${STR}" stroke-width="11" stroke-linecap="round"/><path d="M432 206 Q468 194 502 206" fill="none" stroke="${STR}" stroke-width="10" stroke-linecap="round"/>
+    ${eye(318, 262, 50, 58, .1)}${eye(464, 258, 42, 55, .12)}
+    <path d="M264 184 Q306 146 352 170" fill="none" stroke="${STR}" stroke-width="11" stroke-linecap="round"/><path d="M432 192 Q470 174 504 186" fill="none" stroke="${STR}" stroke-width="10" stroke-linecap="round"/>
     ${part('M328 336 C326 304 360 294 392 304 C424 294 458 304 458 336 C458 372 424 386 392 380 C360 386 328 372 328 336 Z', WH, WHS, { s: 10, blur: 6 })}
     <path d="M372 312 C372 300 412 300 412 312 C412 324 398 334 392 336 C386 334 372 324 372 312 Z" fill="#e8708c"/><ellipse cx="386" cy="308" rx="9" ry="4" fill="#ffc0cc" opacity=".9"/>
-    <path d="M392 336 L392 350 M392 350 Q376 366 354 352 M392 350 Q416 364 444 338" fill="none" stroke="#5a2a20" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M444 338 Q450 334 452 328" fill="none" stroke="#5a2a20" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M392 336 L392 348 M392 348 Q372 372 346 350 M392 348 Q414 372 442 344" fill="none" stroke="#5a2a20" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M442 344 Q450 340 452 334" fill="none" stroke="#5a2a20" stroke-width="4.5" stroke-linecap="round"/>
     <g stroke="#fffaf0" stroke-width="4" stroke-linecap="round" fill="none" opacity=".95"><path d="M338 334 Q260 318 196 320"/><path d="M336 348 Q262 350 198 362"/><path d="M342 360 Q280 376 222 398"/><path d="M448 330 Q510 314 572 312"/><path d="M450 344 Q514 346 576 352"/><path d="M446 356 Q500 370 556 388"/></g>
   </g>`;
 }
@@ -153,12 +156,59 @@ function cloud(cx, cy, w, h, seed, { top = '#fffaf1', bot = '#f1c9bb', op = 1 } 
   const cl = uid('c'); DEFS.push(`<clipPath id="${cl}"><rect x="${cx - w}" y="${cy - h * 2}" width="${w * 2}" height="${h * 2.15}"/></clipPath>`);
   return `<g opacity="${op}" clip-path="url(#${cl})"><g fill="${bot}" transform="translate(0 10)" filter="url(#b6)" opacity=".6">${c}</g><g fill="url(#${id})" filter="url(#cloudEdge)">${c}</g></g>`;
 }
-function castle(x, y, k) {   // the king's castle (purple roofs, gold flags, lit windows) on its hill
-  const tower = (tx, w, h, rh) => `<rect x="${tx - w / 2}" y="${-h}" width="${w}" height="${h}" fill="#f6ead4"/><rect x="${tx + w * .12}" y="${-h}" width="${w * .38}" height="${h}" fill="#dcc6a6"/><path d="M${tx - w / 2 - 16} ${-h} L${tx} ${-h - rh} L${tx + w / 2 + 16} ${-h} Z" fill="#9a5ccc"/><path d="M${tx} ${-h - rh} L${tx + w / 2 + 16} ${-h} L${tx + 6} ${-h} Z" fill="#6e3a9e"/><path d="M${tx} ${-h - rh} L${tx} ${-h - rh - 60}" stroke="#6a4a3a" stroke-width="7"/><path d="M${tx} ${-h - rh - 60} L${tx + 62} ${-h - rh - 44} L${tx} ${-h - rh - 28} Z" fill="#ffcf3a"/>` +
-    [0, 1, 2].map(i => `<rect x="${tx - 12}" y="${-h + 70 + i * 110}" width="24" height="44" rx="12" fill="#ffd56e"/><rect x="${tx - 12}" y="${-h + 70 + i * 110}" width="24" height="44" rx="12" fill="#fff2b0" opacity=".6" filter="url(#b6)"/>`).join('');
-  let cren = ''; for (let i = 0; i < 14; i++) cren += `<rect x="${-420 + i * 60}" y="-414" width="36" height="38" fill="#f6ead4"/>`;
-  let bricks = ''; for (let yy = -360; yy < -20; yy += 40) for (let xx = -410 + ((yy / 40) % 2 ? 30 : 0); xx < 400; xx += 80) bricks += `<rect x="${xx}" y="${yy}" width="60" height="26" rx="4" fill="#e7d6ba"/>`;
-  return `<g transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="-420" rx="900" ry="700" fill="url(#cglow)"/><rect x="-420" y="-380" width="840" height="380" fill="#f6ead4"/>${bricks}${cren}${tower(-470, 150, 640, 200)}${tower(470, 150, 600, 200)}${tower(-150, 130, 760, 180)}${tower(170, 140, 700, 190)}<path d="M-90 0 L-90 -170 A90 90 0 0 1 90 -170 L90 0 Z" fill="#7a4a34"/><path d="M-90 -40 L90 -40" stroke="#5a3424" stroke-width="10"/></g>`;
+function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed roofs and flags, banners, a big studded door, a guard
+  const W = '#f8e8d2', WS = '#dcc0a0', WD = '#c4a282', RF = '#8a52c6', RFS = '#5e3394', RFL = '#b07ee0', GOLD = '#f2c14e';
+  const bricks = (x0, x1, y0, y1) => { let b = ''; for (let yy = y0 + 14; yy < y1 - 10; yy += 34) { const off = ((yy - y0) / 34) % 2 ? 28 : 0; for (let xx = x0 + off; xx < x1 - 30; xx += 56) b += `<rect x="${n1(xx + 4)}" y="${n1(yy)}" width="44" height="22" rx="5" fill="${WS}" opacity=".45"/>`; } return b; };
+  const flag = (px, py, sc = 1, c = '#d8303c') => `<path d="M${px} ${py} L${px} ${py - 74 * sc}" stroke="#5a3a2a" stroke-width="${6 * sc}" stroke-linecap="round"/><circle cx="${px}" cy="${py - 76 * sc}" r="${7 * sc}" fill="${GOLD}"/>` +
+    `<path d="M${px} ${py - 70 * sc} C${px + 24 * sc} ${py - 82 * sc} ${px + 50 * sc} ${py - 60 * sc} ${px + 90 * sc} ${py - 70 * sc} L${px + 66 * sc} ${py - 52 * sc} L${px + 92 * sc} ${py - 36 * sc} C${px + 54 * sc} ${py - 28 * sc} ${px + 26 * sc} ${py - 46 * sc} ${px} ${py - 38 * sc} Z" fill="${c}"/>` +
+    `<path d="M${px} ${py - 56 * sc} C${px + 26 * sc} ${py - 64 * sc} ${px + 50 * sc} ${py - 46 * sc} ${px + 80 * sc} ${py - 53 * sc}" stroke="${GOLD}" stroke-width="${5 * sc}" fill="none"/>`;
+  const win = (wx, wy, w = 26, h = 46) => `<path d="M${wx - w / 2} ${wy + h} L${wx - w / 2} ${wy + w / 2} A${w / 2} ${w / 2} 0 0 1 ${wx + w / 2} ${wy + w / 2} L${wx + w / 2} ${wy + h} Z" fill="#6a4a3a"/><path d="M${wx - w / 2 + 4} ${wy + h} L${wx - w / 2 + 4} ${wy + w / 2} A${w / 2 - 4} ${w / 2 - 4} 0 0 1 ${wx + w / 2 - 4} ${wy + w / 2} L${wx + w / 2 - 4} ${wy + h} Z" fill="#ffd86a"/><ellipse cx="${wx}" cy="${wy + h * .6}" rx="${w * 1.2}" ry="${h * .9}" fill="#fff0a0" opacity=".35" filter="url(#b8)"/>`;
+  const tower = (tx, w, h, rh, o = {}) => {
+    const top = -h, nW = o.wins ?? Math.max(1, Math.floor((h - 160) / 130));
+    let t = `<rect x="${tx - w / 2}" y="${top}" width="${w}" height="${h}" fill="${W}"/>` + bricks(tx - w / 2, tx + w / 2, top, 0) + `<rect x="${tx + w * .14}" y="${top}" width="${w * .36}" height="${h}" fill="${WS}" opacity=".85"/><rect x="${tx + w * .38}" y="${top}" width="${w * .12}" height="${h}" fill="${WD}" opacity=".7"/>`;
+    for (let i = 0; i < nW; i++) t += win(tx - 2, top + 70 + i * 130);
+    t += `<rect x="${tx - w / 2 - 10}" y="${top - 18}" width="${w + 20}" height="22" rx="4" fill="${GOLD}"/><rect x="${tx + w * .14}" y="${top - 18}" width="${w * .4 + 10}" height="22" fill="#c8962e" opacity=".6"/>`;
+    const L = tx - w / 2 - 24, Rr = tx + w / 2 + 24, ap = top - 18 - rh;
+    t += `<path d="M${L} ${top - 14} Q${tx - w * .18} ${top - 18 - rh * .42} ${tx} ${ap} Q${tx + w * .18} ${top - 18 - rh * .42} ${Rr} ${top - 14} Z" fill="${RF}"/>` +
+      `<path d="M${tx} ${ap} Q${tx + w * .18} ${top - 18 - rh * .42} ${Rr} ${top - 14} L${tx + w * .12} ${top - 14} Q${tx + w * .06} ${top - 18 - rh * .4} ${tx} ${ap} Z" fill="${RFS}"/>` +
+      `<path d="M${tx - 4} ${ap + 20} Q${tx - w * .2} ${top - rh * .4} ${L + 16} ${top - 18}" stroke="${RFL}" stroke-width="7" fill="none" stroke-linecap="round" opacity=".8"/>`;
+    for (let i = 1; i < 4; i++) { const yy = ap + (top - 14 - ap) * i / 4, hw = (Rr - L) / 2 * (i / 4) ** .8; t += `<path d="M${n1(tx - hw)} ${n1(yy)} Q${tx} ${n1(yy + 10)} ${n1(tx + hw)} ${n1(yy)}" stroke="${RFS}" stroke-width="3" fill="none" opacity=".6"/>`; }
+    return t + flag(tx, ap, o.fs ?? 1, o.fc);
+  };
+  const crenWall = (x0, x1, h) => { let c = `<rect x="${x0}" y="${-h}" width="${x1 - x0}" height="${h}" fill="${W}"/>` + bricks(x0, x1, -h, 0); for (let xx = x0; xx < x1 - 10; xx += 56) c += `<rect x="${xx}" y="${-h - 34}" width="34" height="36" fill="${W}"/><rect x="${xx + 22}" y="${-h - 34}" width="12" height="36" fill="${WS}"/>`; return c + `<rect x="${x0}" y="${-h}" width="${x1 - x0}" height="14" fill="${WS}" opacity=".7"/>`; };
+  const banner = bx => `<path d="M${bx - 30} -360 L${bx + 30} -360 L${bx + 30} -200 L${bx} -226 L${bx - 30} -200 Z" fill="#c8283a"/><path d="M${bx + 8} -360 L${bx + 30} -360 L${bx + 30} -200 L${bx + 8} -212 Z" fill="#9a1c2c"/><rect x="${bx - 36}" y="-366" width="72" height="10" rx="4" fill="${GOLD}"/>` +
+    `<path d="M${bx - 16} -300 L${bx - 16} -318 L${bx - 8} -308 L${bx} -324 L${bx + 8} -308 L${bx + 16} -318 L${bx + 16} -300 Z" fill="${GOLD}"/>`;
+  // the big door: a stone arch, oak planks, iron bands and studs, two ring handles
+  const D = 100, DH = 300;
+  let door = `<path d="M${-D - 26} 0 L${-D - 26} ${-DH + D} A${D + 26} ${D + 26} 0 0 1 ${D + 26} ${-DH + D} L${D + 26} 0 Z" fill="${WD}"/>`;
+  for (let i = 0; i <= 8; i++) { const a = Math.PI + i / 8 * Math.PI, r0 = D + 2, r1 = D + 26; door += `<path d="M${n1(Math.cos(a) * r0)} ${n1(-DH + D + Math.sin(a) * r0)} L${n1(Math.cos(a) * r1)} ${n1(-DH + D + Math.sin(a) * r1)}" stroke="${WS}" stroke-width="4"/>`; }
+  door += `<path d="M${-D} 0 L${-D} ${-DH + D} A${D} ${D} 0 0 1 ${D} ${-DH + D} L${D} 0 Z" fill="#7a4628"/>`;
+  for (let i = -3; i <= 3; i++) door += `<path d="M${i * 28} ${-DH + D - Math.sqrt(Math.max(0, D * D - (i * 28) ** 2)) + 4} L${i * 28} 0" stroke="#5a3018" stroke-width="4"/>`;
+  door += `<path d="M0 ${-DH} L0 0" stroke="#4a2614" stroke-width="7"/>`;
+  for (const yy of [-60, -150]) { door += `<rect x="${-D}" y="${yy - 9}" width="${D * 2}" height="18" fill="#3a2a2a"/>`; for (let xx = -D + 14; xx < D; xx += 26) door += `<circle cx="${xx}" cy="${yy}" r="4.5" fill="#8a8a92"/>`; }
+  door += `<circle cx="-24" cy="-110" r="15" fill="none" stroke="${GOLD}" stroke-width="6"/><circle cx="24" cy="-110" r="15" fill="none" stroke="${GOLD}" stroke-width="6"/><path d="M${D * .35} ${-DH + 30} L${D} ${-DH + D} L${D} 0 L${D * .55} 0 Z" fill="#000" opacity=".12"/>`;
+  // a guard at the door: helmet with a plume, red tunic, spear
+  const guard = (gx) => `<g transform="translate(${gx} 0)">
+    <ellipse cx="0" cy="2" rx="46" ry="9" fill="#2a1a10" opacity=".3"/>
+    <rect x="-22" y="-62" width="17" height="60" rx="6" fill="#f2ece0"/><rect x="5" y="-62" width="17" height="60" rx="6" fill="#e2d8c8"/>
+    <path d="M-28 -2 L-4 -2 L-4 -16 L-24 -16 Z" fill="#3a2418"/><path d="M4 -2 L30 -2 L24 -16 L4 -16 Z" fill="#2a1a10"/>
+    <path d="M-34 -150 C-36 -110 -38 -80 -40 -58 L40 -58 C38 -80 36 -110 34 -150 C14 -160 -14 -160 -34 -150 Z" fill="#c8283a"/><path d="M8 -156 C22 -154 30 -152 34 -150 C36 -110 38 -80 40 -58 L12 -58 Z" fill="#9a1c2c"/>
+    <path d="M-12 -158 L0 -60 L12 -158" stroke="${GOLD}" stroke-width="7" fill="none"/><rect x="-40" y="-84" width="80" height="12" fill="#5a3a20"/><rect x="-8" y="-86" width="16" height="16" rx="3" fill="${GOLD}"/>
+    <path d="M-34 -148 C-52 -130 -56 -100 -48 -86" stroke="#c8283a" stroke-width="18" stroke-linecap="round" fill="none"/><circle cx="-48" cy="-84" r="10" fill="#f2c19a"/>
+    <path d="M34 -148 C50 -132 54 -112 50 -100" stroke="#a82030" stroke-width="18" stroke-linecap="round" fill="none"/><circle cx="50" cy="-100" r="10" fill="#e8b48c"/>
+    <path d="M50 4 L50 -290" stroke="#7a5434" stroke-width="7" stroke-linecap="round"/><path d="M50 -330 L62 -288 L50 -280 L38 -288 Z" fill="#cfd6de"/><path d="M50 -330 L62 -288 L50 -280 Z" fill="#a8b0ba"/><path d="M40 -282 L60 -282" stroke="#c8283a" stroke-width="6"/>
+    <circle cx="0" cy="-184" r="27" fill="#f2c19a"/><circle cx="-9" cy="-184" r="3.6" fill="#2a1a20"/><circle cx="9" cy="-184" r="3.6" fill="#2a1a20"/><ellipse cx="-16" cy="-174" rx="6" ry="3.5" fill="#f08c80" opacity=".7"/><ellipse cx="16" cy="-174" rx="6" ry="3.5" fill="#f08c80" opacity=".7"/><path d="M-6 -170 Q0 -165 6 -170" stroke="#7a3a2a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M-31 -190 C-31 -224 31 -224 31 -190 L36 -186 L-36 -186 Z" fill="#cfd6de"/><path d="M4 -219 C22 -214 31 -204 31 -190 L36 -186 L6 -186 Z" fill="#a8b0ba"/><path d="M0 -220 C-6 -250 20 -262 34 -246 C22 -246 12 -236 8 -220 Z" fill="#c8283a"/>
+  </g>`;
+  return `<g transform="translate(${x} ${y}) scale(${k})"><ellipse cx="0" cy="-460" rx="900" ry="700" fill="url(#cglow)"/>
+    ${tower(-250, 112, 560, 190, { fs: .9 })}${tower(250, 112, 600, 200, { fs: .9, fc: '#e8a020' })}
+    ${crenWall(-190, 190, 470)}${tower(0, 160, 660, 250, { fs: 1.25, wins: 3 })}
+    ${crenWall(-400, 400, 290)}
+    ${tower(-430, 150, 430, 180, { wins: 2, fc: '#e8a020' })}${tower(430, 150, 410, 180, { wins: 2 })}
+    ${crenWall(-170, 170, 400)}${banner(-118)}${banner(118)}${win(0, -380, 34, 56)}
+    ${door}
+    <path d="M-150 0 L150 0 L176 22 L-176 22 Z" fill="${WS}"/><path d="M-176 22 L176 22 L196 40 L-196 40 Z" fill="${WD}"/>
+    ${guard(232)}</g>`;
 }
 DEFS.push(`<radialGradient id="cglow"><stop offset="0" stop-color="#fff6d0" stop-opacity=".75"/><stop offset=".6" stop-color="#fff0c0" stop-opacity=".25"/><stop offset="1" stop-color="#fff0c0" stop-opacity="0"/></radialGradient>`);
 function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the castle
@@ -169,16 +219,16 @@ function scene() {
   const o = [];
   // sky: a rich sunset (rose-orange at the top to gold), a bright glow behind the castle
   DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e8705a"/><stop offset=".35" stop-color="#f6a066"/><stop offset=".68" stop-color="#ffd08a"/><stop offset="1" stop-color="#ffe2a6"/></linearGradient>`);
-  DEFS.push(`<radialGradient id="glow" cx="1560" cy="700" r="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe9b8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>`);
-  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1560, 720, 22, .2)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".45"/>`);
+  DEFS.push(`<radialGradient id="glow" cx="1440" cy="560" r="950" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe9b8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>`);
+  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1440, 520, 24, .22)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".45"/>`);
   // clouds: a bright bank behind Puss (so the orange cat pops), smaller ones in the sky
-  o.push(cloud(170, 170, 440, 130, 2), cloud(1840, 760, 420, 120, 5, { op: .85 }), cloud(930, 820, 420, 120, 9, { op: .8 }));
-  o.push(cloud(420, 780, 1150, 360, 4));
+  o.push(cloud(1880, 640, 380, 110, 5, { op: .85 }), cloud(860, 860, 460, 130, 9, { op: .85 }), cloud(900, 420, 360, 100, 3, { op: .7 }));
+  o.push(cloud(330, 800, 1000, 340, 4));
   // far lavender hills, the castle on its green hill, the road from Puss to the castle, the front hill
   o.push(`<path d="M600 960 C760 900 920 900 1080 930 C1260 880 1420 860 1600 890 C1740 880 1840 890 1920 900 L1920 1080 L600 1080 Z" fill="#c09ac4"/>`);
-  o.push(`<path d="M980 1080 C1120 1010 1300 975 1480 990 C1620 965 1780 975 1920 985 L1920 1080 Z" fill="#9cc458"/><path d="M980 1080 C1120 1010 1300 975 1480 990 C1620 965 1780 975 1920 985" fill="none" stroke="#d6ec8e" stroke-width="6" opacity=".8"/>`);
-  o.push(castle(1590, 1004, .37));
-  o.push(`<path d="M1520 1000 C1500 1030 1360 1050 1200 1080 L1330 1080 C1440 1060 1560 1040 1600 1000 Z" fill="#f2dca0"/>`);
+  o.push(`<path d="M820 1080 C1000 1010 1200 990 1440 1000 C1640 990 1800 996 1920 1004 L1920 1080 Z" fill="#9cc458"/><path d="M820 1080 C1000 1010 1200 990 1440 1000 C1640 990 1800 996 1920 1004" fill="none" stroke="#d6ec8e" stroke-width="6" opacity=".8"/>`);
+  o.push(castle(1440, 1000, .74));
+  o.push(`<path d="M1370 1028 C1300 1046 1180 1062 1060 1080 L1260 1080 C1360 1066 1460 1048 1510 1028 Z" fill="#f2dca0"/>`);
   o.push(`<path d="M0 1006 C220 986 560 996 940 1036 C1020 1046 1060 1064 1080 1080 L0 1080 Z" fill="#6fa040"/>`);
   let tufts = ''; const r = R0(41); for (let x = 10; x < 1040; x += 26 + r() * 20) { const yb = 1010 + (x / 1040) * 34, h = 18 + r() * 26; tufts += `<path d="M${n1(x - 6)} ${n1(yb + 10)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 4)} ${n1(yb - h * .4)} ${n1(x + 8)} ${n1(yb + 10)} Z"/>`; }
   o.push(`<g fill="#4f8a2c">${tufts}</g>`);
@@ -187,7 +237,7 @@ function scene() {
   return o.join('');
 }
 function title() {
-  const m = document.createElement('canvas').getContext('2d'), CX = 1330, MAXW = 1060, F = '"Lilita One"';
+  const m = document.createElement('canvas').getContext('2d'), CX = 960, MAXW = 1780, F = '"Lilita One"';
   DEFS.push(`<linearGradient id="tfill" x1="0" y1="0" x2="0" y2="1" ><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#ffffff"/><stop offset="1" stop-color="#ffeccc"/></linearGradient>`);
   // white letters, a thick dark outline and a deep 3D edge, like the white titles of the references
   const line = (s, size, base, track = 0) => {
@@ -200,14 +250,14 @@ function title() {
       `<text ${at} fill="none" stroke="#ffffff" stroke-width="2" opacity=".5" transform="translate(-2 -3)">${s}</text>`;
   };
   // the accent label above the title, after the US reference: a round flag badge and the words
-  const lab = 'American accent', ls = 76; m.font = `${ls}px ${F}`; const lw = m.measureText(lab).width, fr = 44, gap = 22, x0 = CX - (lw + fr * 2 + gap) / 2, fx = x0 + fr, fy = 96;
+  const lab = 'American accent', ls = 76; m.font = `${ls}px ${F}`; const lw = m.measureText(lab).width, fr = 44, gap = 22, x0 = 905 - (lw + fr * 2 + gap) / 2, fx = x0 + fr, fy = 322;
   let flag = ''; for (let i = 0; i < 7; i++) flag += `<rect x="${n1(fx - fr)}" y="${n1(fy - fr + i * 2 * fr / 7)}" width="${2 * fr}" height="${n1(2 * fr / 7 + .5)}" fill="${i % 2 ? '#fbf6ee' : '#d0303c'}"/>`;
   let stars = ''; for (let rr = 0; rr < 3; rr++) for (let c = 0; c < 3; c++) stars += `<circle cx="${n1(fx - fr + 11 + c * 14 + (rr % 2) * 6)}" cy="${n1(fy - fr + 11 + rr * 13)}" r="3.4" fill="#fbf6ee"/>`;
   DEFS.push(`<clipPath id="flagc"><circle cx="${n1(fx)}" cy="${fy}" r="${fr}"/></clipPath>`);
   const tx = x0 + fr * 2 + gap, lat = `x="${n1(tx)}" y="${fy + 27}" font-family='${F}' font-size="${ls}"`;
   const label = `<g><circle cx="${n1(fx + 4)}" cy="${fy + 8}" r="${fr + 8}" fill="#3a1a0c" opacity=".35" filter="url(#b6)"/><circle cx="${n1(fx)}" cy="${fy}" r="${fr + 7}" fill="#4a2414"/><g clip-path="url(#flagc)">${flag}<rect x="${n1(fx - fr)}" y="${fy - fr}" width="${n1(fr * 1.04)}" height="${n1(fr * .92)}" fill="#2a3f7a"/>${stars}</g>` +
     `<text ${lat} fill="#3a1a0c" opacity=".4" filter="url(#b6)" transform="translate(5 8)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round" transform="translate(3 5)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round">${lab}</text><text ${lat} fill="#fff">${lab}</text></g>`;
-  return label + line('PUSS IN', 270, 372, 6) + line('BOOTS', 330, 640, 10);
+  return label + line('PUSS IN BOOTS', 250, 222, 6);
 }
 
 function build() {
@@ -223,7 +273,7 @@ function build() {
     `<radialGradient id="vig" cx="960" cy="540" r="1150" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#2a1208" stop-opacity="0"/><stop offset="1" stop-color="#2a1208" stop-opacity=".32"/></radialGradient>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080"><defs>${filters}${DEFS.join('')}</defs>
     ${sceneSvg}
-    <g transform="translate(150 40)" filter="url(#halo)">${pussSvg}</g>
+    <g transform="translate(70 212) scale(.84)" filter="url(#halo)">${pussSvg}</g>
     ${titleSvg}
     <rect width="1920" height="1080" filter="url(#brush)" opacity=".18" style="mix-blend-mode:soft-light"/>
     <rect width="1920" height="1080" filter="url(#grain)" opacity=".5"/>
