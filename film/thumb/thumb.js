@@ -87,7 +87,7 @@ function puss() {
   out.push(paw(486, 646, -2.2, 1));
   out.push(`<path d="M172 440 Q240 414 300 436 Q392 534 478 692" fill="none" stroke="#5e4022" stroke-width="18" stroke-linecap="round"/><path d="M172 440 Q240 414 300 436 Q392 534 478 692" fill="none" stroke="#9a7446" stroke-width="12" stroke-linecap="round"/><path d="M172 440 Q240 414 300 436 Q392 534 478 692" fill="none" stroke="#c8a06a" stroke-width="3" stroke-dasharray="10 8" opacity=".9"/><ellipse cx="180" cy="446" rx="30" ry="14" fill="#7d5a32"/>`);
   // ears (behind the head)
-  out.push('<g transform="rotate(-9 380 440)">');
+  out.push('<g transform="rotate(-11 380 440)">');
   out.push(part('M192 216 C172 150 168 80 186 28 C240 50 290 88 320 124 Z', OR, ORS, { hi: ORH, s: 10, blur: 5, edge: EDGE, extra: `<path d="M208 192 C197 142 195 98 205 64 C242 86 272 110 296 134 Z" fill="#f4a1a0"/><path d="M208 192 C197 142 195 98 205 64 C222 76 236 88 246 98 C228 120 218 160 208 192 Z" fill="#e48a8c"/>` }));
   out.push(part('M410 114 C450 74 505 42 550 24 C568 80 568 150 554 220 Z', OR, ORS, { hi: ORH, s: 10, blur: 5, edge: EDGE, extra: `<path d="M438 118 C470 90 505 68 534 56 C544 96 546 140 540 188 Z" fill="#f4a1a0"/>` }));
   out.push(`<g stroke="#fff3e0" stroke-width="3" stroke-linecap="round" opacity=".85"><path d="M222 176 L238 150 M232 186 L254 166 M218 160 L230 132"/><path d="M520 150 L540 128 M524 170 L546 156"/></g>`);
@@ -125,7 +125,7 @@ function boot(x, y, rot, layer) {   // a cavalier boot: flared cuff, shaft, roun
 function faceArt() {
   const eye = (cx, cy, rx, ry, lid) => {
     const c = uid('e'); DEFS.push(`<clipPath id="${c}"><ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/></clipPath>`);
-    const ix = cx + rx * .3, iy = cy - ry * .3, ly = cy - ry + ry * 2 * lid;
+    const ix = cx + rx * .34, iy = cy - ry * .02, ly = cy - ry + ry * 2 * lid;
     return `<ellipse cx="${cx}" cy="${cy}" rx="${rx + 5}" ry="${ry + 5}" fill="${INK}"/>
       <g clip-path="url(#${c})"><rect x="${cx - rx}" y="${cy - ry}" width="${rx * 2}" height="${ry * 2}" fill="#fffbee"/>
       <ellipse cx="${ix}" cy="${iy}" rx="${rx * .74}" ry="${ry * .78}" fill="url(#iris)"/>
@@ -137,12 +137,12 @@ function faceArt() {
   };
   return `<g>
     <ellipse cx="290" cy="336" rx="34" ry="18" fill="#f07c74" opacity=".45" filter="url(#b6)"/><ellipse cx="500" cy="330" rx="26" ry="15" fill="#f07c74" opacity=".4" filter="url(#b6)"/>
-    ${eye(318, 262, 50, 58, .1)}${eye(464, 258, 42, 55, .12)}
-    <path d="M264 184 Q306 146 352 170" fill="none" stroke="${STR}" stroke-width="11" stroke-linecap="round"/><path d="M432 192 Q470 174 504 186" fill="none" stroke="${STR}" stroke-width="10" stroke-linecap="round"/>
+    ${eye(318, 262, 50, 58, .42)}${eye(464, 258, 42, 55, .36)}
+    <path d="M268 196 Q310 186 354 200" fill="none" stroke="${STR}" stroke-width="11" stroke-linecap="round"/><path d="M432 178 Q468 140 506 160" fill="none" stroke="${STR}" stroke-width="10" stroke-linecap="round"/>
     ${part('M328 336 C326 304 360 294 392 304 C424 294 458 304 458 336 C458 372 424 386 392 380 C360 386 328 372 328 336 Z', WH, WHS, { s: 10, blur: 6 })}
     <path d="M372 312 C372 300 412 300 412 312 C412 324 398 334 392 336 C386 334 372 324 372 312 Z" fill="#e8708c"/><ellipse cx="386" cy="308" rx="9" ry="4" fill="#ffc0cc" opacity=".9"/>
-    <path d="M392 336 L392 348 M392 348 Q372 372 346 350 M392 348 Q414 372 442 344" fill="none" stroke="#5a2a20" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M442 344 Q450 340 452 334" fill="none" stroke="#5a2a20" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M392 336 L392 348 M392 348 Q376 362 358 356 M392 348 Q420 370 448 330" fill="none" stroke="#5a2a20" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M422 356 L430 372 L436 352 Z" fill="#fffaf0" stroke="none"/><path d="M448 330 Q456 324 456 316" fill="none" stroke="#5a2a20" stroke-width="4.5" stroke-linecap="round"/>
     <g stroke="#fffaf0" stroke-width="4" stroke-linecap="round" fill="none" opacity=".95"><path d="M338 334 Q260 318 196 320"/><path d="M336 348 Q262 350 198 362"/><path d="M342 360 Q280 376 222 398"/><path d="M448 330 Q510 314 572 312"/><path d="M450 344 Q514 346 576 352"/><path d="M446 356 Q500 370 556 388"/></g>
   </g>`;
 }
@@ -208,7 +208,7 @@ function castle(x, y, k) {   // a grand fairy-tale castle: towers with pointed r
     ${crenWall(-170, 170, 400)}${banner(-118)}${banner(118)}${win(0, -380, 34, 56)}
     ${door}
     <path d="M-150 0 L150 0 L176 22 L-176 22 Z" fill="${WS}"/><path d="M-176 22 L176 22 L196 40 L-196 40 Z" fill="${WD}"/>
-    ${guard(-236)}</g>`;
+    ${guard(236)}</g>`;
 }
 DEFS.push(`<radialGradient id="cglow"><stop offset="0" stop-color="#fff6d0" stop-opacity=".75"/><stop offset=".6" stop-color="#fff0c0" stop-opacity=".25"/><stop offset="1" stop-color="#fff0c0" stop-opacity="0"/></radialGradient>`);
 function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the castle
@@ -218,26 +218,26 @@ function rays(cx, cy, n, a) {   // soft sunbeams fanning out from behind the cas
 function scene() {
   const o = [];
   // sky: a rich sunset (rose-orange at the top to gold), a bright glow behind the castle
-  DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e8705a"/><stop offset=".35" stop-color="#f6a066"/><stop offset=".68" stop-color="#ffd08a"/><stop offset="1" stop-color="#ffe2a6"/></linearGradient>`);
-  DEFS.push(`<radialGradient id="glow" cx="1250" cy="560" r="950" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe9b8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>`);
-  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1250, 520, 24, .22)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".45"/>`);
+  DEFS.push(`<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1080" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3f9a86"/><stop offset=".35" stop-color="#7cc4a0"/><stop offset=".7" stop-color="#c8e8b4"/><stop offset="1" stop-color="#eef6cc"/></linearGradient>`);
+  DEFS.push(`<radialGradient id="glow" cx="1050" cy="420" r="900" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fffbe6" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe9b8" stop-opacity=".5"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>`);
+  o.push(`<rect width="1920" height="1080" fill="url(#sky)"/>${rays(1050, 420, 26, .16)}<rect width="1920" height="1080" fill="url(#glow)"/><rect width="1920" height="1080" filter="url(#mottle)" opacity=".45"/>`);
   // clouds: a bright bank behind Puss (so the orange cat pops), smaller ones in the sky
-  o.push(cloud(130, 880, 520, 150, 5, { op: .9 }), cloud(560, 960, 620, 170, 9, { op: .85 }), cloud(1880, 300, 300, 90, 3, { op: .7 }));
-  o.push(cloud(1640, 820, 900, 320, 4));
+  o.push(cloud(1780, 860, 560, 170, 5, { op: .9 }), cloud(260, 900, 700, 200, 9, { op: .9 }), cloud(160, 150, 360, 100, 3, { op: .75 }));
+  o.push(cloud(1060, 900, 1500, 300, 4, { bot: '#cfe6c0' }));
   // far lavender hills, the castle on its green hill, the road from Puss to the castle, the front hill
-  o.push(`<path d="M0 940 C200 900 420 900 600 960 C760 900 920 900 1080 930 C1260 880 1420 860 1600 890 C1740 880 1840 890 1920 900 L1920 1080 L0 1080 Z" fill="#c09ac4"/>`);
+  o.push(`<path d="M0 940 C200 900 420 900 600 960 C760 900 920 900 1080 930 C1260 880 1420 860 1600 890 C1740 880 1840 890 1920 900 L1920 1080 L0 1080 Z" fill="#8cbfa6"/>`);
   o.push(`<path d="M0 1030 C300 1000 700 990 1250 1000 C1560 992 1800 996 1920 1004 L1920 1080 L0 1080 Z" fill="#9cc458"/><path d="M0 1030 C300 1000 700 990 1250 1000 C1560 992 1800 996 1920 1004" fill="none" stroke="#d6ec8e" stroke-width="6" opacity=".8"/>`);
-  o.push(castle(1250, 1000, .74));
-  o.push(`<path d="M1180 1028 C1100 1046 940 1062 780 1080 L1000 1080 C1120 1066 1240 1048 1320 1028 Z" fill="#f2dca0"/>`);
-  o.push(`<path d="M1920 1006 C1700 986 1400 996 1080 1036 C1000 1046 960 1064 940 1080 L1920 1080 Z" fill="#6fa040"/>`);
-  let tufts = ''; const r = R0(41); for (let x = 960; x < 1912; x += 26 + r() * 20) { const yb = 1010 + ((1920 - x) / 960) * 34, h = 18 + r() * 26; tufts += `<path d="M${n1(x - 6)} ${n1(yb + 10)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 4)} ${n1(yb - h * .4)} ${n1(x + 8)} ${n1(yb + 10)} Z"/>`; }
+  o.push(castle(1060, 1078, 1.08));
+  
+  o.push(`<path d="M0 1002 C240 984 520 996 760 1030 C820 1040 860 1062 870 1080 L0 1080 Z" fill="#5f9a38"/>`);
+  let tufts = ''; const r = R0(41); for (let x = 8; x < 860; x += 26 + r() * 20) { const yb = 1006 + (x / 860) * 36, h = 18 + r() * 26; tufts += `<path d="M${n1(x - 6)} ${n1(yb + 10)} Q${n1(x - 2)} ${n1(yb - h * .5)} ${n1(x + 4)} ${n1(yb - h)} Q${n1(x + 4)} ${n1(yb - h * .4)} ${n1(x + 8)} ${n1(yb + 10)} Z"/>`; }
   o.push(`<g fill="#4f8a2c">${tufts}</g>`);
-  let fl = ''; for (const [x, y, c] of [[1850, 1030, '#fff6e0'], [1790, 1050, '#ffd23a'], [1060, 1060, '#fff6e0'], [1000, 1068, '#ff7aa8'], [1880, 1062, '#ff7aa8'], [60, 1060, '#fff6e0'], [130, 1050, '#ffd23a'], [620, 1064, '#ff7aa8']]) fl += `<g fill="${c}">${[0, 1, 2, 3, 4].map(i => `<circle cx="${n1(x + Math.cos(i * 1.2566) * 7)}" cy="${n1(y + Math.sin(i * 1.2566) * 7)}" r="6"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="4.5" fill="#e8a22a"/>`;
+  let fl = ''; for (const [x, y, c] of [[60, 1040, '#fff6e0'], [130, 1056, '#ffd23a'], [700, 1062, '#ff7aa8'], [770, 1068, '#fff6e0'], [30, 1066, '#ff7aa8']]) fl += `<g fill="${c}">${[0, 1, 2, 3, 4].map(i => `<circle cx="${n1(x + Math.cos(i * 1.2566) * 7)}" cy="${n1(y + Math.sin(i * 1.2566) * 7)}" r="6"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="4.5" fill="#e8a22a"/>`;
   o.push(fl);
   return o.join('');
 }
 function title() {
-  const m = document.createElement('canvas').getContext('2d'), CX = 452, MAXW = 820, F = '"Lilita One"';
+  const m = document.createElement('canvas').getContext('2d'), CX = 1490, MAXW = 760, F = '"Lilita One"';
   DEFS.push(`<linearGradient id="tfill" x1="0" y1="0" x2="0" y2="1" ><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#ffffff"/><stop offset="1" stop-color="#ffeccc"/></linearGradient>`);
   // white letters, a thick dark outline and a deep 3D edge, like the white titles of the references
   const line = (s, size, base, track = 0) => {
@@ -257,14 +257,15 @@ function title() {
   const tx = x0 + fr * 2 + gap, lat = `x="${n1(tx)}" y="${fy + 27}" font-family='${F}' font-size="${ls}"`;
   const label = `<g><circle cx="${n1(fx + 4)}" cy="${fy + 8}" r="${fr + 8}" fill="#3a1a0c" opacity=".35" filter="url(#b6)"/><circle cx="${n1(fx)}" cy="${fy}" r="${fr + 7}" fill="#4a2414"/><g clip-path="url(#flagc)">${flag}<rect x="${n1(fx - fr)}" y="${fy - fr}" width="${n1(fr * 1.04)}" height="${n1(fr * .92)}" fill="#2a3f7a"/>${stars}</g>` +
     `<text ${lat} fill="#3a1a0c" opacity=".4" filter="url(#b6)" transform="translate(5 8)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round" transform="translate(3 5)">${lab}</text><text ${lat} fill="#4a2414" stroke="#4a2414" stroke-width="12" stroke-linejoin="round">${lab}</text><text ${lat} fill="#fff">${lab}</text></g>`;
-  return label + line('PUSS', 300, 370, 10) + line('IN', 150, 508, 8) + line('BOOTS', 300, 750, 10);
+  return `<ellipse cx="${CX}" cy="420" rx="480" ry="400" fill="#16301f" opacity=".46" filter="url(#soft)"/>` + label + line('PUSS', 300, 360, 10) + line('IN', 150, 494, 8) + line('BOOTS', 300, 732, 10);
 }
 
 function build() {
   const sceneSvg = scene(), pussSvg = puss(), titleSvg = title();
   const filters = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14].map(b => `<filter id="b${b}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="${b * .5}"/></filter>`).join('') +
+    `<filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>` +
     `<filter id="cloudEdge" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="14"/><feGaussianBlur stdDeviation="1.2"/></filter>` +
-    `<filter id="mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".004 .006" numOctaves="3" seed="8"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .92  0 0 0 0 .8  0 0 0 .9 -.32"/></filter>` +
+    `<filter id="mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".004 .006" numOctaves="3" seed="8"/><feColorMatrix values="0 0 0 0 .9  0 0 0 0 1  0 0 0 0 .85  0 0 0 .9 -.32"/></filter>` +
     `<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .2  0 0 0 0 .12  0 0 0 0 .05  0 0 0 .55 -.16"/></filter>` +
     `<filter id="brush" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".02 .09" numOctaves="2" seed="12"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .85  0 0 0 .7 -.3"/></filter>` +
     `<filter id="halo" x="-10%" y="-10%" width="120%" height="120%"><feMorphology in="SourceAlpha" operator="dilate" radius="5" result="d"/><feGaussianBlur in="d" stdDeviation="9" result="b"/><feFlood flood-color="#fffbe8" flood-opacity=".9"/><feComposite in2="b" operator="in" result="h"/><feMerge><feMergeNode in="h"/><feMergeNode in="SourceGraphic"/></feMerge></filter>` +
@@ -273,7 +274,7 @@ function build() {
     `<radialGradient id="vig" cx="960" cy="540" r="1150" gradientUnits="userSpaceOnUse"><stop offset=".55" stop-color="#2a1208" stop-opacity="0"/><stop offset="1" stop-color="#2a1208" stop-opacity=".32"/></radialGradient>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080"><defs>${filters}${DEFS.join('')}</defs>
     ${sceneSvg}
-    <g transform="translate(1912 252) scale(-.8 .8)" filter="url(#halo)">${pussSvg}</g>
+    <g transform="translate(-6 54) scale(1)" filter="url(#halo)">${pussSvg}</g>
     ${titleSvg}
     <rect width="1920" height="1080" filter="url(#brush)" opacity=".18" style="mix-blend-mode:soft-light"/>
     <rect width="1920" height="1080" filter="url(#grain)" opacity=".5"/>
